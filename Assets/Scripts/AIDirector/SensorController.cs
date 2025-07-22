@@ -7,23 +7,42 @@ namespace AIDirector
 {
     public class SensorController:MonoBehaviour
     {
+        [ContextMenu("SimulateEvaluateAll")]
         public List<SensorResult> EvaluateAll()
         {
-            var sensors = FindObjectsOfType<Sensor>().ToList();
+            // Step 1: Get all sensors in the scene
+            var allSensors = FindObjectsOfType<Sensor>().ToList();
+
+            // Step 2: Get all sensors that are inputs to composite sensors
+            var referencedSensors = new HashSet<Sensor>();
+            foreach (var sensor in allSensors.OfType<CompositeSensor>())
+            {
+                foreach (var input in sensor.Inputs)
+                {
+                    if (input != null)
+                        referencedSensors.Add(input);
+                }
+            }
+
+            // Step 3: Identify root sensors (not used as inputs)
+            var rootSensors = allSensors.Except(referencedSensors).ToList();
+
+            // Step 4: Evaluate each root sensor recursively
             var results = new List<SensorResult>();
-            foreach (var sensor in sensors)
+            foreach (var root in rootSensors)
             {
                 try
                 {
-                    float value = sensor.Evaluate();
-                    results.Add(new SensorResult {sensor = sensor, value = value});
-                    Debug.Log($"[{sensor.GetType().Name}] => {value}");
+                    var result = root.Evaluate();
+                    results.Add(result);
+                    Debug.Log($"Evaluated root sensor: {root.name} => {result.Value}");
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Debug.LogError($"Sensor error in {sensor.name}: {e.Message}");
+                    Debug.LogError($"Error evaluating sensor {root.name}: {ex.Message}");
                 }
             }
+
             return results;
         }
     }
