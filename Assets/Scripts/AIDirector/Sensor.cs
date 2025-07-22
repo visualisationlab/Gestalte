@@ -13,7 +13,7 @@ namespace AIDirector
         
         public float MinMaxNormalize(SensorResult result)
         {
-            return MinMaxNormalize(result.Value, result.Min, result.Max);
+            return MinMaxNormalize(result.value, result.min, result.max);
         }
         
         private float MinMaxNormalize(float value, float min, float max)

@@ -5,7 +5,6 @@ namespace AIDirector
     [Serializable]
     public class SensorFunctionMapping
     {
-        public string name;
         public Sensor sensor;
         public CorrelatorFunction function;
 
@@ -13,5 +12,11 @@ namespace AIDirector
         {
             return function.Evaluate(sensor.Evaluate());
         }
+
+        public SensorResultDTO AsData()
+        {
+            return sensor.Evaluate().AsData();
+        }
+        
     }
 }

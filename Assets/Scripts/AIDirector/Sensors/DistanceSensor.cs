@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AIDirector.Sensors
@@ -7,7 +6,7 @@ namespace AIDirector.Sensors
     {
         public Transform other;
         public float maxDistance = 100.0f;
-        
+        public string description;
         public override SensorResult Evaluate()
         {
             if (other == null)
@@ -15,21 +14,21 @@ namespace AIDirector.Sensors
                 Debug.LogError("DistanceSensor: other Transform is not assigned.");
                 return new SensorResult
                 {
-                    Sensor = this, 
-                    Value = float.NaN,
-                    Max = maxDistance,
-                    Min = 0.0f,
-                    Inputs = new List<SensorResult>()
+                    description = description,
+                    sensor = this, 
+                    value = float.NaN,
+                    max = maxDistance,
+                    min = 0.0f
                 };
             }
 
             return new SensorResult
             {
-                Sensor = this,
-                Value = Vector3.Distance(transform.position, other.position),
-                Max = maxDistance,
-                Min = 0.0f,
-                Inputs = new List<SensorResult>()
+                description = description,
+                sensor = this,
+                value = Vector3.Distance(transform.position, other.position),
+                max = maxDistance,
+                min = 0.0f
             };
         }
     }

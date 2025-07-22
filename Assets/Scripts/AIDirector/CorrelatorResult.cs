@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace AIDirector
 {
@@ -6,7 +7,7 @@ namespace AIDirector
     public struct CorrelatorResult
     {
         public string description;
-        public int uuid;
         public float relevance;
+        public List<SensorResultDTO> sensors;
     }
 }

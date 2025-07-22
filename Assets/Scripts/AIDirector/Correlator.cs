@@ -10,7 +10,6 @@ namespace AIDirector
         public List<SensorFunctionMapping> sensorMappings;
         [SerializeField] public string description;
 
-        [ContextMenu("Test Evaluate")]
         public float Evaluate()
         {
             float total = 0.0f;

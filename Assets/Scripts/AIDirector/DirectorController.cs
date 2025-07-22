@@ -20,7 +20,7 @@ namespace AIDirector
                 {
                     description = correlator.description,
                     relevance = correlator.Evaluate(),
-                    uuid = correlator.GetInstanceID()
+                    sensors = correlator.sensorMappings.Select(mapping => mapping.AsData()).ToList()
                 });
             }
             //order correlators by reference and return n amounts

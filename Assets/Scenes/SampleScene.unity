@@ -533,6 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 589857666}
   maxDistance: 50
+  description: A Sensor to measure the distance between 2 objects
 --- !u!114 &1189068549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,8 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensorMappings:
-  - name: Distance A
-    sensor: {fileID: 1189068548}
+  - sensor: {fileID: 1189068548}
     function: {fileID: 11400000, guid: 4a6dd716de24a6740bca412a287e4188, type: 2}
   description: Objects have a close distance
 --- !u!114 &1798859986
