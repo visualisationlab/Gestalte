@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AIDirector
@@ -15,11 +16,19 @@ namespace AIDirector
             List<CorrelatorResult> evaluated = new();
             foreach (var correlator in correlators)
             {
-                evaluated.Add(new CorrelatorResult(){relevance = correlator.Evaluate(), correlator = correlator});
+                evaluated.Add(new CorrelatorResult
+                {
+                    description = correlator.description,
+                    relevance = correlator.Evaluate(),
+                    uuid = correlator.GetInstanceID()
+                });
             }
-
+            //order correlators by reference and return n amounts
             var ordered = evaluated.OrderBy(x => x.relevance).Take(selectionAmount).ToList();
             Debug.Log(ordered.Count);
+            
+            string json = JsonConvert.SerializeObject(ordered);
+            Debug.Log(json);
             return ordered;
         }
         

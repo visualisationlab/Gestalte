@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace AIDirector
 {
+    [Serializable]
     public class Correlator : MonoBehaviour
     {
         public List<SensorFunctionMapping> sensorMappings;
-        public string context;
+        [SerializeField] public string description;
 
         [ContextMenu("Test Evaluate")]
         public float Evaluate()

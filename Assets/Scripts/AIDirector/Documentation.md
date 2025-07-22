@@ -46,9 +46,7 @@ The most important part is keeping track of the source of data. This is done thr
 
 Every Sensor somehow needs to pass along a **Min** and **Max** value that can be used in the **Correlator** to normalize the value.
 
-**Composite Sensors** are combinations of sensors, values of the input sensors are combined through an `EvaluationFunction` Scriptable Object.
-
-**Sensor Operators** It's still a bit unclear to me **if** we really need this to be Scriptable Objects - or they could just be implemented logic. We could pass their types along in the **SensorResult** - but is that really necessary?
+**Sensor Operators**
 
 **Some example Sensor Operators:**
 **SubtractFunction**: Subtracts all inputs sequentially.
