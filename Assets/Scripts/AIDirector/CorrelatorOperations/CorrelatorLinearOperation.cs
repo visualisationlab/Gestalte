@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AIDirector.CorrelatorOperations
 {
     [CreateAssetMenu(menuName = "CorrelatorOperations/Linear")]
-    public class LinearOperation : CorrelatorOperation
+    public class CorrelatorLinearOperation : CorrelatorOperation
     {
         public override float Evaluate(List<SensorResult> inputs)
         {

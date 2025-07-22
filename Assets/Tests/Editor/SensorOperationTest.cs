@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 namespace Tests.Editor
 {
     [TestFixture]
-    public class EvaluationFunctionTest
+    public class SensorOperationTest
     {
     
         private SensorAddOperation _addFunction;
