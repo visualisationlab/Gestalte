@@ -25,8 +25,6 @@ namespace AIDirector
             }
             //order correlators by reference and return n amounts
             var ordered = evaluated.OrderBy(x => x.relevance).Take(selectionAmount).ToList();
-            Debug.Log(ordered.Count);
-            
             string json = JsonConvert.SerializeObject(ordered);
             Debug.Log(json);
             return ordered;

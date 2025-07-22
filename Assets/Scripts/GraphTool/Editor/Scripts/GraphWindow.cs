@@ -29,7 +29,6 @@ namespace GraphTool.Editor
         // Called by your editor‐shim
         public static void Subscribe(MonoBehaviour id, Func<float> provider, Color color)
         {
-            Debug.Log($"[Graph] Subscribed “{id.name}”");   // ← make sure this prints
             if (s_Series.ContainsKey(id)) return;
             s_Series[id] = new Series(provider, color, kMaxSamples);
         }
