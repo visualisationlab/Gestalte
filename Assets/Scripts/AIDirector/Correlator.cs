@@ -19,7 +19,6 @@ namespace AIDirector
                 {
                     var result = map.Evaluate();
                     total += result;
-                    Debug.Log($"Evaluated sensor: {map.sensor.name} => {result}");
                 }
                 catch (Exception ex)
                 {
@@ -27,7 +26,6 @@ namespace AIDirector
                 }
             }
             float average = total / sensorMappings.Count;
-            Debug.Log($"Average Importance: {average}");
             return average;
         }
     }

@@ -5,15 +5,14 @@ namespace AIDirector.Sensors
 {
     public class DistanceSensor : Sensor
     {
-        public Transform a;
-        public Transform b;
+        public Transform other;
         public float maxDistance = 100.0f;
         
         public override SensorResult Evaluate()
         {
-            if (a == null || b == null)
+            if (other == null)
             {
-                Debug.LogError("DistanceSensor: One or both Transforms are not assigned.");
+                Debug.LogError("DistanceSensor: other Transform is not assigned.");
                 return new SensorResult
                 {
                     Sensor = this, 
@@ -27,7 +26,7 @@ namespace AIDirector.Sensors
             return new SensorResult
             {
                 Sensor = this,
-                Value = Vector3.Distance(a.position, b.position),
+                Value = Vector3.Distance(transform.position, other.position),
                 Max = maxDistance,
                 Min = 0.0f,
                 Inputs = new List<SensorResult>()
