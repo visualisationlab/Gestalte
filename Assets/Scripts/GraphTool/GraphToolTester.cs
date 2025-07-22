@@ -3,21 +3,21 @@ using GraphTool.Runtime;
 
 public class GraphToolTester : MonoBehaviour
 {
-    [Range(0.0f, 100.0f)]
-    public float slider = 50.0f;
+    [Range(0.0f, 1.0f)]
+    public float slider = .5f;
 
     void Start()
     {
         // A ping‑ponging value between 0 and 100
         GraphSubscription.Subscribe(
-            "PingPong",
+            this,
             () => Mathf.PingPong(Time.time * 20f, 100f),
             Color.cyan
         );
 
         // Update the slider value in the GraphSubscription
         GraphSubscription.Subscribe(
-            "SliderValue",
+            this,
             () => slider,
             Color.green
         );
@@ -25,7 +25,7 @@ public class GraphToolTester : MonoBehaviour
 
     void OnDestroy()
     {
-        GraphSubscription.Unsubscribe("PingPong");
-        GraphSubscription.Unsubscribe("SliderValue");
+        GraphSubscription.Unsubscribe(this);
+        GraphSubscription.Unsubscribe(this);
     }
 }

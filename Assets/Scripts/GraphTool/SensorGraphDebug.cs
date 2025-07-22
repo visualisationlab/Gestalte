@@ -1,16 +1,16 @@
-using AIDirector;
+﻿using AIDirector;
 using GraphTool.Runtime;
 using UnityEngine;
 
-public class CorrelatorGraphDebug : MonoBehaviour
+public class SensorGraphDebug : MonoBehaviour
 {
-    public Correlator correlator;
+    public Sensor sensor;
     public Color trackColor;
     void Start()
     {
         GraphSubscription.Subscribe(
             this,
-            () => correlator.Evaluate(),
+            () => sensor.MinMaxNormalize(sensor.Evaluate()),
             trackColor
         );
     }
@@ -20,7 +20,7 @@ public class CorrelatorGraphDebug : MonoBehaviour
         GraphSubscription.Unsubscribe(this);
         GraphSubscription.Subscribe(
             this,
-            () => correlator.Evaluate(),
+            () => sensor.MinMaxNormalize(sensor.Evaluate()),
             trackColor
         );
     }

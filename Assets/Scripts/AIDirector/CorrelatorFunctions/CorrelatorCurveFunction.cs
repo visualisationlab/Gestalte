@@ -14,7 +14,7 @@ namespace AIDirector.CorrelatorFunctions
                 return 0.0f; // Return a default value or handle the error as needed
             }
 
-            float normalizedValue = MinMaxNormalize(result);
+            float normalizedValue = result.Sensor.MinMaxNormalize();
             return curve.Evaluate(normalizedValue);
         }
     }

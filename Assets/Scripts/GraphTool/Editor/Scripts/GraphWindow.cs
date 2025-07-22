@@ -16,9 +16,9 @@ namespace GraphTool.Editor
         void OnDisable() { Instance = null; }
 
         // simple in‑memory store for all series
-        static Dictionary<string, Series> s_Series = new Dictionary<string, Series>();
+        static Dictionary<MonoBehaviour, Series> s_Series = new();
         const int kMaxSamples = 300;
-        const float kMin = 0, kMax = 100;
+        const float kMin = 0, kMax = 1;
 
         [MenuItem("Window/Graph Tool")]
         public static void ShowWindow()
@@ -27,15 +27,15 @@ namespace GraphTool.Editor
         }
 
         // Called by your editor‐shim
-        public static void Subscribe(string id, Func<float> provider, Color color)
+        public static void Subscribe(MonoBehaviour id, Func<float> provider, Color color)
         {
-            Debug.Log($"[Graph] Subscribed “{id}”");   // ← make sure this prints
+            Debug.Log($"[Graph] Subscribed “{id.name}”");   // ← make sure this prints
             if (s_Series.ContainsKey(id)) return;
             s_Series[id] = new Series(provider, color, kMaxSamples);
         }
 
         // Called by your editor‐shim
-        public static void Unsubscribe(string id)
+        public static void Unsubscribe(MonoBehaviour id)
         {
             s_Series.Remove(id);
         }
@@ -169,7 +169,7 @@ namespace GraphTool.Editor
             var labelStyle = GUI.skin.label;
             foreach (var kv in s_Series)
             {
-                string id    = kv.Key;
+                MonoBehaviour id    = kv.Key;
                 Color  col   = kv.Value.Color;
 
                 // color swatch
@@ -177,9 +177,9 @@ namespace GraphTool.Editor
                 EditorGUI.DrawRect(boxRect, col);
 
                 // label next to it
-                Vector2 labelSize = labelStyle.CalcSize(new GUIContent(id));
+                Vector2 labelSize = labelStyle.CalcSize(new GUIContent(id.name));
                 Rect labelRect    = new Rect(x + boxSize + padding, y, labelSize.x, boxSize);
-                GUI.Label(labelRect, id, labelStyle);
+                GUI.Label(labelRect, id.name, labelStyle);
 
                 // advance x for the next entry
                 x += boxSize + padding + labelSize.x + (padding * 2);
