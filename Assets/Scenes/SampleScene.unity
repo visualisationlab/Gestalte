@@ -561,11 +561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1457cc3e5a224c6d96f9f95be2163bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  evalFunc: {fileID: 11400000, guid: 6eac02300583a2f48b9b3bd3a38d15c6, type: 2}
   a: {fileID: 301449844}
   b: {fileID: 633291809}
-  bias: 2
-  maxDistance: 100
+  maxDistance: 10
 --- !u!4 &956400289
 Transform:
   m_ObjectHideFlags: 0
@@ -573,54 +571,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956400287}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1000109710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1000109712}
-  - component: {fileID: 1000109711}
-  m_Layer: 0
-  m_Name: CompositeSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1000109711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000109710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45838c2b72703534fb4e92ff15511af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  evalFunc: {fileID: 11400000, guid: 9da25c16af5937449b61bed794d64a52, type: 2}
-  Inputs:
-  - {fileID: 1917132216}
-  - {fileID: 956400288}
---- !u!4 &1000109712
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000109710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -735,11 +685,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaeab29fdfc140f5b9630a514139c49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensors:
-  - {fileID: 1917132216}
-  - {fileID: 956400288}
-  context: 
-  correlatorFunc: {fileID: 0}
+  sensorMappings:
+  - name: Distance A
+    sensor: {fileID: 1917132216}
+    function: {fileID: 11400000, guid: 4a6dd716de24a6740bca412a287e4188, type: 2}
+  - name: Distance B
+    sensor: {fileID: 956400288}
+    function: {fileID: 11400000, guid: 36216629e5cb29c40b2221e4848548f1, type: 2}
+  context: Distance B is more important
 --- !u!1 &1917132213
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,11 +737,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1457cc3e5a224c6d96f9f95be2163bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  evalFunc: {fileID: 11400000, guid: 6eac02300583a2f48b9b3bd3a38d15c6, type: 2}
   a: {fileID: 589857666}
   b: {fileID: 1189068547}
-  bias: 1
-  maxDistance: 100
+  maxDistance: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -804,5 +755,4 @@ SceneRoots:
   - {fileID: 633291809}
   - {fileID: 956400289}
   - {fileID: 1455824604}
-  - {fileID: 1000109712}
   - {fileID: 1798859984}

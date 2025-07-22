@@ -6,29 +6,29 @@ namespace AIDirector
 {
     public class Correlator : MonoBehaviour
     {
-        public List<Sensor> sensors;
+        public List<SensorFunctionMapping> sensorMappings;
         public string context;
-        public CorrelatorOperation correlatorFunc;
         
         [ContextMenu("Test Evaluate")]
-        public List<SensorResult> Evaluate()
+        public float Evaluate()
         {
-            var results = new List<SensorResult>();
-            foreach (var root in sensors)
+            float total = 0.0f;
+            foreach (var map in sensorMappings)
             {
                 try
                 {
-                    var result = root.Evaluate();
-                    results.Add(result);
-                    Debug.Log($"Evaluated root sensor: {root.name} => {result.Value}");
+                    var result = map.Evaluate();
+                    total += result;
+                    Debug.Log($"Evaluated sensor: {map.sensor.name} => {result}");
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"Error evaluating sensor {root.name}: {ex.Message}");
+                    Debug.LogError($"Error evaluating sensor {map.sensor.name}: {ex.Message}");
                 }
             }
-            
-            return results;
+            float average = total / sensorMappings.Count;
+            Debug.Log($"Average Importance: {average}");
+            return average;
         }
     }
 }
