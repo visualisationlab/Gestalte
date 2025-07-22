@@ -651,8 +651,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1798859984}
   - component: {fileID: 1798859985}
+  - component: {fileID: 1798859986}
   m_Layer: 0
-  m_Name: SensorController
+  m_Name: Correlator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,6 +694,21 @@ MonoBehaviour:
     sensor: {fileID: 956400288}
     function: {fileID: 11400000, guid: 36216629e5cb29c40b2221e4848548f1, type: 2}
   context: Distance B is more important
+--- !u!114 &1798859986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798859982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab0dc26f6e54d7e4dbf53ac1e91005d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: DistanceCorrelation
+  correlator: {fileID: 1798859985}
+  trackColor: {r: 1, g: 0.9747956, b: 0, a: 1}
 --- !u!1 &1917132213
 GameObject:
   m_ObjectHideFlags: 0

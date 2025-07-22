@@ -8,7 +8,7 @@ namespace AIDirector
     {
         public List<SensorFunctionMapping> sensorMappings;
         public string context;
-        
+
         [ContextMenu("Test Evaluate")]
         public float Evaluate()
         {

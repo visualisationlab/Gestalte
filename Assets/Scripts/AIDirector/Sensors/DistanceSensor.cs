@@ -8,7 +8,7 @@ namespace AIDirector.Sensors
         public Transform a;
         public Transform b;
         public float maxDistance = 100.0f;
-
+        
         public override SensorResult Evaluate()
         {
             if (a == null || b == null)
