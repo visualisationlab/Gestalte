@@ -1,4 +1,4 @@
-using AIDirector.EvaluationFunctions;
+using AIDirector.SensorOperations;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -9,14 +9,14 @@ namespace Tests.Editor
     public class EvaluationFunctionTest
     {
     
-        private AddFunction _addFunction;
-        private MultiplyFunction _multiplyFunction;
+        private SensorAddOperation _addFunction;
+        private SensorMultiplyOperation _multiplyFunction;
     
         [SetUp]
         public void SetUp()
         {
-            _addFunction = ScriptableObject.CreateInstance<AddFunction>();
-            _multiplyFunction = ScriptableObject.CreateInstance<MultiplyFunction>();
+            _addFunction = ScriptableObject.CreateInstance<SensorAddOperation>();
+            _multiplyFunction = ScriptableObject.CreateInstance<SensorMultiplyOperation>();
         }
     
         [TearDown]

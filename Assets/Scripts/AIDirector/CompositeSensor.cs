@@ -5,7 +5,7 @@ namespace AIDirector
 {
     public class CompositeSensor : Sensor
     {
-        public EvaluationFunction evalFunc;
+        public SensorOperation evalFunc;
         public List<Sensor> Inputs;
 
         public override SensorResult Evaluate()

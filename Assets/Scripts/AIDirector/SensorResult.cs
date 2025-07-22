@@ -7,6 +7,8 @@ namespace AIDirector
     {
         public Sensor Sensor;
         public float Value;
+        public float Min;
+        public float Max;
         public List<SensorResult> Inputs { get; set; } = new();
     }
 }
