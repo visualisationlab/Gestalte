@@ -1,0 +1,18 @@
+{
+    "name": "GraphTool.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:72816eb7b8c5e674b9ad4520e7f2471c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
