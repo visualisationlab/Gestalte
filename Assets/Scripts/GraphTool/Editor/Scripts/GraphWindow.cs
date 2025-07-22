@@ -137,12 +137,11 @@ namespace GraphTool.Editor
             var style = GUI.skin.label;
             style.alignment = TextAnchor.MiddleRight;
 
-            // we want labels at values 0, 25, 50, 75, 100, etc.
             for (int i = 0; i <= steps; i++)
             {
                 float t = i/(float)steps;           // 0→1
                 float value = Mathf.Lerp(kMin, kMax, t);   // 0→100
-                string text = Mathf.RoundToInt(value).ToString();
+                string text = value.ToString();
 
                 // y position: invert t because GUI y grows down
                 float y = Mathf.Lerp(graphRect.yMax, graphRect.yMin, t);
