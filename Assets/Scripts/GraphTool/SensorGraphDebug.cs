@@ -2,11 +2,12 @@
 using GraphTool.Runtime;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class SensorGraphDebug : MonoBehaviour
 {
     public Sensor sensor;
     public Color trackColor;
-    void Start()
+    void OnEnable()
     {
         GraphSubscription.Subscribe(
             this,
@@ -14,15 +15,10 @@ public class SensorGraphDebug : MonoBehaviour
             trackColor
         );
     }
-
-    private void OnValidate()
+    
+    void OnDisable()
     {
         GraphSubscription.Unsubscribe(this);
-        GraphSubscription.Subscribe(
-            this,
-            () => sensor.MinMaxNormalize(sensor.Evaluate()),
-            trackColor
-        );
     }
 
     void OnDestroy()

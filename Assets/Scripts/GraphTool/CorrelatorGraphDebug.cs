@@ -2,11 +2,13 @@ using AIDirector;
 using GraphTool.Runtime;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class CorrelatorGraphDebug : MonoBehaviour
 {
     public Correlator correlator;
     public Color trackColor;
-    void Start()
+    
+    void OnEnable()
     {
         GraphSubscription.Subscribe(
             this,
@@ -14,15 +16,10 @@ public class CorrelatorGraphDebug : MonoBehaviour
             trackColor
         );
     }
-
-    private void OnValidate()
+    
+    void OnDisable()
     {
         GraphSubscription.Unsubscribe(this);
-        GraphSubscription.Subscribe(
-            this,
-            () => correlator.Evaluate(),
-            trackColor
-        );
     }
 
     void OnDestroy()

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AIDirector
 {
-    public class DirectorController:MonoBehaviour
+    public class ScopeController:MonoBehaviour
     {
         public List<Correlator> correlators;
         public int selectionAmount;
