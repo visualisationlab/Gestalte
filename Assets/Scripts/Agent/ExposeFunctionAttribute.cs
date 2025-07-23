@@ -3,6 +3,8 @@
 namespace Mediator
 {
     [AttributeUsage(AttributeTargets.Method)]
+    
+    //Notice! This Attribute will only work on MonoBehaviours
     public class ExposeFunctionAttribute : Attribute
     {
         public string DisplayName { get; }

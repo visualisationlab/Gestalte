@@ -7,5 +7,7 @@ namespace Mediator
     {
         public string method;
         public string description;
+        public string gameObjectName;
+        public string objectGuid;
     }
 }

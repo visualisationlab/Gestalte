@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 446554206}
   - component: {fileID: 446554205}
   m_Layer: 0
-  m_Name: ExampleActions
+  m_Name: ExampleMole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,6 +561,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &807701730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807701732}
+  - component: {fileID: 807701731}
+  m_Layer: 0
+  m_Name: ExampleDragon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807701731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807701730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c237f5b166ba64291fdae552174f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &807701732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807701730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901491005
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +709,7 @@ GameObject:
   - component: {fileID: 1346753380}
   - component: {fileID: 1346753379}
   m_Layer: 0
-  m_Name: Mediator
+  m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,6 +727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b2dca6d7844fcbaa73bb2e0041ea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prePrompt: 
+  mimicGuid: dd06554f-12aa-4951-95e4-11c30d083757
 --- !u!4 &1346753380
 Transform:
   m_ObjectHideFlags: 0
@@ -872,4 +918,5 @@ SceneRoots:
   - {fileID: 1798859984}
   - {fileID: 721585816}
   - {fileID: 446554206}
+  - {fileID: 807701732}
   - {fileID: 1346753380}
