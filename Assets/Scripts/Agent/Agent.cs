@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Mediator;
 using UnityEngine;
@@ -35,21 +36,19 @@ namespace Agent
                         {
                             parameterDescriptions.Add($"{param.ParameterType} {param.Name}");
                         }
-                        var guid = InstanceTracker.Subscribe(obj); // Register the object in the InstanceTracker
+                        
                         string methodDescription = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
-
+                        var methodGuid = MethodTracker.Subscribe(method, obj);
+                        
                         var interpretation = new ExposedMethodInterpretation
                         {
                             method = methodDescription,
                             description = attr.DisplayName ?? "No description provided",
-                            objectGuid = guid,
+                            methodGuid = methodGuid.ToString(),
                             gameObjectName = obj.name
                         };
                         
                         allExposedInterpretations.Add(interpretation);
-
-                        // Invoke the method
-                        // method.Invoke(obj, null);
                     }
                 }
             }
@@ -63,19 +62,27 @@ namespace Agent
         public void InvokeExposedFunction(string json)
         {
             ResponseStructure response = JsonConvert.DeserializeObject<ResponseStructure>(json);
-            object obj = InstanceTracker.Retrieve(response.ObjectGuid); // Retrieve the object using the GUID
+
+            var methodInfo = MethodTracker.RetrieveMethodInfo(response.MethodGuid);
             
-            // method.Invoke(obj, null);
+            var methodParams = methodInfo.GetParameters();
+            object[] coerced = new object[response.Parameters.Length];
+
+            for (int i = 0; i < response.Parameters.Length; i++)
+            {
+                var targetType = methodParams[i].ParameterType;
+                coerced[i] = Convert.ChangeType(response.Parameters[i], targetType);
+            }
             
-            Debug.Log(response.ObjectGuid);
+            MethodTracker.Invoke(response.MethodGuid, coerced);
         }
         
         [ContextMenu("Test Mimic")]
         public void Mimic()
         {
             string escapeJson = "{\n" +
-                                $"  \"ObjectGuid\": \"{mimicGuid}\",\n" +
-                                "  \"Method\": \"Dig(\\\"EscapeTunnel\\\", 5, 10)\",\n" +
+                                $"  \"MethodGuid\": \"{mimicGuid}\",\n" +
+                                "  \"Parameters\": [\"EscapeTunnel\", 5, 10],\n" +
                                 "  \"ShortReasoning\": \"The mole is capable of digging and the floor is dirt, making this the most effective escape method.\"\n" +
                                 "}";
             InvokeExposedFunction(escapeJson);

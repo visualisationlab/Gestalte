@@ -12,7 +12,7 @@ public class ExampleActions : MonoBehaviour
     [ExposeFunction("This makes the animal dig to a room")]
     public void Dig(string roomName, int speed, int depth)
     {
-        Debug.Log("Example Action 2 executed");
+        Debug.Log($"Mole Dug into {roomName} with a speed of {speed} from a depth of {depth}");
     }
     
     [ExposeFunction("This makes the animal walk to a room")]
