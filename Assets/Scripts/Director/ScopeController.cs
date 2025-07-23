@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace AIDirector
+namespace Director
 {
     public class ScopeController:MonoBehaviour
     {

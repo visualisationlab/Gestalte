@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AIDirector.CorrelatorFunctions
+namespace Director.CorrelatorFunctions
 {
     [CreateAssetMenu(fileName = "CorrelatorCurveFunction", menuName = "CorrelatorFunction/CurveFunction")]
     public class CorrelatorCurveFunction: CorrelatorFunction

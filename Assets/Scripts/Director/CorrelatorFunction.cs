@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AIDirector
+namespace Director
 {
     public abstract class CorrelatorFunction:ScriptableObject
     {

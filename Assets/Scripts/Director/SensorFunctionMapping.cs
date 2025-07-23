@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AIDirector
+namespace Director
 {
     [Serializable]
     public class SensorFunctionMapping

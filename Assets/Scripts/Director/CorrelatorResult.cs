@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AIDirector
+namespace Director
 {
     [Serializable]
     public struct CorrelatorResult

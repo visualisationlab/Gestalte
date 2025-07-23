@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AIDirector
+namespace Director
 {
     [Serializable]
     public class Correlator : MonoBehaviour
