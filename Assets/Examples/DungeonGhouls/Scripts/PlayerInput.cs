@@ -29,8 +29,7 @@ public class PlayerInput : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         if (input.magnitude < deadzone)
         {
-            input = Vector2.zero;
-            velocity = Vector2.zero;
+            StopMoving();
         }
         else
         {
@@ -40,7 +39,6 @@ public class PlayerInput : MonoBehaviour
 
     private void StopMoving()
     {
-        Debug.Log("Stop Moving");
-       
+        velocity = Vector2.zero;
     }
 }
