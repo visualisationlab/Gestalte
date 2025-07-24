@@ -12,8 +12,6 @@ namespace Agent
         [TextArea(3, 10)]
         public string prePrompt;
 
-        public string mimicGuid;
-        
         [ContextMenu("Interpret Exposed Methods")]
         private string InterpretExposedMethods()
         {
@@ -98,16 +96,6 @@ namespace Agent
             Debug.Log(json);
             return json;
         }
-        
-        [ContextMenu("Test Mimic")]
-        public void Mimic()
-        {
-            string escapeJson = "{\n" +
-                                $"  \"MethodGuid\": \"{mimicGuid}\",\n" +
-                                "  \"Parameters\": [\"EscapeTunnel\", 5],\n" +
-                                "  \"ShortReasoning\": \"The mole is capable of digging and the floor is dirt, making this the most effective escape method.\"\n" +
-                                "}";
-            InvokeExposedMethods(escapeJson);
-        }
+    
     }
 }
