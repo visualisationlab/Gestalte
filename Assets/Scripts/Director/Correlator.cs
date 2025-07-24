@@ -8,8 +8,9 @@ namespace Director
     public class Correlator : MonoBehaviour
     {
         public List<SensorFunctionMapping> sensorMappings;
+        public List<Sensor> ignoredSensors; // Sensors passed along as information but not taken into account for relevance score
         [SerializeField] public string description;
-
+        
         public float Evaluate()
         {
             float total = 0.0f;

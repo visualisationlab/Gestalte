@@ -1,10 +1,8 @@
-using UnityEngine;
-
 namespace Director.Sensors
 {
     public class SimpleSensor : Sensor
     {
-        public SensorSurface surface;
+        public SensorProbe probe;
         public float maxValue = 100.0f;
         public float minValue = 0.0f;
         public string description;
@@ -15,7 +13,7 @@ namespace Director.Sensors
             {
                 description = description,
                 sensor = this,
-                value = surface.Evaluate(),
+                value = probe.Evaluate(),
                 max = maxValue,
                 min = minValue
             };

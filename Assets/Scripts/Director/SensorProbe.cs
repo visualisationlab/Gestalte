@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class SensorSurface : MonoBehaviour
+public abstract class SensorProbe : MonoBehaviour
 {
     public abstract float Evaluate();
 }
