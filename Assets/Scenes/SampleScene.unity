@@ -758,7 +758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prePrompt: 
-  mimicGuid: 87e67fa3-be0c-4557-8bba-59475dd5635f
 --- !u!4 &1346753380
 Transform:
   m_ObjectHideFlags: 0
@@ -855,6 +854,7 @@ MonoBehaviour:
     function: {fileID: 11400000, guid: 4a6dd716de24a6740bca412a287e4188, type: 2}
   - sensor: {fileID: 2060651214}
     function: {fileID: 11400000, guid: 36216629e5cb29c40b2221e4848548f1, type: 2}
+  ignoredSensors: []
   description: Objects have a close distance
 --- !u!114 &1798859986
 MonoBehaviour:
