@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Director;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,10 @@ public class Player : MonoBehaviour
 
     public float slashCooldown = 0.2f;
     private bool coolDown;
+    public int health = 3;
+    public ExternalProbe healthProbe;
+    public HealthIndicator HealthIndicator;
+    
     void Start()
     {
         SelectWeapon(inventory.selectedSlot);
@@ -52,6 +57,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(slashCooldown);
         EndSlash();
+    }
+    
+    [ContextMenu("Reduce Health")]
+    public void ReduceHealth()
+    {
+        health--;
+        healthProbe.value = health;
+        HealthIndicator.SetHealth(health);
     }
 
 }

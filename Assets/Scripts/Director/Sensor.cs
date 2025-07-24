@@ -5,6 +5,9 @@ namespace Director
     public abstract class Sensor:MonoBehaviour
     {
         public abstract SensorResult Evaluate();
+        public float maxValue = 100.0f;
+        public float minValue = 0.0f;
+        public string description;
 
         public float MinMaxNormalize()
         {
