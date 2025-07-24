@@ -50,7 +50,7 @@ public class Player2Npc : MonoBehaviour
     [SerializeField] private string shortName = "Victor";
     [SerializeField] private string fullName = "Victor J. Johnson";
     [SerializeField] private string characterDescription = "A crazed scientist on the hunt for gold";
-    [SerializeField] private string systemPrompt = "You are a mad scientist obsessed with finding gold.";
+    [SerializeField, TextArea(3, 10)] private string systemPrompt = "You are a mad scientist obsessed with finding gold.";
     [SerializeField] private bool persistent = false; 
     
     [Header("Events")]
@@ -78,7 +78,7 @@ public class Player2Npc : MonoBehaviour
         _ = SpawnNpcAsync();
     }
 
-    private void OnChatMessageSubmitted(string message)
+    public void OnChatMessageSubmitted(string message)
     {
         _ = SendChatMessageAsync(message);
     }

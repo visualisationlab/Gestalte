@@ -7,13 +7,13 @@ using Newtonsoft.Json;
 
 namespace Agent
 {
-    public class Agent : MonoBehaviour
+    public class AgentController : MonoBehaviour
     {
         [TextArea(3, 10)]
         public string prePrompt;
 
         [ContextMenu("Interpret Exposed Methods")]
-        private string InterpretExposedMethods()
+        public string InterpretExposedMethods()
         {
             var allObjects = FindObjectsOfType<MonoBehaviour>(true);
             var allExposedInterpretations = new List<ExposedMethodInterpretation>();
