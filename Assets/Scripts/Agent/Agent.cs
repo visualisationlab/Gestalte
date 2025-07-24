@@ -82,7 +82,7 @@ namespace Agent
         {
             string escapeJson = "{\n" +
                                 $"  \"MethodGuid\": \"{mimicGuid}\",\n" +
-                                "  \"Parameters\": [\"EscapeTunnel\", 5, 10],\n" +
+                                "  \"Parameters\": [\"EscapeTunnel\", 5],\n" +
                                 "  \"ShortReasoning\": \"The mole is capable of digging and the floor is dirt, making this the most effective escape method.\"\n" +
                                 "}";
             InvokeExposedFunction(escapeJson);

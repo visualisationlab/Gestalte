@@ -16,7 +16,7 @@ public class ExampleActions : MonoBehaviour
     }
     
     [ExposeFunction("This makes the animal walk to a room")]
-    public void Walk(string roomName, int speed)
+    public void Walk(string roomName, int speed, string gameObjectGUID)
     {
         Debug.Log("Example Action 2 executed");
     }

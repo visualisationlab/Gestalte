@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prePrompt: 
-  mimicGuid: 3849f4fe-1525-48ef-ae6a-a4be2bd12eb1
+  mimicGuid: 87e67fa3-be0c-4557-8bba-59475dd5635f
 --- !u!4 &1346753380
 Transform:
   m_ObjectHideFlags: 0

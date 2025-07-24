@@ -1,68 +1,27 @@
-﻿Goal
----
-#### Keep context window small
-
-##### Prioritize current events
-- **Prioritize Information:** create importance hierarchies for reacting to more prominent events
-- **Event Buffers**: only pass N suggestions
-##### Memory
-- **Short‑Term Buffers**: only pass a summary of older events
-- **Vector‑Memory Retrieval**: embed critical past decisions and pull in the top‑k relevant ones
-
-
-Design
----
+﻿The Director systems function is to reduce the amount of data flowing into an **Agent** and keep the context window small. It does this by combining **Sensors** readouts, sorting them on relevance and correlate this data with a meaningful context. For instance a system tracking aggression levels, hunger and proximity to a pray animal might be combined under the **Correlator** with the context "lion is hungry, aggressive and close to a pray". The overall system is designed to give the game developer enough room to control the relative importance of the Sensors to each other for a correlation to be relevant  but also to give enough space to the **Agent** to come up with it's own solutions on how to deal with the events given the possibilities within the system. The idea is to give the designer the right tools to facilitate for emergent behaviour.
 ### Sensors
-Combinations of data points
-
+A Sensor tracks data points and expected minimum and maximum values. The values are passed along to a single or multiple **Correlators**. For instance, a Sensor can be measuring the distance between a **GameObject** and itself.
 ### Correlators
-Sensor values into a relevance function (linear/non-linear). Also a semantic description.
+Sensor values flow into a relevance function (linear/non-linear). This normalizes the Sensor values, weights them according to the function and averages all the values together to get a normalized relevance score. The Correlators also carry a description describing the meaning of this correlator. All Correlators and their relevance score are later sorted and the first n values are passed along to the Agent to determine what Correlators are important enough to be taken into account in the next decision making step.
 
-### Nudges
-Suggested actions and **relevant relational data**
+Sensor Data readings are normalized by the Min and Max value in the ``SensorResult``. Correlators are Agent specific; you can assign different Correlators to different Agents. The Correlator is used to tie different Sensors together in a contextually meaningful manner and their relevance is dynamically calculated by the Sensor output and the functions assigned to the Sensors. This means that different Sensors can have different effects on the actual relevance. Some might increase the relevance rapidly, or some Sensors might actually reduce the relevance on a high output.
+
+
+### Contextual Representation
+---
+One of the important parts is knowing what the Sensor and Correlator systems represent. This is done through the tracking of `SensorResult`. This is necessary for the LLM to construct a narrative and take action accordingly. On any failure the `SensorResult` will contain a `float.NaN` value and should expose a `LogError` on what failed.
+
+**Sensors** can evaluate one or multiple float inputs and always output a float value. Designing a sensor means inheriting the ``Sensor`` abstract class and implementing the ``Evaluate`` function.
+
+Every **Sensor** needs to pass along a **Min** and **Max** value that can be used in the **Correlator** to normalize the value. It's up to the developer to decide on the reasonable values.
+
 
 ### Example
-Sensor: A *house* is on *fire* with 5 *persons*
-Rules: *persons* shouldn't be near *fire*
-Nudges: Douse the fire (fire-truck, bucket, weather)
-
-**Ideal world**
-The LLM would know the house is on fire with 5 people inside and people not dying is of the highest priority. It knows about the fire truck nearby and it's capabilities to douse the fire.
-
-**Problem of scale**
-There are exponentially more sensors all wanting something. How to prioritize the house fire? How to collect relevant systems for solutions to meet the needs? It's a sliding scale; define too much and emergent behaviour disappears, define too little and the LLM floods with information. Where do we sit? How do we provide tools for the designers to decide themselves where to sit?
-
-
-Architecture
 ---
-After finding sensor results that have the highest priority I want to be able to construct semantically relevant information in the Translator. This means the Translator needs access to the original sensor type, even if it's a recursive sensor I want to be able to point to the relevant game objects and the base sensor type.
+Sensors: The temperature inside a house is very high with 5 persons inside
+Relevance: 0.9
 
+Sensors: The temperature inside a house is very high with 0 persons inside
+Relevance: 0.6
 
-Sensors
----
-The most important part is keeping track of the source of data. This is done through the tracking of `SensorResult`. This is necessary for the **Translator** to construct a semantic narrative. On any failure the `SensorResult` will contain a `float.NaN` value and should expose a `LogError` on what failed.
-
-**Sensors** can evaluate multiple float inputs and always output a float value that represents the reading. Writing sensors means inheriting the **Sensor** abstract class, implementing the **Evaluate** function. For any arithmetic try and use the `EvaluationFunction` Scriptable Objects. If an evaluation fails it should return ``float.NaN``
-
-Every Sensor somehow needs to pass along a **Min** and **Max** value that can be used in the **Correlator** to normalize the value.
-
-**Sensor Operators**
-
-**Some example Sensor Operators:**
-**SubtractFunction**: Subtracts all inputs sequentially.
-**DivideFunction**: Divides all inputs sequentially.
-**MaxFunction**: Returns the maximum value from the inputs.
-**MinFunction**: Returns the minimum value from the inputs.
-**AverageFunction**: Calculates the average of all inputs.
-**WeightedSumFunction**: Computes a weighted sum of inputs, requiring an additional weight array.
-**ClampFunction**: Clamps the result of an evaluation between a minimum and maximum value.
-**ExponentialFunction**: Applies an exponential operation to the inputs.
-**CustomCurveFunction**: Evaluates inputs using a predefined AnimationCurve for non-linear transformations.
-**ThresholdFunction**: Returns 1 if the input exceeds a threshold, otherwise 0.
-
-
-Correlators
----
-Sensor Data readings are normalized by the Min and Max value in the **SensorResult
-**Correlators** are **Agent** specific; you can assign different **Correlators** to different Agents. 
-
+The Agent can now determine how to prioritize the dousing of the fires.
