@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Mediator
+namespace Agent
 {
     [Serializable]
     public struct ExposedMethodInterpretation
     {
         public string method;
         public string description;
-        public string gameObjectName;
+        public string gameObjectGuid;
         public string methodGuid;
     }
 }

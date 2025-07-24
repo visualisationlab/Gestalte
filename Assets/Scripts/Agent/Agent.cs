@@ -14,8 +14,8 @@ namespace Agent
 
         public string mimicGuid;
         
-        [ContextMenu("Interpret Exposed Functions")]
-        private string InterpretExposedFunctions()
+        [ContextMenu("Interpret Exposed Methods")]
+        private string InterpretExposedMethods()
         {
             var allObjects = FindObjectsOfType<MonoBehaviour>(true);
             var allExposedInterpretations = new List<ExposedMethodInterpretation>();
@@ -27,7 +27,7 @@ namespace Agent
 
                 foreach (var method in methods)
                 {
-                    var attr = method.GetCustomAttribute<ExposeFunctionAttribute>();
+                    var attr = method.GetCustomAttribute<ExposeMethodAttribute>();
                     if (attr != null)
                     {
                         List<string> parameterDescriptions = new List<string>();
@@ -45,7 +45,7 @@ namespace Agent
                             method = methodDescription,
                             description = attr.DisplayName ?? "No description provided",
                             methodGuid = methodGuid.ToString(),
-                            gameObjectName = obj.name
+                            gameObjectGuid = InstanceTracker.RetrieveGuid(obj.gameObject)
                         };
                         
                         allExposedInterpretations.Add(interpretation);
@@ -59,7 +59,7 @@ namespace Agent
             return json;
         }
 
-        public void InvokeExposedFunction(string json)
+        public void InvokeExposedMethods(string json)
         {
             ResponseStructure response = JsonConvert.DeserializeObject<ResponseStructure>(json);
 
@@ -77,6 +77,28 @@ namespace Agent
             MethodTracker.Invoke(response.MethodGuid, coerced);
         }
         
+        
+        [ContextMenu("Interpret Exposed GameObjects")]
+        public string InterpretExposedGameObjects()
+        {
+            var allObjects = FindObjectsOfType<ExposeGameObject>(true);
+            var allExposedGameObjects = new List<ExposedGameObjectInterpretation>();
+            Debug.Log($"Found {allObjects.Length} exposed game objects.");
+            foreach (var obj in allObjects)
+            {
+                var gameObjectGUID = InstanceTracker.Subscribe(obj.gameObject);
+                allExposedGameObjects.Add(
+                    new ExposedGameObjectInterpretation()
+                    {
+                        gameObjectGuid = gameObjectGUID,
+                        description = obj.description,
+                    });
+            }
+            string json = JsonConvert.SerializeObject(allExposedGameObjects);
+            Debug.Log(json);
+            return json;
+        }
+        
         [ContextMenu("Test Mimic")]
         public void Mimic()
         {
@@ -85,7 +107,7 @@ namespace Agent
                                 "  \"Parameters\": [\"EscapeTunnel\", 5],\n" +
                                 "  \"ShortReasoning\": \"The mole is capable of digging and the floor is dirt, making this the most effective escape method.\"\n" +
                                 "}";
-            InvokeExposedFunction(escapeJson);
+            InvokeExposedMethods(escapeJson);
         }
     }
 }

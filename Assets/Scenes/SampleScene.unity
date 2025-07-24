@@ -418,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446554206}
   - component: {fileID: 446554205}
+  - component: {fileID: 446554207}
   m_Layer: 0
   m_Name: ExampleMole
   m_TagString: Untagged
@@ -452,6 +453,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446554207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446554204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d517b7147c06f964786fb03b2e0f408a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: A fat blind mole with big yellow teeth. It likes to live underground
+    and dig holes - but it mostly likes to do nothing at all.
 --- !u!1 &589857665
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807701732}
   - component: {fileID: 807701731}
+  - component: {fileID: 807701733}
   m_Layer: 0
   m_Name: ExampleDragon
   m_TagString: Untagged
@@ -605,6 +621,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &807701733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807701730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d517b7147c06f964786fb03b2e0f408a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: A very tiny dragon that's overly agressive as it tries to compensate
+    for it's size. Likes to eat humans and sit on gold.
 --- !u!1 &901491005
 GameObject:
   m_ObjectHideFlags: 0
