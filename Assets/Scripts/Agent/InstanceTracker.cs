@@ -24,7 +24,7 @@ namespace Agent
             return guid.ToString();
         }
 
-        public static object Retrieve(string guid)
+        public static GameObject Retrieve(string guid)
         {
             if (string.IsNullOrEmpty(guid) || !Guid.TryParse(guid, out var parsedGuid))
             {
