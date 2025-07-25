@@ -4,13 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class Function
-{
-    public string name;
-    public string description;
-    public Parameters parameters;
-}
 
 [Serializable]
 public class Parameters
@@ -25,11 +18,7 @@ public class NpcManager : MonoBehaviour
     [Header("Config")]
     [SerializeField] public string gameId = "your-game-id";
     
-    private UnityEvent<Function> _functionEvent;
     private Player2NpcResponseListener _responseListener;
-    
-    [Header("Functions")] 
-    [SerializeField] public List<Function> functions;
     
     private const string BaseUrl = "http://localhost:4315/v1";
     
@@ -58,7 +47,7 @@ public class NpcManager : MonoBehaviour
         
     }
 
-    public void RegisterNpc(string id, TextMeshProUGUI onNpcResponse)
+    public void RegisterNpc(string id, UnityEvent<NpcApiChatResponse> onResponse)
     {
         if (_responseListener == null)
         {
@@ -71,24 +60,8 @@ public class NpcManager : MonoBehaviour
             Debug.LogError("Cannot register NPC with empty ID");
             return;
         }
-
-        Debug.Log($"Registering NPC with ID: {id}");
-
-        var onNpcApiResponse = new UnityEvent<NpcApiChatResponse>();
-        onNpcApiResponse.AddListener((response) =>
-        {
-            if (response != null && !string.IsNullOrEmpty(response.message))
-            {
-                Debug.Log($"Updating UI for NPC {id}: {response.message}");
-                onNpcResponse.text = response.message;
-            }
-            else
-            {
-                Debug.LogWarning($"Received empty or null response for NPC {id}");
-            }
-        });
-
-        _responseListener.RegisterNpc(id, onNpcApiResponse);
+        
+        _responseListener.RegisterNpc(id, onResponse);
 
         // Ensure listener is running after registering
         if (!_responseListener.IsListening)

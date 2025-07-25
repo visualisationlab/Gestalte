@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using JetBrains.Annotations;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 
 [Serializable]
@@ -19,7 +14,6 @@ public class SpawnNpc
     public string character_description;
     public string system_prompt;
     public string voice_id;
-    public List<Function> commands;
 }
 
 [Serializable]
@@ -51,12 +45,9 @@ public class Player2Npc : MonoBehaviour
     [SerializeField] private string fullName = "Victor J. Johnson";
     [SerializeField] private string characterDescription = "A crazed scientist on the hunt for gold";
     [SerializeField, TextArea(3, 10)] private string systemPrompt = "You are a mad scientist obsessed with finding gold.";
-    [SerializeField] private bool persistent = false; 
+    [Header("Response Event")]
+    [SerializeField] UnityEvent<NpcApiChatResponse> onNpcChatResponse;
     
-    [Header("Events")]
-    [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TextMeshProUGUI outputMessage;
-
     private string _npcID = null;
 
     private string _gameID() => npcManager.gameId;
@@ -65,10 +56,6 @@ public class Player2Npc : MonoBehaviour
     private void Start()
     {
         Debug.Log("Starting Player2Npc with NPC: " + fullName);
-        
-        inputField.onEndEdit.AddListener(OnChatMessageSubmitted);
-        inputField.onEndEdit.AddListener(_ => inputField.text = string.Empty);
-        
         OnSpawnTriggered();
     }
 
@@ -78,6 +65,12 @@ public class Player2Npc : MonoBehaviour
         _ = SpawnNpcAsync();
     }
 
+    [ContextMenu("Mock NPC")]
+    public void MockNPCMessage()
+    {
+        OnChatMessageSubmitted("Hello I need money!");
+    }
+    
     public void OnChatMessageSubmitted(string message)
     {
         _ = SendChatMessageAsync(message);
@@ -92,8 +85,7 @@ public class Player2Npc : MonoBehaviour
                 short_name = shortName,
                 name = fullName,
                 character_description = characterDescription,
-                system_prompt = systemPrompt,
-                commands = npcManager.functions
+                system_prompt = systemPrompt
             };
 
             string url = $"{_baseUrl()}/npc/games/{_gameID()}/npcs/spawn";
@@ -115,7 +107,7 @@ public class Player2Npc : MonoBehaviour
             {
                 _npcID = request.downloadHandler.text.Trim('"');
                 Debug.Log($"NPC spawned successfully with ID: {_npcID}");
-                npcManager.RegisterNpc(_npcID, outputMessage);
+                npcManager.RegisterNpc(_npcID, onNpcChatResponse);
             }
             else
             {

@@ -1,39 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
     public List<Slot> slots;
     public InputActionReference selectAction;
-    public int preselectedSlot = 0;
-    
+    public int selectedSlot = 0;
+    public UnityEvent<int> OnSwitch;
     
     private void Start()
     {
         selectAction.action.performed += ctx => SelectSlot(ctx);
-        HandleNumber(preselectedSlot);
+        HandleNumber(selectedSlot);
     }
 
     public void SelectSlot(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
         DeselectAllSlots();
-        
-        var control = context.control;
-        switch (control.name)
-        {
-            case "1": HandleNumber(0); break;
-            case "2": HandleNumber(1); break;
-            case "3": HandleNumber(2); break;
-            case "4": HandleNumber(3); break;
-            default: Debug.LogWarning("Unhandled key: " + control.name); break;
-        }
+        selectedSlot = int.Parse(context.control.name) - 1;
+        HandleNumber(selectedSlot);
     }
     
     private void HandleNumber(int number)
     {
+        OnSwitch?.Invoke(number);
         slots[number].Select();
     }
 
