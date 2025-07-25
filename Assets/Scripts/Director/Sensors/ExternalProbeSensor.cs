@@ -9,8 +9,6 @@ namespace Director.Sensors
         [ContextMenu("Force Probe")]
         public override SensorResult Evaluate()
         {
-            Debug.Log(probe.Evaluate());
-            
             return new SensorResult
             {
                 description = description,

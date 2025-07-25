@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Director
@@ -36,8 +35,6 @@ namespace Director
             }
             //order correlators by reference and return n amounts
             var ordered = evaluated.OrderBy(x => x.relevance).Take(selectionAmount).ToList();
-            string json = JsonConvert.SerializeObject(ordered);
-            Debug.Log(json);
             return ordered;
         }
         

@@ -131,19 +131,6 @@ Explanation of your characteristics:";
             PrePrompt();
         }
 
-        [ContextMenu("Get Scope")]
-        public void GetScope()
-        {
-            correlatorResults = scopeController.EvaluateCorrelators();
-        }
-
-        [ContextMenu("Test Message")]
-        public void TestMessage()
-        {
-            string message = "This is a test message to the NPC.";
-            player2Npc.OnChatMessageSubmitted(message);
-        }
-
         public void OnResponseReceived(NpcApiChatResponse response)
         {
             Debug.Log("Response received: " + response.message);
@@ -153,13 +140,18 @@ Explanation of your characteristics:";
         {
             string agentInstructionPrompt = prePrompt + "\n" + systemDescription + "\n\nExposedMethods" +
                                             allExposedMethods + "\n\nExposedGameObjects" + allExposedGameObjects;
+            
+            Debug.Log($"Sending Agent Instuction Prompt: {agentInstructionPrompt}");
             player2Npc.SpawnNpcAsync(agentInstructionPrompt);
         }
 
         [ContextMenu("Execute Prompt")]
         public void ExecutePrompt()
         {
-            string prompt = "CorrelatorResults: " + JsonUtility.ToJson(correlatorResults);
+            var correlatorResults = scopeController.EvaluateCorrelators();
+            string json = JsonConvert.SerializeObject(correlatorResults);
+            string prompt = "CorrelatorResults: " + json;
+            Debug.Log($"Executing prompt: {prompt}");
             player2Npc.OnChatMessageSubmitted(prompt);
         }
     }

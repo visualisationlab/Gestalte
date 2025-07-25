@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Director;
+using Mediator;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         inventory.OnSwitch.AddListener(SelectWeapon);
         useKey.action.performed +=  ctx => UseWeapon(ctx);
         slashHitBox.SetActive(false);
+        healthProbe.value = health;
     }
 
     void SelectWeapon(int weapon)
@@ -66,5 +68,11 @@ public class Player : MonoBehaviour
         healthProbe.value = health;
         HealthIndicator.SetHealth(health);
     }
-
+    
+    [ExposeMethod("Heals the player by 1 health point.")]
+    public void Heal()
+    {
+        Debug.Log("Heal! Called");
+    }
+    
 }

@@ -33065,11 +33065,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 754170321619171129, guid: 13bbe55c98d7df34eaf92ae30390cc22, type: 3}
   m_PrefabInstance: {fileID: 711807427}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &771273620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771273622}
+  - component: {fileID: 771273621}
+  m_Layer: 0
+  m_Name: PlayerCorrelator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &771273621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771273620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaeab29fdfc140f5b9630a514139c49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorMappings:
+  - sensor: {fileID: 809581028}
+    function: {fileID: 11400000, guid: 764e029f85bbbf14ea8d8734e1e2457e, type: 2}
+  ignoredSensors: []
+  description: The health of the player
+--- !u!4 &771273622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771273620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &809581027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7732906462271470643, guid: 233f680a81c6e9a419d8230317b80aa2, type: 3}
   m_PrefabInstance: {fileID: 5529053011598330180}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &809581028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4765281268188742068, guid: 233f680a81c6e9a419d8230317b80aa2, type: 3}
+  m_PrefabInstance: {fileID: 5529053011598330180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8fa8577b1f4198a412c882ad78239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &868323756
 GameObject:
   m_ObjectHideFlags: 0
@@ -33478,7 +33538,6 @@ GameObject:
   - component: {fileID: 1400195392}
   - component: {fileID: 1400195390}
   - component: {fileID: 1400195389}
-  - component: {fileID: 1400195388}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -33486,22 +33545,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1400195388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400195387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46eec569d22156fec83a68746ab70ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _baseUrl: http://localhost:4315/v1
-  _gameId: hobscure-test
-  _reconnectDelay: 2
-  _maxReconnectAttempts: 5
 --- !u!114 &1400195389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33555,7 +33598,7 @@ Transform:
   m_GameObject: {fileID: 1400195387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62658733, y: 0.1461401, z: -27.998116}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33573,8 +33616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fbde034468479b8c48584e00f732e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correlators: []
-  selectionAmount: 0
+  correlators:
+  - {fileID: 771273621}
+  selectionAmount: 2
 --- !u!114 &1400195393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33591,13 +33635,13 @@ MonoBehaviour:
     system build to let LLM make decisions based on system information given.\r\nYou
     get references to game objects and exposed methods in the following fields: \r\n-
     allExposedGameObjects\r\n- allExposedMethods\r\n\r\nWithin your response you
-    can reference these game objects and methods by their GUID\r\n\r\n\r\nExplanation
-    on how to respond:\r\nYou respond in JSON formatted like the following:\r\n{\r\n\"MethodGuid\":
-    \"string\",\r\n\"Parameters\": [],\r\n\"ShortReasoning\": \"string\"\r\n}\r\n\r\nExplanation
-    of your characteristics:"
+    can reference these game objects and methods by their GUID\r\n\rIt's very important
+    that your response ONLY exists out of JSON formatted as the following:\r\n{\r\n\"MethodGuid\":
+    \"string\",\r\n\"Parameters\": [],\r\n\"ShortReasoning\": \"string\"\r\n}\r\n\r\nFurther
+    Explanation of your characteristics:"
   systemDescription: You are the dungeon master of a ghoul invested mansion.
-  scopeController: {fileID: 0}
-  player2Npc: {fileID: 0}
+  scopeController: {fileID: 1400195392}
+  player2Npc: {fileID: 1400195389}
 --- !u!1 &1611473034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3226595210974879961, guid: ddba2367973a702449cb767dd7146559, type: 3}
@@ -34355,3 +34399,4 @@ SceneRoots:
   - {fileID: 615912056470934935}
   - {fileID: 5529053011598330180}
   - {fileID: 1400195391}
+  - {fileID: 771273622}
