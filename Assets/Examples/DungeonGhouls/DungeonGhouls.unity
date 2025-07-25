@@ -33479,7 +33479,6 @@ GameObject:
   - component: {fileID: 1400195390}
   - component: {fileID: 1400195389}
   - component: {fileID: 1400195388}
-  - component: {fileID: 1400195394}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -33522,8 +33521,8 @@ MonoBehaviour:
   onNpcChatResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1400195394}
-        m_TargetAssemblyTypeName: ExecPrompt, Assembly-CSharp
+      - m_Target: {fileID: 1400195393}
+        m_TargetAssemblyTypeName: Agent.AgentController, Assembly-CSharp
         m_MethodName: OnResponseReceived
         m_Mode: 0
         m_Arguments:
@@ -33597,21 +33596,8 @@ MonoBehaviour:
     \"string\",\r\n\"Parameters\": [],\r\n\"ShortReasoning\": \"string\"\r\n}\r\n\r\nExplanation
     of your characteristics:"
   systemDescription: You are the dungeon master of a ghoul invested mansion.
---- !u!114 &1400195394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1400195387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d1c7718b8b2c543b71492739a6588c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scopeController: {fileID: 1400195392}
-  agent: {fileID: 1400195393}
-  player2Npc: {fileID: 1400195389}
+  scopeController: {fileID: 0}
+  player2Npc: {fileID: 0}
 --- !u!1 &1611473034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3226595210974879961, guid: ddba2367973a702449cb767dd7146559, type: 3}

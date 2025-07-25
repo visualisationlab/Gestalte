@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Director;
 using Mediator;
 using UnityEngine;
 using Newtonsoft.Json;
@@ -9,8 +10,7 @@ namespace Agent
 {
     public class AgentController : MonoBehaviour
     {
-        [TextArea(3, 10)]
-        public string prePrompt = @"Explanation of the system:
+        [TextArea(3, 10)] public string prePrompt = @"Explanation of the system:
 You are an agent tool within a Unity system build to let LLM make decisions based on system information given.
 You get references to game objects and exposed methods in the following fields: 
 - allExposedGameObjects
@@ -29,8 +29,14 @@ You respond in JSON formatted like the following:
 
 Explanation of your characteristics:";
 
-        [TextArea(3, 10)]
-        public string systemDescription = "";
+        [TextArea(3, 10)] public string systemDescription = "";
+
+        [Header("References")] public ScopeController scopeController;
+        public Player2Npc player2Npc;
+
+        private string allExposedMethods;
+        private string allExposedGameObjects;
+        private List<CorrelatorResult> correlatorResults = new();
 
         [ContextMenu("Interpret Exposed Methods")]
         public string InterpretExposedMethods()
@@ -54,10 +60,10 @@ Explanation of your characteristics:";
                         {
                             parameterDescriptions.Add($"{param.ParameterType} {param.Name}");
                         }
-                        
+
                         string methodDescription = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
                         var methodGuid = MethodTracker.Subscribe(method, obj);
-                        
+
                         var interpretation = new ExposedMethodInterpretation
                         {
                             method = methodDescription,
@@ -65,7 +71,7 @@ Explanation of your characteristics:";
                             methodGuid = methodGuid.ToString(),
                             gameObjectGuid = InstanceTracker.RetrieveGuid(obj.gameObject)
                         };
-                        
+
                         allExposedInterpretations.Add(interpretation);
                     }
                 }
@@ -82,7 +88,7 @@ Explanation of your characteristics:";
             ResponseStructure response = JsonConvert.DeserializeObject<ResponseStructure>(json);
 
             var methodInfo = MethodTracker.RetrieveMethodInfo(response.MethodGuid);
-            
+
             var methodParams = methodInfo.GetParameters();
             object[] coerced = new object[response.Parameters.Length];
 
@@ -91,11 +97,11 @@ Explanation of your characteristics:";
                 var targetType = methodParams[i].ParameterType;
                 coerced[i] = Convert.ChangeType(response.Parameters[i], targetType);
             }
-            
+
             MethodTracker.Invoke(response.MethodGuid, coerced);
         }
-        
-        
+
+
         [ContextMenu("Interpret Exposed GameObjects")]
         public string InterpretExposedGameObjects()
         {
@@ -112,10 +118,49 @@ Explanation of your characteristics:";
                         description = obj.description,
                     });
             }
+
             string json = JsonConvert.SerializeObject(allExposedGameObjects);
             Debug.Log(json);
             return json;
         }
-    
+
+        private void Start()
+        {
+            allExposedGameObjects = InterpretExposedGameObjects();
+            allExposedMethods = InterpretExposedMethods();
+            PrePrompt();
+        }
+
+        [ContextMenu("Get Scope")]
+        public void GetScope()
+        {
+            correlatorResults = scopeController.EvaluateCorrelators();
+        }
+
+        [ContextMenu("Test Message")]
+        public void TestMessage()
+        {
+            string message = "This is a test message to the NPC.";
+            player2Npc.OnChatMessageSubmitted(message);
+        }
+
+        public void OnResponseReceived(NpcApiChatResponse response)
+        {
+            Debug.Log("Response received: " + response.message);
+        }
+
+        private void PrePrompt()
+        {
+            string agentInstructionPrompt = prePrompt + "\n" + systemDescription + "\n\nExposedMethods" +
+                                            allExposedMethods + "\n\nExposedGameObjects" + allExposedGameObjects;
+            player2Npc.SpawnNpcAsync(agentInstructionPrompt);
+        }
+
+        [ContextMenu("Execute Prompt")]
+        public void ExecutePrompt()
+        {
+            string prompt = "CorrelatorResults: " + JsonUtility.ToJson(correlatorResults);
+            player2Npc.OnChatMessageSubmitted(prompt);
+        }
     }
 }
