@@ -43,8 +43,8 @@ public class Player2Npc : MonoBehaviour
     [Header("NPC Configuration")]
     [SerializeField] private string shortName = "Victor";
     [SerializeField] private string fullName = "Victor J. Johnson";
-    [SerializeField] private string characterDescription = "A crazed scientist on the hunt for gold";
-    [SerializeField, TextArea(3, 10)] private string systemPrompt = "You are a mad scientist obsessed with finding gold.";
+    [SerializeField] private string characterDescription = "You are fair and helpful.";
+    // [SerializeField, TextArea(3, 10)] private string systemPrompt = "You are a mad scientist obsessed with finding gold.";
     [Header("Response Event")]
     [SerializeField] UnityEvent<NpcApiChatResponse> onNpcChatResponse;
     
@@ -53,17 +53,17 @@ public class Player2Npc : MonoBehaviour
     private string _gameID() => npcManager.gameId;
     private string _baseUrl() => NpcManager.GetBaseUrl();
 
-    private void Start()
-    {
-        Debug.Log("Starting Player2Npc with NPC: " + fullName);
-        OnSpawnTriggered();
-    }
+    // private void Start()
+    // {
+    //     Debug.Log("Starting Player2Npc with NPC: " + fullName);
+    //     OnSpawnTriggered();
+    // }
 
-    private void OnSpawnTriggered()
-    {
-        // Fire and forget async operation with proper error handling
-        _ = SpawnNpcAsync();
-    }
+    // private void OnSpawnTriggered()
+    // {
+    //     // Fire and forget async operation with proper error handling
+    //     _ = SpawnNpcAsync();
+    // }
 
     [ContextMenu("Mock NPC")]
     public void MockNPCMessage()
@@ -76,7 +76,7 @@ public class Player2Npc : MonoBehaviour
         _ = SendChatMessageAsync(message);
     }
 
-    private async Awaitable SpawnNpcAsync()
+    public async Awaitable SpawnNpcAsync(string prePrompt)
     {
         try
         {
@@ -85,7 +85,7 @@ public class Player2Npc : MonoBehaviour
                 short_name = shortName,
                 name = fullName,
                 character_description = characterDescription,
-                system_prompt = systemPrompt
+                system_prompt = prePrompt,
             };
 
             string url = $"{_baseUrl()}/npc/games/{_gameID()}/npcs/spawn";
@@ -129,6 +129,7 @@ public class Player2Npc : MonoBehaviour
     {
         if (string.IsNullOrWhiteSpace(message))
         {
+            Debug.LogWarning("Cannot send empty message to NPC.");
             return;
         }
 

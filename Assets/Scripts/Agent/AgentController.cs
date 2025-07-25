@@ -10,7 +10,27 @@ namespace Agent
     public class AgentController : MonoBehaviour
     {
         [TextArea(3, 10)]
-        public string prePrompt;
+        public string prePrompt = @"Explanation of the system:
+You are an agent tool within a Unity system build to let LLM make decisions based on system information given.
+You get references to game objects and exposed methods in the following fields: 
+- allExposedGameObjects
+- allExposedMethods
+
+Within your response you can reference these game objects and methods by their GUID
+
+
+Explanation on how to respond:
+You respond in JSON formatted like the following:
+{
+""MethodGuid"": ""string"",
+""Parameters"": [],
+""ShortReasoning"": ""string""
+}
+
+Explanation of your characteristics:";
+
+        [TextArea(3, 10)]
+        public string systemDescription = "";
 
         [ContextMenu("Interpret Exposed Methods")]
         public string InterpretExposedMethods()
