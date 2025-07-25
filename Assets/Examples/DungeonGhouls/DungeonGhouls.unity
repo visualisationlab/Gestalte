@@ -33414,7 +33414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 13.419983}
+  m_AnchoredPosition: {x: 0, y: 13.419922}
   m_SizeDelta: {x: 456.5, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1349336075
@@ -33465,6 +33465,117 @@ MonoBehaviour:
   OnSwitch:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1400195387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400195391}
+  - component: {fileID: 1400195393}
+  - component: {fileID: 1400195392}
+  - component: {fileID: 1400195390}
+  - component: {fileID: 1400195389}
+  - component: {fileID: 1400195388}
+  m_Layer: 0
+  m_Name: Agent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1400195388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46eec569d22156fec83a68746ab70ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseUrl: http://localhost:4315/v1
+  _gameId: hobscure-test
+  _reconnectDelay: 2
+  _maxReconnectAttempts: 5
+--- !u!114 &1400195389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2318ea99c2ec137faa7b2fd3527561b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcManager: {fileID: 1400195390}
+  shortName: Victor
+  fullName: Victor J. Johnson
+  characterDescription: A crazed scientist on the hunt for gold
+  systemPrompt: You are a mad scientist obsessed with finding gold.
+  persistent: 0
+--- !u!114 &1400195390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad34ea68d9d128e8e1df224f5ed892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameId: hobscure-test
+  functions: []
+--- !u!4 &1400195391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.62658733, y: 0.1461401, z: -27.998116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1400195392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fbde034468479b8c48584e00f732e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correlators: []
+  selectionAmount: 0
+--- !u!114 &1400195393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b2dca6d7844fcbaa73bb2e0041ea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prePrompt: 
 --- !u!1 &1611473034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3226595210974879961, guid: ddba2367973a702449cb767dd7146559, type: 3}
@@ -34209,32 +34320,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7169581631510754984, guid: 233f680a81c6e9a419d8230317b80aa2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5529053011598330182}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 233f680a81c6e9a419d8230317b80aa2, type: 3}
---- !u!1 &5529053011598330181 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7169581631510754984, guid: 233f680a81c6e9a419d8230317b80aa2, type: 3}
-  m_PrefabInstance: {fileID: 5529053011598330180}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5529053011598330182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5529053011598330181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a8fa8577b1f4198a412c882ad78239e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxValue: 100
-  minValue: 0
-  description: 
-  probe: {fileID: 11400000, guid: 6a0cb5a47d617ef408a8b80c3bdf90bb, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -34245,3 +34332,4 @@ SceneRoots:
   - {fileID: 868323760}
   - {fileID: 615912056470934935}
   - {fileID: 5529053011598330180}
+  - {fileID: 1400195391}
