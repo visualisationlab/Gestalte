@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Director;
 using Mediator;
 using UnityEngine;
@@ -32,7 +33,7 @@ Explanation of your characteristics:";
         [TextArea(3, 10)] public string systemDescription = "";
 
         [Header("References")] public ScopeController scopeController;
-        public Player2Npc player2Npc;
+        public Player2Npc player2Npc;//TODO: DO Not reference player2NPC!
 
         private string allExposedMethods;
         private string allExposedGameObjects;
@@ -133,7 +134,14 @@ Explanation of your characteristics:";
 
         public void OnResponseReceived(NpcApiChatResponse response)
         {
-            Debug.Log("Response received: " + response.message);
+            Debug.Log("Response received: " + ExtractJson(response.message));
+            InvokeExposedMethods(ExtractJson(response.message));
+        }
+        
+        private string ExtractJson(string input)
+        {
+            var match = Regex.Match(input, @"```json\s*(\{[\s\S]*?\})\s*```");
+            return match.Success ? match.Groups[1].Value : null;
         }
 
         private void PrePrompt()

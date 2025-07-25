@@ -72,6 +72,9 @@ public class Player : MonoBehaviour
     [ExposeMethod("Heals the player by 1 health point.")]
     public void Heal()
     {
+        health++;
+        healthProbe.value = health;
+        HealthIndicator.SetHealth(health);
         Debug.Log("Heal! Called");
     }
     
