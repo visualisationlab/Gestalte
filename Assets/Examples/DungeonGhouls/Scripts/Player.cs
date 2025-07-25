@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
     void UseWeapon(InputAction.CallbackContext ctx)
     {
+        Debug.Log("Use Weapon!!!");
         if (inventory.selectedSlot == 0)
         {
             Slash();

@@ -264,7 +264,7 @@ public class Player2NpcResponseListener : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to parse response line '{line}': {e.Message}");
+            Debug.LogWarning($"Failed to parse response line '{line}': {e.Message}");
         }
     }
 
