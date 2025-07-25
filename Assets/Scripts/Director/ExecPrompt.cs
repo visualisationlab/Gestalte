@@ -7,6 +7,7 @@ public class ExecPrompt : MonoBehaviour
 {
     public ScopeController scopeController;
     public AgentController agent;
+    public Player2Npc player2Npc;
 
     private string allExposedMethods;
     private string allExposedGameObjects;
@@ -23,6 +24,13 @@ public class ExecPrompt : MonoBehaviour
     public void GetScope()
     {
         correlatorResults = scopeController.EvaluateCorrelators();
+    }
+
+    [ContextMenu("Execute Prompt")]
+    public void ExecutePrompt()
+    {
+        string prompt = agent.prePrompt + "\n\nExposedMethods" + allExposedMethods + "\n\nExposedGameObjects" + allExposedGameObjects + "\n\nCorrelatorResults" + JsonUtility.ToJson(correlatorResults);
+        player2Npc.OnChatMessageSubmitted(prompt);
     }
 
     // Update is called once per frame
