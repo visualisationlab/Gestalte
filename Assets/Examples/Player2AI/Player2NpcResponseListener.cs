@@ -249,7 +249,6 @@ public class Player2NpcResponseListener : MonoBehaviour
         try
         {
             NpcApiChatResponse response = JsonUtility.FromJson<NpcApiChatResponse>(line);
-            Debug.Log($"Processing response: {line}");
             if (response?.npc_id != null && _responseEvents.ContainsKey(response.npc_id))
             {
                 Debug.Log($"Received response from NPC {response.npc_id}: {response.message}");
@@ -301,15 +300,15 @@ public class Player2NpcResponseListener : MonoBehaviour
         }
     }
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
-        {
-            StopListening();
-        }
-        else if (!string.IsNullOrEmpty(_gameId))
-        {
-            StartListening();
-        }
-    }
+    // private void OnApplicationFocus(bool hasFocus)
+    // {
+    //     if (!hasFocus)
+    //     {
+    //         StopListening();
+    //     }
+    //     else if (!string.IsNullOrEmpty(_gameId))
+    //     {
+    //         StartListening();
+    //     }
+    // }
 }
