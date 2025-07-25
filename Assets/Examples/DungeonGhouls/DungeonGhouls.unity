@@ -33479,6 +33479,7 @@ GameObject:
   - component: {fileID: 1400195390}
   - component: {fileID: 1400195389}
   - component: {fileID: 1400195388}
+  - component: {fileID: 1400195394}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -33515,11 +33516,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcManager: {fileID: 1400195390}
-  shortName: Victor
-  fullName: Victor J. Johnson
-  characterDescription: A crazed scientist on the hunt for gold
-  systemPrompt: You are a mad scientist obsessed with finding gold.
-  persistent: 0
+  shortName: Dungeon
+  fullName: Dungeon Master
+  characterDescription: You are fair and helpful.
+  onNpcChatResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1400195394}
+        m_TargetAssemblyTypeName: ExecPrompt, Assembly-CSharp
+        m_MethodName: OnResponseReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400195390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33533,7 +33547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameId: hobscure-test
-  functions: []
 --- !u!4 &1400195391
 Transform:
   m_ObjectHideFlags: 0
@@ -33575,7 +33588,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b2dca6d7844fcbaa73bb2e0041ea77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prePrompt: 
+  prePrompt: "Explanation of the system:\r\nYou are an agent tool within a Unity
+    system build to let LLM make decisions based on system information given.\r\nYou
+    get references to game objects and exposed methods in the following fields: \r\n-
+    allExposedGameObjects\r\n- allExposedMethods\r\n\r\nWithin your response you
+    can reference these game objects and methods by their GUID\r\n\r\n\r\nExplanation
+    on how to respond:\r\nYou respond in JSON formatted like the following:\r\n{\r\n\"MethodGuid\":
+    \"string\",\r\n\"Parameters\": [],\r\n\"ShortReasoning\": \"string\"\r\n}\r\n\r\nExplanation
+    of your characteristics:"
+  systemDescription: You are the dungeon master of a ghoul invested mansion.
+--- !u!114 &1400195394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400195387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d1c7718b8b2c543b71492739a6588c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scopeController: {fileID: 1400195392}
+  agent: {fileID: 1400195393}
+  player2Npc: {fileID: 1400195389}
 --- !u!1 &1611473034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3226595210974879961, guid: ddba2367973a702449cb767dd7146559, type: 3}

@@ -220,10 +220,11 @@ public class Player2NpcResponseListener : MonoBehaviour
 
     private void ProcessNewData(string newData, StringBuilder lineBuffer)
     {
+        Debug.Log($"New data received: {newData}");
         for (int i = 0; i < newData.Length; i++)
         {
             char c = newData[i];
-            
+
             if (c == '\n')
             {
                 // Process complete line
@@ -248,7 +249,7 @@ public class Player2NpcResponseListener : MonoBehaviour
         try
         {
             NpcApiChatResponse response = JsonUtility.FromJson<NpcApiChatResponse>(line);
-            
+            Debug.Log($"Processing response: {line}");
             if (response?.npc_id != null && _responseEvents.ContainsKey(response.npc_id))
             {
                 Debug.Log($"Received response from NPC {response.npc_id}: {response.message}");

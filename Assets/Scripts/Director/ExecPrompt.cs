@@ -18,6 +18,7 @@ public class ExecPrompt : MonoBehaviour
     {
         allExposedGameObjects = agent.InterpretExposedGameObjects();
         allExposedMethods = agent.InterpretExposedMethods();
+        PrePrompt();
     }
 
     [ContextMenu("Get Scope")]
@@ -26,10 +27,28 @@ public class ExecPrompt : MonoBehaviour
         correlatorResults = scopeController.EvaluateCorrelators();
     }
 
+    [ContextMenu("Test Message")]
+    public void TestMessage()
+    {
+        string message = "This is a test message to the NPC.";
+        player2Npc.OnChatMessageSubmitted(message);
+    }
+
+    public void OnResponseReceived(NpcApiChatResponse response)
+    {
+        Debug.Log("Response received: " + response.message);
+    }
+
+    private void PrePrompt()
+    {
+        string prePrompt = agent.prePrompt + "\n" + agent.systemDescription + "\n\nExposedMethods" + allExposedMethods + "\n\nExposedGameObjects" + allExposedGameObjects;
+        player2Npc.SpawnNpcAsync(prePrompt);
+    }
+
     [ContextMenu("Execute Prompt")]
     public void ExecutePrompt()
     {
-        string prompt = agent.prePrompt + "\n\nExposedMethods" + allExposedMethods + "\n\nExposedGameObjects" + allExposedGameObjects + "\n\nCorrelatorResults" + JsonUtility.ToJson(correlatorResults);
+        string prompt = "CorrelatorResults: " + JsonUtility.ToJson(correlatorResults);
         player2Npc.OnChatMessageSubmitted(prompt);
     }
 
