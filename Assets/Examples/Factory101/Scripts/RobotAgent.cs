@@ -60,7 +60,7 @@ public class RobotAgent : MonoBehaviour
     
     public string InterpretExposedGameObjects()
     {
-        var allObjects = FindObjectsOfType<ExposeGameObject>(true);
+        var allObjects = FindObjectsOfType<ExposeMachine>(true);
         var allExposedGameObjects = new List<ExposedGameObjectInterpretation>();
         foreach (var obj in allObjects)
         {
@@ -70,6 +70,7 @@ public class RobotAgent : MonoBehaviour
                 {
                     gameObjectGuid = gameObjectGUID,
                     description = obj.description,
+                    methods = obj.GetExposedMethods()
                 });
         }
 

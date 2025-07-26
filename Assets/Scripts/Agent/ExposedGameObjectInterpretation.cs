@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Agent
 {
@@ -7,5 +8,6 @@ namespace Agent
     {
         public string gameObjectGuid;
         public string description;
+        public List<ExposedMethodInterpretation> methods;
     }
 }
