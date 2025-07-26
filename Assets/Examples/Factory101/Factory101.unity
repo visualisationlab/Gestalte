@@ -255,6 +255,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 225442255}
   m_CullTransparentMesh: 1
+--- !u!1 &226385011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226385013}
+  - component: {fileID: 226385012}
+  m_Layer: 0
+  m_Name: NPCManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &226385012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226385011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad34ea68d9d128e8e1df224f5ed892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameId: hobscure-factory
+--- !u!4 &226385013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226385011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1001036, y: -0.3152162, z: -0.039414383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &237796311
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +582,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1623510488}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -716,7 +761,7 @@ Transform:
   m_GameObject: {fileID: 625495653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.54, y: -1.58, z: 0}
+  m_LocalPosition: {x: -4.8, y: -1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1509,11 +1554,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1523249977}
-  - component: {fileID: 1523249976}
   - component: {fileID: 1523249975}
   - component: {fileID: 1523249974}
   m_Layer: 0
-  m_Name: Agent
+  m_Name: RobotAgent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1532,11 +1576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preprompt: 'You are a Robot that only reponds in Lua code. The Lua code will be
-    executed in Unity environment through MoonSharp. You can reference GameObjects
-    through their GUID. You do not need to write a while loop in Lua, the code is
-    executed every tick by Unity itself. Do not write comments. The object itself
-    is referenced by this:MethodName(). Your response is formatted as JSON as follows:'
-  gameObjectInstructions: 'The Game Object you are writing code for is:'
+    executed in Unity environment through MoonSharp. You do not need to write a while
+    loop in Lua, the code is executed every tick by Unity itself. Do not write comments.
+    The object itself is referenced by this:MethodName(). When dealing with time
+    in Lua, use os.time(). Your response is formatted as JSON as follows:'
+  gameObjectInstructions: 'note that the methods are the only methods available for
+    this object, do not come up with methods that dont exist. The Game Object you
+    are writing code for is:'
   player2Npc: {fileID: 1523249975}
   selectedMachine: {fileID: 0}
   onResponseReceived:
@@ -1566,7 +1612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2318ea99c2ec137faa7b2fd3527561b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcManager: {fileID: 1523249976}
+  npcManager: {fileID: 226385012}
   shortName: Lua Robot
   fullName: Lua Robot
   characterDescription: You are a Robot that only reponds in Lua Code
@@ -1585,19 +1631,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1523249976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523249973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ad34ea68d9d128e8e1df224f5ed892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameId: hobscure-factory
 --- !u!4 &1523249977
 Transform:
   m_ObjectHideFlags: 0
@@ -1897,6 +1930,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658315215}
   m_CullTransparentMesh: 1
+--- !u!1 &1684240686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684240689}
+  - component: {fileID: 1684240690}
+  - component: {fileID: 1684240687}
+  m_Layer: 0
+  m_Name: OracleAgent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684240687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684240686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2318ea99c2ec137faa7b2fd3527561b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcManager: {fileID: 226385012}
+  shortName: Oracle
+  fullName: Oracle
+  characterDescription: You respond in very brief and clear descriptions
+  onNpcChatResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1684240690}
+        m_TargetAssemblyTypeName: OracleAgent, Assembly-CSharp
+        m_MethodName: OnResponseReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1684240689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684240686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684240690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684240686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9aafdbc3d01da40857fe45a6f59b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preprompt: You respond to questions in very short and clear answers
+  player2Npc: {fileID: 1684240687}
+--- !u!1001 &1751506960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_Name
+      value: ActuatorSensorMachine_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f80709d2357bac840812071ca7001186, type: 3}
 --- !u!1 &1756216360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2661,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f80709d2357bac840812071ca7001186, type: 3}
+--- !u!1001 &9147584772424372128
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016453056028418062, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452506491652234496, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_Name
+      value: TypeSensorMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8543541792379326288, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: oracle
+      value: 
+      objectReference: {fileID: 1684240690}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2500,9 +2729,13 @@ SceneRoots:
   - {fileID: 1623510489}
   - {fileID: 994948615}
   - {fileID: 1196709307}
+  - {fileID: 226385013}
   - {fileID: 1834421981}
   - {fileID: 341204288}
   - {fileID: 6966541621053273742}
+  - {fileID: 1751506960}
+  - {fileID: 9147584772424372128}
   - {fileID: 1523249977}
+  - {fileID: 1684240689}
   - {fileID: 625495657}
   - {fileID: 470238312}

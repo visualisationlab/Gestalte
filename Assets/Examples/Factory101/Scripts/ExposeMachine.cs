@@ -9,7 +9,7 @@ public class ExposeMachine : MonoBehaviour
 {
     [TextArea] public string description;
     [TextArea] public string instructionPrompt;
-    [TextArea] public string script;
+    [TextArea (3,12)] public string script;
     [SerializeField] private Machine machine;
     public List<ExposedMethodInterpretation> GetExposedMethods()
     {
