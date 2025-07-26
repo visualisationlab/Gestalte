@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: A poop shute
+  description: Actuator Machine with build in Sensor.
   instructionPrompt: 
   script: 
   machine: {fileID: 6294157194642579927}

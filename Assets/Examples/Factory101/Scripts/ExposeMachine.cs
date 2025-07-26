@@ -63,6 +63,12 @@ public class ExposeMachine : MonoBehaviour
         script = code;
         machine.SetScript(script);
     }
+
+    public string GetFullDescription()
+    {
+        var methods = GetExposedMethodsNames();
+        return description + "\nFunctions: \n" + methods;
+    }
     
     
 }

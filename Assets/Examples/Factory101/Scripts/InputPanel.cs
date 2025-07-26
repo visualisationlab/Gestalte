@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class InfoPanel : MonoBehaviour
+public class InputPanel : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI infoConsole;
+    [SerializeField] TMP_InputField inputConsole;
     private string overrideText;
-    
+    public UnityEvent<string> updatedText;
+
     private void Start()
     {
         ClearConsole();
@@ -13,7 +15,7 @@ public class InfoPanel : MonoBehaviour
 
     public void SetText(string text)
     {
-        infoConsole.text = text;
+        inputConsole.text = text;
     }
 
     public void SetOverrideText(string text)
@@ -24,6 +26,11 @@ public class InfoPanel : MonoBehaviour
 
     public void ClearConsole()
     {
-        infoConsole.text = overrideText;
+        inputConsole.text = overrideText;
+    }
+
+    public void UpdateText()
+    {
+        updatedText.Invoke(inputConsole.text);
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
@@ -10,6 +11,7 @@ public class InputController : MonoBehaviour
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
+    public UnityEvent OnClickedOutside;
     private Vector2 mouseWorldPos2D;
     private RaycastHit2D hit;
 
@@ -45,16 +47,26 @@ public class InputController : MonoBehaviour
         }
         else if(hovering)
         {
-            OnHoverOut.Invoke();
+            OnHoverOut?.Invoke();
             hovering = false;
         }
     }
 
     private void OnUse(InputAction.CallbackContext ctx)
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            // Ignore clicks over UI
+            return;
+        }
+        
         if (hit.collider != null)
         {
             OnClickedGameObject.Invoke(hit.collider.gameObject);
+        }
+        else
+        {
+            OnClickedOutside.Invoke();
         }
     }
     
