@@ -12,6 +12,7 @@ public class MachineSelectionManager : MonoBehaviour
     public UnityEvent<string> OnMachineHoverInstruction;
 
     public ExposeMachine selectedMachine;
+    public RobotAgent agent;
     
     public void HoverGameObject(GameObject go)
     {
@@ -46,5 +47,10 @@ public class MachineSelectionManager : MonoBehaviour
         if(selectedMachine){
             selectedMachine.instructionPrompt = text;
         }
+    }
+
+    public void SendInstructions()
+    {
+        agent.SendMessage(selectedMachine);
     }
 }

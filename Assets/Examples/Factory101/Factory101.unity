@@ -451,6 +451,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   selectedMachine: {fileID: 0}
+  agent: {fileID: 1523249974}
 --- !u!4 &341204288
 Transform:
   m_ObjectHideFlags: 0
@@ -735,17 +736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 1, y: 0}
   rb: {fileID: 625495654}
---- !u!114 &707732185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6294157194642579927, guid: f80709d2357bac840812071ca7001186, type: 3}
-  m_PrefabInstance: {fileID: 6966541621053273742}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777d03f2dd5d11e4a8002d5bee7c9a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &994948614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputConsole: {fileID: 1658315217}
+  submitButton: {fileID: 1952812031}
   updatedText:
     m_PersistentCalls:
       m_Calls:
@@ -1486,6 +1477,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MachineSelectionManager, Assembly-CSharp
         m_MethodName: UpdateInstructionsForSelectedMachine
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSubmit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 341204287}
+        m_TargetAssemblyTypeName: MachineSelectionManager, Assembly-CSharp
+        m_MethodName: SendInstructions
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1533,6 +1539,21 @@ MonoBehaviour:
   gameObjectInstructions: 'The Game Object you are writing code for is:'
   player2Npc: {fileID: 1523249975}
   selectedMachine: {fileID: 0}
+  onResponseReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1377938205}
+        m_TargetAssemblyTypeName: InputPanel, Assembly-CSharp
+        m_MethodName: ResetSubmitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1523249975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2147,7 +2168,7 @@ GameObject:
   - component: {fileID: 1952812032}
   - component: {fileID: 1952812031}
   m_Layer: 5
-  m_Name: DoneBtn
+  m_Name: SubmitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2170,7 +2191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.98, y: -33.440002}
+  m_AnchoredPosition: {x: 4.9800034, y: -33.440002}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1952812031
@@ -2229,6 +2250,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1377938205}
+        m_TargetAssemblyTypeName: InputPanel, Assembly-CSharp
+        m_MethodName: SubmitPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1952812032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,67 +2300,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952812029}
   m_CullTransparentMesh: 1
---- !u!1001 &2027349684
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_Name
-      value: ActuatorMachine_001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813801648915722084, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: description
-      value: Actuator Machine with build in Sensor. It's number 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f80709d2357bac840812071ca7001186, type: 3}
 --- !u!1 &2138832507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,23 +2446,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_Name
-      value: ActuatorMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813801648915722084, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: machine
-      value: 
-      objectReference: {fileID: 707732185}
-    - target: {fileID: 5134454041719280717, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 96
+      value: ActuatorSensorMachine
       objectReference: {fileID: 0}
     - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2528,14 +2488,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8828620208680438617, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8953138446244730665, guid: f80709d2357bac840812071ca7001186, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2551,7 +2503,6 @@ SceneRoots:
   - {fileID: 1834421981}
   - {fileID: 341204288}
   - {fileID: 6966541621053273742}
-  - {fileID: 2027349684}
   - {fileID: 1523249977}
   - {fileID: 625495657}
   - {fileID: 470238312}

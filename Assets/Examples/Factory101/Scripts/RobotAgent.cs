@@ -3,13 +3,15 @@ using System.Text.RegularExpressions;
 using Agent;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RobotAgent : MonoBehaviour
 {
     [TextArea(3, 50)] public string preprompt;
     [TextArea] public string gameObjectInstructions;
     public Player2Npc player2Npc;
-    public GameObject selectedMachine;
+    public ExposeMachine selectedMachine;
+    public UnityEvent onResponseReceived;
     private void Start()
     {
         // var interpretedGameObjects = InterpretExposedGameObjects();
@@ -18,17 +20,18 @@ public class RobotAgent : MonoBehaviour
     }
 
     [ContextMenu("Send Message")]
-    public void SendMessage()
+    public void SendMessage(ExposeMachine machine)
     {
-        // var machine = selectedMachine.GetComponent<ActuatorMachine>();
-        var exposed = selectedMachine.GetComponent<ExposeMachine>();
-        var instructions = gameObjectInstructions + exposed.description + ". It contains the following functions you can reference:" + exposed.GetExposedMethodsNames();
+        selectedMachine = machine;
+        var instructions = gameObjectInstructions + selectedMachine.description + ". It contains the following functions you can reference:" + selectedMachine.GetExposedMethodsNames();
+        instructions += " Write code that does the following: " + selectedMachine.instructionPrompt;
         Debug.Log(instructions);
         player2Npc.OnChatMessageSubmitted(instructions);
     }
     
     public void OnResponseReceived(NpcApiChatResponse response)
     {
+        onResponseReceived.Invoke();
         string json = ExtractJson(response.message);
         RobotAgentResponse resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
         Debug.Log(resp.Lua);
@@ -77,13 +80,5 @@ public class RobotAgent : MonoBehaviour
         string json = JsonConvert.SerializeObject(allExposedGameObjects);
         Debug.Log(json);
         return json;
-    }
-
-    public void SelectMachine(GameObject go)
-    {
-        var machineDescription = go.GetComponent<ExposeMachine>();
-        if (machineDescription == null) return;
-        selectedMachine = go;
-        Debug.Log(selectedMachine);
     }
 }

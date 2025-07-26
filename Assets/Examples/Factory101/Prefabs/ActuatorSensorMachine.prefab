@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2813801648915722084}
   - component: {fileID: 8684761616708068716}
   m_Layer: 5
-  m_Name: ActuatorMachine
+  m_Name: ActuatorSensorMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.36
+  m_Radius: 0.77
 --- !u!114 &876531543096671234
 MonoBehaviour:
   m_ObjectHideFlags: 0
