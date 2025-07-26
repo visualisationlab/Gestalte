@@ -65,15 +65,15 @@ Explanation of your characteristics:";
                         string methodDescription = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
                         var methodGuid = MethodTracker.Subscribe(method, obj);
 
-                        var interpretation = new ExposedMethodInterpretation
-                        {
-                            method = methodDescription,
-                            description = attr.DisplayName ?? "No description provided",
-                            methodGuid = methodGuid.ToString(),
-                            gameObjectGuid = InstanceTracker.RetrieveGuid(obj.gameObject)
-                        };
+                        // var interpretation = new ExposedMethodInterpretation
+                        // {
+                        //     method = methodDescription,
+                        //     description = attr.DisplayName ?? "No description provided",
+                        //     methodGuid = methodGuid.ToString(),
+                        //     gameObjectGuid = InstanceTracker.RetrieveGuid(obj.gameObject)
+                        // };
 
-                        allExposedInterpretations.Add(interpretation);
+                        // allExposedInterpretations.Add(interpretation);
                     }
                 }
             }

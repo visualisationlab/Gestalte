@@ -5,9 +5,7 @@ namespace Agent
     [Serializable]
     public struct ExposedMethodInterpretation
     {
-        public string method;
+        public string methodName;
         public string description;
-        public string gameObjectGuid;
-        public string methodGuid;
     }
 }

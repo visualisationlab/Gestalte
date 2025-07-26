@@ -10,7 +10,7 @@ public class RobotAgentResponse
     {
         return @"
 {
-""Lua"": ""lua code"",
+""Lua"": ""this:MethodName()"",
 ""GameObjectGUID"": ""abcd-efgh-ijklmnop-etc""
 }
 ";

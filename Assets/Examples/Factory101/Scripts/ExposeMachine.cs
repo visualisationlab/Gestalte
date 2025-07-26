@@ -28,15 +28,12 @@ public class ExposeMachine : MonoBehaviour
                         parameterDescriptions.Add($"{param.ParameterType} {param.Name}");
                     }
 
-                    string methodDescription = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
-                    var methodGuid = MethodTracker.Subscribe(method, obj);
+                    string methodFormat = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
 
                     var interpretation = new ExposedMethodInterpretation
                     {
-                        method = methodDescription,
-                        description = attr.DisplayName ?? "No description provided",
-                        methodGuid = methodGuid.ToString(),
-                        gameObjectGuid = InstanceTracker.RetrieveGuid(obj.gameObject)
+                        methodName = methodFormat,
+                        description = attr.DisplayName ?? "No description provided"
                     };
                     resultExposedMethods.Add(interpretation);
                 }
