@@ -1,29 +1,25 @@
 using System.Collections;
+using System.Collections.Generic;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ActuatorSensorMachine : Machine
+public class SimpleSensorMachine : Machine
 {
     public SimpleSensor sensor;
-    public ActuatorPiston piston;
     private Script luaScript;
     private string script;
+    public UnityEvent<bool> Outport;
+
     private void Start()
     {
-        UserData.RegisterType<ActuatorSensorMachine>();
+        UserData.RegisterType<SimpleSensorMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
     }
 
-    public override void SetScript(string code)
-    {
-        script = code;
-        Debug.Log($"Executing: {code}");
-        StartCoroutine(ExecuteEverySecond());
-    }
-    
     IEnumerator ExecuteEverySecond()
     {
         while (true)
@@ -32,6 +28,12 @@ public class ActuatorSensorMachine : Machine
             yield return new WaitForSeconds(.5f);
         }
     }
+
+    public override void SetScript(string code)
+    {
+        script = code;
+        StartCoroutine(ExecuteEverySecond());
+    }
     
     [ExposeMethod("Detects objects in front of the machine")]
     public bool ReadSensor()
@@ -39,15 +41,9 @@ public class ActuatorSensorMachine : Machine
         return sensor.onDetect;
     }
     
-    [ExposeMethod("Pushes actuator piston out")]
-    public void Push()
+    [ExposeMethod("Emits a boolean signal out of the outport")]
+    public void EmitOutPortSignal(bool signal)
     {
-        piston.Extend();
-    }
-    
-    [ExposeMethod("Retracts actuator piston")]
-    public void Retract()
-    {
-        piston.Retract();
+        Outport.Invoke(signal);
     }
 }
