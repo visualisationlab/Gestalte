@@ -8,20 +8,23 @@ public class RobotAgent : MonoBehaviour
 {
     [TextArea(3, 50)] public string preprompt;
     [TextArea] public string gameObjectInstructions;
-    [TextArea] public string robotInstructions;
     public Player2Npc player2Npc;
+    public GameObject selectedMachine;
     private void Start()
     {
-        var interpretedGameObjects = InterpretExposedGameObjects();
-        var composedPreprompt = preprompt + RobotAgentResponse.Format() + gameObjectInstructions + interpretedGameObjects;
-        Debug.Log(composedPreprompt);
+        // var interpretedGameObjects = InterpretExposedGameObjects();
+        var composedPreprompt = preprompt + RobotAgentResponse.Format();
         _ = player2Npc.SpawnNpcAsync(composedPreprompt);
     }
 
     [ContextMenu("Send Message")]
     public void SendMessage()
     {
-        player2Npc.OnChatMessageSubmitted(robotInstructions);
+        // var machine = selectedMachine.GetComponent<ActuatorMachine>();
+        var exposed = selectedMachine.GetComponent<ExposeMachine>();
+        var instructions = gameObjectInstructions + exposed.description + ". It contains the following functions you can reference:" + exposed.GetExposedMethodsNames();
+        Debug.Log(instructions);
+        player2Npc.OnChatMessageSubmitted(instructions);
     }
     
     public void OnResponseReceived(NpcApiChatResponse response)
@@ -29,11 +32,8 @@ public class RobotAgent : MonoBehaviour
         string json = ExtractJson(response.message);
         RobotAgentResponse resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
         Debug.Log(resp.Lua);
-        Debug.Log(resp.GameObjectGUID);
-        // string script = ExtractPureLua(resp.Lua);
-        // Debug.Log(script);
-        var go = InstanceTracker.Retrieve(resp.GameObjectGUID);
-        go.GetComponent<ActuatorMachine>().SetScript(resp.Lua);
+        // var go = InstanceTracker.Retrieve(resp.GameObjectGUID);
+        selectedMachine.GetComponent<ExposeMachine>().SetScript(resp.Lua);
     }
     
     private string ExtractJson(string input)
@@ -78,5 +78,12 @@ public class RobotAgent : MonoBehaviour
         Debug.Log(json);
         return json;
     }
-    
+
+    public void SelectMachine(GameObject go)
+    {
+        var machineDescription = go.GetComponent<ExposeMachine>();
+        if (machineDescription == null) return;
+        selectedMachine = go;
+        Debug.Log(selectedMachine);
+    }
 }

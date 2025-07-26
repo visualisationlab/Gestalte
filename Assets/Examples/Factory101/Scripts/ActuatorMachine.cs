@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
+using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class ActuatorMachine : MonoBehaviour
+public class ActuatorMachine : Machine
 {
     public ActuatorSensor sensor;
     public ActuatorPiston piston;
@@ -17,9 +17,10 @@ public class ActuatorMachine : MonoBehaviour
         luaScript.Globals["this"] = this;
     }
 
-    public void SetScript(string code)
+    public override void SetScript(string code)
     {
         script = code;
+        Debug.Log($"Executing: {code}");
         StartCoroutine(ExecuteEverySecond());
     }
     

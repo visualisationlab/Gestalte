@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Agent;
+using Examples.Factory101.Scripts;
 using Mediator;
 using UnityEngine;
 
 public class ExposeMachine : MonoBehaviour
 {
     [TextArea] public string description;
+    [TextArea] public string instructionPrompt;
+    [TextArea] public string script;
+    [SerializeField] private Machine machine;
     public List<ExposedMethodInterpretation> GetExposedMethods()
     {
         var allObjects = gameObject.GetComponents<MonoBehaviour>();
@@ -52,6 +56,12 @@ public class ExposeMachine : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void SetScript(string code)
+    {
+        script = code;
+        machine.SetScript(script);
     }
     
     

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6294157194642579927}
   - component: {fileID: 2813801648915722084}
   - component: {fileID: 8684761616708068716}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: ActuatorMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: An actuator for a pushing machine.
+  description: A poop shute
+  instructionPrompt: 
+  script: 
+  machine: {fileID: 6294157194642579927}
 --- !u!61 &8684761616708068716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +179,7 @@ GameObject:
   - component: {fileID: 7923862332368233512}
   - component: {fileID: 5134454041719280717}
   - component: {fileID: 876531543096671234}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +217,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 96
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -260,7 +263,7 @@ GameObject:
   - component: {fileID: 6067132941635294983}
   - component: {fileID: 5521145985778404424}
   - component: {fileID: 5863677604384883893}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Piston
   m_TagString: Untagged
   m_Icon: {fileID: 0}

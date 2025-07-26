@@ -36,5 +36,4 @@ public class InfoPanel : MonoBehaviour
     {
         infoConsole.text = overrideText;
     }
-    
 }
