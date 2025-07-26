@@ -39,8 +39,20 @@ public class ExposeMachine : MonoBehaviour
                 }
             }
         }
-
         return resultExposedMethods;
     }
+
+    public string GetExposedMethodsNames()
+    {
+        var meth = GetExposedMethods();
+        string result = "";
+        foreach (var m in meth)
+        {
+            result += $"{m.methodName} \n";
+        }
+
+        return result;
+    }
+    
     
 }
