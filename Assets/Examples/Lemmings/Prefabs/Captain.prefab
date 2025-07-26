@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 674282617424338617}
   - component: {fileID: 7410097283592176770}
   - component: {fileID: 3955451730858748887}
+  - component: {fileID: 6863512463130846994}
   m_Layer: 0
   m_Name: Captain
   m_TagString: Captain
@@ -114,13 +115,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0871c23b8f9eec947990413dafdc4851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  maxForce: 2
-  neighborRadius: 4
-  separationRadius: 2
-  alignWeight: 1
-  cohesionWeight: 0.8
-  separationWeight: 2
-  captainWeight: 1.5
-  orbitWeight: 1
-  noiseWeight: 2
+  drag: 0.95
+  maxSpeed: 1
+--- !u!114 &6863512463130846994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371202673623724157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cde7af79c245f4faab4da7a18055f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

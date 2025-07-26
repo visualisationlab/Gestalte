@@ -107,6 +107,6 @@ MonoBehaviour:
   alignWeight: 1
   cohesionWeight: 0.5
   separationWeight: 1.2
-  captainWeight: 1
+  captainWeight: 2
   orbitWeight: 1
   noiseWeight: 1.5

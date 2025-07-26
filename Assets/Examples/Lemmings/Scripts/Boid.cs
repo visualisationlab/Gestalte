@@ -62,7 +62,7 @@ public class Boid : MonoBehaviour
         }
 
         // Captain influence
-        Vector2 toCaptain = (manager.captain.position - transform.position);
+        Vector2 toCaptain = (manager.captain.transform.position - transform.position);
         Vector2 towardCaptain = toCaptain.normalized;
         Vector2 aroundCaptain = new Vector2(-towardCaptain.y, towardCaptain.x); // Perpendicular
         Vector2 orbitForce = aroundCaptain * orbitWeight;

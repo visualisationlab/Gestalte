@@ -4,9 +4,7 @@ using System.Collections.Generic;
 public class FlockManager : MonoBehaviour
 {
     [Header("Captain Settings")]
-    public CaptainBoid captainPrefab;
-    public Transform captain; 
-    public float captainWeight = 1.5f;
+    public CaptainShip captain; 
 
     [Header("Boid Settings")]
     public Boid boidPrefab;
@@ -18,14 +16,6 @@ public class FlockManager : MonoBehaviour
 
     void Start()
     {
-        // Initialize the captain
-        if (captainPrefab != null)
-        {
-            Boid captainBoid = Instantiate(captainPrefab, transform.position, Quaternion.identity);
-            captainBoid.Init(this);
-            captain = captainBoid.transform;
-        }
-
         for (int i = 0; i < boidCount; i++)
         {
             Vector2 pos = (Vector2)transform.position + Random.insideUnitCircle * spawnRadius;
