@@ -222,6 +222,75 @@ MonoBehaviour:
   amplitude: 0.5
   frequency: 1
   bias: 0.6
+--- !u!1 &308520688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308520689}
+  - component: {fileID: 308520690}
+  - component: {fileID: 308520691}
+  m_Layer: 0
+  m_Name: BlackHoleSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &308520689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308520688}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 413073792}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308520690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308520688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e23959911b33a44bfdc9dbb8036ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 100
+  minValue: 0
+  description: The distance of this gameObject to the captainship
+  other: {fileID: 0}
+  maxDistance: 100
+  directionToCaptain: {x: 0, y: 0}
+--- !u!114 &308520691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308520688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaeab29fdfc140f5b9630a514139c49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorMappings:
+  - sensor: {fileID: 308520690}
+    function: {fileID: 11400000, guid: 764e029f85bbbf14ea8d8734e1e2457e, type: 2}
+  ignoredSensors: []
+  description: The relevance of the distance of this blackhole to the captainship
 --- !u!1 &327256132
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +323,107 @@ Transform:
   - {fileID: 742127613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &413073791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413073792}
+  - component: {fileID: 413073794}
+  - component: {fileID: 413073793}
+  m_Layer: 0
+  m_Name: Hole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413073792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413073791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 308520689}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &413073793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413073791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192df8cad4455b439466bd73e2792f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 300
+--- !u!212 &413073794
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413073791}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 615460826, guid: a822e47b23faa804d84eaedba5ee1fe3, type: 3}
+  m_Color: {r: 0, g: 0.8500247, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &742127612
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,8 +677,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf04b771f081584bb94c4e2073efcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  captainPrefab: {fileID: 3955451730858748887, guid: 3c75fb2a9bc4e804fa27b88bc1c27cef, type: 3}
+  captain: {fileID: 0}
+  captainWeight: 1.5
   boidPrefab: {fileID: 6119223045769861546, guid: 619f865104c958a4d8e31aff74139d17, type: 3}
-  boidCount: 60
+  boidCount: 20
   spawnRadius: 3
 --- !u!4 &1601164041
 Transform:
@@ -750,6 +923,124 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &4018825428462024758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281742960143719677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2318ea99c2ec137faa7b2fd3527561b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcManager: {fileID: 8083233896450293298}
+  shortName: God
+  fullName: Space God
+  characterDescription: You make the game fun to play.
+  onNpcChatResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4275619606504071966}
+        m_TargetAssemblyTypeName: Agent.AgentController, Assembly-CSharp
+        m_MethodName: OnResponseReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4275619606504071966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281742960143719677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b2dca6d7844fcbaa73bb2e0041ea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prePrompt: "Explanation of the system:\r\nYou are an agent tool within a Unity
+    system build to let LLM make decisions based on system information given.\r\nYou
+    get references to game objects and exposed methods in the following fields: \r\n-
+    allExposedGameObjects\r\n- allExposedMethods\r\n\r\nWithin your response you
+    can reference these game objects and methods by their GUID\r\n\rIt's very important
+    that your response ONLY exists out of JSON formatted as the following:\r\n{\r\n\"MethodGuid\":
+    \"string\",\r\n\"Parameters\": [],\r\n\"ShortReasoning\": \"string\"\r\n}\r\n\r\nFurther
+    Explanation of your characteristics:"
+  systemDescription: You are controlling the effects in a space faring game. You
+    will receive data about things in space and the captain ship. Based on what you
+    think is fun, decide on the actions.
+  scopeController: {fileID: 7454466884712747543}
+  player2Npc: {fileID: 4018825428462024758}
+--- !u!4 &5634564065601364191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281742960143719677}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7454466884712747543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281742960143719677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fbde034468479b8c48584e00f732e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correlators: []
+  selectionAmount: 3
+--- !u!114 &8083233896450293298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8281742960143719677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad34ea68d9d128e8e1df224f5ed892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameId: toucan-test
+--- !u!1 &8281742960143719677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5634564065601364191}
+  - component: {fileID: 4275619606504071966}
+  - component: {fileID: 7454466884712747543}
+  - component: {fileID: 8083233896450293298}
+  - component: {fileID: 4018825428462024758}
+  m_Layer: 0
+  m_Name: Agent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -759,3 +1050,5 @@ SceneRoots:
   - {fileID: 1601164041}
   - {fileID: 1900180943}
   - {fileID: 327256133}
+  - {fileID: 308520689}
+  - {fileID: 5634564065601364191}

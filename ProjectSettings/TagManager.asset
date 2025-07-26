@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - WeaponHurt
+  - Captain
   layers:
   - Default
   - TransparentFX

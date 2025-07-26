@@ -6,7 +6,7 @@ namespace Director.Sensors
     {
         public Transform other;
         public float maxDistance = 100.0f;
-        public string description;
+        // public string description;
         public override SensorResult Evaluate()
         {
             if (other == null)

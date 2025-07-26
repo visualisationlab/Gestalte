@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7162322724774145698
+--- !u!1 &2371202673623724157
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 715044652095718308}
-  - component: {fileID: 6371044118023774351}
-  - component: {fileID: 6119223045769861546}
+  - component: {fileID: 4453448949569739561}
+  - component: {fileID: 674282617424338617}
+  - component: {fileID: 7410097283592176770}
+  - component: {fileID: 3955451730858748887}
   m_Layer: 0
-  m_Name: Lemming
-  m_TagString: Untagged
+  m_Name: Captain
+  m_TagString: Captain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &715044652095718308
+--- !u!4 &4453448949569739561
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162322724774145698}
+  m_GameObject: {fileID: 2371202673623724157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6371044118023774351
+--- !u!212 &674282617424338617
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162322724774145698}
+  m_GameObject: {fileID: 2371202673623724157}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1274648647, guid: d7058819118c94249bca0ad2de9e6348, type: 3}
-  m_Color: {r: 1, g: 0.9238703, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.07438043, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -88,25 +89,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6119223045769861546
+--- !u!114 &7410097283592176770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162322724774145698}
+  m_GameObject: {fileID: 2371202673623724157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e5d272a31510048916784520eec52c, type: 3}
+  m_Script: {fileID: 11500000, guid: d517b7147c06f964786fb03b2e0f408a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  maxForce: 5
-  neighborRadius: 1
-  separationRadius: 0.5
+  description: This is the Captain Ship.
+--- !u!114 &3955451730858748887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371202673623724157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0871c23b8f9eec947990413dafdc4851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  maxForce: 2
+  neighborRadius: 4
+  separationRadius: 2
   alignWeight: 1
-  cohesionWeight: 0.5
-  separationWeight: 1.2
-  captainWeight: 1
+  cohesionWeight: 0.8
+  separationWeight: 2
+  captainWeight: 1.5
   orbitWeight: 1
-  noiseWeight: 1.5
+  noiseWeight: 2
