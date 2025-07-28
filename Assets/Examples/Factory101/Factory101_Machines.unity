@@ -1623,6 +1623,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  responseCounter: 0
 --- !u!114 &1523249975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2053,6 +2054,10 @@ PrefabInstance:
     - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_Name
       value: ActuatorSensorMachine_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2789,6 +2794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleActuatorMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6269684352281370142, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: sensor
       value: 
@@ -2855,7 +2864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.62
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2952,6 +2961,10 @@ PrefabInstance:
     - target: {fileID: 1971925780259935050, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
       propertyPath: m_Name
       value: PassiveLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971925780259935050, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3074,6 +3087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagneticMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 8068125074464541939, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3153,6 +3170,10 @@ PrefabInstance:
     - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_Name
       value: ActuatorSensorMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5341717027389253209, guid: f80709d2357bac840812071ca7001186, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3286,6 +3307,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3352,6 +3377,10 @@ PrefabInstance:
     - target: {fileID: 8452506491652234496, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
       propertyPath: m_Name
       value: TypeSensorMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452506491652234496, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8543541792379326288, guid: 92761af1c6298814884f14ebd1bfc0da, type: 3}
       propertyPath: oracle
