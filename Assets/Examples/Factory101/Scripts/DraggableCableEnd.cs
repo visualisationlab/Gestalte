@@ -58,6 +58,7 @@ public class DraggableCableEnd : Draggable
         // Apply rotation offset around Z axis
         Quaternion offsetRotation = Quaternion.Euler(0, 0, rotationOffset);
         transform.rotation = snapRotation * offsetRotation;
+        StartCoroutine(FlashCable());
     }
 
     public void ReleaseFromSnap()
@@ -102,6 +103,7 @@ public class DraggableCableEnd : Draggable
 
         if (target.TryGetComponent<IPulseReceiver>(out var receiver))
         {
+            PlayPulseEffect();
             receiver.OnPulse();
             Debug.Log($"Pulse sent from {name} to {target.name}");
         }
@@ -123,6 +125,7 @@ public class DraggableCableEnd : Draggable
 
         if (target.TryGetComponent<IPulseReceiver>(out var receiver))
         {
+            PlayPulseEffect();
             receiver.OnPulse(message);
             Debug.Log($"Pulse sent from {name} to {target.name} with message: {message}");
         }
@@ -186,5 +189,85 @@ public class DraggableCableEnd : Draggable
         lengthFromTo = Vector3.Distance(startPosition, transform.position);
         bouncingBack = false;
         transform.rotation = Quaternion.identity; // Reset rotation
+    }
+
+
+    [ContextMenu("Play Pulse Effect")]
+    public void PlayPulseEffect()
+    {
+        SpawnSparks(transform.position);
+        SpawnSparks(startPosition);
+    }
+
+    private void SpawnSparks(Vector3 position)
+    {
+        int sparkCount = 6;
+        float sparkSpeed = 2f;
+        float sparkDuration = 0.5f;
+
+        for (int i = 0; i < sparkCount; i++)
+        {
+            GameObject spark = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            Destroy(spark.GetComponent<Collider>());
+
+            spark.name = "Spark";
+            spark.transform.position = position;
+            spark.transform.localScale = new Vector3(0.05f, 0.2f, 1f);
+            spark.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+
+            var renderer = spark.GetComponent<Renderer>();
+            renderer.material = new Material(Shader.Find("Sprites/Default"));
+            renderer.material.color = Color.yellow;
+
+            Vector3 direction = new Vector3(
+                Random.Range(-1f, 1f),
+                Random.Range(-1f, 1f),
+                0
+            ).normalized;
+
+            StartCoroutine(MoveAndFadeSpark(spark, direction * sparkSpeed, sparkDuration));
+        }
+    }
+    private IEnumerator MoveAndFadeSpark(GameObject spark, Vector3 velocity, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 start = spark.transform.position;
+
+        Material mat = spark.GetComponent<Renderer>().material;
+        Color initialColor = mat.color;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            spark.transform.position = start + velocity * t;
+
+            // Fade out
+            mat.color = new Color(initialColor.r, initialColor.g, initialColor.b, 1f - t);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(spark);
+    }
+    private IEnumerator FlashCable()
+    {
+        LineRenderer line = GetComponent<LineRenderer>();
+
+        Color originalStart = line.startColor;
+        Color originalEnd = line.endColor;
+        float originalWidth = line.widthMultiplier;
+
+        // Flash to red and increase width
+        line.startColor = Color.green;
+        line.endColor = Color.green;
+        line.widthMultiplier = 1.2f;
+
+        yield return new WaitForSeconds(0.2f);
+
+        // Restore original color and width
+        line.startColor = originalStart;
+        line.endColor = originalEnd;
+        line.widthMultiplier = originalWidth;
     }
 }
