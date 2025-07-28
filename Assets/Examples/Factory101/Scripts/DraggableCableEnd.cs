@@ -4,7 +4,6 @@ public class DraggableCableEnd : Draggable
 {
     [SerializeField] private LayerMask connectorLayer;
     [SerializeField] private float snapCheckRadius = 1f;
-
     private CableConnector connectedTo;
 
     public override void StartDragging(Vector3 hitPoint)
@@ -22,10 +21,8 @@ public class DraggableCableEnd : Draggable
     public override void StopDragging()
     {
         base.StopDragging();
-        Debug.Log($"connectorLayer cable end value: {LayerMask.LayerToName(connectorLayer)}");
 
         // Try to snap to nearby connector
-        // Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, ~0);
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, connectorLayer);
         if (nearby.Length == 0)
         {
@@ -45,10 +42,13 @@ public class DraggableCableEnd : Draggable
         }
     }
 
-    public void SnapTo(Transform target)
+    public void SnapTo(Transform target, Quaternion snapRotation)
     {
         transform.position = target.position;
-        transform.rotation = target.rotation;
+
+        // Apply rotation offset around Z axis
+        Quaternion offsetRotation = Quaternion.Euler(0, 0, rotationOffset);
+        transform.rotation = snapRotation * offsetRotation;
     }
 
     public void ReleaseFromSnap()

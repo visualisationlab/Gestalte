@@ -706,6 +706,61 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &530027581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5656724835089951364, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+  m_PrefabInstance: {fileID: 3734090582495495453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &530027584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530027581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a106fbd79de28409cb4874c5c92a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapRange: 0.4
+  centerPoint: {fileID: 1734397009}
+--- !u!58 &530027585
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530027581}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.00000047683716}
+  m_Radius: 1.95
 --- !u!1 &611545649
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,10 +770,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 611545650}
-  - component: {fileID: 611545654}
   - component: {fileID: 611545651}
   - component: {fileID: 611545652}
   - component: {fileID: 611545653}
+  - component: {fileID: 611545654}
   m_Layer: 0
   m_Name: ConnectorCable
   m_TagString: Untagged
@@ -908,11 +963,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 611545649}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b2f8985b7d1eee4eb5ddc57e9fa927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 720
   rotationOffset: -90
+  connectorLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  snapCheckRadius: 0.43
 --- !u!1 &625495653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,6 +2587,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88b89e783d1dbe47a7ce58291ec34f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1734397009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 403079618309555461, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+  m_PrefabInstance: {fileID: 3734090582495495453}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1756216360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,10 +3357,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: PassiveLight
       objectReference: {fileID: 0}
+    - target: {fileID: 5656724835089951364, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5656724835089951364, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 530027584}
+    - targetCorrespondingSourceObject: {fileID: 5656724835089951364, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 530027585}
   m_SourcePrefab: {fileID: 100100000, guid: 552d19dfec6500e45aeae6386fb8cf85, type: 3}
 --- !u!1001 &7385139935014973709
 PrefabInstance:

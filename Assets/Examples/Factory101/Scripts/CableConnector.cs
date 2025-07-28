@@ -3,6 +3,7 @@ using UnityEngine;
 public class CableConnector : MonoBehaviour
 {
     [SerializeField] private float snapRange = 1f;
+    [SerializeField] private Transform centerPoint;  // drag the machine’s center here
 
     private DraggableCableEnd currentCable;
 
@@ -16,7 +17,8 @@ public class CableConnector : MonoBehaviour
         if (currentCable == cable) return;
 
         currentCable = cable;
-        cable.SnapTo(transform);
+        Quaternion snapRotation = GetSnapRotation();
+        cable.SnapTo(transform, snapRotation);
         Debug.Log("Cable attached to " + name);
     }
 
@@ -36,10 +38,17 @@ public class CableConnector : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, snapRange);
     }
 
-    void Awake()
+
+    public Quaternion GetSnapRotation()
     {
-        // debug this layer this script is attached to
-        Debug.Log($"CableConnector Awake: {gameObject.name} on layer {gameObject.layer} ({LayerMask.LayerToName(gameObject.layer)})");
+        if (centerPoint == null)
+            return Quaternion.identity;
+
+        Vector2 direction = (transform.position - centerPoint.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        return Quaternion.Euler(0f, 0f, angle);
     }
+
     public bool HasCableAttached => currentCable != null;
 }
