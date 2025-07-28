@@ -11,7 +11,7 @@ public class SimpleSensorMachine : Machine
     public SimpleSensor sensor;
     private Script luaScript;
     private string script;
-    public UnityEvent<bool> Outport;
+    [SerializeField] private DraggableCableEnd cableEnd;
 
     private void Start()
     {
@@ -34,16 +34,17 @@ public class SimpleSensorMachine : Machine
         script = code;
         StartCoroutine(ExecuteEverySecond());
     }
-    
+
     [ExposeMethod("Detects objects in front of the machine")]
     public bool ReadSensor()
     {
         return sensor.onDetect;
     }
-    
+
     [ExposeMethod("Emits a boolean signal out of the outport")]
     public void EmitOutPortSignal(bool signal)
     {
-        Outport.Invoke(signal);
+        cableEnd.SendPulse();
     }
+    
 }

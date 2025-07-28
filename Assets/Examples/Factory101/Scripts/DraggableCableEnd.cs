@@ -4,7 +4,6 @@ public class DraggableCableEnd : Draggable
 {
     [SerializeField] private LayerMask connectorLayer;
     [SerializeField] private float snapCheckRadius = 1f;
-
     private CableConnector connectedTo;
 
     public override void StartDragging(Vector3 hitPoint)
@@ -22,10 +21,8 @@ public class DraggableCableEnd : Draggable
     public override void StopDragging()
     {
         base.StopDragging();
-        Debug.Log($"connectorLayer cable end value: {LayerMask.LayerToName(connectorLayer)}");
 
         // Try to snap to nearby connector
-        // Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, ~0);
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, connectorLayer);
         if (nearby.Length == 0)
         {
@@ -45,10 +42,13 @@ public class DraggableCableEnd : Draggable
         }
     }
 
-    public void SnapTo(Transform target)
+    public void SnapTo(Transform target, Quaternion snapRotation)
     {
         transform.position = target.position;
-        transform.rotation = target.rotation;
+
+        // Apply rotation offset around Z axis
+        Quaternion offsetRotation = Quaternion.Euler(0, 0, rotationOffset);
+        transform.rotation = snapRotation * offsetRotation;
     }
 
     public void ReleaseFromSnap()
@@ -61,5 +61,44 @@ public class DraggableCableEnd : Draggable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, snapCheckRadius);
+    }
+
+    public void SendPulseFrom(CableConnector source)
+    {
+        if (connectedTo == null || connectedTo == source)
+            return;
+
+        GameObject targetMachine = connectedTo.gameObject;
+
+        if (targetMachine.TryGetComponent<IPulseReceiver>(out var receiver))
+        {
+            receiver.OnPulse();
+            Debug.Log($"Pulse sent from {source.name} to {targetMachine.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"{targetMachine.name} does not implement IPulseReceiver");
+        }
+    }
+
+    public void SendPulse()
+    {
+        if (connectedTo == null)
+        {
+            Debug.LogWarning("Cable is not connected to any receiver.");
+            return;
+        }
+
+        GameObject target = connectedTo.parentMachine;
+
+        if (target.TryGetComponent<IPulseReceiver>(out var receiver))
+        {
+            receiver.OnPulse();
+            Debug.Log($"Pulse sent from {name} to {target.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
+        }
     }
 }

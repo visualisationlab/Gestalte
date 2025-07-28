@@ -8,7 +8,7 @@ public class Draggable : MonoBehaviour
     private Camera cam;
     private Vector3 lastPosition;
     [SerializeField] private float rotationSpeed = 720f; // degrees per second
-    [SerializeField] private float rotationOffset = 0f;  // degrees, applied to rotation
+    [SerializeField] protected float rotationOffset = 0f;  // degrees, applied to rotation
 
     void Start()
     {
