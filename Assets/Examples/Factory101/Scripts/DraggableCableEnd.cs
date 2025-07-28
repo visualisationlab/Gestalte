@@ -1,10 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class DraggableCableEnd : Draggable
 {
     [SerializeField] private LayerMask connectorLayer;
     [SerializeField] private float snapCheckRadius = 1f;
     private CableConnector connectedTo;
+    public float maxCableLength = 5f;
+    private Coroutine bounceCoroutine;
+    private bool bouncingBack = false;
 
     public override void StartDragging(Vector3 hitPoint)
     {
@@ -24,22 +28,27 @@ public class DraggableCableEnd : Draggable
 
         // Try to snap to nearby connector
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, connectorLayer);
-        if (nearby.Length == 0)
+        if (nearby.Length != 0)
         {
-            Debug.Log("No connectors nearby to snap to.");
-            return;
-        }
-        Debug.Log($"Found {nearby.Length} nearby colliders for snapping.");
-        foreach (var col in nearby)
-        {
-            if (col.TryGetComponent<CableConnector>(out var connector))
+            Debug.Log($"Found {nearby.Length} nearby colliders for snapping.");
+            foreach (var col in nearby)
             {
-                Debug.Log($"Attempting to snap to connector: {connector.name}");
-                connector.AttachCable(this);
-                connectedTo = connector;
-                break;
+                if (col.TryGetComponent<CableConnector>(out var connector))
+                {
+                    Debug.Log($"Attempting to snap to connector: {connector.name}");
+                    connector.AttachCable(this);
+                    connectedTo = connector;
+                    break;
+                }
             }
         }
+
+        // // If nothing found return to startposition
+        // if (connectedTo == null)
+        // {
+        //     Debug.Log("No suitable connector found, returning to start position.");
+        //     transform.position = startPosition; // Reset to start position
+        // }
     }
 
     public void SnapTo(Transform target, Quaternion snapRotation)
@@ -100,5 +109,60 @@ public class DraggableCableEnd : Draggable
         {
             Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
         }
+    }
+
+    public override void UpdateDragging()
+    {
+        base.UpdateDragging(); // Keep base drag behavior
+
+        if (lengthFromTo > maxCableLength && !bouncingBack)
+        {
+            Debug.LogWarning($"Cable end {name} dragged too far: {lengthFromTo} > {maxCableLength}");
+            NoFurtherDragging();
+            return;
+        }
+    }
+
+    private void ResetDragging()
+    {
+        StopDragging();
+        startPosition = transform.position; // Reset start position
+        lengthFromTo = 0f;
+        transform.rotation = Quaternion.identity; // Reset rotation
+    }
+
+    private void NoFurtherDragging()
+    {
+        base.StopDragging();
+
+        Vector3 origin = connectedTo != null ? connectedTo.transform.position : startPosition;
+        Vector3 directionBack = (origin - transform.position).normalized;
+
+        // Stop previous bounce if it's running
+        if (bounceCoroutine != null)
+            StopCoroutine(bounceCoroutine);
+
+        bouncingBack = true;
+        bounceCoroutine = StartCoroutine(BounceBack(startPosition));
+    }
+
+    private IEnumerator BounceBack(Vector3 targetPos)
+    {
+        float duration = 0.2f; // Duration of bounce
+        float elapsed = 0f;
+
+        Vector3 start = transform.position;
+
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(start, targetPos, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos; // Ensure it ends exactly
+        lengthFromTo = Vector3.Distance(startPosition, transform.position);
+        bouncingBack = false;
+        transform.rotation = Quaternion.identity; // Reset rotation
     }
 }

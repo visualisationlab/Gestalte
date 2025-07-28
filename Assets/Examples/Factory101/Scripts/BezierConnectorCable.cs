@@ -4,7 +4,7 @@ public class BezierConnectorCable : MonoBehaviour
 {
     public Transform from;
     public Transform to;
-
+    public float length;
     private LineRenderer line;
 
     void Start()
@@ -25,5 +25,8 @@ public class BezierConnectorCable : MonoBehaviour
 
         line.positionCount = points.Length;
         line.SetPositions(points);
+
+        // Length calculation
+        length = Vector3.Distance(start, mid1) + Vector3.Distance(mid1, end);
     }
 }

@@ -9,10 +9,12 @@ public class Draggable : MonoBehaviour
     private Vector3 lastPosition;
     [SerializeField] private float rotationSpeed = 720f; // degrees per second
     [SerializeField] protected float rotationOffset = 0f;  // degrees, applied to rotation
-
+    [SerializeField] protected float lengthFromTo = 0f; // Enable to see debug logs
+    protected Vector3 startPosition;
     void Start()
     {
         cam = Camera.main;
+        startPosition = transform.position;
     }
 
     public virtual void StartDragging(Vector3 hitPoint)
@@ -28,7 +30,7 @@ public class Draggable : MonoBehaviour
         isDragging = false;
     }
 
-    void Update()
+    public virtual void UpdateDragging()
     {
         if (!isDragging) return;
 
@@ -44,7 +46,7 @@ public class Draggable : MonoBehaviour
 
         if (dragDirection.sqrMagnitude > 0.001f) // avoid zero-length
         {
-            float targetAngle  = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg + rotationOffset;
+            float targetAngle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg + rotationOffset;
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
 
             transform.rotation = Quaternion.RotateTowards(
@@ -54,7 +56,12 @@ public class Draggable : MonoBehaviour
             );
         }
 
+        lengthFromTo = Vector3.Distance(startPosition, targetPos);
         lastPosition = targetPos;
+    }
 
+    void Update()
+    {
+        UpdateDragging();
     }
 }
