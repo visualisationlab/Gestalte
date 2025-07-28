@@ -111,6 +111,28 @@ public class DraggableCableEnd : Draggable
         }
     }
 
+    public void SendPulse(string message)
+    {
+        if (connectedTo == null)
+        {
+            Debug.LogWarning("Cable is not connected to any receiver.");
+            return;
+        }
+
+        GameObject target = connectedTo.parentMachine;
+
+        if (target.TryGetComponent<IPulseReceiver>(out var receiver))
+        {
+            receiver.OnPulse(message);
+            Debug.Log($"Pulse sent from {name} to {target.name} with message: {message}");
+        }
+        else
+        {
+            Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
+        }
+    }
+
+
     public override void UpdateDragging()
     {
         base.UpdateDragging(); // Keep base drag behavior

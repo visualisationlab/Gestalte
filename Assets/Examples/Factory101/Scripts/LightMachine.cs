@@ -21,4 +21,10 @@ public class LightMachine : MonoBehaviour, IPulseReceiver
         // Do your logic here
         SetState(true);
     }
+
+    public void OnPulse(string message)
+    {
+        // Do nothing
+        Debug.Log($"Receiver activated by pulse with message: {message}");
+    }
 }

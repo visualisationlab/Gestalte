@@ -46,5 +46,10 @@ public class SimpleSensorMachine : Machine
     {
         cableEnd.SendPulse();
     }
-    
+
+    [ExposeMethod("Emits a string signal out of the outport")]
+    public void EmitOutPortSignal(string signal)
+    {
+        cableEnd.SendPulse(signal);
+    }
 }
