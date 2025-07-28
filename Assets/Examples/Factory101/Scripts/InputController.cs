@@ -16,16 +16,19 @@ public class InputController : MonoBehaviour
     private RaycastHit2D hit;
 
     private bool hovering;
-    
+    [SerializeField] private Draggable currentDraggable;
+
     private void OnEnable()
     {
         useAction.action.started += OnUse;
+        useAction.action.canceled += OnUseCanceled;
         useAction.action.Enable();
     }
 
     private void OnDisable()
     {
         useAction.action.started -= OnUse;
+        useAction.action.canceled -= OnUseCanceled;
         useAction.action.Disable();
     }
 
@@ -45,7 +48,7 @@ public class InputController : MonoBehaviour
             hovering = true;
             OnHoverGameObject.Invoke(hit.collider.gameObject);
         }
-        else if(hovering)
+        else if (hovering)
         {
             OnHoverOut?.Invoke();
             hovering = false;
@@ -59,10 +62,25 @@ public class InputController : MonoBehaviour
             // Ignore clicks over UI
             return;
         }
-        
+
         if (hit.collider != null)
         {
-            OnClickedGameObject.Invoke(hit.collider.gameObject);
+            // Found machine
+            if (hit.collider.gameObject.GetComponent<ExposeMachine>())
+            {
+                OnClickedGameObject.Invoke(hit.collider.gameObject);
+            }
+            else
+            {
+                Draggable draggable = hit.collider.gameObject.GetComponent<Draggable>();
+                if (draggable != null)
+                {
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                    worldPos.z = 0;
+                    draggable.StartDragging(worldPos);
+                    currentDraggable = draggable;
+                }
+            }
         }
         else
         {
@@ -70,4 +88,12 @@ public class InputController : MonoBehaviour
         }
     }
     
+    private void OnUseCanceled(InputAction.CallbackContext ctx)
+    {
+        if (currentDraggable != null)
+        {
+            currentDraggable.StopDragging();
+            currentDraggable = null;
+        }
+    }
 }
