@@ -4,7 +4,7 @@ public class CableConnector : MonoBehaviour
 {
     [SerializeField] private float snapRange = 1f;
     [SerializeField] private Transform centerPoint;  // drag the machine’s center here
-
+    public GameObject parentMachine;
     private DraggableCableEnd currentCable;
 
     public bool IsCableNearby(DraggableCableEnd cable)

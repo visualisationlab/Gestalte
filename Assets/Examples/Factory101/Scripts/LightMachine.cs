@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mediator;
 
-public class LightMachine : MonoBehaviour
+public class LightMachine : MonoBehaviour, IPulseReceiver
 {
     [SerializeField] private SpriteRenderer lightImage;
 
@@ -11,6 +12,13 @@ public class LightMachine : MonoBehaviour
 
     public void SetState(bool state)
     {
-        lightImage.color = state ? Color.yellow: Color.grey;
+        lightImage.color = state ? Color.yellow : Color.grey;
+    }
+
+    public void OnPulse()
+    {
+        Debug.Log("Receiver activated by pulse!");
+        // Do your logic here
+        SetState(true);
     }
 }

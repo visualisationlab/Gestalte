@@ -62,4 +62,43 @@ public class DraggableCableEnd : Draggable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, snapCheckRadius);
     }
+
+    public void SendPulseFrom(CableConnector source)
+    {
+        if (connectedTo == null || connectedTo == source)
+            return;
+
+        GameObject targetMachine = connectedTo.gameObject;
+
+        if (targetMachine.TryGetComponent<IPulseReceiver>(out var receiver))
+        {
+            receiver.OnPulse();
+            Debug.Log($"Pulse sent from {source.name} to {targetMachine.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"{targetMachine.name} does not implement IPulseReceiver");
+        }
+    }
+
+    public void SendPulse()
+    {
+        if (connectedTo == null)
+        {
+            Debug.LogWarning("Cable is not connected to any receiver.");
+            return;
+        }
+
+        GameObject target = connectedTo.parentMachine;
+
+        if (target.TryGetComponent<IPulseReceiver>(out var receiver))
+        {
+            receiver.OnPulse();
+            Debug.Log($"Pulse sent from {name} to {target.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
+        }
+    }
 }
