@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5692523953184787286}
   - component: {fileID: 558675386316841227}
   - component: {fileID: 3801338706816645543}
+  - component: {fileID: 7305387786256197498}
   m_Layer: 0
   m_Name: McGibble
   m_TagString: McGibble
@@ -152,3 +153,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7305387786256197498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859733459145252865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 720
+  rotationOffset: 0
