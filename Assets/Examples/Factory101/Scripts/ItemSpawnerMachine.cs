@@ -7,6 +7,7 @@ public class ItemSpawnerMachine : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private float tickRate;
     private Vector3 tinyRandom;
+    public ConveyorBelt neighbourConveyor;
     public void Start()
     {
         StartCoroutine(ExecuteEverySecond());
@@ -23,9 +24,12 @@ public class ItemSpawnerMachine : MonoBehaviour
 
     private void SpawnItem()
     {
-        tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
-        var instance = Instantiate(prefab, spawnPoint.transform.position + tinyRandom, Quaternion.identity);
-        McGibbleTracker.Add(instance);
+        if(neighbourConveyor && neighbourConveyor.HasSpace(0f)){
+            tinyRandom = new Vector3(Random.value, Random.value-0.2f, 0f);
+            var instance = Instantiate(prefab, spawnPoint.transform.position + tinyRandom, Quaternion.identity);
+            McGibbleTracker.Add(instance);
+            neighbourConveyor.TakeOverItem(instance, 0f);
+        }
     }
     
 }
