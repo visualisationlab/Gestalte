@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 558675386316841227}
   - component: {fileID: 3801338706816645543}
   - component: {fileID: 7305387786256197498}
-  - component: {fileID: 1037202791371449985}
+  - component: {fileID: -9011209169592273542}
   m_Layer: 0
-  m_Name: McGibble
+  m_Name: McGibble2
   m_TagString: McGibble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 255688581, guid: b531708af013e2242854361f61337b06, type: 3}
+  m_Sprite: {fileID: 816098867, guid: b531708af013e2242854361f61337b06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 720
   rotationOffset: 0
---- !u!114 &1037202791371449985
+--- !u!114 &-9011209169592273542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,4 +180,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbac26222df26c04fa80e1f66389b579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salePrice: 1
+  salePrice: 5

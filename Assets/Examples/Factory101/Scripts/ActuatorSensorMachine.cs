@@ -15,20 +15,22 @@ public class ActuatorSensorMachine : Machine
         UserData.RegisterType<ActuatorSensorMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
+        StartCoroutine(ExecuteEverySecond());
     }
 
     public override void SetScript(string code)
     {
         script = code;
-        Debug.Log($"Executing: {code}");
-        StartCoroutine(ExecuteEverySecond());
     }
     
     IEnumerator ExecuteEverySecond()
     {
         while (true)
         {
-            luaScript.DoString(script);
+            if (!string.IsNullOrWhiteSpace(script))
+            {
+                luaScript.DoString(script);
+            }
             yield return new WaitForSeconds(.5f);
         }
     }

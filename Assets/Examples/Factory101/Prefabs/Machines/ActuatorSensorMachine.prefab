@@ -442,8 +442,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7923862332368233512}
-  - component: {fileID: 5134454041719280717}
   - component: {fileID: 131742207332137634}
+  - component: {fileID: 8301456174386274314}
   m_Layer: 5
   m_Name: Sensor
   m_TagString: Untagged
@@ -466,8 +466,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5341717027389253209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &5134454041719280717
-CircleCollider2D:
+--- !u!114 &131742207332137634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828620208680438617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d0848d7ec03e474089075f8ee5fcd8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDetect: 0
+--- !u!61 &8301456174386274314
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -482,7 +495,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 96
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -500,21 +513,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.77
---- !u!114 &131742207332137634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828620208680438617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0848d7ec03e474089075f8ee5fcd8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDetect: 0
+  m_Offset: {x: -0.003543824, y: 0.4442724}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.9220361, y: 1.2649858}
+  m_EdgeRadius: 0
 --- !u!1 &8953138446244730665
 GameObject:
   m_ObjectHideFlags: 0

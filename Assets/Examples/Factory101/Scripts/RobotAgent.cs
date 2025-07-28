@@ -12,6 +12,8 @@ public class RobotAgent : MonoBehaviour
     public Player2Npc player2Npc;
     public ExposeMachine selectedMachine;
     public UnityEvent onResponseReceived;
+
+    [SerializeField] private int responseCounter;
     private void Start()
     {
         // var interpretedGameObjects = InterpretExposedGameObjects();
@@ -33,9 +35,8 @@ public class RobotAgent : MonoBehaviour
     {
         onResponseReceived.Invoke();
         string json = ExtractJson(response.message);
+        Debug.Log($"Full Response {json}");
         RobotAgentResponse resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
-        Debug.Log(resp.Lua);
-        // var go = InstanceTracker.Retrieve(resp.GameObjectGUID);
         selectedMachine.GetComponent<ExposeMachine>().SetScript(resp.Lua);
     }
     

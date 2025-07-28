@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class InfoPanel : MonoBehaviour
+public class UIMachineInfoPanel : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI infoConsole;
     private string overrideText;
