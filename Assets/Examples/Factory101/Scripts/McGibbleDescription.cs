@@ -6,6 +6,7 @@ namespace Examples.Factory101.Scripts
     public class McGibbleDescription
     {
         public int salePrice;
+        public float normalizedRarity;
         public string gibbleType;
         public int heat;
     }

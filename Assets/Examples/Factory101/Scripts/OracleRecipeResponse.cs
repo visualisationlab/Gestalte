@@ -3,12 +3,14 @@
     public class OracleRecipeResponse
     {
         public string emoji;
+        public float normalizedRarity;
         
         public static string Format()
         {
             return @"
 {
-""emoji"": ""🤷‍""
+""emoji"": ""🤷‍"",
+""normalizedRarity"" ""0.2""
 }
 ";
         }

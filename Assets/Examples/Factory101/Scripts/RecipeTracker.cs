@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Examples.Factory101.Scripts;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -15,6 +14,7 @@ public class RecipeTracker : MonoBehaviour
     [TextArea (3,24)] public string componentsDescriptionPrompt;
     
     private Queue<RecipeResponse> responseQueue = new();
+    public int uniqueCounter;
     
     private void Awake()
     {
@@ -68,7 +68,25 @@ public class RecipeTracker : MonoBehaviour
         var json = JsonHelper.ExtractJson(message);
         OracleRecipeResponse resp = JsonConvert.DeserializeObject<OracleRecipeResponse>(json);
         
-        response.recipe.result = new McGibbleDescription { gibbleType = resp.emoji };
+        Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.gibbleType == resp.emoji);
+        //a recipe with this result already exists, we copy the result values over
+        if (hasMatch != null)
+        {
+            response.recipe.result = hasMatch.result;
+        }
+        else // a totally new one needs to be created
+        {
+            uniqueCounter++;
+            int newSalePrice = Mathf.CeilToInt(uniqueCounter * resp.normalizedRarity); //Fine tune to get increasing price
+            response.recipe.result = new McGibbleDescription
+            {
+                gibbleType = resp.emoji, 
+                normalizedRarity = resp.normalizedRarity,
+                salePrice = newSalePrice
+            };
+            Debug.Log($"NEW SALE PRICE {newSalePrice}");
+        }
+        
         recipeList.Add(response.recipe);
         response.callback(response.recipe);
     }
