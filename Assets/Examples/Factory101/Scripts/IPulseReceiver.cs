@@ -1,5 +1,4 @@
-public interface IPulseReceiver
+public interface IPulseReceiver<T>
 {
-    void OnPulse();
-    void OnPulse(string message);
+    void OnPulse(T message);
 }

@@ -41,6 +41,12 @@ public class SimpleSensorMachine : Machine
         return sensor.onDetect;
     }
 
+    [ExposeMethod("Returns the detected game object name")]
+    public string GetDetectedObjectName()
+    {
+        return sensor.detectedGameObject.name;
+    }
+
     [ExposeMethod("Emits a boolean signal out of the outport")]
     public void EmitOutPortSignal(bool signal)
     {
