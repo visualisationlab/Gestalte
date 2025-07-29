@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7305387786256197498}
   - component: {fileID: 1037202791371449985}
   m_Layer: 0
-  m_Name: McGibble
+  m_Name: McGibbleTemplate
   m_TagString: McGibble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,9 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbac26222df26c04fa80e1f66389b579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salePrice: 1
-  gibbleType: "\U0001F40D"
-  heat: 0
   description:
     salePrice: 1
     gibbleType: "\U0001F40D"

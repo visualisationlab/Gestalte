@@ -34,7 +34,7 @@ public class RobotAgent : MonoBehaviour
     public void OnResponseReceived(NpcApiChatResponse response)
     {
         onResponseReceived.Invoke();
-        string json = ExtractJson(response.message);
+        string json = ExtractJson(response.message);//TODO Is in static function JsonHelper
         Debug.Log($"Full Response {json}");
         RobotAgentResponse resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
         selectedMachine.GetComponent<ExposeMachine>().SetScript(resp.Lua);

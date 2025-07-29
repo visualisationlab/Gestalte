@@ -50,7 +50,7 @@ public class FurnaceMachine : Machine
         {
             //TODO Smart (per McGibble Type temperature and transmute settings)
             var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
-            mcGibble.heat = heat;
+            mcGibble.description.heat = heat;
             tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
             mcGibble.transform.position = outputPoint.transform.position + tinyRandom;
         }

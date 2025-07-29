@@ -216,6 +216,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   salePrice: 5
   gibbleType: "\U0001F99C"
+  heat: 0
+  description:
+    salePrice: 5
+    gibbleType: "\U0001F99C"
+    heat: 0
   txt: {fileID: 5876177727445651328}
 --- !u!1 &4716656318425115736
 GameObject:
