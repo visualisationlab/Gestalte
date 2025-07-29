@@ -1,24 +1,82 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public static class McGibbleTracker
+public class McGibbleTracker : MonoBehaviour
 {
-    private static readonly HashSet<GameObject> trackedObjects = new();
-    
-    public static void Add(GameObject obj)
+    public static McGibbleTracker Instance { get; private set; }
+
+    [SerializeField]
+    private float expireTime = 10f;
+
+    private class TrackedMcGibble
     {
-        trackedObjects.Add(obj);
+        public McGibble McGibble;
+        public float ExpiryTime;
     }
 
-    public static void Remove(GameObject obj)
+    private readonly List<TrackedMcGibble> trackedObjects = new();
+
+    private void Awake()
     {
-        trackedObjects.Remove(obj);
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Duplicate McGibbleTracker detected. Destroying new instance.");
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public static IEnumerable<GameObject> GetAll()
+    private void Start()
     {
-        return trackedObjects;
+        StartCoroutine(CleanupTick());
     }
 
-    public static int Count => trackedObjects.Count;
+    IEnumerator CleanupTick()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            CleanupExpired();
+        }
+    }
+
+    public void Add(McGibble obj)
+    {
+        trackedObjects.Add(new TrackedMcGibble
+        {
+            McGibble = obj,
+            ExpiryTime = Time.time + expireTime
+        });
+    }
+
+    public void Remove(McGibble obj)
+    {
+        trackedObjects.RemoveAll(to => to.McGibble == obj);
+        Destroy(obj.gameObject);
+    }
+
+    public IEnumerable<McGibble> GetAll()
+    {
+        return trackedObjects.Select(to => to.McGibble);
+    }
+
+    public int Count => trackedObjects.Count;
+
+    private void CleanupExpired()
+    {
+        float now = Time.time;
+
+        for (int i = trackedObjects.Count - 1; i >= 0; i--)
+        {
+            if (trackedObjects[i].ExpiryTime <= now)
+            {
+                Remove(trackedObjects[i].McGibble);
+            }
+        }
+    }
 }

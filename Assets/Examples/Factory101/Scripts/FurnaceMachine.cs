@@ -49,11 +49,10 @@ public class FurnaceMachine : Machine
         if (sensor.detectedGameObject)
         {
             //TODO Smart (per McGibble Type temperature and transmute settings)
-            McGibbleTracker.Remove(sensor.detectedGameObject);
-            Destroy(sensor.detectedGameObject);
+            McGibbleTracker.Instance.Remove(sensor.detectedGameObject.GetComponent<McGibble>());
             tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
-            var instance = Instantiate(prefab, outputPoint.transform.position + tinyRandom, Quaternion.identity);
-            McGibbleTracker.Add(instance);
+            var mcGibble = Instantiate(prefab, outputPoint.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
+            McGibbleTracker.Instance.Add(mcGibble);
         }
     }
 }

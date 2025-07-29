@@ -468,9 +468,6 @@ MonoBehaviour:
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
   - m_Index: 100
-    m_Metrics:
-      m_Width: 39.375
-      m_Height: 5.625
       m_HorizontalBearingX: 5.625
       m_HorizontalBearingY: 5.625
       m_HorizontalAdvance: 50.625

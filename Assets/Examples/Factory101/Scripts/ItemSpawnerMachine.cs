@@ -24,8 +24,8 @@ public class ItemSpawnerMachine : MonoBehaviour
     private void SpawnItem()
     {
         tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
-        var instance = Instantiate(prefab, spawnPoint.transform.position + tinyRandom, Quaternion.identity);
-        McGibbleTracker.Add(instance);
+        var mcGibble = Instantiate(prefab, spawnPoint.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
+        McGibbleTracker.Instance.Add(mcGibble);
     }
     
 }
