@@ -43,11 +43,11 @@ public class RecipeTracker : MonoBehaviour
         recipeList.Add(recipe);
     }
     
-    public void GetRecipe(McGibble one, McGibble two, Action<Recipe> callback)
+    public void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
     {
         var existing = recipeList.FirstOrDefault(to => 
-            (to.inputOne.gibbleType == one.description.gibbleType && to.inputTwo.gibbleType == two.description.gibbleType) ||
-            (to.inputOne.gibbleType == two.description.gibbleType && to.inputTwo.gibbleType == one.description.gibbleType));
+            (to.inputOne.gibbleType == one.gibbleType && to.inputTwo.gibbleType == two.gibbleType) ||
+            (to.inputOne.gibbleType == two.gibbleType && to.inputTwo.gibbleType == one.gibbleType));
 
         if (existing != null)
         {
@@ -56,9 +56,9 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} + {OracleRecipeResponse.Format()} + {componentsDescriptionPrompt} + {one.description.gibbleType} and {two.description.gibbleType}";
+        var message = $"{recipeRequestPrompt} + {OracleRecipeResponse.Format()} + {componentsDescriptionPrompt} + {one.gibbleType} and {two.gibbleType}";
         
-        responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one.description, inputTwo = two.description}, callback=callback});
+        responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
         oracleAgent.SendMessage(message, OracleAgentReply);
     }
 

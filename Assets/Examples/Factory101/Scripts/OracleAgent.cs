@@ -21,6 +21,7 @@ public class OracleAgent : MonoBehaviour
 
     public void OnResponseReceived(NpcApiChatResponse response)
     {
+        Debug.Log($"Oracle Response {response.message}");
         var item = responseQueue.Dequeue();
         item.callback(response.message);
     }
