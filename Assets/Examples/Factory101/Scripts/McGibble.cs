@@ -6,6 +6,7 @@ public class McGibble : MonoBehaviour
 {
     public int salePrice;
     public string gibbleType;
+    public int heat;
 
     [SerializeField] private TextMeshPro txt;
 
