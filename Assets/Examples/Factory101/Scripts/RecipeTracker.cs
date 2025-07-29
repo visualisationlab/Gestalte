@@ -56,7 +56,7 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} + {OracleRecipeResponse.Format()} + {componentsDescriptionPrompt} + {one.gibbleType} and {two.gibbleType}";
+        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.gibbleType} and {two.gibbleType}. Follow this formatting in your response: {OracleRecipeResponse.Format()}";
         
         responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
         oracleAgent.SendMessage(message, OracleAgentReply);
