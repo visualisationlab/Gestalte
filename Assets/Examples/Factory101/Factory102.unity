@@ -1278,7 +1278,7 @@ PrefabInstance:
     - target: {fileID: 3121121956691962434, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: prefab
       value: 
-      objectReference: {fileID: 1859733459145252865, guid: 0731757580cce1347895e273a2bd26c7, type: 3}
+      objectReference: {fileID: 1859733459145252865, guid: 9ed1e034890e9e54fa6a8591aae9c3fc, type: 3}
     - target: {fileID: 3789654927096468268, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_Name
       value: ItemSpawnerMachine_001
