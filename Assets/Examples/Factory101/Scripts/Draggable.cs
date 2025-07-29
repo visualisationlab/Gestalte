@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Draggable : MonoBehaviour
 {
+    public bool noRotation = false; // Disable rotation if true
     private Vector3 offset;
     private bool isDragging = false;
     private Camera cam;
@@ -41,6 +42,11 @@ public class Draggable : MonoBehaviour
         Vector3 targetPos = world + offset;
         transform.position = targetPos;
 
+        lengthFromTo = Vector3.Distance(startPosition, targetPos);
+        lastPosition = targetPos;
+
+        if (noRotation) return;
+
         // --- Rotation Logic ---
         Vector3 dragDirection = targetPos - lastPosition;
 
@@ -55,9 +61,6 @@ public class Draggable : MonoBehaviour
                 rotationSpeed * Time.deltaTime
             );
         }
-
-        lengthFromTo = Vector3.Distance(startPosition, targetPos);
-        lastPosition = targetPos;
     }
 
     void Update()

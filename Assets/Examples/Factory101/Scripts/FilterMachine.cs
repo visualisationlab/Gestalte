@@ -15,27 +15,11 @@ public class FilterMachine : Machine
     private string script;
 
     private Vector3 tinyRandom;
-    private HashSet<string> whitelist = new();
-    private bool whitelistSet = false;
+        protected HashSet<string> whitelist = new();
+    protected bool whitelistSet = false;
 
-    private int minSalePrice = -1;
-    private bool priceFilterSet = false;
-    
-    [ExposeMethod("Filter the item in the filter machine")]
-    public void Filter()
-    {
-        foreach (var obj in sensor.detectedGameObjects.ToList())
-        {
-            if (obj == null) continue;
-            var gibble = obj.GetComponent<McGibble>();
-            if (gibble == null) continue;
-
-            tinyRandom = new Vector3(Random.value * 0.2f - 0.1f, Random.value * 0.2f - 0.1f, 0f);
-
-            var basePos = IsAllowed(obj) ? whitelistOutputPoint.position : blacklistOutputPoint.position;
-            obj.transform.position = basePos + tinyRandom;
-        }
-    }
+    protected int minSalePrice = -1;
+    protected bool priceFilterSet = false;
 
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
@@ -55,7 +39,7 @@ public class FilterMachine : Machine
         }
     }
 
-    public bool IsAllowed(GameObject obj)
+    public virtual bool IsAllowed(GameObject obj)
     {
         var gibble = obj.GetComponent<McGibble>();
         if (gibble == null) return false;
@@ -66,7 +50,26 @@ public class FilterMachine : Machine
         if (whitelistSet)
             return whitelist.Contains(gibble.description.gibbleType.ToLower());
 
+        // If at least one filter is active and passed, allow
+        if (priceFilterSet || whitelistSet)
+            return true;
+
         return false; // deny all if nothing defined
+    }
+    [ExposeMethod("Filter the item in the filter machine")]
+    public void Filter()
+    {
+        foreach (var obj in sensor.detectedGameObjects.ToList())
+        {
+            if (obj == null) continue;
+            var gibble = obj.GetComponent<McGibble>();
+            if (gibble == null) continue;
+
+            tinyRandom = new Vector3(Random.value * 0.2f - 0.1f, Random.value * 0.2f - 0.1f, 0f);
+
+            var basePos = IsAllowed(obj) ? whitelistOutputPoint.position : blacklistOutputPoint.position;
+            obj.transform.position = basePos + tinyRandom;
+        }
     }
 
     public override void SetScript(string code)
