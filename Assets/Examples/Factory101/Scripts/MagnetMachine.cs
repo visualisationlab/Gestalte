@@ -22,7 +22,7 @@ public class MagnetMachine : MonoBehaviour
     private void Attract()
     {
         Vector3 magnetPosition = transform.position;
-        foreach (GameObject target in McGibbleTracker.GetAll())
+        foreach (McGibble target in McGibbleTracker.Instance.GetAll())
         {
             if (target == null) continue; // Skip destroyed objects
 
