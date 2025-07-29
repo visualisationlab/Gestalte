@@ -12,8 +12,13 @@ public class CameraController : MonoBehaviour
     public Vector2 minBounds = new Vector2(-20f, -20f);
     public Vector2 maxBounds = new Vector2( 20f,  20f);
 
+    [Header("Debug Freeze")]
+    public bool freezeCamera = false;
+
     void Update()
     {
+        if (freezeCamera) return;
+
         // 1) Keyboard input
         Vector2 kb = Vector2.zero;
         if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)    kb.y += 1;

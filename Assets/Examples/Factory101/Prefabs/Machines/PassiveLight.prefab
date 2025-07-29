@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6166811357123297334}
   - component: {fileID: 6461541413805129365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: InputPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
