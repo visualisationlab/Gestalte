@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class MagnetMachine : MonoBehaviour
+public class MagnetMachine : MonoBehaviour, IPulseReceiver<bool>
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private float maxRange = 10f;
     [SerializeField] private float pullSpeed = 5f;
-
+    public bool alwaysPull = false;
+    public float pullDuration = 1f; // Duration for which the magnet pulls objects
+    private Coroutine pullRoutine;
     private void Start()
     {
         Physics2D.velocityIterations = 2; //TODO Replace to somewhere else
@@ -16,7 +18,8 @@ public class MagnetMachine : MonoBehaviour
 
     void FixedUpdate()
     {
-        Attract();
+        if (alwaysPull)
+            Attract();
     }
 
     private void Attract()
@@ -38,5 +41,28 @@ public class MagnetMachine : MonoBehaviour
                 rb.AddForce(direction * pullSpeed, ForceMode2D.Force);
             }
         }
+    }
+
+    public void OnPulse(bool message)
+    {
+        if (!message) return;
+
+        // If already pulling, stop that coroutine
+        if (pullRoutine != null)
+            StopCoroutine(pullRoutine);
+
+        pullRoutine = StartCoroutine(PullGibbles());
+    }
+
+    private IEnumerator PullGibbles()
+    {
+        float timer = 0f;
+        while (timer < pullDuration)
+        {
+            Attract();
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        pullRoutine = null;
     }
 }
