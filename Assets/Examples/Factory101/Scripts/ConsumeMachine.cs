@@ -7,7 +7,7 @@ public class ConsumeMachine : MonoBehaviour
         if (col.gameObject.CompareTag("McGibble"))
         {
             var mcGibble = col.gameObject.GetComponent<McGibble>();
-            int price = mcGibble.salePrice;
+            int price = mcGibble.description.salePrice;
             McGibbleTracker.Instance.Remove(mcGibble);
             GameInfoManager.Instance.AddMoney(price);
         }

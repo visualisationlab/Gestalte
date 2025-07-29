@@ -1,17 +1,15 @@
-using System;
+using Examples.Factory101.Scripts;
 using TMPro;
 using UnityEngine;
 
 public class McGibble : MonoBehaviour
 {
-    public int salePrice;
-    public string gibbleType;
-    public int heat;
+    public McGibbleDescription description;
 
     [SerializeField] private TextMeshPro txt;
 
     private void Start()
     {
-        txt.text = gibbleType;
+        txt.text = description.gibbleType;
     }
 }

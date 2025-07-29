@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Examples.Factory101.Scripts;
-using UnityEditor;
 using UnityEngine;
 
 public class OracleAgent : MonoBehaviour
@@ -15,21 +13,15 @@ public class OracleAgent : MonoBehaviour
         _ = player2Npc.SpawnNpcAsync(composedPreprompt);
     }
 
-    [ContextMenu("Send Message")]
-    public void MockMessage()
-    {
-        SendMessage("Hello How are You?", s => Debug.Log("Nothin"));
-    }
     public void SendMessage(string message, Action<string> callback)
     {
-        Debug.Log($"Sending message to Oracle: {message}");
-        responseQueue.Enqueue(new OracleResponse { guid = "test", callback = callback });
+        responseQueue.Enqueue(new OracleResponse { callback = callback });
         player2Npc.OnChatMessageSubmitted(message);
     }
-    
+
     public void OnResponseReceived(NpcApiChatResponse response)
     {
-        Debug.Log($"Oracle Response Received: {response}");
+        Debug.Log($"Oracle Response {response.message}");
         var item = responseQueue.Dequeue();
         item.callback(response.message);
     }

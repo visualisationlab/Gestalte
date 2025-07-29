@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 7305387786256197498}
   - component: {fileID: 1037202791371449985}
   m_Layer: 0
-  m_Name: McGibble2
+  m_Name: McGibbleTemplate
   m_TagString: McGibble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noRotation: 0
   rotationSpeed: 720
   rotationOffset: 0
   lengthFromTo: 0
@@ -215,13 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbac26222df26c04fa80e1f66389b579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: "\U0001F99C"
-  salePrice: 5
-  gibbleType: "\U0001F99C"
-  heat: 0
   description:
-    salePrice: 5
-    gibbleType: "\U0001F99C"
+    salePrice: 1
+    gibbleType: "\U0001F40D"
     heat: 0
   txt: {fileID: 5876177727445651328}
 --- !u!1 &4716656318425115736
@@ -326,7 +321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\U0001F99C"
+  m_text: "\U0001F40D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 765a5b9482b4c5f46aef66d8c2bcc4de, type: 2}
   m_sharedMaterial: {fileID: 4379661230960559022, guid: 765a5b9482b4c5f46aef66d8c2bcc4de, type: 2}
