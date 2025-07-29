@@ -6,10 +6,12 @@ public class McGibble : MonoBehaviour
 {
     public string icon;
     public int salePrice;
+    public string gibbleType;
 
     [SerializeField] private TextMeshPro txt;
+
     private void Start()
     {
-        txt.text = icon;
+        txt.text = gibbleType;
     }
 }

@@ -1,0 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
+using Examples.Factory101.Scripts;
+using Mediator;
+using MoonSharp.Interpreter;
+using UnityEngine;
+using System.Linq;
+
+public class FilterMachine : Machine
+{
+    public MultiSimpleSensor sensor;
+    public Transform whitelistOutputPoint;
+    public Transform blacklistOutputPoint;
+    private Script luaScript;
+    private string script;
+
+    private Vector3 tinyRandom;
+    private HashSet<string> whitelist = new();
+    private bool whitelistSet = false;
+
+    private int minSalePrice = -1;
+    private bool priceFilterSet = false;
+    
+    [ExposeMethod("Filter the item in the filter machine")]
+    public void Filter()
+    {
+        foreach (var obj in sensor.detectedGameObjects.ToList())
+        {
+            if (obj == null) continue;
+            var gibble = obj.GetComponent<McGibble>();
+            if (gibble == null) continue;
+
+            tinyRandom = new Vector3(Random.value * 0.2f - 0.1f, Random.value * 0.2f - 0.1f, 0f);
+
+            var basePos = IsAllowed(obj) ? whitelistOutputPoint.position : blacklistOutputPoint.position;
+            obj.transform.position = basePos + tinyRandom;
+        }
+    }
+
+    [ExposeMethod("setMinSalePrice")]
+    public void SetMinSalePrice(int value)
+    {
+        priceFilterSet = true;
+        minSalePrice = value;
+    }
+
+    [ExposeMethod("setWhitelistGibbles")]
+    public void SetWhitelistGibbles(Table luaTable)
+    {
+        whitelistSet = true;
+        whitelist.Clear();
+        foreach (var kv in luaTable.Values)
+        {
+            whitelist.Add(kv.String.ToLower());
+        }
+    }
+
+    public bool IsAllowed(GameObject obj)
+    {
+        var gibble = obj.GetComponent<McGibble>();
+        if (gibble == null) return false;
+
+        if (priceFilterSet && gibble.salePrice < minSalePrice)
+            return false;
+
+        if (whitelistSet)
+            return whitelist.Contains(gibble.gibbleType.ToLower());
+
+        return false; // deny all if nothing defined
+    }
+
+    public override void SetScript(string code)
+    {
+        script = code;
+    }
+
+    private void Start()
+    {
+        UserData.RegisterType<FilterMachine>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+        StartCoroutine(ExecuteEverySecond());
+    }
+
+    IEnumerator ExecuteEverySecond()
+    {
+        while (true)
+        {
+            if(!string.IsNullOrWhiteSpace(script)){
+                luaScript.DoString(script);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+}
