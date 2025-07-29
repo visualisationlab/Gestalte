@@ -80,9 +80,9 @@ public class DraggableCableEnd : Draggable
 
         GameObject targetMachine = connectedTo.gameObject;
 
-        if (targetMachine.TryGetComponent<IPulseReceiver>(out var receiver))
+        if (targetMachine.TryGetComponent<IPulseReceiver<bool>>(out var receiver))
         {
-            receiver.OnPulse();
+            receiver.OnPulse(true);
             Debug.Log($"Pulse sent from {source.name} to {targetMachine.name}");
         }
         else
@@ -101,10 +101,10 @@ public class DraggableCableEnd : Draggable
 
         GameObject target = connectedTo.parentMachine;
 
-        if (target.TryGetComponent<IPulseReceiver>(out var receiver))
+        if (target.TryGetComponent<IPulseReceiver<bool>>(out var receiver))
         {
             PlayPulseEffect();
-            receiver.OnPulse();
+            receiver.OnPulse(true);
             Debug.Log($"Pulse sent from {name} to {target.name}");
         }
         else
@@ -123,7 +123,7 @@ public class DraggableCableEnd : Draggable
 
         GameObject target = connectedTo.parentMachine;
 
-        if (target.TryGetComponent<IPulseReceiver>(out var receiver))
+        if (target.TryGetComponent<IPulseReceiver<string>>(out var receiver))
         {
             PlayPulseEffect();
             receiver.OnPulse(message);

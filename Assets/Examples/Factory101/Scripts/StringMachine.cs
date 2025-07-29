@@ -1,7 +1,7 @@
 using UnityEngine;
 using Mediator;
 
-public class StringMachine : MonoBehaviour, IPulseReceiver
+public class StringMachine : MonoBehaviour, IPulseReceiver<string>
 {
     [SerializeField] private string message = "Default Message";
     public void OnPulse(string message)
@@ -10,10 +10,5 @@ public class StringMachine : MonoBehaviour, IPulseReceiver
         // Do your logic here
 
         this.message = message;
-    }
-
-    public void OnPulse()
-    {
-        // Do nothing
     }
 }
