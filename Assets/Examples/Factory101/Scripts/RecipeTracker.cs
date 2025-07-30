@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Examples.Factory101.Scripts;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -53,7 +54,7 @@ public class RecipeTracker : MonoBehaviour
         );
     }
     
-    public void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
+    public async void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
     {
         var existing = recipeList.FirstOrDefault(to => 
             (to.inputOne.singleEmoji == one.singleEmoji && to.inputTwo.singleEmoji == two.singleEmoji) ||
@@ -66,29 +67,48 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. Follow this formatting in your response: {McGibbleDescription.Format()}. Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}";
+        var message = $"{componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}.";
+        // responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
+        // oracleAgent.SendMessage(message, OracleAgentReply);
+        var systemMessage =
+            $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}";
         
-        responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
-        oracleAgent.SendMessage(message, OracleAgentReply);
+        var response = await oracleAgent.SendMessageDirect(systemMessage, message);
+        var recipe = OnResponseAddRecipe(new Recipe{inputOne = one, inputTwo = two}, response);
+        callback.Invoke(recipe);
     }
 
     public void OracleAgentReply(string message)
     {
         var response = responseQueue.Dequeue();
+        OnResponseAddRecipe(response.recipe, message);
+        response.callback(response.recipe);
+    }
+
+    public Recipe OnResponseAddRecipe(Recipe partialRecipe, string message)
+    {
         var json = JsonHelper.ExtractJson(message);
-        McGibbleDescription resp = JsonConvert.DeserializeObject<McGibbleDescription>(json);
+        
+        string cleaned = Regex.Replace(
+            json,
+            @"^```json\s*|\s*```$",
+            "",
+            RegexOptions.Multiline
+        ).Trim();
+        
+        McGibbleDescription resp = JsonConvert.DeserializeObject<McGibbleDescription>(cleaned);
         
         Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.singleEmoji == resp.singleEmoji);
         //a recipe with this result already exists, we copy the result values over
         if (hasMatch != null)
         {
-            response.recipe.result = hasMatch.result;
+            partialRecipe.result = hasMatch.result;
         }
         else // a totally new one needs to be created
         {
             uniqueCounter++;
             // int newSalePrice = Mathf.CeilToInt(uniqueCounter * resp.normalizedRarity); //Fine tune to get increasing price
-            response.recipe.result = new McGibbleDescription
+            partialRecipe.result = new McGibbleDescription
             {
                 name = resp.name,
                 singleEmoji = resp.singleEmoji, 
@@ -98,8 +118,8 @@ public class RecipeTracker : MonoBehaviour
             };
         }
         
-        recipeList.Add(response.recipe);
-        response.callback(response.recipe);
+        recipeList.Add(partialRecipe);
+        return partialRecipe;
     }
 
 }

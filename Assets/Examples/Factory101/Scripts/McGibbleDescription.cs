@@ -19,8 +19,8 @@ namespace Examples.Factory101.Scripts
 {
 ""name"": ""gibble"",
 ""singleEmoji"": ""🤷‍"",
-""normalizedRarity:"" ""0.2"",
-""normalizedHeatResistance:"" ""0.3""
+""normalizedRarity"": 0.2,
+""normalizedHeatResistance"": 0.3
 }
 ";
         }

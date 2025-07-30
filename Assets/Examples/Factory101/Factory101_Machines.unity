@@ -611,18 +611,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oracleAgent: {fileID: 1684240690}
-  recipeRequestPrompt: "Make combinations between emoji's. The result is another
-    emoji. Make sure that it's nothing but an emoji. The normalizedRarity you can
-    come up with a normalized value of how rare the emoji is. Make the name a totally
-    made\u2011up, notrefering to anything, delightfully oddball and short name. Make
-    sure to only answer with a single new description. It's important that you respond
-    in JSON."
+  recipeRequestPrompt: "You are an assistant that generates recipes out of 2 provided
+    emojis. The result is another emoji. Make sure that it's a single emoji. The
+    normalizedRarity you can come up with a normalized value of how rare the emoji
+    is. Make the name a totally made\u2011up, not refering to anything, delightfully
+    oddball and short name. Make sure to only answer with a single new description.
+    It's important that you respond in JSON."
   componentsDescriptionPrompt: 'The ingredients that you have to come up with a recipe
     for are:'
   uniqueCounter: 0
   predefinedRecipes:
   - {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
   recipeList: []
+--- !u!1001 &309079264
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Name
+      value: ConveyorBelt_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684416626120263395, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: inGrid
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.735849
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
 --- !u!1 &341204286
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +1011,79 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1001 &916195954
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Name
+      value: ConveyorBelt_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684416626120263395, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: inGrid
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.735849
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
 --- !u!1 &963019173
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,6 +2675,7 @@ GameObject:
   - component: {fileID: 1684240689}
   - component: {fileID: 1684240690}
   - component: {fileID: 1684240687}
+  - component: {fileID: 1684240691}
   m_Layer: 0
   m_Name: OracleAgent
   m_TagString: Untagged
@@ -2598,6 +2745,20 @@ MonoBehaviour:
   player2Npc: {fileID: 1684240687}
   _maxRetries: 10
   _timeoutSeconds: 20
+  directAPI: {fileID: 1684240691}
+--- !u!114 &1684240691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684240686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2225164cd02a7c64992c3d6d8e2c3b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiUrl: http://localhost:4315/v1/chat/completions
 --- !u!1 &1684902965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,11 +4013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6041032676918844911, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.27
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6041032676918844911, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.55
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6041032676918844911, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3912,11 +4073,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7432546330826806786, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.96
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7432546330826806786, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.54
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7432546330826806786, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4254,15 +4415,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.035054438
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063591639180773944, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4295,6 +4456,22 @@ PrefabInstance:
     - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_Name
       value: ConveyorBelt
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684416626120263395, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: inGrid
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428007401112171378, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.735849
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4500,3 +4677,5 @@ SceneRoots:
   - {fileID: 12244120}
   - {fileID: 5483605919407447096}
   - {fileID: 6998980688234522057}
+  - {fileID: 309079264}
+  - {fileID: 916195954}

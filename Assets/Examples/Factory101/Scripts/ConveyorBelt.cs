@@ -8,7 +8,6 @@ public class ConveyorBelt : MonoBehaviour
     {
         if (other.gameObject.GetComponent<McGibble>())
         {
-            Debug.Log("Pushing");
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.right * pushStrength);  // Or transform.up depending on your belt direction
         }

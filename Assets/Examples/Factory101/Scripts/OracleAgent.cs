@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class OracleAgent : MonoBehaviour
@@ -13,6 +14,7 @@ public class OracleAgent : MonoBehaviour
 
     // how long to wait between each try (in seconds)
     [SerializeField] private float _timeoutSeconds = 5f;
+    [SerializeField] private DirectAPI directAPI;
 
     private Queue<OracleRequest> _pending = new();
     private float _timeOutDeadline;
@@ -22,7 +24,12 @@ public class OracleAgent : MonoBehaviour
         var composedPreprompt = preprompt;
         _ = player2Npc.SpawnNpcAsync(composedPreprompt);
     }
-
+    
+    public async Task<string> SendMessageDirect(string systemMessage, string message)
+    {
+        string response = await directAPI.SendMessageAsync(systemMessage, message);
+        return response;
+    }
 
     public void SendMessage(string message, Action<string> callback)
     {
