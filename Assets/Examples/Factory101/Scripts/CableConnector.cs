@@ -42,9 +42,12 @@ public class CableConnector : MonoBehaviour
     public Quaternion GetSnapRotation()
     {
         if (centerPoint == null)
+        {
+            Debug.LogWarning("CableConnector: Center point not set. Returning default rotation.");
             return Quaternion.identity;
+        }
 
-        Vector2 direction = (transform.position - centerPoint.position).normalized;
+        Vector2 direction = -(transform.position - centerPoint.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         return Quaternion.Euler(0f, 0f, angle);

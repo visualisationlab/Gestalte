@@ -237,6 +237,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3050465079600734203, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3050465079600734203, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: noRotation
       value: 1
       objectReference: {fileID: 0}
@@ -246,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2612414
+      value: 2.49
       objectReference: {fileID: 0}
     - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_LocalPosition.z
@@ -284,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagneticMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 9035323935101069891, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: centerPoint
+      value: 
+      objectReference: {fileID: 726943568}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -958,6 +966,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &726943568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+  m_PrefabInstance: {fileID: 149422852}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &848879690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3059,6 +3072,10 @@ PrefabInstance:
     - target: {fileID: 2529864952977910194, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893170322171532647, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: rotationOffset
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7690299198479207493, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
