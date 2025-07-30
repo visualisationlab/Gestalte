@@ -15,19 +15,19 @@ MonoBehaviour:
   recipe:
     inputOne:
       name: Ugo
-      salePrice: 1
       normalizedRarity: 0.1
-      icon: "\U0001F40D"
+      singleEmoji: "\U0001F40D"
+      salePrice: 1
       heatResistance: 0
     inputTwo:
       name: Ugo
-      salePrice: 1
       normalizedRarity: 0.1
-      icon: "\U0001F40D"
+      singleEmoji: "\U0001F40D"
+      salePrice: 1
       heatResistance: 0
     result:
       name: Yki
-      salePrice: 1
       normalizedRarity: 0.2
-      icon: "\U0001F409"
+      singleEmoji: "\U0001F409"
+      salePrice: 1
       heatResistance: 0

@@ -70,7 +70,7 @@ public class DroneMachine : Machine
             return false;
 
         if (whitelistSet)
-            return whitelist.Contains(gibble.description.icon.ToLower());
+            return whitelist.Contains(gibble.description.singleEmoji.ToLower());
 
         // If at least one filter is active and passed, allow
         if (priceFilterSet || whitelistSet)

@@ -5,6 +5,6 @@ namespace Examples.Factory101.Scripts
     [CreateAssetMenu(fileName = "Recipe", menuName = "McGibble/Recipe")]
     public class RecipeScriptableObject:ScriptableObject
     {
-        public RecipeTracker.Recipe recipe;
+        public Recipe recipe;
     }
 }

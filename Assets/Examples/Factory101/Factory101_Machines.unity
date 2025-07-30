@@ -458,14 +458,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oracleAgent: {fileID: 1684240690}
-  recipeRequestPrompt: You are a chef that makes fictional dishes out of components
-    that are emoji's. The result is another emoji. Make sure that it's nothing but
-    an emoji. The normalizedRarity you can come up with a normalized value of how
-    rare the emoji is. Make sure to only answer with one new description. It's important
-    that you respond in JSON.
+  recipeRequestPrompt: Make combinations between emoji's. The result is another emoji.
+    Make sure that it's nothing but an emoji. The normalizedRarity you can come up
+    with a normalized value of how rare the emoji is. Make sure to only answer with
+    a single new description. It's important that you respond in JSON.
   componentsDescriptionPrompt: 'The ingredients that you have to come up with a recipe
     for are:'
   uniqueCounter: 0
+  predefinedRecipes:
+  - {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
+  recipeList: []
 --- !u!1 &341204286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,7 +3267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2780419584215620232, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3273,7 +3275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.35
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3310,7 +3312,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4631207442116080687, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
 --- !u!1001 &3734090582495495453
 PrefabInstance:

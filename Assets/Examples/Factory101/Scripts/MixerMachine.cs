@@ -48,13 +48,13 @@ public class MixerMachine : Machine
         }
     }
 
-    private void Eject(RecipeTracker.Recipe recipe)
+    private void Eject(Recipe recipe)
     {
         mixing = false;
         tinyRandom = new Vector3(Random.value-0.5f, 0f, 0f);
         var mcGibble = Instantiate(mcGibbleTemplate, outputPort.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
-        Debug.Log($"EJECT: {recipe.result.icon}");
+        Debug.Log($"EJECT: {recipe.result.singleEmoji}");
     }
 }
