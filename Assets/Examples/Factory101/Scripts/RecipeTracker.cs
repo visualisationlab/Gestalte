@@ -59,7 +59,7 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. Follow this formatting in your response: {OracleRecipeResponse.Format()}";
+        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. Follow this formatting in your response: {McGibbleDescription.Format()}";
         
         responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
         oracleAgent.SendMessage(message, OracleAgentReply);

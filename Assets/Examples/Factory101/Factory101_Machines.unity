@@ -1805,7 +1805,6 @@ MonoBehaviour:
     this object, do not come up with methods that dont exist. The Game Object you
     are writing code for is:'
   player2Npc: {fileID: 1523249975}
-  selectedMachine: {fileID: 0}
   onResponseReceived:
     m_PersistentCalls:
       m_Calls:
@@ -1821,7 +1820,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  responseCounter: 0
+  _maxRetries: 3
+  _timeoutSeconds: 10
 --- !u!114 &1523249975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2230,6 +2230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preprompt: You respond to questions in very short and clear answers
   player2Npc: {fileID: 1684240687}
+  _maxRetries: 10
+  _timeoutSeconds: 20
 --- !u!1 &1684902965
 GameObject:
   m_ObjectHideFlags: 0
