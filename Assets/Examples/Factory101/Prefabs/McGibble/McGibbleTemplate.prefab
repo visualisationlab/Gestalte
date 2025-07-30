@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noRotation: 0
   rotationSpeed: 720
   rotationOffset: 0
   lengthFromTo: 0
@@ -215,9 +216,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description:
+    name: 
+    normalizedRarity: 0
+    singleEmoji: 
+    normalizedHeatResistance: 0
+    uniqueCreated: 0
     salePrice: 1
-    gibbleType: "\U0001F40D"
-    heat: 0
+  heat: 30
   txt: {fileID: 5876177727445651328}
 --- !u!1 &4716656318425115736
 GameObject:

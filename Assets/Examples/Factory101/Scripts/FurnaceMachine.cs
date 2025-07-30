@@ -63,7 +63,11 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>
         {
             //TODO Smart (per McGibble Type temperature and transmute settings)
             var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
-            mcGibble.description.heatResistance = heat;
+            var heatResistance = mcGibble.description.normalizedHeatResistance;
+            
+            float adjustedHeat = heat * heatResistance;
+            mcGibble.heat = (int)Math.Round(adjustedHeat);
+            
             tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
             mcGibble.transform.position = outputPoint.transform.position + tinyRandom;
         }

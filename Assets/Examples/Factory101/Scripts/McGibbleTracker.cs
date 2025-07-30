@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Examples.Factory101.Scripts;
-using MoonSharp.Interpreter;
 using UnityEngine;
 
 public class McGibbleTracker : MonoBehaviour

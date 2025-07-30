@@ -40,8 +40,8 @@ public class SimpleSensorMachine : Machine
         return sensor.onDetect;
     }
     
-    [ExposeMethod("Returns the detected game object name")]
-    public McGibbleDescription GetDetectedObjectDescription()
+    [ExposeMethod("Returns the detected game objects description")]
+    public McGibbleDescription GetDescription()
     {
         return sensor.detectedGameObject.GetComponent<McGibble>().description;
     }
@@ -52,7 +52,7 @@ public class SimpleSensorMachine : Machine
         cableEnd.SendPulse();
     }
 
-    [ExposeMethod("Emits a string signal out of the outport")]
+    [ExposeMethod("Emits the description over the output port")]
     public void EmitDescription(McGibbleDescription signal)
     {
         cableEnd.SendPulse(signal);

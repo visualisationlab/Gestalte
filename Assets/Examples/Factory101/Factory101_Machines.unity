@@ -180,6 +180,80 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8cbe32099121c04486f4ca66e55834a, type: 3}
+--- !u!1 &104708140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104708142}
+  - component: {fileID: 104708141}
+  m_Layer: 0
+  m_Name: McGibbleSelectionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &104708141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104708140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7e4a15e3434eb8b67daa2f963a5a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMcGibbleHoverDescription:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1897333394}
+        m_TargetAssemblyTypeName: UIMachineInfoPanel, Assembly-CSharp
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnMcGibbleHoverOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1897333394}
+        m_TargetAssemblyTypeName: UIMachineInfoPanel, Assembly-CSharp
+        m_MethodName: ClearConsole
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &104708142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104708140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &123673272
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,11 +1072,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 104708141}
+        m_TargetAssemblyTypeName: Examples.Factory101.Scripts.McGibbleSelectionManager,
+          Assembly-CSharp
+        m_MethodName: HoverGameObject
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverOut:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 341204287}
         m_TargetAssemblyTypeName: MachineSelectionManager, Assembly-CSharp
+        m_MethodName: HoverOutGameObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 104708141}
+        m_TargetAssemblyTypeName: Examples.Factory101.Scripts.McGibbleSelectionManager,
+          Assembly-CSharp
         m_MethodName: HoverOutGameObject
         m_Mode: 1
         m_Arguments:
@@ -4325,6 +4425,7 @@ SceneRoots:
   - {fileID: 1222621014}
   - {fileID: 273384809}
   - {fileID: 341204288}
+  - {fileID: 104708142}
   - {fileID: 1519631118}
   - {fileID: 1523249977}
   - {fileID: 1684240689}
