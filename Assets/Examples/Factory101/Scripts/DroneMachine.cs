@@ -24,7 +24,6 @@ public class DroneMachine : Machine
 
     private void Start()
     {
-        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
 
         for (int i = 0; i < poolSize; i++)

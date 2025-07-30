@@ -11,11 +11,6 @@ public class SimpleSensorMachine : Machine
     public SimpleSensor sensor;
     [SerializeField] private DraggableCableEnd cableEnd;
 
-    private void Start()
-    {
-        RegisterLua();
-    }
-
     IEnumerator ExecuteEverySecond()
     {
         while (true)

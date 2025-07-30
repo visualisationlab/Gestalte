@@ -10,13 +10,11 @@ public class FurnaceMachine : Machine
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
-    public GameObject prefab;
     private int heat = 100;
     private Vector3 tinyRandom;
 
     private void Start()
     {
-        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
     }
 

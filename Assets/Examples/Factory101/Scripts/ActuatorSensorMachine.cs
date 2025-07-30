@@ -10,7 +10,6 @@ public class ActuatorSensorMachine : Machine
     public ActuatorPiston piston;
     private void Start()
     {
-        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
     }
 

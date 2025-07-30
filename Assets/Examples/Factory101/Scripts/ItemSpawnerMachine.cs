@@ -12,7 +12,6 @@ public class ItemSpawnerMachine : Machine
     
     public void Start()
     {
-        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
     }
     

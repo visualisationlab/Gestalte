@@ -22,7 +22,6 @@ public class FilterMachine : Machine
 
     private void Start()
     {
-        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
     }
 

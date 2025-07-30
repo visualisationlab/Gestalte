@@ -7,10 +7,6 @@ public class NameSensorMachine : Machine
 {
     [SerializeField] private NameSensor sensor;
     [SerializeField] private OracleAgent oracle;
-    private void Start()
-    {
-       RegisterLua();
-    }
 
     protected override void RegisterLua()
     {

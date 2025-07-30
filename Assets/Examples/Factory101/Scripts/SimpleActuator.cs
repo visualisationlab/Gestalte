@@ -7,11 +7,6 @@ using UnityEngine;
 public class SimpleActuator : Machine
 {
     public ActuatorPiston piston;
-    
-    private void Start()
-    {
-        RegisterLua();
-    }
 
     protected override void AfterSetScript()
     {

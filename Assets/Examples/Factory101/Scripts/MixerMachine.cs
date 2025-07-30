@@ -14,11 +14,6 @@ public class MixerMachine : Machine
     
     private Vector3 tinyRandom;
 
-    private void Start()
-    {
-        RegisterLua();
-    }
-    
     protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
