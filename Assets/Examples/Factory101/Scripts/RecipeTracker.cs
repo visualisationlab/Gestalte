@@ -29,6 +29,7 @@ public class RecipeTracker : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
+    [Serializable]
     public class Recipe
     {
         public McGibbleDescription inputOne;

@@ -192,8 +192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadb17873ab1b4b4aa53cfd3c8accd9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: 
   spawnPoint: {fileID: 1674136184767867728}
-  prefab: {fileID: 1859733459145252865, guid: e6f669be98329f147b926b69331db0d6, type: 3}
+  mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}
+  startRecipe: {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
   tickRate: 3
 --- !u!61 &4845712991124044134
 BoxCollider2D:
