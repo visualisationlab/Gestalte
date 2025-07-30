@@ -12,12 +12,14 @@ public class MixerMachine : Machine
     public Transform outputPort;
     public bool mixing;
     
-    private Script luaScript;
-    private string script;
     private Vector3 tinyRandom;
 
-
     private void Start()
+    {
+        RegisterLua();
+    }
+    
+    protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
         luaScript = new Script();
@@ -59,10 +61,5 @@ public class MixerMachine : Machine
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
         Debug.Log($"EJECT: {recipe.result.gibbleType}");
-    }
-    
-    public override void SetScript(string code)
-    {
-        script = code;
     }
 }

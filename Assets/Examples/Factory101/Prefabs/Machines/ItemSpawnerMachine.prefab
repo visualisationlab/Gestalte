@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2252809209804256858}
   - component: {fileID: 4870377732670129527}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,8 @@ GameObject:
   - component: {fileID: 585949416462776952}
   - component: {fileID: 3121121956691962434}
   - component: {fileID: 4845712991124044134}
-  m_Layer: 0
+  - component: {fileID: 5559204107755012788}
+  m_Layer: 5
   m_Name: ItemSpawnerMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +241,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1780658, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5559204107755012788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789654927096468268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: This machine emits mcGibbles
+  instructionPrompt: 
+  script: 
+  machine: {fileID: 3121121956691962434}
 --- !u!1 &6212357262013544505
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1674136184767867728}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

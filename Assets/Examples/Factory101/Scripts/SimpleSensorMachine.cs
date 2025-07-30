@@ -9,15 +9,11 @@ using UnityEngine.Events;
 public class SimpleSensorMachine : Machine
 {
     public SimpleSensor sensor;
-    private Script luaScript;
-    private string script;
     [SerializeField] private DraggableCableEnd cableEnd;
 
     private void Start()
     {
-        UserData.RegisterType<SimpleSensorMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
+        RegisterLua();
     }
 
     IEnumerator ExecuteEverySecond()
@@ -29,9 +25,15 @@ public class SimpleSensorMachine : Machine
         }
     }
 
-    public override void SetScript(string code)
+    protected override void RegisterLua()
     {
-        script = code;
+        UserData.RegisterType<SimpleSensorMachine>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+    }
+
+    protected override void AfterSetScript()
+    {
         StartCoroutine(ExecuteEverySecond());
     }
 

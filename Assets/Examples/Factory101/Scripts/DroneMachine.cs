@@ -11,8 +11,6 @@ public class DroneMachine : Machine
     public MultiSimpleSensor grabArea;
     public Transform dropAreaCenter;
     public float dropRadius = 1.0f;
-    private Script luaScript;
-    private string script;
     protected HashSet<string> whitelist = new();
     protected bool whitelistSet = false;
 
@@ -24,6 +22,28 @@ public class DroneMachine : Machine
     private Queue<DroneWorker> availableDrones = new();
     private HashSet<GameObject> claimedGibbles = new();
 
+    private void Start()
+    {
+        RegisterLua();
+        StartCoroutine(ExecuteEverySecond());
+
+        for (int i = 0; i < poolSize; i++)
+        {
+            var drone = Instantiate(dronePrefab, transform.position, Quaternion.identity);
+            var worker = drone.GetComponent<DroneWorker>();
+            drone.SetActive(false);
+            dronePool.Add(worker);
+            availableDrones.Enqueue(worker);
+        }
+    }
+    
+    protected override void RegisterLua()
+    {
+        UserData.RegisterType<DroneMachine>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+    }
+    
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
     {
@@ -59,27 +79,8 @@ public class DroneMachine : Machine
 
         return false; // deny all if nothing defined
     }
-    public override void SetScript(string code)
-    {
-        script = code;
-    }
 
-    private void Start()
-    {
-        UserData.RegisterType<DroneMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
-        StartCoroutine(ExecuteEverySecond());
 
-        for (int i = 0; i < poolSize; i++)
-        {
-            var drone = Instantiate(dronePrefab, transform.position, Quaternion.identity);
-            var worker = drone.GetComponent<DroneWorker>();
-            drone.SetActive(false);
-            dronePool.Add(worker);
-            availableDrones.Enqueue(worker);
-        }
-    }
 
 
     IEnumerator ExecuteEverySecond()
@@ -117,4 +118,6 @@ public class DroneMachine : Machine
             });
         }
     }
+
+
 }

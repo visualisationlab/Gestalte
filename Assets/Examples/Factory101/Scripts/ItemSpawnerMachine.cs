@@ -1,15 +1,26 @@
 using System.Collections;
+using Examples.Factory101.Scripts;
+using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class ItemSpawnerMachine : MonoBehaviour
+public class ItemSpawnerMachine : Machine
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject prefab;
-    [SerializeField] private float tickRate;
+    [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
+    
     public void Start()
     {
+        RegisterLua();
         StartCoroutine(ExecuteEverySecond());
+    }
+    
+    protected override void RegisterLua()
+    {
+        UserData.RegisterType<ItemSpawnerMachine>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
     }
     
     IEnumerator ExecuteEverySecond()
@@ -27,5 +38,6 @@ public class ItemSpawnerMachine : MonoBehaviour
         var mcGibble = Instantiate(prefab, spawnPoint.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
     }
-    
+
+   
 }

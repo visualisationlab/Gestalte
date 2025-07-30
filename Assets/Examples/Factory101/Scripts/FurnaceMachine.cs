@@ -1,29 +1,30 @@
+using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FurnaceMachine : Machine
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
     public GameObject prefab;
-    private Script luaScript;
-    private string script;
     private int heat = 100;
     private Vector3 tinyRandom;
+
     private void Start()
+    {
+        RegisterLua();
+        StartCoroutine(ExecuteEverySecond());
+    }
+
+    protected override void RegisterLua()
     {
         UserData.RegisterType<FurnaceMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
-        StartCoroutine(ExecuteEverySecond());
-    }
-
-    public override void SetScript(string code)
-    {
-        script = code;
     }
     
     IEnumerator ExecuteEverySecond()

@@ -5,24 +5,25 @@ using UnityEngine;
 
 public class NameSensorMachine : Machine
 {
-    private Script luaScript;
-    private string script;
     [SerializeField] private NameSensor sensor;
     [SerializeField] private OracleAgent oracle;
     private void Start()
+    {
+       RegisterLua();
+    }
+
+    protected override void RegisterLua()
     {
         UserData.RegisterType<NameSensorMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
     }
 
-    public override void SetScript(string code)
+    protected override void AfterSetScript()
     {
-        script = code;
-        Debug.Log($"Executing: {code}");
         luaScript.DoString(script);
     }
-    
+
     [ExposeMethod("Tells you the name of the object in front of the machine. You can add a cool instruction.")]
     public void ReadSensor(string instruction)
     {
