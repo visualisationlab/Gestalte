@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MixerMachine : Machine
 {
@@ -11,7 +13,7 @@ public class MixerMachine : Machine
     public GameObject mcGibbleTemplate;
     public Transform outputPort;
     public bool mixing;
-    
+    [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
 
     protected override void RegisterLua()
@@ -26,15 +28,12 @@ public class MixerMachine : Machine
     {
         while (true)
         {
-            if(!string.IsNullOrWhiteSpace(script)){
-                luaScript.DoString(script);
-            }
-            yield return new WaitForSeconds(1f);
+            Mix();
+            yield return new WaitForSeconds(tickRate);
         }
     }
     
-    [ExposeMethod("Mix the items together")]
-    public void Mix()
+    private void Mix()
     {
         if (sensorOne.onDetect && sensorTwo.onDetect && !mixing)
         {
@@ -56,5 +55,12 @@ public class MixerMachine : Machine
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
         Debug.Log($"EJECT: {recipe.result.singleEmoji}");
+    }
+    
+    [ExposeMethod("Sets the rate this machine mixes items at")]
+    public void SetSpawnRate(int rate)
+    {
+        tickRate = rate;
+        if (tickRate == 0) tickRate = Int32.MaxValue;
     }
 }

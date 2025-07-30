@@ -6,12 +6,13 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FurnaceMachine : Machine
+public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
-    private int heat = 100;
+    public int heat = 100;
     private Vector3 tinyRandom;
+    private McGibbleDescription lastNotifiedMcGibble;
 
     private void Start()
     {
@@ -21,8 +22,10 @@ public class FurnaceMachine : Machine
     protected override void RegisterLua()
     {
         UserData.RegisterType<FurnaceMachine>();
+        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
         luaScript = new Script();
         luaScript.Globals["this"] = this;
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
     }
     
     IEnumerator ExecuteEverySecond()
@@ -42,6 +45,17 @@ public class FurnaceMachine : Machine
         this.heat = heat;
     }
     
+    [ExposeMethod("Get the normalizedRarity of the last notified mcGibble")]
+    public float McGibbleRarity()
+    {
+        if (lastNotifiedMcGibble != null)
+        {
+            return lastNotifiedMcGibble.normalizedRarity;
+        }
+
+        return 0.0f;
+    }
+    
     [ExposeMethod("Processes the item in the furnace")]
     public void Blast()
     {
@@ -53,5 +67,10 @@ public class FurnaceMachine : Machine
             tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
             mcGibble.transform.position = outputPoint.transform.position + tinyRandom;
         }
+    }
+
+    public void OnPulse(McGibbleDescription mcGibble)
+    {
+        lastNotifiedMcGibble = mcGibble;
     }
 }

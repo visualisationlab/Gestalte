@@ -23,7 +23,9 @@ public class SimpleSensorMachine : Machine
     protected override void RegisterLua()
     {
         UserData.RegisterType<SimpleSensorMachine>();
+        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
         luaScript = new Script();
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
         luaScript.Globals["this"] = this;
     }
 
@@ -37,11 +39,11 @@ public class SimpleSensorMachine : Machine
     {
         return sensor.onDetect;
     }
-
+    
     [ExposeMethod("Returns the detected game object name")]
-    public string GetDetectedObjectName()
+    public McGibbleDescription GetDetectedObjectDescription()
     {
-        return sensor.detectedGameObject.name;
+        return sensor.detectedGameObject.GetComponent<McGibble>().description;
     }
 
     [ExposeMethod("Emits a boolean signal out of the outport")]
@@ -51,7 +53,7 @@ public class SimpleSensorMachine : Machine
     }
 
     [ExposeMethod("Emits a string signal out of the outport")]
-    public void EmitOutPortSignal(string signal)
+    public void EmitDescription(McGibbleDescription signal)
     {
         cableEnd.SendPulse(signal);
     }

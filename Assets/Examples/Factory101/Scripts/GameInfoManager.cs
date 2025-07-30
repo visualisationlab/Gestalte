@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,7 +21,12 @@ public class GameInfoManager : MonoBehaviour
       Instance = this;
       DontDestroyOnLoad(this.gameObject); // optional
    }
-   
+
+   private void Start()
+   {
+      OnMoneyUpdate.Invoke(money);
+   }
+
    public void AddMoney(int amount)
    {
       money += amount;

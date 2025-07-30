@@ -45,6 +45,13 @@ public class RecipeTracker : MonoBehaviour
     {
         recipeList.Add(recipe);
     }
+
+    private string GetAllExistingResultEmojis()
+    {
+        return string.Concat(
+            recipeList.Select(r => r.result.singleEmoji)
+        );
+    }
     
     public void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
     {
@@ -59,7 +66,7 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. Follow this formatting in your response: {McGibbleDescription.Format()}";
+        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. Follow this formatting in your response: {McGibbleDescription.Format()}. Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}";
         
         responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
         oracleAgent.SendMessage(message, OracleAgentReply);
@@ -83,6 +90,7 @@ public class RecipeTracker : MonoBehaviour
             int newSalePrice = Mathf.CeilToInt(uniqueCounter * resp.normalizedRarity); //Fine tune to get increasing price
             response.recipe.result = new McGibbleDescription
             {
+                name = resp.name,
                 singleEmoji = resp.singleEmoji, 
                 normalizedRarity = resp.normalizedRarity,
                 salePrice = newSalePrice

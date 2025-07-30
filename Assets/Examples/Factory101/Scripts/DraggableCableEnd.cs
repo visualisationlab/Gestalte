@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Examples.Factory101.Scripts;
 
 public class DraggableCableEnd : Draggable
 {
@@ -113,7 +114,7 @@ public class DraggableCableEnd : Draggable
         }
     }
 
-    public void SendPulse(string message)
+    public void SendPulse(McGibbleDescription message)
     {
         if (connectedTo == null)
         {
@@ -123,7 +124,7 @@ public class DraggableCableEnd : Draggable
 
         GameObject target = connectedTo.parentMachine;
 
-        if (target.TryGetComponent<IPulseReceiver<string>>(out var receiver))
+        if (target.TryGetComponent<IPulseReceiver<McGibbleDescription>>(out var receiver))
         {
             PlayPulseEffect();
             receiver.OnPulse(message);
