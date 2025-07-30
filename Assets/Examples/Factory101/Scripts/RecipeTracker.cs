@@ -47,8 +47,8 @@ public class RecipeTracker : MonoBehaviour
     public void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
     {
         var existing = recipeList.FirstOrDefault(to => 
-            (to.inputOne.gibbleType == one.gibbleType && to.inputTwo.gibbleType == two.gibbleType) ||
-            (to.inputOne.gibbleType == two.gibbleType && to.inputTwo.gibbleType == one.gibbleType));
+            (to.inputOne.icon == one.icon && to.inputTwo.icon == two.icon) ||
+            (to.inputOne.icon == two.icon && to.inputTwo.icon == one.icon));
 
         if (existing != null)
         {
@@ -57,7 +57,7 @@ public class RecipeTracker : MonoBehaviour
         }
         
         //Else it doesnt exist yet and we need to ask Oracle to make one?
-        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.gibbleType} and {two.gibbleType}. Follow this formatting in your response: {OracleRecipeResponse.Format()}";
+        var message = $"{recipeRequestPrompt} {componentsDescriptionPrompt} {one.icon} and {two.icon}. Follow this formatting in your response: {OracleRecipeResponse.Format()}";
         
         responseQueue.Enqueue(new RecipeResponse{recipe=new Recipe{inputOne = one, inputTwo = two}, callback=callback});
         oracleAgent.SendMessage(message, OracleAgentReply);
@@ -69,7 +69,7 @@ public class RecipeTracker : MonoBehaviour
         var json = JsonHelper.ExtractJson(message);
         OracleRecipeResponse resp = JsonConvert.DeserializeObject<OracleRecipeResponse>(json);
         
-        Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.gibbleType == resp.emoji);
+        Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.icon == resp.emoji);
         //a recipe with this result already exists, we copy the result values over
         if (hasMatch != null)
         {
@@ -81,7 +81,7 @@ public class RecipeTracker : MonoBehaviour
             int newSalePrice = Mathf.CeilToInt(uniqueCounter * resp.normalizedRarity); //Fine tune to get increasing price
             response.recipe.result = new McGibbleDescription
             {
-                gibbleType = resp.emoji, 
+                icon = resp.emoji, 
                 normalizedRarity = resp.normalizedRarity,
                 salePrice = newSalePrice
             };

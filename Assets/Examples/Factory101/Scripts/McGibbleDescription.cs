@@ -5,9 +5,10 @@ namespace Examples.Factory101.Scripts
     [Serializable]
     public class McGibbleDescription
     {
+        public string name;
         public int salePrice;
         public float normalizedRarity;
-        public string gibbleType;
-        public int heat;
+        public string icon;
+        public int heatResistance;
     }
 }

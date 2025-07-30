@@ -10,6 +10,6 @@ public class McGibble : MonoBehaviour
 
     private void Start()
     {
-        txt.text = description.gibbleType;
+        txt.text = description.icon;
     }
 }

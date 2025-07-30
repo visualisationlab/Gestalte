@@ -55,6 +55,6 @@ public class MixerMachine : Machine
         var mcGibble = Instantiate(mcGibbleTemplate, outputPort.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
-        Debug.Log($"EJECT: {recipe.result.gibbleType}");
+        Debug.Log($"EJECT: {recipe.result.icon}");
     }
 }

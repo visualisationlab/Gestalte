@@ -14,17 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipe:
     inputOne:
+      name: Ugo
       salePrice: 1
       normalizedRarity: 0.1
-      gibbleType: "\U0001F40D"
-      heat: 0
+      icon: "\U0001F40D"
+      heatResistance: 0
     inputTwo:
+      name: Ugo
       salePrice: 1
       normalizedRarity: 0.1
-      gibbleType: "\U0001F40D"
-      heat: 0
+      icon: "\U0001F40D"
+      heatResistance: 0
     result:
+      name: Yki
       salePrice: 1
       normalizedRarity: 0.2
-      gibbleType: "\U0001F409"
-      heat: 0
+      icon: "\U0001F409"
+      heatResistance: 0
