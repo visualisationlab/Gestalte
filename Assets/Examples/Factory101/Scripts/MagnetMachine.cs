@@ -9,17 +9,28 @@ public class MagnetMachine : MonoBehaviour, IPulseReceiver<bool>
     [SerializeField] private float pullSpeed = 5f;
     public bool alwaysPull = false;
     public float pullDuration = 1f; // Duration for which the magnet pulls objects
-    private Coroutine pullRoutine;
+    // internal timer
+    private float pullTimer = 0f;
     private void Start()
     {
         Physics2D.velocityIterations = 2; //TODO Replace to somewhere else
         Physics2D.positionIterations = 1;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (alwaysPull)
+        // if “alwaysPull” OR we have remaining pull time, do one tick of attract
+        if (alwaysPull || pullTimer > 0f)
+        {
             Attract();
+
+            // count down the timer if it’s active
+            if (!alwaysPull)
+            {
+                pullTimer -= Time.fixedDeltaTime;
+                if (pullTimer < 0f) pullTimer = 0f;
+            }
+        }
     }
 
     private void Attract()
@@ -46,23 +57,6 @@ public class MagnetMachine : MonoBehaviour, IPulseReceiver<bool>
     public void OnPulse(bool message)
     {
         if (!message) return;
-
-        // If already pulling, stop that coroutine
-        if (pullRoutine != null)
-            StopCoroutine(pullRoutine);
-
-        pullRoutine = StartCoroutine(PullGibbles());
-    }
-
-    private IEnumerator PullGibbles()
-    {
-        float timer = 0f;
-        while (timer < pullDuration)
-        {
-            Attract();
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        pullRoutine = null;
+        pullTimer = pullDuration;
     }
 }

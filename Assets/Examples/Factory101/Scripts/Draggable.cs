@@ -35,32 +35,34 @@ public class Draggable : MonoBehaviour
     {
         if (!isDragging) return;
 
+        // convert mouse to world and apply offset
         Vector3 mouseScreen = Mouse.current.position.ReadValue();
         Vector3 world = cam.ScreenToWorldPoint(mouseScreen);
         world.z = 0f;
-
         Vector3 targetPos = world + offset;
         transform.position = targetPos;
 
+        // compute how far we've dragged
         lengthFromTo = Vector3.Distance(startPosition, targetPos);
-        lastPosition = targetPos;
 
-        if (noRotation) return;
-
-        // --- Rotation Logic ---
-        Vector3 dragDirection = targetPos - lastPosition;
-
-        if (dragDirection.sqrMagnitude > 0.001f) // avoid zero-length
+        if (!noRotation)
         {
-            float targetAngle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg + rotationOffset;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
-
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
+            // compute direction based on the *previous* lastPosition
+            Vector3 dragDirection = targetPos - lastPosition;
+            if (dragDirection.sqrMagnitude > 0.001f)
+            {
+                float targetAngle = Mathf.Atan2(dragDirection.y, dragDirection.x) * Mathf.Rad2Deg + rotationOffset;
+                Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+                transform.rotation = Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRotation,
+                    rotationSpeed * Time.deltaTime
+                );
+            }
         }
+
+        // now update lastPosition for the next frame
+        lastPosition = targetPos;
     }
 
     void Update()
