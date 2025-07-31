@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGrid: 0
+  inGrid: 1
   noRotation: 1
   rotationSpeed: 720
   rotationOffset: 0

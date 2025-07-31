@@ -3,7 +3,9 @@ using UnityEngine.InputSystem;
 
 public class Draggable : MonoBehaviour
 {
-    [Header("Placement")] public bool inGrid;
+    [Header("Placement")] 
+    public bool inGrid;
+    public bool keepsOffset;
     
     [Header("Rotation")]
     public bool noRotation = false; // Disable rotation if true
@@ -23,7 +25,10 @@ public class Draggable : MonoBehaviour
 
     public virtual void StartDragging(Vector3 hitPoint)
     {
-        offset = transform.position - hitPoint;
+        if(keepsOffset){
+            offset = transform.position - hitPoint;
+        }
+        
         lastPosition = transform.position;
         isDragging = true;
     }

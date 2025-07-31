@@ -7,31 +7,55 @@ using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
     [Header("Mouse Interactions")]
-    public InputActionReference useAction;
+    public InputActionReference useActionReference;
+    public InputActionReference cancelActionReference;
+
+    private InputAction useAction;
+    private InputAction cancelAction;
+    
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
+    public UnityEvent OnHoverDraggable;
     public UnityEvent OnClickedOutside;
+    public UnityEvent OnCancelAction;
+    
+    [Header("Dragging")]
+    public UnityEvent OnStartDrag;
+    public UnityEvent OnStopDrag;
+    [SerializeField] private Draggable currentDraggable;
+    public bool stayDragging;
+    
     private Vector2 mouseWorldPos2D;
     private RaycastHit2D hit;
-
     private bool hovering;
-    [SerializeField] private Draggable currentDraggable;
 
     bool shouldProcessClick;
+
+    private void Awake()
+    {
+        useAction = useActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+        cancelAction = cancelActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+    }
+
     private void OnEnable()
     {
-        // useAction.action.started += OnUse;
-        useAction.action.started += OnUse;
-        useAction.action.canceled += OnUseCanceled;
-        useAction.action.Enable();
+        useAction.started += OnUse;
+        useAction.canceled += OnUseCanceled;
+        useAction.Enable();
+
+        cancelAction.performed += OnCancel;
+        cancelAction.Enable();
     }
 
     private void OnDisable()
     {
-        useAction.action.started -= OnUse;
-        useAction.action.canceled -= OnUseCanceled;
-        useAction.action.Disable();
+        useAction.started -= OnUse;
+        useAction.canceled -= OnUseCanceled;
+        useAction.Disable();
+        
+        cancelAction.performed -= OnCancel;
+        cancelAction.Enable();
     }
 
     public void Update()
@@ -58,6 +82,10 @@ public class InputController : MonoBehaviour
         {
             hovering = true;
             OnHoverGameObject.Invoke(hit.collider.gameObject);
+            if (hit.collider.GetComponent<Draggable>())
+            {
+                OnHoverDraggable.Invoke();
+            }
         }
         else if (hovering)
         {
@@ -85,10 +113,7 @@ public class InputController : MonoBehaviour
                 Draggable draggable = hit.collider.gameObject.GetComponent<Draggable>();
                 if (draggable != null)
                 {
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                    worldPos.z = 0;
-                    draggable.StartDragging(worldPos);
-                    currentDraggable = draggable;
+                    ForceDraggable(draggable);
                 }
             }
         }
@@ -100,10 +125,25 @@ public class InputController : MonoBehaviour
     
     private void OnUseCanceled(InputAction.CallbackContext ctx)
     {
-        if (currentDraggable != null)
+        if (currentDraggable != null && !stayDragging)
         {
             currentDraggable.StopDragging();
+            OnStopDrag.Invoke();
             currentDraggable = null;
         }
+    }
+
+    public void ForceDraggable(Draggable draggable)
+    {
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        worldPos.z = 0;
+        draggable.StartDragging(worldPos);
+        OnStartDrag.Invoke();
+        currentDraggable = draggable;
+    }
+
+    public void OnCancel(InputAction.CallbackContext ctx)
+    {
+        OnCancelAction.Invoke();
     }
 }
