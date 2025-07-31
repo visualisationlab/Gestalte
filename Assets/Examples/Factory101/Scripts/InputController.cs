@@ -9,9 +9,11 @@ public class InputController : MonoBehaviour
     [Header("Mouse Interactions")]
     public InputActionReference useActionReference;
     public InputActionReference cancelActionReference;
+    public InputActionReference rotateActionReference;
 
     private InputAction useAction;
     private InputAction cancelAction;
+    private InputAction rotateAction;
     
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
@@ -19,13 +21,16 @@ public class InputController : MonoBehaviour
     public UnityEvent OnHoverDraggable;
     public UnityEvent OnClickedOutside;
     public UnityEvent OnCancelAction;
-    
+    public UnityEvent OnRotateCalled;
+
+
     [Header("Dragging")]
     public UnityEvent OnStartDrag;
     public UnityEvent OnStopDrag;
     [SerializeField] private Draggable currentDraggable;
     public bool stayDragging;
-    
+
+
     private Vector2 mouseWorldPos2D;
     private RaycastHit2D hit;
     private bool hovering;
@@ -36,6 +41,10 @@ public class InputController : MonoBehaviour
     {
         useAction = useActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
         cancelAction = cancelActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+        if (rotateActionReference != null)
+        {
+            rotateAction = rotateActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+        }
     }
 
     private void OnEnable()
@@ -46,6 +55,11 @@ public class InputController : MonoBehaviour
 
         cancelAction.performed += OnCancel;
         cancelAction.Enable();
+        if (rotateAction != null)
+        {
+            rotateAction.started += OnRotate;
+            rotateAction.Enable();
+        }
     }
 
     private void OnDisable()
@@ -56,6 +70,11 @@ public class InputController : MonoBehaviour
         
         cancelAction.performed -= OnCancel;
         cancelAction.Enable();
+        
+        if(rotateAction != null){
+            rotateAction.started -= OnRotate;
+            rotateAction.Enable();
+        }
     }
 
     public void Update()
@@ -145,5 +164,10 @@ public class InputController : MonoBehaviour
     public void OnCancel(InputAction.CallbackContext ctx)
     {
         OnCancelAction.Invoke();
+    }
+
+    public void OnRotate(InputAction.CallbackContext ctx)
+    {
+        OnRotateCalled.Invoke();
     }
 }
