@@ -49,7 +49,7 @@ MonoBehaviour:
   image: {fileID: 8866793506005752824}
   pointCursor: {fileID: 21300000, guid: 4068bfed7e904184c923a729bc56d4b9, type: 3}
   dragCursor: {fileID: 21300000, guid: 91e9cb039463b1341bd49216db388cdf, type: 3}
-  buildCursor: {fileID: 21300000, guid: 8124e44f55518214b85b6b27dd56e228, type: 3}
+  buildCursor: {fileID: 21300000, guid: ffc5d303eafcdc44a9d042524d29f784, type: 3}
   realCursorVisible: 0
   infoObject: {fileID: 3791969242978160315}
   infoText: {fileID: 4203831411566833881}

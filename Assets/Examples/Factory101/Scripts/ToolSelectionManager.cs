@@ -20,6 +20,11 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject buildToolGhost;
     public GameObject conveyorBelt;
 
+    public void Start()
+    {
+        ResetTool();
+    }
+
     public void SetToolConveyor(bool state)
     {
         SetTool(Tool.BuildConveyor, state);
@@ -45,11 +50,14 @@ public class ToolSelectionManager : MonoBehaviour
         inputStateMachine.SetInteractState();
         currentTool = Tool.None;
         currentPlaceable = null;
+        var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
+        ghostDraggable.StopDragging();
+        buildToolGhost.transform.position = Vector3.one * 99999f;
     }
 
     private void InstantiatePlaceable(GameObject placeablePrefab)
     {
-        var ghostDraggable = Instantiate(buildToolGhost).GetComponent<Draggable>();
+        var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
         toolInputController.ForceDraggable(ghostDraggable);
         var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
         ghost.SetPlaceablePrefab(placeablePrefab);

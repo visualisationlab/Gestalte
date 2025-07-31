@@ -8,18 +8,23 @@ public class InputController : MonoBehaviour
 {
     [Header("Mouse Interactions")]
     public InputActionReference useActionReference;
+    public InputActionReference cancelActionReference;
 
     private InputAction useAction;
+    private InputAction cancelAction;
+    
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
     public UnityEvent OnHoverDraggable;
     public UnityEvent OnClickedOutside;
+    public UnityEvent OnCancelAction;
     
     [Header("Dragging")]
     public UnityEvent OnStartDrag;
     public UnityEvent OnStopDrag;
     [SerializeField] private Draggable currentDraggable;
+    public bool stayDragging;
     
     private Vector2 mouseWorldPos2D;
     private RaycastHit2D hit;
@@ -30,6 +35,7 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         useAction = useActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+        cancelAction = cancelActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
     }
 
     private void OnEnable()
@@ -37,6 +43,9 @@ public class InputController : MonoBehaviour
         useAction.started += OnUse;
         useAction.canceled += OnUseCanceled;
         useAction.Enable();
+
+        cancelAction.performed += OnCancel;
+        cancelAction.Enable();
     }
 
     private void OnDisable()
@@ -44,6 +53,9 @@ public class InputController : MonoBehaviour
         useAction.started -= OnUse;
         useAction.canceled -= OnUseCanceled;
         useAction.Disable();
+        
+        cancelAction.performed -= OnCancel;
+        cancelAction.Enable();
     }
 
     public void Update()
@@ -113,7 +125,7 @@ public class InputController : MonoBehaviour
     
     private void OnUseCanceled(InputAction.CallbackContext ctx)
     {
-        if (currentDraggable != null)
+        if (currentDraggable != null && !stayDragging)
         {
             currentDraggable.StopDragging();
             OnStopDrag.Invoke();
@@ -128,5 +140,10 @@ public class InputController : MonoBehaviour
         draggable.StartDragging(worldPos);
         OnStartDrag.Invoke();
         currentDraggable = draggable;
+    }
+
+    public void OnCancel(InputAction.CallbackContext ctx)
+    {
+        OnCancelAction.Invoke();
     }
 }

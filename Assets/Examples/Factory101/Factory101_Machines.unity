@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useActionReference: {fileID: 1120369429361536294, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
+  cancelActionReference: {fileID: 162912951397845624, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   OnClickedGameObject:
     m_PersistentCalls:
       m_Calls: []
@@ -225,6 +226,57 @@ MonoBehaviour:
   OnClickedOutside:
     m_PersistentCalls:
       m_Calls: []
+  OnCancelAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1684902970}
+        m_TargetAssemblyTypeName: UnityEngine.UI.ToggleGroup, UnityEngine.UI
+        m_MethodName: SetAllTogglesOff
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1979704672}
+        m_TargetAssemblyTypeName: InputStateMachine, Assembly-CSharp
+        m_MethodName: SetInteractState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1148703149}
+        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
+        m_MethodName: ResetTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 237479807}
+        m_TargetAssemblyTypeName: CursorController, Assembly-CSharp
+        m_MethodName: SetToPoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnStartDrag:
     m_PersistentCalls:
       m_Calls: []
@@ -232,6 +284,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   currentDraggable: {fileID: 0}
+  stayDragging: 1
 --- !u!4 &46615476
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,6 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useActionReference: {fileID: 1120369429361536294, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
+  cancelActionReference: {fileID: 162912951397845624, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   OnClickedGameObject:
     m_PersistentCalls:
       m_Calls:
@@ -1410,6 +1464,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnCancelAction:
+    m_PersistentCalls:
+      m_Calls: []
   OnStartDrag:
     m_PersistentCalls:
       m_Calls:
@@ -1441,6 +1498,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   currentDraggable: {fileID: 0}
+  stayDragging: 0
 --- !u!1 &1028894825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1607,7 @@ MonoBehaviour:
   inputStateMachine: {fileID: 1979704672}
   currentPlaceable: {fileID: 0}
   toolInputController: {fileID: 46615475}
-  buildToolGhost: {fileID: 762754342882063634, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
+  buildToolGhost: {fileID: 6874643816355461624}
   conveyorBelt: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
 --- !u!4 &1148703150
 Transform:
@@ -4731,13 +4789,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildToolGhost
       objectReference: {fileID: 0}
+    - target: {fileID: 7225668132119176413, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
+      propertyPath: m_Color.a
+      value: 0.23529412
+      objectReference: {fileID: 0}
     - target: {fileID: 8681749163387348580, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8681749163387348580, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8681749163387348580, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4776,6 +4838,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
+--- !u!1 &6874643816355461624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 762754342882063634, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
+  m_PrefabInstance: {fileID: 6874643816355461623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6966541621053273742
 PrefabInstance:
   m_ObjectHideFlags: 0
