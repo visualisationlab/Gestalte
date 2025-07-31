@@ -122,4 +122,9 @@ public class RecipeTracker : MonoBehaviour
         return partialRecipe;
     }
 
+    public List<Recipe> GetAllRecipes()
+    {
+        return recipeList;
+    }
+
 }
