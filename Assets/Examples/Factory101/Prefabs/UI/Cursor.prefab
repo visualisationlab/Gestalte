@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4751498698074344143}
   - component: {fileID: 3873202909777762686}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,8 @@ MonoBehaviour:
   image: {fileID: 8866793506005752824}
   pointCursor: {fileID: 21300000, guid: 4068bfed7e904184c923a729bc56d4b9, type: 3}
   dragCursor: {fileID: 21300000, guid: 91e9cb039463b1341bd49216db388cdf, type: 3}
-  cursorVisible: 0
+  buildCursor: {fileID: 21300000, guid: 8124e44f55518214b85b6b27dd56e228, type: 3}
+  realCursorVisible: 0
   infoObject: {fileID: 3791969242978160315}
   infoText: {fileID: 4203831411566833881}
 --- !u!1 &3791969242978160315
@@ -61,13 +62,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1977280548059438305}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1977280548059438305
 Transform:
   m_ObjectHideFlags: 0
@@ -77,8 +78,8 @@ Transform:
   m_GameObject: {fileID: 3791969242978160315}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0295, y: 0.0512, z: 0}
+  m_LocalScale: {x: 0.558879, y: 0.558879, z: 0.558879}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3937976722465782423}
@@ -95,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2424019471875485310}
   - component: {fileID: 8866793506005752824}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,8 +112,8 @@ Transform:
   m_GameObject: {fileID: 4058807070078097393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.253, y: -0.204, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1118, y: -0.0628, z: 0}
+  m_LocalScale: {x: 0.558879, y: 0.558879, z: 0.558879}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4751498698074344143}
@@ -183,7 +184,7 @@ GameObject:
   - component: {fileID: 6808152403089543089}
   - component: {fileID: 4611738119593328698}
   - component: {fileID: 4203831411566833881}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937976722465782423}
   - component: {fileID: 3178688263138414122}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

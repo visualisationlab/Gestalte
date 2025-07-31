@@ -11,6 +11,7 @@ public class ToolSelectionManager : MonoBehaviour
     }
 
     public Tool currentTool;
+    public InputStateMachine inputStateMachine;
 
     public void SetToolConveyor(bool state)
     {
@@ -19,11 +20,20 @@ public class ToolSelectionManager : MonoBehaviour
     
     private void SetTool(Tool tool, bool state)
     {
-        if (!state) ResetTool(); else currentTool = tool;
+        if (!state)
+        {
+            ResetTool();
+        }
+        else
+        {
+            inputStateMachine.SetBuildState();
+            currentTool = tool;
+        }
     }
 
     public void ResetTool()
     {
+        inputStateMachine.SetInteractState();
         currentTool = Tool.None;
     }
 }

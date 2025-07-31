@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -6,14 +5,16 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
+    
     [Header("Mouse Interactions")]
     public InputActionReference useAction;
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
+    public UnityEvent OnHoverDraggable;
     public UnityEvent OnClickedOutside;
-    [Header("Dragging")]
     
+    [Header("Dragging")]
     public UnityEvent OnStartDrag;
     public UnityEvent OnStopDrag;
     [SerializeField] private Draggable currentDraggable;
@@ -22,7 +23,7 @@ public class InputController : MonoBehaviour
     private RaycastHit2D hit;
     private bool hovering;
 
-    bool shouldProcessClick;
+    bool shouldProcessClick;  
     private void OnEnable()
     {
         // useAction.action.started += OnUse;
@@ -62,6 +63,10 @@ public class InputController : MonoBehaviour
         {
             hovering = true;
             OnHoverGameObject.Invoke(hit.collider.gameObject);
+            if (hit.collider.GetComponent<Draggable>())
+            {
+                OnHoverDraggable.Invoke();
+            }
         }
         else if (hovering)
         {

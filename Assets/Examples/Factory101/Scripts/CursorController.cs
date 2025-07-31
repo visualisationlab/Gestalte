@@ -7,14 +7,15 @@ public class CursorController : MonoBehaviour
     public SpriteRenderer image;
     public Sprite pointCursor;
     public Sprite dragCursor;
-    public bool cursorVisible;
+    public Sprite buildCursor;
+    public bool realCursorVisible;
     [Header("Mouse Info")] 
     public GameObject infoObject;
     public TextMeshPro infoText;
 
     private void Start()
     {
-        Cursor.visible = cursorVisible;
+        Cursor.visible = realCursorVisible;
     }
 
     public void SetToDrag()
