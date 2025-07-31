@@ -1,0 +1,18 @@
+using TMPro;
+using UnityEngine;
+
+public class UINewRecipeMessage : MonoBehaviour
+{
+    [SerializeField] TextMeshProUGUI message;
+    [SerializeField] TextMeshProUGUI icon;
+    [SerializeField] private string newRecipeMessage;
+    [SerializeField] private Animator animation;
+    
+    public void ShowNewRecipe(Recipe recipe)
+    {
+        Debug.Log("New Recipe Message!");
+        message.text = $"{newRecipeMessage}: {recipe.result.name}";
+        icon.text = recipe.result.singleEmoji;
+        animation.SetTrigger("ShowMessage");
+    }
+}

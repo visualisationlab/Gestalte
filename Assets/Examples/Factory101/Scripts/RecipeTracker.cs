@@ -19,6 +19,7 @@ public class RecipeTracker : MonoBehaviour
 
     public List<RecipeScriptableObject> predefinedRecipes;
     [SerializeField] private List<Recipe> recipeList = new();
+    [SerializeField] private UINewRecipeMessage recipeMessage;
     
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class RecipeTracker : MonoBehaviour
     public void Add(Recipe recipe)
     {
         recipeList.Add(recipe);
+        recipeMessage.ShowNewRecipe(recipe);
     }
 
     private string GetAllExistingResultEmojis()
@@ -117,8 +119,8 @@ public class RecipeTracker : MonoBehaviour
                 uniqueCreated = uniqueCounter
             };
         }
-        
-        recipeList.Add(partialRecipe);
+
+        Add(partialRecipe);
         return partialRecipe;
     }
 

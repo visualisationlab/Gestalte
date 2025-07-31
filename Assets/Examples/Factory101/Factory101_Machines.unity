@@ -527,6 +527,7 @@ MonoBehaviour:
   predefinedRecipes:
   - {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
   recipeList: []
+  recipeMessage: {fileID: 1691719138}
 --- !u!4 &297923628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
@@ -1892,6 +1893,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiUrl: http://localhost:4315/v1/chat/completions
+--- !u!114 &1691719138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 408904532845105294, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
+  m_PrefabInstance: {fileID: 3111013870232763286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9f51ca172a41a4d9e094ca30b94b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1745330458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2314,10 +2326,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1910212798092472001, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2860686230474831185, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -2354,22 +2362,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1623510488}
-    - target: {fileID: 4457225990100453439, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457225990100453439, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457225990100453439, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4457225990100453439, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4461812929674069319, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2426,6 +2418,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8299264528711037623, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1623510491}
     - target: {fileID: 8361439614419161058, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2436,26 +2432,6 @@ PrefabInstance:
       objectReference: {fileID: 1952799522}
     - target: {fileID: 8550808723286283636, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718838633642674461, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1623510491}
-    - target: {fileID: 8719054760612895142, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8719054760612895142, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8719054760612895142, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8719054760612895142, guid: 230fe9d26e762b840880e04e56d90d94, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
