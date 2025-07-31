@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,5 +16,12 @@ public class UINewRecipeMessage : MonoBehaviour
         message.text = $"{newRecipeMessage}: {recipe.result.name}";
         icon.text = recipe.result.singleEmoji;
         animation.SetTrigger("ShowMessage");
+        StartCoroutine(PlayChimeDelayed());
     }
+
+    IEnumerator PlayChimeDelayed()
+    {
+        yield return new WaitForSeconds(1.5f);
+        AudioManager.Instance.Chime();
+    } 
 }
