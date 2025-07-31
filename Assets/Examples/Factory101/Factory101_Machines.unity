@@ -585,6 +585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt_001
       objectReference: {fileID: 0}
+    - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5684416626120263395, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: inGrid
       value: 1
@@ -858,6 +862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleSensor_001
       objectReference: {fileID: 0}
+    - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -945,6 +953,10 @@ PrefabInstance:
     - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: m_Name
       value: ConveyorBelt_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5684416626120263395, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
       propertyPath: inGrid
@@ -1956,6 +1968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 411668718053369241, guid: 47fe404f25580524794569f563435f7e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2128,6 +2144,10 @@ PrefabInstance:
     - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_Name
       value: SimpleActuatorMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393113123112361113, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2825,6 +2845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone
       objectReference: {fileID: 0}
+    - target: {fileID: 7864006489217498798, guid: 86c18afadad12d54c95d02cee2442734, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9202662376621479653, guid: 86c18afadad12d54c95d02cee2442734, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -2888,7 +2912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068125074464541939, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2954,6 +2978,10 @@ PrefabInstance:
     - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_Name
       value: FurnaceMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3207,6 +3235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt
       objectReference: {fileID: 0}
+    - target: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3367,6 +3399,10 @@ PrefabInstance:
     - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: m_Name
       value: SimpleSensor
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -116,7 +116,8 @@ public class RecipeTracker : MonoBehaviour
                 singleEmoji = resp.singleEmoji, 
                 normalizedRarity = resp.normalizedRarity,
                 normalizedHeatResistance = resp.normalizedHeatResistance,
-                uniqueCreated = uniqueCounter
+                uniqueCreated = uniqueCounter,
+                salePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1
             };
         }
 
