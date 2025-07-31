@@ -44,7 +44,6 @@ public class CameraController : MonoBehaviour
         // 5) Only move & log if different
         if (pos != transform.position)
         {
-            Debug.Log($"Camera moving to: {pos}");
             transform.position = pos;
         }
     }
