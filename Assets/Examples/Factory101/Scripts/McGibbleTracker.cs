@@ -6,6 +6,8 @@ using UnityEngine;
 public class McGibbleTracker : MonoBehaviour
 {
     public static McGibbleTracker Instance { get; private set; }
+    
+    
 
     [SerializeField]
     private float expireTime = 10f;

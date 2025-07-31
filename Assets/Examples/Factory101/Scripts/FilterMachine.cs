@@ -11,15 +11,26 @@ public class FilterMachine : Machine
     public MultiSimpleSensor sensor;
     public Transform whitelistOutputPoint;
     public Transform blacklistOutputPoint;
-    private Script luaScript;
-    private string script;
 
     private Vector3 tinyRandom;
-        protected HashSet<string> whitelist = new();
+    protected HashSet<string> whitelist = new();
     protected bool whitelistSet = false;
 
     protected int minSalePrice = -1;
     protected bool priceFilterSet = false;
+
+
+    private void Start()
+    {
+        StartCoroutine(ExecuteEverySecond());
+    }
+
+    protected override void RegisterLua()
+    {
+        UserData.RegisterType<FilterMachine>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+    }
 
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
@@ -48,7 +59,7 @@ public class FilterMachine : Machine
             return false;
 
         if (whitelistSet)
-            return whitelist.Contains(gibble.description.gibbleType.ToLower());
+            return whitelist.Contains(gibble.description.singleEmoji.ToLower());
 
         // If at least one filter is active and passed, allow
         if (priceFilterSet || whitelistSet)
@@ -56,6 +67,7 @@ public class FilterMachine : Machine
 
         return false; // deny all if nothing defined
     }
+
     [ExposeMethod("Filter the item in the filter machine")]
     public void Filter()
     {
@@ -72,26 +84,15 @@ public class FilterMachine : Machine
         }
     }
 
-    public override void SetScript(string code)
-    {
-        script = code;
-    }
-
-    private void Start()
-    {
-        UserData.RegisterType<FilterMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
-        StartCoroutine(ExecuteEverySecond());
-    }
-
     IEnumerator ExecuteEverySecond()
     {
         while (true)
         {
-            if(!string.IsNullOrWhiteSpace(script)){
+            if (!string.IsNullOrWhiteSpace(script))
+            {
                 luaScript.DoString(script);
             }
+
             yield return new WaitForSeconds(1f);
         }
     }

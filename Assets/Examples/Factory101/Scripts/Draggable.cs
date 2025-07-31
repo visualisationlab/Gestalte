@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class Draggable : MonoBehaviour
 {
+    [Header("Placement")] public bool inGrid;
+    
+    [Header("Rotation")]
     public bool noRotation = false; // Disable rotation if true
     private Vector3 offset;
     private bool isDragging = false;
@@ -31,6 +34,15 @@ public class Draggable : MonoBehaviour
         isDragging = false;
     }
 
+    private Vector3 StickToGrid(Vector3 position)
+    {
+        return new Vector3(
+            Mathf.Round(position.x),
+            Mathf.Round(position.y),
+            Mathf.Round(position.z)
+        );
+    }
+    
     public virtual void UpdateDragging()
     {
         if (!isDragging) return;
@@ -40,7 +52,7 @@ public class Draggable : MonoBehaviour
         Vector3 world = cam.ScreenToWorldPoint(mouseScreen);
         world.z = 0f;
         Vector3 targetPos = world + offset;
-        transform.position = targetPos;
+        transform.position = inGrid ? StickToGrid(targetPos) : targetPos;
 
         // compute how far we've dragged
         lengthFromTo = Vector3.Distance(startPosition, targetPos);

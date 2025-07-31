@@ -18,8 +18,10 @@ public class InputController : MonoBehaviour
     private bool hovering;
     [SerializeField] private Draggable currentDraggable;
 
+    bool shouldProcessClick;
     private void OnEnable()
     {
+        // useAction.action.started += OnUse;
         useAction.action.started += OnUse;
         useAction.action.canceled += OnUseCanceled;
         useAction.action.Enable();
@@ -39,6 +41,15 @@ public class InputController : MonoBehaviour
         mouseWorldPos2D = new Vector2(worldPos.x, worldPos.y);
         hit = Physics2D.Raycast(mouseWorldPos2D, Vector2.zero);
         OnHover();
+        
+        if (shouldProcessClick)
+        {
+            shouldProcessClick = false;
+            if (EventSystem.current != null &&!EventSystem.current.IsPointerOverGameObject())
+            {
+                ProcessOnUse();
+            }
+        }
     }
 
     private void OnHover()
@@ -57,12 +68,11 @@ public class InputController : MonoBehaviour
 
     private void OnUse(InputAction.CallbackContext ctx)
     {
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-        {
-            // Ignore clicks over UI
-            return;
-        }
+        shouldProcessClick = true;
+    }
 
+    private void ProcessOnUse()
+    {
         if (hit.collider != null)
         {
             // Found machine

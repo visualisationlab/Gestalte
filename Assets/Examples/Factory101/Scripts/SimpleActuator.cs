@@ -7,22 +7,19 @@ using UnityEngine;
 public class SimpleActuator : Machine
 {
     public ActuatorPiston piston;
-    private Script luaScript;
-    private string script;
-    
-    private void Start()
+
+    protected override void AfterSetScript()
+    {
+        StartCoroutine(ExecuteEverySecond());
+    }
+
+    protected override void RegisterLua()
     {
         UserData.RegisterType<SimpleActuator>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
     }
-    
-    public override void SetScript(string code)
-    {
-        script = code;
-        StartCoroutine(ExecuteEverySecond());
-    }
-    
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

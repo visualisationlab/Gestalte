@@ -1,29 +1,31 @@
+using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class FurnaceMachine : Machine
+public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
-    public GameObject prefab;
-    private Script luaScript;
-    private string script;
-    private int heat = 100;
+    public int heat = 100;
     private Vector3 tinyRandom;
+    private McGibbleDescription lastNotifiedMcGibble;
+
     private void Start()
     {
-        UserData.RegisterType<FurnaceMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
         StartCoroutine(ExecuteEverySecond());
     }
 
-    public override void SetScript(string code)
+    protected override void RegisterLua()
     {
-        script = code;
+        UserData.RegisterType<FurnaceMachine>();
+        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
     }
     
     IEnumerator ExecuteEverySecond()
@@ -43,6 +45,17 @@ public class FurnaceMachine : Machine
         this.heat = heat;
     }
     
+    [ExposeMethod("Get the normalizedRarity of the last notified mcGibble")]
+    public float McGibbleRarity()
+    {
+        if (lastNotifiedMcGibble != null)
+        {
+            return lastNotifiedMcGibble.normalizedRarity;
+        }
+
+        return 0.0f;
+    }
+    
     [ExposeMethod("Processes the item in the furnace")]
     public void Blast()
     {
@@ -50,9 +63,18 @@ public class FurnaceMachine : Machine
         {
             //TODO Smart (per McGibble Type temperature and transmute settings)
             var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
-            mcGibble.description.heat = heat;
+            var heatResistance = mcGibble.description.normalizedHeatResistance;
+            
+            float adjustedHeat = heat * heatResistance;
+            mcGibble.heat = (int)Math.Round(adjustedHeat);
+            
             tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
             mcGibble.transform.position = outputPoint.transform.position + tinyRandom;
         }
+    }
+
+    public void OnPulse(McGibbleDescription mcGibble)
+    {
+        lastNotifiedMcGibble = mcGibble;
     }
 }

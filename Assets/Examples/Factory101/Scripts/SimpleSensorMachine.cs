@@ -9,16 +9,7 @@ using UnityEngine.Events;
 public class SimpleSensorMachine : Machine
 {
     public SimpleSensor sensor;
-    private Script luaScript;
-    private string script;
     [SerializeField] private DraggableCableEnd cableEnd;
-
-    private void Start()
-    {
-        UserData.RegisterType<SimpleSensorMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
-    }
 
     IEnumerator ExecuteEverySecond()
     {
@@ -29,9 +20,17 @@ public class SimpleSensorMachine : Machine
         }
     }
 
-    public override void SetScript(string code)
+    protected override void RegisterLua()
     {
-        script = code;
+        UserData.RegisterType<SimpleSensorMachine>();
+        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        luaScript = new Script();
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
+        luaScript.Globals["this"] = this;
+    }
+
+    protected override void AfterSetScript()
+    {
         StartCoroutine(ExecuteEverySecond());
     }
 
@@ -40,11 +39,11 @@ public class SimpleSensorMachine : Machine
     {
         return sensor.onDetect;
     }
-
-    [ExposeMethod("Returns the detected game object name")]
-    public string GetDetectedObjectName()
+    
+    [ExposeMethod("Returns the detected game objects description")]
+    public McGibbleDescription GetDescription()
     {
-        return sensor.detectedGameObject.name;
+        return sensor.detectedGameObject.GetComponent<McGibble>().description;
     }
 
     [ExposeMethod("Emits a boolean signal out of the outport")]
@@ -53,8 +52,8 @@ public class SimpleSensorMachine : Machine
         cableEnd.SendPulse();
     }
 
-    [ExposeMethod("Emits a string signal out of the outport")]
-    public void EmitOutPortSignal(string signal)
+    [ExposeMethod("Emits the description over the output port")]
+    public void EmitDescription(McGibbleDescription signal)
     {
         cableEnd.SendPulse(signal);
     }

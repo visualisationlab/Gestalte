@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MixerMachine : Machine
 {
@@ -11,13 +13,10 @@ public class MixerMachine : Machine
     public GameObject mcGibbleTemplate;
     public Transform outputPort;
     public bool mixing;
-    
-    private Script luaScript;
-    private string script;
+    [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
 
-
-    private void Start()
+    protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
         luaScript = new Script();
@@ -29,15 +28,12 @@ public class MixerMachine : Machine
     {
         while (true)
         {
-            if(!string.IsNullOrWhiteSpace(script)){
-                luaScript.DoString(script);
-            }
-            yield return new WaitForSeconds(1f);
+            Mix();
+            yield return new WaitForSeconds(tickRate);
         }
     }
     
-    [ExposeMethod("Mix the items together")]
-    public void Mix()
+    private void Mix()
     {
         if (sensorOne.onDetect && sensorTwo.onDetect && !mixing)
         {
@@ -51,18 +47,20 @@ public class MixerMachine : Machine
         }
     }
 
-    private void Eject(RecipeTracker.Recipe recipe)
+    private void Eject(Recipe recipe)
     {
         mixing = false;
         tinyRandom = new Vector3(Random.value-0.5f, 0f, 0f);
         var mcGibble = Instantiate(mcGibbleTemplate, outputPort.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
-        Debug.Log($"EJECT: {recipe.result.gibbleType}");
+        Debug.Log($"EJECT: {recipe.result.singleEmoji}");
     }
     
-    public override void SetScript(string code)
+    [ExposeMethod("Sets the rate this machine mixes items at")]
+    public void SetSpawnRate(int rate)
     {
-        script = code;
+        tickRate = rate;
+        if (tickRate == 0) tickRate = Int32.MaxValue;
     }
 }

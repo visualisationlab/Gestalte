@@ -7,6 +7,6 @@ public class UIGameInfoPanel : MonoBehaviour
 
     public void SetMoneyText(int amount)
     {
-        moneyTxt.text = $"${amount.ToString()}";
+        moneyTxt.text = amount.ToString();
     }
 }

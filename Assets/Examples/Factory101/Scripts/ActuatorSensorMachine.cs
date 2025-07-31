@@ -8,21 +8,18 @@ public class ActuatorSensorMachine : Machine
 {
     public SimpleSensor sensor;
     public ActuatorPiston piston;
-    private Script luaScript;
-    private string script;
     private void Start()
+    {
+        StartCoroutine(ExecuteEverySecond());
+    }
+
+    protected override void RegisterLua()
     {
         UserData.RegisterType<ActuatorSensorMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
-        StartCoroutine(ExecuteEverySecond());
     }
 
-    public override void SetScript(string code)
-    {
-        script = code;
-    }
-    
     IEnumerator ExecuteEverySecond()
     {
         while (true)
