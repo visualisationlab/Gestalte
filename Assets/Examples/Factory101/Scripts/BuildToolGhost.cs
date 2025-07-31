@@ -12,6 +12,7 @@ public class BuildToolGhost : MonoBehaviour
    public void PlaceCurrent()
    {
       Instantiate(currentPlaceablePrefab, transform.position, Quaternion.identity);
+      AudioManager.Instance.Pluck();
    }
    
 }

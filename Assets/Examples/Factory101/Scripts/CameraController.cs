@@ -47,4 +47,9 @@ public class CameraController : MonoBehaviour
             transform.position = pos;
         }
     }
+
+    public void SetFreezeCamera(bool state)
+    {
+        freezeCamera = state;
+    }
 }
