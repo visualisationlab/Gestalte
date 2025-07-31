@@ -12,11 +12,15 @@ public class InputController : MonoBehaviour
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
     public UnityEvent OnClickedOutside;
+    [Header("Dragging")]
+    
+    public UnityEvent OnStartDrag;
+    public UnityEvent OnStopDrag;
+    [SerializeField] private Draggable currentDraggable;
+    
     private Vector2 mouseWorldPos2D;
     private RaycastHit2D hit;
-
     private bool hovering;
-    [SerializeField] private Draggable currentDraggable;
 
     bool shouldProcessClick;
     private void OnEnable()
@@ -88,6 +92,7 @@ public class InputController : MonoBehaviour
                     Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                     worldPos.z = 0;
                     draggable.StartDragging(worldPos);
+                    OnStartDrag.Invoke();
                     currentDraggable = draggable;
                 }
             }
@@ -103,6 +108,7 @@ public class InputController : MonoBehaviour
         if (currentDraggable != null)
         {
             currentDraggable.StopDragging();
+            OnStopDrag.Invoke();
             currentDraggable = null;
         }
     }
