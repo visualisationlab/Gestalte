@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -5,9 +6,10 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    
     [Header("Mouse Interactions")]
-    public InputActionReference useAction;
+    public InputActionReference useActionReference;
+
+    private InputAction useAction;
     public UnityEvent<GameObject> OnClickedGameObject;
     public UnityEvent<GameObject> OnHoverGameObject;
     public UnityEvent OnHoverOut;
@@ -23,20 +25,25 @@ public class InputController : MonoBehaviour
     private RaycastHit2D hit;
     private bool hovering;
 
-    bool shouldProcessClick;  
+    bool shouldProcessClick;
+
+    private void Awake()
+    {
+        useAction = useActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+    }
+
     private void OnEnable()
     {
-        // useAction.action.started += OnUse;
-        useAction.action.started += OnUse;
-        useAction.action.canceled += OnUseCanceled;
-        useAction.action.Enable();
+        useAction.started += OnUse;
+        useAction.canceled += OnUseCanceled;
+        useAction.Enable();
     }
 
     private void OnDisable()
     {
-        useAction.action.started -= OnUse;
-        useAction.action.canceled -= OnUseCanceled;
-        useAction.action.Disable();
+        useAction.started -= OnUse;
+        useAction.canceled -= OnUseCanceled;
+        useAction.Disable();
     }
 
     public void Update()
@@ -94,11 +101,7 @@ public class InputController : MonoBehaviour
                 Draggable draggable = hit.collider.gameObject.GetComponent<Draggable>();
                 if (draggable != null)
                 {
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                    worldPos.z = 0;
-                    draggable.StartDragging(worldPos);
-                    OnStartDrag.Invoke();
-                    currentDraggable = draggable;
+                    ForceDraggable(draggable);
                 }
             }
         }
@@ -116,5 +119,14 @@ public class InputController : MonoBehaviour
             OnStopDrag.Invoke();
             currentDraggable = null;
         }
+    }
+
+    public void ForceDraggable(Draggable draggable)
+    {
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        worldPos.z = 0;
+        draggable.StartDragging(worldPos);
+        OnStartDrag.Invoke();
+        currentDraggable = draggable;
     }
 }

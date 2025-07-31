@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InputStateMachine : MonoBehaviour
 {
@@ -11,9 +12,8 @@ public class InputStateMachine : MonoBehaviour
     public InputState state;
 
     public InputController interactInput;
-    public InputController buildInput;
-    
-    
+    public InputController toolInput;
+    public CursorController cursor;
 
     private void Start()
     {
@@ -28,11 +28,12 @@ public class InputStateMachine : MonoBehaviour
     public void SetBuildState()
     {
         SetState(InputState.Build);
+        cursor.SetToBuild();
     }
     
     private void SetState(InputState newState)
     {
-        buildInput.enabled = newState == InputState.Build;
+        toolInput.enabled = newState == InputState.Build;
         interactInput.enabled = newState == InputState.Interact;
         state = newState;
         Debug.Log($"Set Input State: {state}");

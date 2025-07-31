@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inGrid: 0
+  keepsOffset: 1
   noRotation: 0
   rotationSpeed: 720
   rotationOffset: 0

@@ -27,6 +27,11 @@ public class CursorController : MonoBehaviour
     {
         image.sprite = pointCursor;
     }
+    
+    public void SetToBuild()
+    {
+        image.sprite = buildCursor;
+    }
 
     // Update is called once per frame
     void Update()
@@ -34,6 +39,5 @@ public class CursorController : MonoBehaviour
         Vector2 screenPos = Mouse.current.position.ReadValue();
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
-        ;
     }
 }
