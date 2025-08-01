@@ -13,6 +13,11 @@ public class SimpleActuator : Machine
         return "Get Actuator Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void AfterSetScript()
     {
         StartCoroutine(ExecuteEverySecond());

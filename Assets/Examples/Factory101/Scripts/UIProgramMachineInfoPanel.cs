@@ -11,6 +11,7 @@ public class UIProgramMachineInfoPanel : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TextMeshProUGUI upgradePrice;
     [SerializeField] private TextMeshProUGUI sellPrice;
+    [SerializeField] private GameObject programmingPanel;
     
     private ExposeMachine currentMachine;
     
@@ -21,11 +22,20 @@ public class UIProgramMachineInfoPanel : MonoBehaviour
         machineDescription.text = machine.description;
         machineStatus.text = machine.GetStatus();
         
-        upgradePrice.text = machine.GetUpgradePrice().ToString();
-        upgradePrice.color = machine.CanAffordUpgrade() ? Color.yellow : Color.red;
-        upgradeButton.interactable = machine.CanAffordUpgrade();
         
-        sellPrice.text = machine.GetSellPrice().ToString();
+        if(!currentMachine.MaxUpgradeLevelReached()){
+            upgradePrice.text = $"-{machine.GetUpgradePrice().ToString()}";
+            upgradePrice.color = machine.CanAffordUpgrade() ? Color.yellow : Color.red;
+            upgradeButton.interactable = machine.CanAffordUpgrade();
+        }
+        else
+        {
+            upgradePrice.color = Color.grey;
+            upgradePrice.text = "Max Upgraded";
+            upgradeButton.interactable = false;
+        }
+        
+        sellPrice.text = $"+{machine.GetSellPrice().ToString()}";
     }
 
     private void OnDisable()
@@ -35,15 +45,18 @@ public class UIProgramMachineInfoPanel : MonoBehaviour
 
     public void CallUpgrade()
     {
-        if (currentMachine.CanAffordUpgrade())
+        if (currentMachine.CanAffordUpgrade() && !currentMachine.MaxUpgradeLevelReached())
         {
-            
+            currentMachine.Upgrade();
+            KickMachineInfo();
         }
     }
     
     public void CallSale()
     {
-        
+        GameInfoManager.Instance.AddMoney(currentMachine.GetSellPrice());
+        Destroy(currentMachine.gameObject);
+        programmingPanel.SetActive(false);
     }
     
     //After changing something kick it to update text

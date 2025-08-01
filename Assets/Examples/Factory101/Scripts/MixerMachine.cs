@@ -31,6 +31,11 @@ public class MixerMachine : Machine
         return "Mixer Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new NotImplementedException();
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

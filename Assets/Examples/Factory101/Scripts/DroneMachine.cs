@@ -48,6 +48,11 @@ public class DroneMachine : Machine
         return "Get Drone Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
     {

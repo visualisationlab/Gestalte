@@ -80,6 +80,11 @@ public class ExposeMachine : MonoBehaviour
     {
         return GetUpgradePrice() <= GameInfoManager.Instance.GetMoney();
     }
+
+    public bool MaxUpgradeLevelReached()
+    {
+        return machine.MaxUpgradeLevelReached();
+    }
     
     public int GetUpgradePrice()
     {
@@ -89,6 +94,11 @@ public class ExposeMachine : MonoBehaviour
     public int GetSellPrice()
     {
         return Mathf.RoundToInt(machine.basePrice * 0.4f);
+    }
+
+    public void Upgrade()
+    {
+        machine.UpgradeMachine();
     }
     
 }
