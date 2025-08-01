@@ -15,6 +15,7 @@ public class ToolSelectionManager : MonoBehaviour
         BuildWall,
         BuildMixer,
         BuildFurnace,
+        BuildSprayPaint
     }
 
     public Tool currentTool;
@@ -28,6 +29,7 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject mixerPrefab;
     public GameObject furnacePrefab;
+    public GameObject sprayPaintPrefab;
 
     [SerializeField] private List<BuyableMachineButton> toolButtons;
     public void Start()
@@ -62,6 +64,13 @@ public class ToolSelectionManager : MonoBehaviour
         SetTool(Tool.BuildFurnace, state);
         currentPlaceable = furnacePrefab;
         InstantiatePlaceable(furnacePrefab);
+    }
+    
+    public void SetToolSprayPaint(bool state)
+    {
+        SetTool(Tool.BuildSprayPaint, state);
+        currentPlaceable = sprayPaintPrefab;
+        InstantiatePlaceable(sprayPaintPrefab);
     }
 
     private void SetTool(Tool tool, bool state)

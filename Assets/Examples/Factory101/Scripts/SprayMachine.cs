@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 using TMPro;
 using UnityEngine.Events;
 
-public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>
+public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable
 {
     [Header("Detection & Output")]
     public SimpleSensor sensor;
@@ -143,4 +143,8 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
         return values[idx];
     }
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 }
