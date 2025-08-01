@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6393113123112361113}
-  - component: {fileID: 6269684352281370142}
   - component: {fileID: 14231735996583829}
   - component: {fileID: 359967777320930534}
   - component: {fileID: 6743653774778108128}
@@ -38,25 +37,6 @@ Transform:
   - {fileID: 3173754362116288232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6269684352281370142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847811442178103172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777d03f2dd5d11e4a8002d5bee7c9a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  script: 
-  basePrice: 0
-  baseUpgradePrice: 0
-  upgradedAmount: 0
-  maxUpgradeLevel: 0
-  sensor: {fileID: 0}
-  piston: {fileID: 0}
 --- !u!114 &14231735996583829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +54,7 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
-  piston: {fileID: 0}
+  piston: {fileID: 1423649234723977930}
 --- !u!114 &359967777320930534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,10 +68,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  description: Actuator Machine with build in Sensor.
+  description: Actuator Machine that is able to push and retract
   instructionPrompt: 
   script: 
-  machine: {fileID: 6269684352281370142}
+  machine: {fileID: 0}
 --- !u!61 &6743653774778108128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +106,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.12372744}
+  m_Offset: {x: -0.009414434, y: -0.007612705}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -136,7 +116,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2620113, y: 1.5094662}
+  m_Size: {x: 1.1427588, y: 0.9257541}
   m_EdgeRadius: 0
 --- !u!1 &1526376902810555525
 GameObject:
@@ -276,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 1629351906405262404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: 0}
+  m_LocalPosition: {x: 0, y: 0.444, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -325,7 +305,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.91849303, b: 1, a: 1}
   m_FlipX: 0
@@ -467,7 +447,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 1639613305, guid: c8502b7191b7e5248ba24c1ada72f3b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
