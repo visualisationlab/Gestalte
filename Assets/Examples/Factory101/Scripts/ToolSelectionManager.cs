@@ -8,7 +8,10 @@ public class ToolSelectionManager : MonoBehaviour
     public enum Tool
     {
         None,
-        BuildConveyor
+        BuildConveyor,
+        BuildWall,
+        BuildMixer,
+        BuildFurnace,
     }
 
     public Tool currentTool;
@@ -19,6 +22,9 @@ public class ToolSelectionManager : MonoBehaviour
     [Header("Placeable Prefabs")]
     public GameObject buildToolGhost;
     public GameObject conveyorBelt;
+    public GameObject wallPrefab;
+    public GameObject mixerPrefab;
+    public GameObject furnacePrefab;
 
     public void Start()
     {
@@ -31,7 +37,28 @@ public class ToolSelectionManager : MonoBehaviour
         currentPlaceable = conveyorBelt;
         InstantiatePlaceable(conveyorBelt);
     }
-    
+
+    public void SetToolWall(bool state)
+    {
+        SetTool(Tool.BuildWall, state);
+        currentPlaceable = wallPrefab;
+        InstantiatePlaceable(wallPrefab);
+    }
+
+    public void SetToolMixer(bool state)
+    {
+        SetTool(Tool.BuildMixer, state);
+        currentPlaceable = mixerPrefab;
+        InstantiatePlaceable(mixerPrefab);
+    }
+
+    public void SetToolFurnace(bool state)
+    {
+        SetTool(Tool.BuildFurnace, state);
+        currentPlaceable = furnacePrefab;
+        InstantiatePlaceable(furnacePrefab);
+    }
+
     private void SetTool(Tool tool, bool state)
     {
         if (!state)

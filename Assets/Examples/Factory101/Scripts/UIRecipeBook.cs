@@ -57,13 +57,22 @@ public class UIRecipeBook : MonoBehaviour
 
     public void SetRecipeInfo(Recipe recipe)
     {
+        if (recipe == null || recipe.result == null) return;
+
         resultIcon.text = recipe.result.singleEmoji;
         resultName.text = recipe.result.name;
-        resultInfo.text = "TODO Set INFO";
+
+        // Show the short description, with a fallback
+        string shortDesc = string.IsNullOrWhiteSpace(recipe.result.shortDescription)
+            ? "No description available."
+            : recipe.result.shortDescription;
+
+        // Optionally append some extra info (remove if you only want the flavor text)
+        resultInfo.text = $"{shortDesc}\nRarity: {recipe.result.normalizedRarity:P0}\nHeat Resistance: {recipe.result.normalizedHeatResistance:P0}";
 
         oneIcon.text = recipe.inputOne.singleEmoji;
         oneInfo.text = recipe.inputOne.name;
-        
+
         twoIcon.text = recipe.inputTwo.singleEmoji;
         twoInfo.text = recipe.inputTwo.name;
     }

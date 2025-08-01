@@ -10,7 +10,7 @@ public class ConsumeMachine : MonoBehaviour
             
             //Calculate Sale price
             
-            int price = mcGibble.description.salePrice;
+            int price = mcGibble.GetCurrentSalePrice();
             McGibbleTracker.Instance.Remove(mcGibble);
             GameInfoManager.Instance.AddMoney(price);
         }
