@@ -530,6 +530,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
   recipeList: []
   recipeMessage: {fileID: 3350733236888070936}
+  fallbackDescriptions: {fileID: 11400000, guid: 596522edb3155d74dbcdf2f41af8503a, type: 2}
 --- !u!4 &297923628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8001126050422486681, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
