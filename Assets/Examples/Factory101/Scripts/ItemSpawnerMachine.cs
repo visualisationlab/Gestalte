@@ -11,12 +11,16 @@ public class ItemSpawnerMachine : Machine, IBuyable
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mcGibbleTemplate;
     [SerializeField] private RecipeScriptableObject startRecipe;
+    
+    //Dig rate
     [SerializeField] private float digRate;
+    private float maxDigRate = 1.0f;
+
+    //Placement Spread
     private Vector3 spread;
     private float placementSpread = 0.5f;
     private float minPlacementSpread = 0.1f;
     private float maxPlacementSpread = 0.5f;
-    private float maxDigRate = 1.0f;
 
     public int GetPrice()
     {
