@@ -23,18 +23,21 @@ public class RobotAgent : MonoBehaviour
     // internal queue of pending requests
     private Queue<RobotRequest> _pending = new();
     private float               _timeoutDeadline;
-
-    private void Start()
-    {
-        // _ = player2Npc.SpawnNpcAsync(composedPreprompt);
-    }
     
-    public async Task<string> SendMessageDirectMachine(ExposeMachine machine)
+    public async Task<RobotAgentResponse> SendMessageDirectMachine(ExposeMachine machine)
     {
         var systemMessage = preprompt + RobotAgentResponse.Format();
         var message = BuildInstructions(machine);
         string response = await directAPI.SendMessageAsync(systemMessage, message);
-        return response;
+        
+        string json = ExtractJson(response);
+        if (!string.IsNullOrEmpty(json))
+        {
+            var resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
+            return resp;
+        }
+
+        return null;
     }
     
     /// <summary>
@@ -91,7 +94,7 @@ public class RobotAgent : MonoBehaviour
         var completed = _pending.Dequeue();
         Debug.Log($"[RobotAgent] Response for “{completed.machine.name}”: {response.message}");
 
-        // extract & apply
+        // extract & apply 
         string json = ExtractJson(response.message);
         if (!string.IsNullOrEmpty(json))
         {
@@ -110,7 +113,6 @@ public class RobotAgent : MonoBehaviour
         if (_pending.Count > 0)
             SendCurrent();
     }
-
     private void SendCurrent()
     {
         var current = _pending.Peek();

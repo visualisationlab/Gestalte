@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class MachineSelectionManager : MonoBehaviour
 {
-    public UnityEvent<string> OnMachineSelectedDescription;
+    public UnityEvent<string, string> OnMachineSelectedDescription;
     public UnityEvent OnMachineDeSelected;
     public UnityEvent<string> OnMachineHoverDescription;
     public UnityEvent OnMachineHoverOut;
@@ -32,7 +32,7 @@ public class MachineSelectionManager : MonoBehaviour
         var machine = go.GetComponent<ExposeMachine>();
         if (machine == null) return;
         selectedMachine = machine;
-        OnMachineSelectedDescription.Invoke(machine.GetFullDescription());
+        OnMachineSelectedDescription.Invoke(machine.name, machine.GetFullDescription());
         OnMachineSelectedInstruction.Invoke(machine.instructionPrompt);
     }
 
@@ -52,6 +52,11 @@ public class MachineSelectionManager : MonoBehaviour
     public async void SendInstructions(string message)
     {
         var response = await agent.SendMessageDirectMachine(selectedMachine);
+        
+        if(selectedMachine){
+            selectedMachine.instructionPrompt = message;
+            selectedMachine.SetScript(response.Lua);
+        }
         Debug.Log($"Programming RESPONSE {response}");
     }
 }

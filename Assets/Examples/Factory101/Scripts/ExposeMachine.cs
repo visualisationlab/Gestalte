@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class ExposeMachine : MonoBehaviour
 {
+    public string name;
     [TextArea] public string description;
     [TextArea] public string instructionPrompt;
     [TextArea (3,12)] public string script;

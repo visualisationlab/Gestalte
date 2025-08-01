@@ -12,5 +12,10 @@ public class UIProgramInstructionScreen : MonoBehaviour
     {
         machineSelectionManager.SendInstructions(inputConsole.text);
     }
+
+    public void SetInstructions(string instructions)
+    {
+        inputConsole.text = instructions;
+    }
     
 }
