@@ -905,6 +905,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861552916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1460563077839023415, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+  m_PrefabInstance: {fileID: 1893625766581583705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925e6e8a547b03646bc780797a076711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &916195954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1328,6 +1339,11 @@ MonoBehaviour:
   wallPrefab: {fileID: 3706914393261246451, guid: caace5c0ca27d1f4b8ed3a67d7e02107, type: 3}
   mixerPrefab: {fileID: 1012756902188761674, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
   furnacePrefab: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+  toolButtons:
+  - {fileID: 861552916}
+  - {fileID: 1893625766581583709}
+  - {fileID: 1893625766581583707}
+  - {fileID: 1893625766581583706}
 --- !u!4 &1148703150
 Transform:
   m_ObjectHideFlags: 0
@@ -1625,6 +1641,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8110125468497852100}
         m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
         m_MethodName: KickMachineInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1148703149}
+        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
+        m_MethodName: SetBuyableButtonStates
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3638,6 +3666,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+--- !u!114 &1893625766581583706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1944543445080374780, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+  m_PrefabInstance: {fileID: 1893625766581583705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925e6e8a547b03646bc780797a076711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1893625766581583707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4752663522047019926, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+  m_PrefabInstance: {fileID: 1893625766581583705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925e6e8a547b03646bc780797a076711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1893625766581583709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 429817011568995148, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+  m_PrefabInstance: {fileID: 1893625766581583705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925e6e8a547b03646bc780797a076711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1922919377467222983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7273,10 +7334,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7001993857030206847, guid: f80709d2357bac840812071ca7001186, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f80709d2357bac840812071ca7001186, type: 3}
 --- !u!212 &6969884566428704258
 SpriteRenderer:

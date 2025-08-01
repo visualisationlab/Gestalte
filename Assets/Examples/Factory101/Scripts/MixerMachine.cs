@@ -7,7 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Events;
 
-public class MixerMachine : Machine
+public class MixerMachine : Machine, IBuyable
 {
     public SimpleSensor sensorOne;
     public SimpleSensor sensorTwo;
@@ -85,4 +85,8 @@ public class MixerMachine : Machine
         if (tickRate == 0) tickRate = Int32.MaxValue;
     }
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 }

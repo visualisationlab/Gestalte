@@ -1,6 +1,8 @@
 using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using Examples.Factory101.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolSelectionManager : MonoBehaviour
 {
@@ -26,18 +28,21 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject mixerPrefab;
     public GameObject furnacePrefab;
 
+    [SerializeField] private List<BuyableMachineButton> toolButtons;
+
     public void Start()
     {
         ResetTool();
+        SetBuyableButtonStates();
     }
-
+    
     public void SetToolConveyor(bool state)
     {
         SetTool(Tool.BuildConveyor, state);
         currentPlaceable = conveyorBelt;
         InstantiatePlaceable(conveyorBelt);
     }
-
+    
     public void SetToolWall(bool state)
     {
         SetTool(Tool.BuildWall, state);
@@ -89,5 +94,18 @@ public class ToolSelectionManager : MonoBehaviour
         var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
         ghost.SetPlaceablePrefab(placeablePrefab);
         toolInputController.OnClickedOutside.AddListener(ghost.PlaceCurrent);
+    }
+    
+    public void SetBuyableButtonStates()
+    {
+        foreach (var tool in toolButtons)
+        {
+            var toggle = tool.GetComponent<Toggle>();
+            toggle.interactable = false;
+            if (tool.BuyableReference.GetPrice() < GameInfoManager.Instance.GetMoney())
+            {//can buy
+                toggle.interactable = true;
+            }
+        }
     }
 }
