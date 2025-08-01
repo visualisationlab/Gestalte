@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -49,14 +51,25 @@ public class MachineSelectionManager : MonoBehaviour
         }
     }
 
-    public async void SendInstructions(string message)
+    public async Task SendInstructions(string message)
     {
-        var response = await agent.SendMessageDirectMachine(selectedMachine);
-        
-        if(selectedMachine){
-            selectedMachine.instructionPrompt = message;
-            selectedMachine.SetScript(response.Lua);
+        if (selectedMachine == null)
+        {
+            Debug.LogError("No machine selected.");
+            return;
         }
-        Debug.Log($"Programming RESPONSE {response}");
+
+        selectedMachine.instructionPrompt = message;
+
+        try
+        {
+            var response = await agent.SendMessageDirectMachine(selectedMachine);
+            selectedMachine.SetScript(response.Lua);
+            Debug.Log($"Programming RESPONSE {response}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to send instructions: {e.Message}");
+        }
     }
 }

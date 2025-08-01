@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -13,16 +14,17 @@ public class RobotAgent : MonoBehaviour
     {
         var systemMessage = preprompt + RobotAgentResponse.Format();
         var message = BuildInstructions(machine);
-        string response = await directAPI.SendMessageAsync(systemMessage, message);
-        
-        string json = ExtractJson(response);
-        if (!string.IsNullOrEmpty(json))
-        {
-            var resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
-            return resp;
-        }
+        string response = await directAPI.SendMessageAsync(systemMessage, message); // may throw
 
-        return null;
+        string json = ExtractJson(response);
+        if (string.IsNullOrEmpty(json))
+            throw new Exception("No JSON block found in assistant response.");
+
+        var resp = JsonConvert.DeserializeObject<RobotAgentResponse>(json);
+        if (resp == null)
+            throw new Exception("Deserialized RobotAgentResponse was null.");
+
+        return resp;
     }
 
     private string BuildInstructions(ExposeMachine machine)

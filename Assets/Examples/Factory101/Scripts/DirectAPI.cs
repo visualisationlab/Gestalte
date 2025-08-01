@@ -50,7 +50,7 @@ public class DirectAPI : MonoBehaviour
                 new(userMessage,   "user")
             },
         };
-        
+
         string jsonPayload = JsonConvert.SerializeObject(payload);
 
         using (UnityWebRequest request = new UnityWebRequest(apiUrl, "POST"))
@@ -61,26 +61,32 @@ public class DirectAPI : MonoBehaviour
             request.SetRequestHeader("Content-Type", "application/json");
 
             var asyncOp = request.SendWebRequest();
-
             while (!asyncOp.isDone)
                 await Task.Yield();
 
-            if (request.result == UnityWebRequest.Result.Success)
+            if (request.result != UnityWebRequest.Result.Success)
             {
-                string json = request.downloadHandler.text;
-                
-                // Parse to object
-                APIResponse parsed = JsonConvert.DeserializeObject<APIResponse>(json);
-                string assistantReply = parsed.choices?[0]?.message?.content;
+                throw new Exception($"Network error: {request.error} (Code: {request.responseCode})");
+            }
 
-                Debug.Log("✅ Assistant says: " + assistantReply);
-                return assistantReply;
-            }
-            else
+            string json = request.downloadHandler.text;
+
+            APIResponse parsed;
+            try
             {
-                Debug.LogError($"❌ Error: {request.error} | Code: {request.responseCode}");
-                return null;
+                parsed = JsonConvert.DeserializeObject<APIResponse>(json);
             }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to parse API response JSON: {ex.Message} | Raw: {json}");
+            }
+
+            string assistantReply = parsed?.choices?[0]?.message?.content;
+            if (string.IsNullOrEmpty(assistantReply))
+                throw new Exception("Assistant reply was missing or empty.");
+
+            Debug.Log("✅ Assistant says: " + assistantReply);
+            return assistantReply;
         }
     }
 
