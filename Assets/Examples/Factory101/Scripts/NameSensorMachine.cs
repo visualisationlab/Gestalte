@@ -25,7 +25,7 @@ public class NameSensorMachine : Machine
     {
         Debug.Log(instruction);
         Debug.Log(sensor.nameDetected);
-        oracle.SendMessage(instruction + ": "+sensor.nameDetected, OnResponseTranslation);
+        // oracle.SendMessage(instruction + ": "+sensor.nameDetected, OnResponseTranslation);
     }
 
     public void OnResponseTranslation(string response)
