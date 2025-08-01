@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc3ef7fc25841a09b5ecde4373bdeb0, type: 3}
+  m_Name: FallbackDescriptions
+  m_EditorClassIdentifier: 
+  descriptions:
+  - name: Zorgbuf
+    normalizedRarity: 0.2
+    singleEmoji: "\U0001F442"
+    normalizedHeatResistance: 0.4
+    uniqueCreated: 0
+    raritySalePrice: 0
+    shortDescription: Zorgbuf is stubborn. Zorgbuf is life. Dog is God spelled backwards.
+    descriptions:
+  - name: Pyroklast
+    normalizedRarity: 0.8
+    singleEmoji: "\U0001F525"
+    normalizedHeatResistance: 1.0
+    uniqueCreated: 3
+    raritySalePrice: 950
+    shortDescription: Pyroklast thrives in flame and turns obstacles into embers; it’s not burned, it’s upgraded.
+  - name: Glacialyn
+    normalizedRarity: 0.5
+    singleEmoji: "\U0001F9CA"
+    normalizedHeatResistance: 0.1
+    uniqueCreated: 1
+    raritySalePrice: 420
+    shortDescription: Cool-headed strategist; her calm freezes chaos and makes enemies reconsider their plans.
+  - name: Vortexie
+    normalizedRarity: 0.65
+    singleEmoji: "\U0001F300"
+    normalizedHeatResistance: 0.6
+    uniqueCreated: 2
+    raritySalePrice: 680
+    shortDescription: A swirling anomaly that pulls ideas, luck, and small objects into its orbit—chaos with purpose.
+  - name: Snailforge
+    normalizedRarity: 0.3
+    singleEmoji: "\U0001F40C"
+    normalizedHeatResistance: 0.7
+    uniqueCreated: 0
+    raritySalePrice: 150
+    shortDescription: Slow but relentless; heat builds beneath its shell and tempers resolve over time.
+  - name: Neonquill
+    normalizedRarity: 0.4
+    singleEmoji: "\U0001F4DD"
+    normalizedHeatResistance: 0.2
+    uniqueCreated: 4
+    raritySalePrice: 310
+    shortDescription: Writes the future in glowing ink; ideas stick and haunt competitors long after the page is closed.
+  - name: Ironbark
+    normalizedRarity: 0.7
+    singleEmoji: "\U0001F333"
+    normalizedHeatResistance: 0.9
+    uniqueCreated: 5
+    raritySalePrice: 800
+    shortDescription: Roots cut deep, bark like alloy; withstands pressure and heat while silently growing influence.
+  - name: Fluxsprite
+    normalizedRarity: 0.55
+    singleEmoji: "\U0001F300"
+    normalizedHeatResistance: 0.5
+    uniqueCreated: 2
+    raritySalePrice: 570
+    shortDescription: Ever-shifting, unpredictable ally; energy flows through it and realigns small outcomes.
+  - name: Quasarix
+    normalizedRarity: 0.9
+    singleEmoji: "\U0001F52E"
+    normalizedHeatResistance: 0.85
+    uniqueCreated: 1
+    raritySalePrice: 1200
+    shortDescription: A cosmic beacon; its presence warps attention and makes rare opportunities flare briefly.
+  - name: Emberwisp
+    normalizedRarity: 0.35
+    singleEmoji: "\U0001F32A"
+    normalizedHeatResistance: 0.95
+    uniqueCreated: 7
+    raritySalePrice: 260
+    shortDescription: Tiny sparks that survive where others would die; persistence disguised as fragility.
+  - name: Steelmuse
+    normalizedRarity: 0.6
+    singleEmoji: "\U0001F528"
+    normalizedHeatResistance: 0.8
+    uniqueCreated: 3
+    raritySalePrice: 540
+    shortDescription: Inspiration forged under pressure; delivers ideas with the weight of certainty.
+  - name: Mirageon
+    normalizedRarity: 0.45
+    singleEmoji: "\U0001F30A"
+    normalizedHeatResistance: 0.3
+    uniqueCreated: 2
+    raritySalePrice: 390
+    shortDescription: Illusionary guide—appears where needed, vanishes when expected; trust is optional, advantage is real.
+  - name: Frostcoil
+    normalizedRarity: 0.5
+    singleEmoji: "\U00002744"
+    normalizedHeatResistance: 0.15
+    uniqueCreated: 0
+    raritySalePrice: 450
+    shortDescription: Cold logic wrapped around flexible strategy; freezes counterplay before it starts.
+  - name: Thunderbloom
+    normalizedRarity: 0.85
+    singleEmoji: "\U0001F4A5"
+    normalizedHeatResistance: 0.65
+    uniqueCreated: 1
+    raritySalePrice: 1010
+    shortDescription: Explosive growth—strikes fast, then blossoms into something that echoes.
+  - name: Echoforge
+    normalizedRarity: 0.25
+    singleEmoji: "\U0001F50A"
+    normalizedHeatResistance: 0.55
+    uniqueCreated: 6
+    raritySalePrice: 210
+    shortDescription: Sound turned into substance; what you say comes back shaped into tools and warnings.
+  - name: Xrthak
+    normalizedRarity: 0.68
+    singleEmoji: "\U0001F528"
+    normalizedHeatResistance: 0.92
+    uniqueCreated: 1
+    raritySalePrice: 870
+    shortDescription: Metal memory of dead suns; resonance persists past salvage.
+  - name: Qelvrix
+    normalizedRarity: 0.47
+    singleEmoji: "\U0001F52E"
+    normalizedHeatResistance: 0.33
+    uniqueCreated: 4
+    raritySalePrice: 410
+    shortDescription: Fragmented whisper in unclaimed frequency space.
+  - name: Zyn3
+    normalizedRarity: 0.84
+    singleEmoji: "\U0001F4A8"
+    normalizedHeatResistance: 0.6
+    uniqueCreated: 2
+    raritySalePrice: 1120
+    shortDescription: Pulse archive replaying collapsed trajectory ripples.
+  - name: Hrrakel
+    normalizedRarity: 0.55
+    singleEmoji: "\U0001F300"
+    normalizedHeatResistance: 0.48
+    uniqueCreated: 3
+    raritySalePrice: 600
+    shortDescription: Field filaments harvesting stray momentum into erratic output.
+  - name: Tshar
+    normalizedRarity: 0.77
+    singleEmoji: "\U000026F0"
+    normalizedHeatResistance: 0.7
+    uniqueCreated: 1
+    raritySalePrice: 940
+    shortDescription: Gravity-worn plate rewriting micro-orbits silently.
+  - name: Ux9
+    normalizedRarity: 0.29
+    singleEmoji: "\U0001F4DD"
+    normalizedHeatResistance: 0.22
+    uniqueCreated: 5
+    raritySalePrice: 240
+    shortDescription: Recursive logic spindle seeding abandoned arrays.
+  - name: Kriq
+    normalizedRarity: 0.91
+    singleEmoji: "\U0001F4A4"
+    normalizedHeatResistance: 0.15
+    uniqueCreated: 0
+    raritySalePrice: 1310
+    shortDescription: Void thread consuming phase emissions into silence.
+  - name: Ezhvok
+    normalizedRarity: 0.52
+    singleEmoji: "\U0001F4E2"
+    normalizedHeatResistance: 0.5
+    uniqueCreated: 2
+    raritySalePrice: 480
+    shortDescription: Capsule of layered broadcasts with delayed directives.
+  - name: Syllix
+    normalizedRarity: 0.63
+    singleEmoji: "\U0001F30C"
+    normalizedHeatResistance: 0.58
+    uniqueCreated: 3
+    raritySalePrice: 690
+    shortDescription: Ruptured node bleeding unstable signal syntax.
+  - name: Vral
+    normalizedRarity: 0.36
+    singleEmoji: "\U0001F9B2"
+    normalizedHeatResistance: 0.81
+    uniqueCreated: 6
+    raritySalePrice: 340
+    shortDescription: Kinetic spine storing vector stress for metered release.
+  - name: Jexumir
+    normalizedRarity: 0.44
+    singleEmoji: "\U0001F4CB"
+    normalizedHeatResistance: 0.27
+    uniqueCreated: 4
+    raritySalePrice: 390
+    shortDescription: Shifting data shell answering unasked queries.
+  - name: Rhoq
+    normalizedRarity: 0.58
+    singleEmoji: "\U0001F30A"
+    normalizedHeatResistance: 0.43
+    uniqueCreated: 2
+    raritySalePrice: 560
+    shortDescription: Drift cluster producing transient glyph interference.
+  - name: Yltra
+    normalizedRarity: 0.82
+    singleEmoji: "\U0001F4BF"
+    normalizedHeatResistance: 0.89
+    uniqueCreated: 1
+    raritySalePrice: 1030
+    shortDescription: Memory lattice ghosting prior vector states.
+  - name: Naxith
+    normalizedRarity: 0.31
+    singleEmoji: "\U0001F50D"
+    normalizedHeatResistance: 0.19
+    uniqueCreated: 7
+    raritySalePrice: 210
+    shortDescription: Whisper lattice binding lost dialect fragments.
+  - name: Qorv
+    normalizedRarity: 0.69
+    singleEmoji: "\U0001F52C"
+    normalizedHeatResistance: 0.66
+    uniqueCreated: 2
+    raritySalePrice: 750
+    shortDescription: Phase plate smearing readings into probability glyphs.
+  - name: Zhultek
+    normalizedRarity: 0.26
+    singleEmoji: "\U0001F527"
+    normalizedHeatResistance: 0.72
+    uniqueCreated: 5
+    raritySalePrice: 260
+    shortDescription: Salvage scraper stripping metadata, leaving latency scars.
+  - name: Preevak
+    normalizedRarity: 0.53
+    singleEmoji: "\U0001F9E0"
+    normalizedHeatResistance: 0.35
+    uniqueCreated: 3
+    raritySalePrice: 500
+    shortDescription: Signal knot of overlapping frequencies needing unweaving.
+  - name: Lshori
+    normalizedRarity: 0.48
+    singleEmoji: "\U0001F4A5"
+    normalizedHeatResistance: 0.61
+    uniqueCreated: 2
+    raritySalePrice: 470
+    shortDescription: Drift spindle holding residual shock in loops.
+  - name: Krintaal
+    normalizedRarity: 0.9
+    singleEmoji: "\U0001F4AB"
+    normalizedHeatResistance: 0.2
+    uniqueCreated: 0
+    raritySalePrice: 1280
+    shortDescription: Collapsed echo warping nearby coherence.
+  - name: Vexu
+    normalizedRarity: 0.39
+    singleEmoji: "\U0001F9F1"
+    normalizedHeatResistance: 0.54
+    uniqueCreated: 6
+    raritySalePrice: 330
+    shortDescription: Layered relic links mutating context.  
+
+
