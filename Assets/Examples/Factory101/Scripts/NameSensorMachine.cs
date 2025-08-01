@@ -20,6 +20,11 @@ public class NameSensorMachine : Machine
         return "Name sensor Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void AfterSetScript()
     {
         luaScript.DoString(script);

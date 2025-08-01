@@ -33,6 +33,11 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
         return "Furnace Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new NotImplementedException();
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

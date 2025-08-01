@@ -25,6 +25,11 @@ public class ActuatorSensorMachine : Machine
         return "Get Actuator Sensor Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

@@ -31,6 +31,11 @@ public class ItemSpawnerMachine : Machine
         return "Item Spawner Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void AfterSetScript()
     {
         luaScript.DoString(script);

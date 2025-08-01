@@ -9,6 +9,7 @@ namespace Examples.Factory101.Scripts
         public Script luaScript;
         public int basePrice;
         public int baseUpgradePrice;
+        public int upgradedAmount;
         
         protected virtual void Awake()
         {
@@ -24,6 +25,7 @@ namespace Examples.Factory101.Scripts
 
         protected abstract void RegisterLua();
         public abstract string GetStatus();
+        public abstract string UpgradeMachine();
 
         protected virtual void AfterSetScript()
         {

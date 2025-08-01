@@ -37,6 +37,11 @@ public class FilterMachine : Machine
         return "Filter Status";
     }
 
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
+    }
+
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
     {

@@ -4236,7 +4236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2103436544586261649, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6391551619600008990, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: machineSelectionManager
@@ -5486,7 +5486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3121121956691962434, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: baseUpgradePrice
-      value: 2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3789654927096468268, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_Name

@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SimpleSensorMachine : Machine
 {
@@ -32,6 +30,11 @@ public class SimpleSensorMachine : Machine
     public override string GetStatus()
     {
         return "Get Simple sensor Status";
+    }
+
+    public override string UpgradeMachine()
+    {
+        throw new System.NotImplementedException();
     }
 
     protected override void AfterSetScript()
