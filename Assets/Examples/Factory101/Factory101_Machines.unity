@@ -4215,6 +4215,10 @@ PrefabInstance:
       propertyPath: OnHoverInfo.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4753636874502142319, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2131494931, guid: 0c7f9c8a94152a3419ee2b7fb93d977b, type: 3}
     - target: {fileID: 4957780351869991077, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
