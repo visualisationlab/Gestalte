@@ -4,11 +4,15 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class SimpleSensorMachine : Machine
+public class SimpleSensorMachine : Machine, IBuyable
 {
     public SimpleSensor sensor;
     [SerializeField] private DraggableCableEnd cableEnd;
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
     IEnumerator ExecuteEverySecond()
     {
         while (true)

@@ -456,12 +456,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
-  basePrice: 0
+  basePrice: 50
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 3
   attractionArea: {fileID: 3406788919332087113}
   pullFraction: 0.1
+  velocityAccel: 10
 --- !u!61 &7636809624075154325
 BoxCollider2D:
   m_ObjectHideFlags: 0

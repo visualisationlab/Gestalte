@@ -7,7 +7,6 @@ using UnityEngine;
 public class SimpleActuator : Machine, IBuyable
 {
     public ActuatorPiston piston;
-    public int basePrice = 50;
 
     public int GetPrice()
     {

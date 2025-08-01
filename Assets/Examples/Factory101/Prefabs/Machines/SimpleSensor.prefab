@@ -778,6 +778,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
+  basePrice: 50
+  baseUpgradePrice: 0
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   sensor: {fileID: 6732603270680970889}
   cableEnd: {fileID: 4893170322171532647}
 --- !u!114 &6194043042087535073

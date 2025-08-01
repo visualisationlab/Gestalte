@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
   description: This is a filter machine that can whitelist items
   instructionPrompt: 
   script: 
@@ -112,6 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
+  basePrice: 1000
+  baseUpgradePrice: 0
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   grabArea: {fileID: 418333943356805375}
   dropAreaCenter: {fileID: 3950596942472655754}
   dropRadius: 2

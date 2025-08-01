@@ -622,6 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
   description: This is a filter machine that can whitelist items
   instructionPrompt: 
   script: 
@@ -638,6 +639,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc9e969bae5ddcb429b73d104e253bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: 
+  basePrice: 200
+  baseUpgradePrice: 0
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   sensor: {fileID: 6133105396267097805}
   whitelistOutputPoint: {fileID: 3034349286868390582}
   blacklistOutputPoint: {fileID: 8313301816263041386}

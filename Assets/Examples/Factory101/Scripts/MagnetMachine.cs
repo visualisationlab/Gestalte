@@ -5,13 +5,18 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class MagnetMachine : Machine, IPulseReceiver<bool>
+public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float upgradePullMultiplier = 1.3f;
     public CircleCollider2D attractionArea;
     [SerializeField, Range(0f, 1f)] float pullFraction = 0.1f;
     [SerializeField] float velocityAccel = 10f; // how quickly the object chases the target velocity
+
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 
     private void Start()
     {
@@ -68,7 +73,6 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
         float worldRadius = attractionArea.radius * scale;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(magnetPos, worldRadius);
-        Debug.Log($"[MagnetMachine] OverlapCircleAll found {hits.Length} colliders (worldRadius={worldRadius:F2})");
 
         foreach (var col in hits)
         {
@@ -93,9 +97,7 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
             Vector2 desiredVelocity = toMagnet.normalized * (moveDistance / fixedDt);
 
             // Smoothly approach desired velocity
-            rb.linearVelocity = desiredVelocity * 0.1f;
-
-            Debug.Log($"[MagnetMachine] Pulling '{col.name}' toward magnet. TargetVel={desiredVelocity:F2}, NewVel={rb.linearVelocity:F2}");
+            rb.linearVelocity = desiredVelocity * 0.1f * (upgradedAmount + 1);
         }
     }
 

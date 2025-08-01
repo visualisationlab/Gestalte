@@ -6,7 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
 
-public class DroneMachine : Machine
+public class DroneMachine : Machine, IBuyable
 {
     public MultiSimpleSensor grabArea;
     public Transform dropAreaCenter;
@@ -21,6 +21,11 @@ public class DroneMachine : Machine
     private List<DroneWorker> dronePool = new();
     private Queue<DroneWorker> availableDrones = new();
     private HashSet<GameObject> claimedGibbles = new();
+
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 
     private void Start()
     {

@@ -6,7 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
 
-public class FilterMachine : Machine
+public class FilterMachine : Machine, IBuyable
 {
     public MultiSimpleSensor sensor;
     public Transform whitelistOutputPoint;
@@ -19,6 +19,10 @@ public class FilterMachine : Machine
     protected int minSalePrice = -1;
     protected bool priceFilterSet = false;
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
 
     private void Start()
     {

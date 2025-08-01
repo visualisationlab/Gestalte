@@ -6,7 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ItemSpawnerMachine : Machine
+public class ItemSpawnerMachine : Machine, IBuyable
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mcGibbleTemplate;
@@ -14,6 +14,10 @@ public class ItemSpawnerMachine : Machine
     [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
     
+    public int GetPrice()
+    {
+        return basePrice;
+    }
     public void Start()
     {
         StartCoroutine(ExecuteEverySecond());

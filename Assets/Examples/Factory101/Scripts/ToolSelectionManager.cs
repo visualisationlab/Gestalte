@@ -17,7 +17,12 @@ public class ToolSelectionManager : MonoBehaviour
         BuildFurnace,
         BuildSprayPaint,
         BuildSplitterConveyor,
-        BuildActuator
+        BuildActuator,
+        BuildExcavator,
+        BuildFilter,
+        BuildDrone,
+        BuildMagnet,
+        BuildSensor
     }
 
     public Tool currentTool;
@@ -34,6 +39,11 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject sprayPaintPrefab;
     public GameObject splitterConveyorPrefab;
     public GameObject actuatorPrefab;
+    public GameObject excavatorPrefab;
+    public GameObject filterPrefab;
+    public GameObject dronePrefab;
+    public GameObject magnetPrefab;
+    public GameObject sensorPrefab;
 
     [SerializeField] private List<BuyableMachineButton> toolButtons;
     public void Start()
@@ -76,6 +86,42 @@ public class ToolSelectionManager : MonoBehaviour
         currentPlaceable = mixerPrefab;
         InstantiatePlaceable(mixerPrefab);
     }
+
+    public void SetToolExcavator(bool state)
+    {
+        SetTool(Tool.BuildExcavator, state);
+        currentPlaceable = excavatorPrefab;
+        InstantiatePlaceable(excavatorPrefab);
+    }
+
+    public void SetToolFilter(bool state)
+    {
+        SetTool(Tool.BuildFilter, state);
+        currentPlaceable = filterPrefab;
+        InstantiatePlaceable(filterPrefab);
+    }
+
+    public void SetToolDrone(bool state)
+    {
+        SetTool(Tool.BuildDrone, state);
+        currentPlaceable = dronePrefab;
+        InstantiatePlaceable(dronePrefab);
+    }
+
+    public void SetToolMagnet(bool state)
+    {
+        SetTool(Tool.BuildMagnet, state);
+        currentPlaceable = magnetPrefab;
+        InstantiatePlaceable(magnetPrefab);
+    }
+
+    public void SetToolSensor(bool state)
+    {
+        SetTool(Tool.BuildSensor, state);
+        currentPlaceable = sensorPrefab;
+        InstantiatePlaceable(sensorPrefab);
+    }
+    
 
     public void SetToolFurnace(bool state)
     {
