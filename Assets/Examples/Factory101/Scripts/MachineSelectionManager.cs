@@ -61,15 +61,7 @@ public class MachineSelectionManager : MonoBehaviour
 
         selectedMachine.instructionPrompt = message;
 
-        try
-        {
-            var response = await agent.SendMessageDirectMachine(selectedMachine);
-            selectedMachine.SetScript(response.Lua);
-            Debug.Log($"Programming RESPONSE {response}");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to send instructions: {e.Message}");
-        }
+        var response = await agent.SendMessageDirectMachine(selectedMachine); // exceptions bubble
+        selectedMachine.SetScript(response.Lua);
     }
 }
