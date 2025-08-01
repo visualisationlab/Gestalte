@@ -15,3 +15,9 @@ MonoBehaviour:
   referenceList:
   - key: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
     value: {fileID: 5487005871635467567, guid: 25aba91282857754f99c1465bdb08a49, type: 3}
+  - key: {fileID: 3706914393261246451, guid: caace5c0ca27d1f4b8ed3a67d7e02107, type: 3}
+    value: {fileID: 5487005871635467567, guid: d5db5b03f3df5ae4a873b9ac90c59fea, type: 3}
+  - key: {fileID: 1012756902188761674, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
+    value: {fileID: 5487005871635467567, guid: a9fb7d357fada664d9ba0139d93648c0, type: 3}
+  - key: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+    value: {fileID: 5487005871635467567, guid: 8176c3bcb6830d64a85ba3fc3e623dbd, type: 3}
