@@ -173,8 +173,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 1000
-  m_AngularDamping: 1000
+  m_LinearDamping: 1
+  m_AngularDamping: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -199,6 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGrid: 0
+  keepsOffset: 0
   noRotation: 0
   rotationSpeed: 720
   rotationOffset: 0
@@ -215,15 +217,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbac26222df26c04fa80e1f66389b579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: "\U0001F40D"
-  salePrice: 1
-  gibbleType: "\U0001F40D"
-  heat: 0
   description:
-    salePrice: 1
-    gibbleType: "\U0001F40D"
-    heat: 0
+    name: 
+    normalizedRarity: 0
+    singleEmoji: 
+    normalizedHeatResistance: 0
+    uniqueCreated: 0
+    raritySalePrice: 0
+    shortDescription: 
+  heat: 0
+  sprayColor: {r: 1, g: 1, b: 1, a: 1}
+  finishType: 0
+  matFinishMultiplier: 1
+  shinyFinishMultiplier: 1.5
+  metallicFinishMultiplier: 2
+  glossyFinishMultiplier: 3
+  pearlFinishMultiplier: 4
+  galacticFinishMultiplier: 10
+  unknownFinishMultiplier: 1
   txt: {fileID: 5876177727445651328}
+  frozenMultiplier: 1
+  normalMultiplier: 1
+  warmMultiplier: 1.2
+  hotMultiplier: 2.5
+  crispyMultiplier: 10
+  burntMultiplier: 0.5
+  unknownMultiplier: 1
 --- !u!1 &4716656318425115736
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,21 +36,22 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
         pullFraction = Mathf.Clamp01(pullFraction * upgradePullMultiplier);
         return $"Magnet upgraded! New pull fraction: {pullFraction}";
     }
-    // private void FixedUpdate()
-    // {
-    //     // if “alwaysPull” OR we have remaining pull time, do one tick of attract
-    //     if (alwaysPull || pullTimer > 0f)
-    //     {
-    //         Attract();
+    private void FixedUpdate()
+    {
+        Attract();
+        // // if “alwaysPull” OR we have remaining pull time, do one tick of attract
+        // if (alwaysPull || pullTimer > 0f)
+        // {
+        //     Attract();
 
-    //         // count down the timer if it’s active
-    //         if (!alwaysPull)
-    //         {
-    //             pullTimer -= Time.fixedDeltaTime;
-    //             if (pullTimer < 0f) pullTimer = 0f;
-    //         }
-    //     }
-    // }
+        //     // count down the timer if it’s active
+        //     if (!alwaysPull)
+        //     {
+        //         pullTimer -= Time.fixedDeltaTime;
+        //         if (pullTimer < 0f) pullTimer = 0f;
+        //     }
+        // }
+    }
 
     [ExposeMethod("Pull objects towards the magnet")]
     public void Attract()
@@ -92,7 +93,7 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
             Vector2 desiredVelocity = toMagnet.normalized * (moveDistance / fixedDt);
 
             // Smoothly approach desired velocity
-            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, desiredVelocity, velocityAccel * fixedDt);
+            rb.linearVelocity = desiredVelocity * 0.1f;
 
             Debug.Log($"[MagnetMachine] Pulling '{col.name}' toward magnet. TargetVel={desiredVelocity:F2}, NewVel={rb.linearVelocity:F2}");
         }
