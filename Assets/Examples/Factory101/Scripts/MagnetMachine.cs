@@ -10,7 +10,8 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float upgradePullMultiplier = 1.3f;
     public CircleCollider2D attractionArea;
-    [Range(0f, 1f)][SerializeField] private float pullFraction = 0.1f; // how much closer per pull
+    [SerializeField, Range(0f, 1f)] float pullFraction = 0.1f;
+    [SerializeField] float velocityAccel = 10f; // how quickly the object chases the target velocity
 
     private void Start()
     {
@@ -62,7 +63,6 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
 
         Vector2 magnetPos = transform.position;
 
-        // Convert local radius to world radius accounting for scaling
         float scale = Mathf.Max(attractionArea.transform.lossyScale.x, attractionArea.transform.lossyScale.y);
         float worldRadius = attractionArea.radius * scale;
 
@@ -71,7 +71,6 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
 
         foreach (var col in hits)
         {
-            // Prefer component-based check rather than tag, safer and less error-prone
             McGibble target = col.GetComponent<McGibble>();
             if (target == null)
                 continue;
@@ -85,12 +84,17 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>
             if (distance <= Mathf.Epsilon)
                 continue;
 
+            // Desired displacement this tick (same as before)
             float moveDistance = distance * pullFraction;
-            Vector2 newPos = rb.position + toMagnet.normalized * moveDistance;
 
-            // MovePosition should be used during physics steps; if this is called from outside FixedUpdate, it still queues it safely
-            rb.MovePosition(newPos);
-            Debug.Log($"[MagnetMachine] Pulled '{col.name}' closer by {moveDistance:F2} to {newPos}");
+            // Target velocity to achieve that displacement in one FixedUpdate
+            float fixedDt = Time.fixedDeltaTime;
+            Vector2 desiredVelocity = toMagnet.normalized * (moveDistance / fixedDt);
+
+            // Smoothly approach desired velocity
+            rb.linearVelocity = Vector2.MoveTowards(rb.linearVelocity, desiredVelocity, velocityAccel * fixedDt);
+
+            Debug.Log($"[MagnetMachine] Pulling '{col.name}' toward magnet. TargetVel={desiredVelocity:F2}, NewVel={rb.linearVelocity:F2}");
         }
     }
 

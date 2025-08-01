@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5294938897968147401}
   - component: {fileID: 6901346240625564894}
+  - component: {fileID: 3406788919332087113}
   m_Layer: 5
   m_Name: MagneticField
   m_TagString: Untagged
@@ -118,6 +119,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &3406788919332087113
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981044548936130960}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &1416110120200838364
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +289,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -422,11 +459,9 @@ MonoBehaviour:
   basePrice: 0
   baseUpgradePrice: 0
   upgradedAmount: 0
-  maxUpgradeLevel: 0
-  maxRange: 5
-  pullSpeed: 1
-  alwaysPull: 0
-  pullDuration: 1
+  maxUpgradeLevel: 3
+  attractionArea: {fileID: 3406788919332087113}
+  pullFraction: 0.1
 --- !u!61 &7636809624075154325
 BoxCollider2D:
   m_ObjectHideFlags: 0
