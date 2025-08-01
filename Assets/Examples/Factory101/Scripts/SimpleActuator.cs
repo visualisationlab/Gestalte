@@ -4,10 +4,15 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class SimpleActuator : Machine
+public class SimpleActuator : Machine, IBuyable
 {
     public ActuatorPiston piston;
+    public int basePrice = 50;
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
     public override string GetStatus()
     {
         return "Get Actuator Status";
