@@ -58,7 +58,7 @@ public class DirectAPI : MonoBehaviour
             byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonPayload);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
 
             var asyncOp = request.SendWebRequest();
             while (!asyncOp.isDone)

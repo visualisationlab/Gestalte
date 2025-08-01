@@ -35,7 +35,7 @@ public class Draggable : MonoBehaviour
 
     public virtual void StopDragging()
     {
-        Debug.Log("Stopped dragging: " + gameObject.name);
+        // Debug.Log("Stopped dragging: " + gameObject.name);
         isDragging = false;
     }
 
