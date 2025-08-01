@@ -46,7 +46,7 @@ public class FilterMachine : Machine, IBuyable
         return "Filter Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }

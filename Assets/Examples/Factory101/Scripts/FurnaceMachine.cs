@@ -33,7 +33,7 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
         return "Furnace Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new NotImplementedException();
     }

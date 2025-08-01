@@ -9,13 +9,13 @@ namespace Examples.Factory101.Scripts
         public Script luaScript;
         public int basePrice;
         public int baseUpgradePrice;
-        public int upgradedAmount;// The Upgraded Level
+        public int upgradeLevel = 1;// The Upgraded Level
         public int maxUpgradeLevel;
         [TextArea(3,12)] public string description;
 
         public bool MaxUpgradeLevelReached()
         {
-            return upgradedAmount >= maxUpgradeLevel;
+            return upgradeLevel >= maxUpgradeLevel;
         }
         
         protected virtual void Awake()
@@ -40,7 +40,7 @@ namespace Examples.Factory101.Scripts
 
         protected abstract void RegisterLua();
         public abstract string GetStatus();
-        public abstract string UpgradeMachine();
+        public abstract void UpgradeMachine();
 
         protected virtual void AfterSetScript()
         {

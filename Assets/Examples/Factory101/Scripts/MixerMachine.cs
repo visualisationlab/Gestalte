@@ -31,7 +31,7 @@ public class MixerMachine : Machine, IBuyable
         return "Mixer Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new NotImplementedException();
     }

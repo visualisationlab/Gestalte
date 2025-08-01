@@ -23,7 +23,7 @@ public class SimpleActuator : Machine, IBuyable
         return "Get Actuator Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }

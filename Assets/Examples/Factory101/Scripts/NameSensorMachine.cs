@@ -20,7 +20,7 @@ public class NameSensorMachine : Machine
         return "Name sensor Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }

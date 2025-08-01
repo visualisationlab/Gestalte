@@ -58,7 +58,7 @@ public class DroneMachine : Machine, IBuyable
         return "Get Drone Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }

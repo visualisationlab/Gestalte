@@ -36,7 +36,7 @@ public class SimpleSensorMachine : Machine, IBuyable
         return "Get Simple sensor Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }

@@ -11,9 +11,13 @@ public class ItemSpawnerMachine : Machine, IBuyable
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mcGibbleTemplate;
     [SerializeField] private RecipeScriptableObject startRecipe;
-    [SerializeField] private int tickRate;
-    private Vector3 tinyRandom;
-    
+    [SerializeField] private float digRate;
+    private Vector3 spread;
+    private float placementSpread = 0.5f;
+    private float minPlacementSpread = 0.1f;
+    private float maxPlacementSpread = 0.5f;
+    private float maxDigRate = 1.0f;
+
     public int GetPrice()
     {
         return basePrice;
@@ -28,7 +32,7 @@ public class ItemSpawnerMachine : Machine, IBuyable
     {
         StartCoroutine(ExecuteEverySecond());
     }
-    
+
     protected override void RegisterLua()
     {
         UserData.RegisterType<ItemSpawnerMachine>();
@@ -38,12 +42,29 @@ public class ItemSpawnerMachine : Machine, IBuyable
 
     public override string GetStatus()
     {
-        return "Item Spawner Status";
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetDigRate()} item(s)/s (max {GetMaxDigRate()})\n";
+        result += $"Spread: {placementSpread} (min {minPlacementSpread}, max {maxPlacementSpread})\n";
+        return result;
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
-        throw new NotImplementedException();
+        upgradeLevel++;
+        maxDigRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            _ => 1f // default case
+        };
+        
+        maxPlacementSpread = upgradeLevel switch
+        {
+            2 => 0.75f,
+            3 => 1f,
+            _ => 1f // default case
+        };
     }
 
     protected override void AfterSetScript()
@@ -56,23 +77,39 @@ public class ItemSpawnerMachine : Machine, IBuyable
         while (true)
         {
             SpawnItem();
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(1f / digRate);
         }
     }
 
-    [ExposeMethod("Sets the rate this machine spawns items at")]
-    public void SetSpawnRate(int rate)
+    [ExposeMethod("Sets how many items this machine digs up per second.")]
+    public void SetDigRate(float rate)
     {
-        tickRate = rate;
-        if (tickRate == 0) tickRate = Int32.MaxValue;
+        digRate = Mathf.Min(rate, maxDigRate);
+    }
+    
+    [ExposeMethod("Sets the size of the placement area.")]
+    public void SetPlacementSpread(float newSpread)
+    {
+        placementSpread = Mathf.Clamp(newSpread, minPlacementSpread, maxPlacementSpread);
     }
 
     private void SpawnItem()
     {
-        tinyRandom = new Vector3(Random.value, Random.value-0.5f, 0f);
-        var mcGibble = Instantiate(mcGibbleTemplate, spawnPoint.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
+        spread = new Vector3(Random.value, Random.value - placementSpread, 0f);
+        var mcGibble =
+            Instantiate(mcGibbleTemplate, spawnPoint.transform.position + spread, Quaternion.identity)
+                .GetComponent<McGibble>();
         mcGibble.description = startRecipe.recipe.result;
         McGibbleTracker.Instance.Add(mcGibble);
     }
-   
+
+    private string GetDigRate()
+    {
+        return digRate.ToString("0.0");
+    }
+
+    private string GetMaxDigRate()
+    {
+        return maxDigRate.ToString("0.0");
+    }
 }

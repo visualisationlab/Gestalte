@@ -41,10 +41,9 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable
         return "Magnet Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         pullFraction = Mathf.Clamp01(pullFraction * upgradePullMultiplier);
-        return $"Magnet upgraded! New pull fraction: {pullFraction}";
     }
     private void FixedUpdate()
     {
@@ -102,7 +101,7 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable
             Vector2 desiredVelocity = toMagnet.normalized * (moveDistance / fixedDt);
 
             // Smoothly approach desired velocity
-            rb.linearVelocity = desiredVelocity * 0.1f * (upgradedAmount + 1);
+            rb.linearVelocity = desiredVelocity * 0.1f * (upgradeLevel + 1);
         }
     }
 

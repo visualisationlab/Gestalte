@@ -117,7 +117,7 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
         lastNotifiedMcGibble = mcGibble;
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
 
         // Based on the current upgrade level we can change the spray finish type
@@ -128,11 +128,10 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
         else
         {
             finishType = GetNextFinishType(finishType);
-            this.upgradedAmount++;
+            this.upgradeLevel++;
         }
 
         Debug.Log($"SprayMachine upgraded to {finishType}");
-        return $"SprayMachine upgraded to {finishType}";
     }
     
     private FinishType GetNextFinishType(FinishType current)

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Agent;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIProgramInstructionScreen : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIProgramInstructionScreen : MonoBehaviour
     [SerializeField] UIMethodInstructionItem methodInstructionTemplate;
     [SerializeField] Transform methodInstructionView;
     [SerializeField] UIOnClick freezeClick;
+    [SerializeField] UnityEvent OnProgrammingDone;
 
     private List<UIMethodInstructionItem> placedMethodInstructions = new();
     
@@ -38,6 +40,7 @@ public class UIProgramInstructionScreen : MonoBehaviour
         {
             processingScreen.SetActive(false);
             freezeClick.enabled = true;
+            OnProgrammingDone.Invoke();
         }
     }
     

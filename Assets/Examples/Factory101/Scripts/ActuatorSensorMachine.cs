@@ -25,7 +25,7 @@ public class ActuatorSensorMachine : Machine
         return "Get Actuator Sensor Status";
     }
 
-    public override string UpgradeMachine()
+    public override void UpgradeMachine()
     {
         throw new System.NotImplementedException();
     }
