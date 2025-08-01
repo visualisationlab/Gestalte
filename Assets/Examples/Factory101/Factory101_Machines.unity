@@ -2301,7 +2301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6393113123112361113, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7273,7 +7273,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7001993857030206847, guid: f80709d2357bac840812071ca7001186, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f80709d2357bac840812071ca7001186, type: 3}
 --- !u!212 &6969884566428704258
 SpriteRenderer:
@@ -8296,7 +8299,7 @@ MonoBehaviour:
   description: This is spray machine and can apply color to an object
   instructionPrompt: 
   script: 
-  machine: {fileID: 9030671183738221586}
+  machine: {fileID: 0}
 --- !u!1 &8327135930212524319
 GameObject:
   m_ObjectHideFlags: 0

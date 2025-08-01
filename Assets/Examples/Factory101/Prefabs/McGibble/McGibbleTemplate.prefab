@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6905023778030106352}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 99
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.035777844, g: 0.10821206, b: 0.11320752, a: 1}
+  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.06
+  m_Radius: 0.08
 --- !u!50 &3801338706816645543
 Rigidbody2D:
   serializedVersion: 5
@@ -223,9 +223,26 @@ MonoBehaviour:
     singleEmoji: 
     normalizedHeatResistance: 0
     uniqueCreated: 0
-    salePrice: 1
+    raritySalePrice: 0
+    shortDescription: 
   heat: 30
+  sprayColor: {r: 1, g: 1, b: 1, a: 1}
+  finishType: 0
+  matFinishMultiplier: 1
+  shinyFinishMultiplier: 1.5
+  metallicFinishMultiplier: 2
+  glossyFinishMultiplier: 3
+  pearlFinishMultiplier: 4
+  galacticFinishMultiplier: 10
+  unknownFinishMultiplier: 1
   txt: {fileID: 5876177727445651328}
+  frozenMultiplier: 1
+  normalMultiplier: 1
+  warmMultiplier: 1.2
+  hotMultiplier: 2.5
+  crispyMultiplier: 10
+  burntMultiplier: 0.5
+  unknownMultiplier: 1
 --- !u!1 &4716656318425115736
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,15 +270,15 @@ RectTransform:
   m_GameObject: {fileID: 4716656318425115736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6905023778030106352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4.0988, y: 5}
+  m_AnchoredPosition: {x: 0.004, y: 0.0029}
+  m_SizeDelta: {x: 6.6256, y: 7.20732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8463917562137519287
 MeshRenderer:
@@ -328,7 +345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\U0001F40D"
+  m_text: "\U0001F99C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 765a5b9482b4c5f46aef66d8c2bcc4de, type: 2}
   m_sharedMaterial: {fileID: 4379661230960559022, guid: 765a5b9482b4c5f46aef66d8c2bcc4de, type: 2}
@@ -355,7 +372,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.25
+  m_fontSize: 52.15
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
