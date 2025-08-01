@@ -209,9 +209,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 660
-  baseUpgradePrice: 0
-  upgradedAmount: 0
-  maxUpgradeLevel: 0
+  baseUpgradePrice: 1000
+  upgradeLevel: 1
+  maxUpgradeLevel: 3
   description: 'Mixer
 
 
@@ -221,7 +221,6 @@ MonoBehaviour:
   mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}
   outputPort: {fileID: 7184578483554488546}
   mixing: 0
-  tickRate: 3
   onStartMixing:
     m_PersistentCalls:
       m_Calls:
@@ -252,6 +251,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  mixRate: 1
 --- !u!1 &1957183208665311044
 GameObject:
   m_ObjectHideFlags: 0

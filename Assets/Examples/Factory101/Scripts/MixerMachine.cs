@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Mediator;
@@ -6,6 +5,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.Events;
+using Coroutine = UnityEngine.Coroutine;
 
 public class MixerMachine : Machine, IBuyable
 {
@@ -14,31 +14,47 @@ public class MixerMachine : Machine, IBuyable
     public GameObject mcGibbleTemplate;
     public Transform outputPort;
     public bool mixing;
-    [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
     public UnityEvent onStartMixing;
     public UnityEvent onStopMixing;
+    
+    //Mix rate
+    [SerializeField] private float mixRate;
+    private float maxMixRate = 1f;
+
+    private Coroutine loopRoutine;
+
     protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
-        StartCoroutine(ExecuteEverySecond());
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 
     public override string GetStatus()
     {
-        return "Mixer Status";
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetDigRate()} item(s)/s (max {GetMaxDigRate()})\n";
+        return result;
     }
 
     public override void UpgradeMachine()
     {
-        throw new NotImplementedException();
+        upgradeLevel++;
+        maxMixRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            _ => 1f // default case
+        };
     }
 
     protected override void AfterSetScript()
     {
         ExecuteScript();
+        RestartCoroutine();
     }
 
     IEnumerator ExecuteEverySecond()
@@ -46,7 +62,7 @@ public class MixerMachine : Machine, IBuyable
         while (true)
         {
             Mix();
-            yield return new WaitForSeconds(tickRate);
+            yield return new WaitForSeconds(1f / mixRate);
         }
     }
     
@@ -63,6 +79,7 @@ public class MixerMachine : Machine, IBuyable
 
             McGibbleTracker.Instance.Remove(mcGibbleOne);
             McGibbleTracker.Instance.Remove(mcGibbleTwo);
+            Debug.Log("Mixing");
         }
     }
 
@@ -70,19 +87,16 @@ public class MixerMachine : Machine, IBuyable
     {
         mixing = false;
         onStopMixing?.Invoke();
-
         tinyRandom = new Vector3(Random.value-0.5f, 0f, 0f);
         var mcGibble = Instantiate(mcGibbleTemplate, outputPort.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
         mcGibble.description = recipe.result;
-        Debug.Log($"EJECT: {recipe.result.singleEmoji}");
     }
     
-    [ExposeMethod("Sets the speed this machine mixes items at")]
-    public void SetSpeed(int rate)
+    [ExposeMethod("Sets how many items this machine mixes up per second.")]
+    public void SetMixRate(float rate)
     {
-        tickRate = rate;
-        if (tickRate == 0) tickRate = Int32.MaxValue;
+        mixRate = Mathf.Min(rate, maxMixRate);
     }
 
     public int GetPrice()
@@ -93,5 +107,25 @@ public class MixerMachine : Machine, IBuyable
     public string GetDescription()
     {
         return description;
+    }
+    
+    private string GetDigRate()
+    {
+        return mixRate.ToString("0.0");
+    }
+
+    private string GetMaxDigRate()
+    {
+        return maxMixRate.ToString("0.0");
+    }
+    
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
+
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 }

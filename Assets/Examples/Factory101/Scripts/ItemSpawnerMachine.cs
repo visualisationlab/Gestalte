@@ -4,6 +4,7 @@ using Examples.Factory101.Scripts;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Coroutine = UnityEngine.Coroutine;
 using Random = UnityEngine.Random;
 
 public class ItemSpawnerMachine : Machine, IBuyable
@@ -11,6 +12,8 @@ public class ItemSpawnerMachine : Machine, IBuyable
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mcGibbleTemplate;
     [SerializeField] private RecipeScriptableObject startRecipe;
+    
+    private Coroutine loopRoutine;
     
     //Dig rate
     [SerializeField] private float digRate;
@@ -34,7 +37,7 @@ public class ItemSpawnerMachine : Machine, IBuyable
 
     public void Start()
     {
-        StartCoroutine(ExecuteEverySecond());
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 
     protected override void RegisterLua()
@@ -74,6 +77,7 @@ public class ItemSpawnerMachine : Machine, IBuyable
     protected override void AfterSetScript()
     {
         ExecuteScript();
+        RestartCoroutine();
     }
 
     IEnumerator ExecuteEverySecond()
@@ -115,5 +119,15 @@ public class ItemSpawnerMachine : Machine, IBuyable
     private string GetMaxDigRate()
     {
         return maxDigRate.ToString("0.0");
+    }
+    
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
+
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 }

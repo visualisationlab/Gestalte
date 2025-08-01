@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61fe4b18c0794e9555552f7144955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000
+  money: 1000000
   OnMoneyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -6185,10 +6185,6 @@ PrefabInstance:
     - target: {fileID: 1012756902188761674, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
       propertyPath: m_Name
       value: MixerMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1012756902188761674, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7432546330826806786, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
       propertyPath: m_LocalPosition.x

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 100000
-  baseUpgradePrice: 100
+  baseUpgradePrice: 1000
   upgradeLevel: 1
   maxUpgradeLevel: 3
   description: 'Excavator
