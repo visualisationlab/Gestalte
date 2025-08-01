@@ -17,17 +17,23 @@ MonoBehaviour:
       name: Ugo
       normalizedRarity: 0.1
       singleEmoji: "\U0001F40D"
-      salePrice: 1
-      heatResistance: 0
+      normalizedHeatResistance: 0
+      uniqueCreated: 0
+      raritySalePrice: 0
+      shortDescription: 
     inputTwo:
       name: Ugo
       normalizedRarity: 0.1
       singleEmoji: "\U0001F40D"
-      salePrice: 1
-      heatResistance: 0
+      normalizedHeatResistance: 0
+      uniqueCreated: 0
+      raritySalePrice: 0
+      shortDescription: 
     result:
       name: Yki
       normalizedRarity: 0.2
       singleEmoji: "\U0001F409"
-      salePrice: 1
-      heatResistance: 0
+      normalizedHeatResistance: 0
+      uniqueCreated: 0
+      raritySalePrice: 1
+      shortDescription: 

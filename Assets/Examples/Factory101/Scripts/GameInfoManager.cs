@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class GameInfoManager : MonoBehaviour
 {
-   private int money;
+   [SerializeField] private int money;
 
    public UnityEvent<int> OnMoneyUpdate;
    
@@ -24,7 +23,7 @@ public class GameInfoManager : MonoBehaviour
 
    private void Start()
    {
-      OnMoneyUpdate.Invoke(money);
+      OnMoneyUpdate?.Invoke(money);
    }
 
    public void AddMoney(int amount)
@@ -32,4 +31,10 @@ public class GameInfoManager : MonoBehaviour
       money += amount;
       OnMoneyUpdate.Invoke(money);
    }
+
+   public int GetMoney()
+   {
+      return money;
+   }
+   
 }

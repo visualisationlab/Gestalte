@@ -7,6 +7,8 @@ namespace Examples.Factory101.Scripts
     {
         [HideInInspector] public string script;
         public Script luaScript;
+        public int basePrice;
+        public int baseUpgradePrice;
         
         protected virtual void Awake()
         {

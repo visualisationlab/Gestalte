@@ -1704,6 +1704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61fe4b18c0794e9555552f7144955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
   OnMoneyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -1711,6 +1712,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UIGameInfoPanel, Assembly-CSharp
         m_MethodName: SetMoneyText
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8110125468497852100}
+        m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
+        m_MethodName: KickMachineInfo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4433,14 +4446,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5514823418859185682, guid: c42019c8fdbe97b47878296501091c30, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6391551619600008990, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: machineSelectionManager
       value: 
       objectReference: {fileID: 341204287}
+    - target: {fileID: 6975714702984332019, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7735914966742593902, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4519,10 +4532,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7735914966742593902, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8000801497086423270, guid: c42019c8fdbe97b47878296501091c30, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5683,6 +5692,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3121121956691962434, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
+      propertyPath: baseUpgradePrice
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3789654927096468268, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_Name
       value: ItemSpawnerMachine

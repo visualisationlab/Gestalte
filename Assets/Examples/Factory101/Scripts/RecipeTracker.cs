@@ -73,29 +73,23 @@ public class RecipeTracker : MonoBehaviour
         var message = $"{componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}.";
         var systemMessage =
             $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}";
-
-        var response = await oracleAgent.SendMessageDirect(systemMessage, message);
-
+        
         Recipe recipe = null;
-
-        if (string.IsNullOrWhiteSpace(response))
+        
+        try
         {
-            Debug.LogWarning("[RecipeTracker] Empty/null response from OracleAgent. Falling back.");
-            recipe = BuildFallbackRecipe(one, two);
-            callback(recipe);
-            return;
+            var response = await oracleAgent.SendMessageDirect(systemMessage, message);
+            recipe = OnResponseAddRecipe(new Recipe { inputOne = one, inputTwo = two }, response);
         }
-
-        recipe = OnResponseAddRecipe(new Recipe { inputOne = one, inputTwo = two }, response);
-        if (recipe == null || recipe.result == null)
+        catch (Exception e)
         {
-            Debug.LogWarning("[RecipeTracker] Parsed recipe invalid. Falling back.");
             recipe = BuildFallbackRecipe(one, two);
-            callback(recipe);
-            return;
+            Debug.LogError($"SendInstructions failed: {e.Message}");
         }
-
-        callback(recipe);
+        finally
+        {
+            callback(recipe);
+        }
     }
 
     public void OracleAgentReply(string message)
