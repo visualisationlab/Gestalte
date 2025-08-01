@@ -71,5 +71,4 @@ public class ExposeMachine : MonoBehaviour
         return description + "\nFunctions: \n" + methods;
     }
     
-    
 }

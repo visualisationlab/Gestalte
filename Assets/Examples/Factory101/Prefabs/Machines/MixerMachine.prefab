@@ -191,7 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Mixer
-  description: This is a mixer machine that mixes two items together
+  description: Mixes two McGibbles together. It has a <u>speed</u> dial that seems
+    programmable.
   instructionPrompt: 
   script: 
   machine: {fileID: 3907878998441751284}

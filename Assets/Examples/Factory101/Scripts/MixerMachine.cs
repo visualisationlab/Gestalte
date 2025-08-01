@@ -57,8 +57,8 @@ public class MixerMachine : Machine
         Debug.Log($"EJECT: {recipe.result.singleEmoji}");
     }
     
-    [ExposeMethod("Sets the rate this machine mixes items at")]
-    public void SetSpawnRate(int rate)
+    [ExposeMethod("Sets the speed this machine mixes items at")]
+    public void SetSpeed(int rate)
     {
         tickRate = rate;
         if (tickRate == 0) tickRate = Int32.MaxValue;

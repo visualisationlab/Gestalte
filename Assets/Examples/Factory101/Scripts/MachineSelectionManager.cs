@@ -18,7 +18,7 @@ public class MachineSelectionManager : MonoBehaviour
     {
         var machine = go.GetComponent<ExposeMachine>();
         if (machine == null) return;
-        OnMachineHoverDescription.Invoke(machine.GetFullDescription());
+        OnMachineHoverDescription.Invoke(machine.description);
         OnMachineHoverInstruction.Invoke(machine.instructionPrompt);
     }
     
@@ -32,7 +32,7 @@ public class MachineSelectionManager : MonoBehaviour
         var machine = go.GetComponent<ExposeMachine>();
         if (machine == null) return;
         selectedMachine = machine;
-        OnMachineSelectedDescription.Invoke(machine.name, machine.GetFullDescription());
+        OnMachineSelectedDescription.Invoke(machine.name, machine.description);
         OnMachineSelectedInstruction.Invoke(machine.instructionPrompt);
     }
 
