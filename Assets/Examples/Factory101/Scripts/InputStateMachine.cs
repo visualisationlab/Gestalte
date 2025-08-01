@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,7 +18,16 @@ public class InputStateMachine : MonoBehaviour
 
     private void Start()
     {
-        SetState(state);
+        StartCoroutine(DelayedEnable());
+    }
+    
+    
+    //UGLY Fix For Input Interact not always working from the very beginning
+    public IEnumerator DelayedEnable()
+    {
+        SetState(InputState.Build);
+        yield return new WaitForSeconds(.2f);
+        SetState(InputState.Interact);
     }
 
     public void SetInteractState()

@@ -10,7 +10,7 @@ public class UIProgramInstructionScreen : MonoBehaviour
 
     public void ProcessInput()
     {
-        
+        machineSelectionManager.SendInstructions(inputConsole.text);
     }
     
 }

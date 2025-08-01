@@ -39,22 +39,29 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
-        useAction = useActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
-        cancelAction = cancelActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+        useAction = useActionReference.action.Clone();
+        cancelAction = cancelActionReference.action.Clone();
         if (rotateActionReference != null)
         {
-            rotateAction = rotateActionReference.action.Clone(); //IT'S IMPORTANT TO MAKE CLONES OF THE REFERENCES!
+            rotateAction = rotateActionReference.action.Clone();
         }
     }
 
     private void OnEnable()
     {
-        useAction.started += OnUse;
-        useAction.canceled += OnUseCanceled;
-        useAction.Enable();
+        if (useAction != null)
+        {
+            useAction.started += OnUse;
+            useAction.canceled += OnUseCanceled;
+            useAction.Enable();
+        }
 
-        cancelAction.performed += OnCancel;
-        cancelAction.Enable();
+        if (cancelAction != null)
+        {
+            cancelAction.performed += OnCancel;
+            cancelAction.Enable();
+        }
+
         if (rotateAction != null)
         {
             rotateAction.started += OnRotate;
@@ -64,17 +71,31 @@ public class InputController : MonoBehaviour
 
     private void OnDisable()
     {
-        useAction.started -= OnUse;
-        useAction.canceled -= OnUseCanceled;
-        useAction.Disable();
-        
-        cancelAction.performed -= OnCancel;
-        cancelAction.Enable();
-        
-        if(rotateAction != null){
-            rotateAction.started -= OnRotate;
-            rotateAction.Enable();
+        if (useAction != null)
+        {
+            useAction.started -= OnUse;
+            useAction.canceled -= OnUseCanceled;
+            useAction.Disable();
         }
+
+        if (cancelAction != null)
+        {
+            cancelAction.performed -= OnCancel;
+            cancelAction.Disable();
+        }
+
+        if (rotateAction != null)
+        {
+            rotateAction.started -= OnRotate;
+            rotateAction.Disable();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        useAction?.Dispose();
+        cancelAction?.Dispose();
+        rotateAction?.Dispose();
     }
 
     public void Update()
