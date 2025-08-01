@@ -20,6 +20,11 @@ public class ActuatorSensorMachine : Machine
         luaScript.Globals["this"] = this;
     }
 
+    public override string GetStatus()
+    {
+        return "Get Actuator Sensor Status";
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

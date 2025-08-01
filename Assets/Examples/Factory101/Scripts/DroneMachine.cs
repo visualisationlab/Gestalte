@@ -42,7 +42,12 @@ public class DroneMachine : Machine
         luaScript = new Script();
         luaScript.Globals["this"] = this;
     }
-    
+
+    public override string GetStatus()
+    {
+        return "Get Drone Status";
+    }
+
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
     {

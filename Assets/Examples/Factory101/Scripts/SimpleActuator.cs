@@ -8,6 +8,11 @@ public class SimpleActuator : Machine
 {
     public ActuatorPiston piston;
 
+    public override string GetStatus()
+    {
+        return "Get Actuator Status";
+    }
+
     protected override void AfterSetScript()
     {
         StartCoroutine(ExecuteEverySecond());

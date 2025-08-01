@@ -70,5 +70,10 @@ public class ExposeMachine : MonoBehaviour
         var methods = GetExposedMethodsNames();
         return description + "\nFunctions: \n" + methods;
     }
+
+    public string GetStatus()
+    {
+        return machine.GetStatus();
+    }
     
 }

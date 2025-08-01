@@ -15,6 +15,11 @@ public class NameSensorMachine : Machine
         luaScript.Globals["this"] = this;
     }
 
+    public override string GetStatus()
+    {
+        return "Name sensor Status";
+    }
+
     protected override void AfterSetScript()
     {
         luaScript.DoString(script);

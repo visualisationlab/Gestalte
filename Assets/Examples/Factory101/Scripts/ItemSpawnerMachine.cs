@@ -26,6 +26,11 @@ public class ItemSpawnerMachine : Machine
         luaScript.Globals["this"] = this;
     }
 
+    public override string GetStatus()
+    {
+        return "Item Spawner Status";
+    }
+
     protected override void AfterSetScript()
     {
         luaScript.DoString(script);

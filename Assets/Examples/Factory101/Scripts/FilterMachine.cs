@@ -32,6 +32,11 @@ public class FilterMachine : Machine
         luaScript.Globals["this"] = this;
     }
 
+    public override string GetStatus()
+    {
+        return "Filter Status";
+    }
+
     [ExposeMethod("setMinSalePrice")]
     public void SetMinSalePrice(int value)
     {

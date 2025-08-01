@@ -27,7 +27,12 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>
         luaScript.Globals["this"] = this;
         luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
     }
-    
+
+    public override string GetStatus()
+    {
+        return "Furnace Status";
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

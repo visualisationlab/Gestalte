@@ -29,6 +29,11 @@ public class SimpleSensorMachine : Machine
         luaScript.Globals["this"] = this;
     }
 
+    public override string GetStatus()
+    {
+        return "Get Simple sensor Status";
+    }
+
     protected override void AfterSetScript()
     {
         StartCoroutine(ExecuteEverySecond());

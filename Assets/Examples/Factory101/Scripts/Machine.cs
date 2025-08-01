@@ -21,6 +21,7 @@ namespace Examples.Factory101.Scripts
         }
 
         protected abstract void RegisterLua();
+        public abstract string GetStatus();
 
         protected virtual void AfterSetScript()
         {

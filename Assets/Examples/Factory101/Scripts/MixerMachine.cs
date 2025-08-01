@@ -24,6 +24,11 @@ public class MixerMachine : Machine
         StartCoroutine(ExecuteEverySecond());
     }
 
+    public override string GetStatus()
+    {
+        return "Mixer Status";
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)
@@ -63,4 +68,5 @@ public class MixerMachine : Machine
         tickRate = rate;
         if (tickRate == 0) tickRate = Int32.MaxValue;
     }
+
 }

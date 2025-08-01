@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class MachineSelectionManager : MonoBehaviour
 {
-    public UnityEvent<string, string> OnMachineSelectedDescription;
+    public UnityEvent<ExposeMachine> OnMachineSelectedDescription;
     public UnityEvent OnMachineDeSelected;
     public UnityEvent<string> OnMachineHoverDescription;
     public UnityEvent OnMachineHoverOut;
@@ -32,7 +32,7 @@ public class MachineSelectionManager : MonoBehaviour
         var machine = go.GetComponent<ExposeMachine>();
         if (machine == null) return;
         selectedMachine = machine;
-        OnMachineSelectedDescription.Invoke(machine.name, machine.description);
+        OnMachineSelectedDescription.Invoke(machine);
         OnMachineSelectedInstruction.Invoke(machine.instructionPrompt);
     }
 

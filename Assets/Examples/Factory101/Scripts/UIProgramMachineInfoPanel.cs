@@ -5,11 +5,13 @@ public class UIProgramMachineInfoPanel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI machineName;
     [SerializeField] private TextMeshProUGUI machineDescription;
+    [SerializeField] private TextMeshProUGUI machineStatus;
 
-    public void SetMachineInfo(string name, string description)
+    public void SetMachineInfo(ExposeMachine machine)
     {
-        machineName.text = name;
-        machineDescription.text = description;
+        machineName.text = machine.name;
+        machineDescription.text = machine.description;
+        machineStatus.text = machine.GetStatus();
     }
     
 }
