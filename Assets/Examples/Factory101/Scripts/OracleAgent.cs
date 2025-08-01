@@ -11,9 +11,8 @@ public class OracleAgent : MonoBehaviour
 
     // max number of times to retry before erroring out
     [SerializeField] private int _maxRetries = 3;
-
-    // how long to wait between each try (in seconds)
     [SerializeField] private float _timeoutSeconds = 5f;
+    
     [SerializeField] private DirectAPI directAPI;
 
     private Queue<OracleRequest> _pending = new();

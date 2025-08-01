@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour
 
     [Header("Debug Freeze")]
     public bool freezeCamera = false;
-
+    
+    //TODO: Max area
+    
     void Update()
     {
         if (freezeCamera) return;
