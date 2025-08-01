@@ -46,8 +46,8 @@ public class DirectAPI : MonoBehaviour
         {
             messages = new List<DirectAPIMessage>
             {
-                new DirectAPIMessage(systemMessage, "system"),
-                new DirectAPIMessage(userMessage,   "user")
+                new(systemMessage, "system"),
+                new(userMessage,   "user")
             },
         };
         

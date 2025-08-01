@@ -49,8 +49,9 @@ public class MachineSelectionManager : MonoBehaviour
         }
     }
 
-    public void SendInstructions()
+    public async void SendInstructions(string message)
     {
-        agent.SendMessage(selectedMachine);
+        var response = await agent.SendMessageDirectMachine(selectedMachine);
+        Debug.Log($"Programming RESPONSE {response}");
     }
 }

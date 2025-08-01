@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Agent;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class RobotAgent : MonoBehaviour
     [TextArea] public string gameObjectInstructions;
     public Player2Npc player2Npc;
     public UnityEvent onResponseReceived;
+    
+    [SerializeField] private DirectAPI directAPI;
 
     [Header("Retry Settings")]
     [SerializeField] private int   _maxRetries     = 3;
@@ -23,10 +26,17 @@ public class RobotAgent : MonoBehaviour
 
     private void Start()
     {
-        var composedPreprompt = preprompt + RobotAgentResponse.Format();
-        _ = player2Npc.SpawnNpcAsync(composedPreprompt);
+        // _ = player2Npc.SpawnNpcAsync(composedPreprompt);
     }
-
+    
+    public async Task<string> SendMessageDirectMachine(ExposeMachine machine)
+    {
+        var systemMessage = preprompt + RobotAgentResponse.Format();
+        var message = BuildInstructions(machine);
+        string response = await directAPI.SendMessageAsync(systemMessage, message);
+        return response;
+    }
+    
     /// <summary>
     /// Enqueue a new code‑generation request for the given machine.
     /// </summary>
