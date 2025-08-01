@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class UIProgramInstructionScreen : MonoBehaviour
     [SerializeField] Button submitButton;
     [SerializeField] MachineSelectionManager machineSelectionManager;
     [SerializeField] GameObject processingScreen;
+    [SerializeField] TextMeshProUGUI processingErrorMessage;
     [SerializeField] UIOnClick freezeClick;
 
     public async void ProcessInput()
@@ -16,12 +18,15 @@ public class UIProgramInstructionScreen : MonoBehaviour
         try
         {
             processingScreen.SetActive(true);
+            processingErrorMessage.text = "";
             freezeClick.enabled = false;
             await machineSelectionManager.SendInstructions(inputConsole.text);
         }
         catch (Exception e)
         {
             Debug.LogError($"SendInstructions failed: {e.Message}");
+            processingErrorMessage.text = e.Message;
+            await Task.Delay(5000);
         }
         finally
         {
@@ -29,6 +34,7 @@ public class UIProgramInstructionScreen : MonoBehaviour
             freezeClick.enabled = true;
         }
     }
+    
     
     public void SetInstructions(string instructions)
     {
