@@ -21,9 +21,19 @@ public class BuildToolGhost : MonoBehaviour
 
    public void PlaceCurrent()
    {
-      var realPlaceable = Instantiate(currentPlaceablePrefab, transform.position, Quaternion.identity);
-      realPlaceable.transform.Rotate(Vector3.forward, rotation);
-      AudioManager.Instance.Pluck();
+      var buyable = currentPlaceablePrefab.GetComponent<IBuyable>();
+
+      if (buyable.GetPrice() <= GameInfoManager.Instance.GetMoney())
+      {
+         var realPlaceable = Instantiate(currentPlaceablePrefab, transform.position, Quaternion.identity);
+         realPlaceable.transform.Rotate(Vector3.forward, rotation);
+         AudioManager.Instance.Pluck();
+         GameInfoManager.Instance.AddMoney(-buyable.GetPrice());
+      }
+      else
+      {
+         //TODO Cant place
+      }
    }
 
    public void RemovePlaceablePrefab()
