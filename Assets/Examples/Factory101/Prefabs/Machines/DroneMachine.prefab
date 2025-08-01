@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  description: This is a filter machine that can whitelist items
   instructionPrompt: 
   script: 
   machine: {fileID: 6265581125279924853}
@@ -117,6 +116,7 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
+  description: This machine can transport items from any place to any other place.
   grabArea: {fileID: 418333943356805375}
   dropAreaCenter: {fileID: 3950596942472655754}
   dropRadius: 2

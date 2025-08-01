@@ -30,7 +30,7 @@ public class RobotAgent : MonoBehaviour
     private string BuildInstructions(ExposeMachine machine)
     {
         var instr = gameObjectInstructions
-                  + machine.description
+                  + machine.GetDescription()
                   + ". It contains the following functions you can reference: "
                   + machine.GetExposedMethodsNames()
                   + ". Write code that does the following: "

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agent;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +13,12 @@ public class UIProgramInstructionScreen : MonoBehaviour
     [SerializeField] MachineSelectionManager machineSelectionManager;
     [SerializeField] GameObject processingScreen;
     [SerializeField] TextMeshProUGUI processingErrorMessage;
+    [SerializeField] UIMethodInstructionItem methodInstructionTemplate;
+    [SerializeField] Transform methodInstructionView;
     [SerializeField] UIOnClick freezeClick;
 
+    private List<UIMethodInstructionItem> placedMethodInstructions = new();
+    
     public async void ProcessInput()
     {
         try
@@ -35,10 +41,28 @@ public class UIProgramInstructionScreen : MonoBehaviour
         }
     }
     
-    
     public void SetInstructions(string instructions)
     {
         inputConsole.text = instructions;
     }
-    
+
+    public void SetMethodInstructions(List<ExposedMethodInterpretation> methodInterpretations)
+    {
+        placedMethodInstructions.Clear();
+        foreach (var item in methodInterpretations)
+        {
+            var methodInstruction = Instantiate(methodInstructionTemplate, methodInstructionView);
+            methodInstruction.SetInstructions(item);
+            placedMethodInstructions.Add(methodInstruction);
+        }
+    }
+
+    public void ClearMethodInstructions()
+    {
+        foreach (var instruction in placedMethodInstructions)
+        {
+            Destroy(instruction.gameObject);
+        }
+        placedMethodInstructions.Clear();
+    }
 }

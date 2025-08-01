@@ -18,6 +18,11 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable
         return basePrice;
     }
 
+    public string GetDescription()
+    {
+        return description;
+    }
+
     private void Start()
     {
         maxUpgradeLevel = 3;

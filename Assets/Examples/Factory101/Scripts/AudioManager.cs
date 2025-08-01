@@ -22,6 +22,7 @@ public class AudioManager : MonoBehaviour
     [Header("MusicFX")]
     [SerializeField] private AudioClip foliage;
     [SerializeField] private AudioClip music;
+    [SerializeField] private float initialMusicDelay;
 
     [Header("Settings")]
     [Tooltip("Min delay after music ends before replaying music (seconds)")]
@@ -111,8 +112,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator MusicCycleRoutine()
     {
         // initial foliage-only delay before first music
-        float initialDelay = Random.Range(minFoliageOnlyDuration, maxFoliageOnlyDuration);
-        yield return new WaitForSeconds(initialDelay);
+        yield return new WaitForSeconds(initialMusicDelay);
 
         while (true)
         {

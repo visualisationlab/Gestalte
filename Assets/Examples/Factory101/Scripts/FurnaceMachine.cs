@@ -123,4 +123,9 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
     {
         return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
 }

@@ -54,8 +54,8 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
+  description: This machine pushes items.
   piston: {fileID: 1423649234723977930}
-  basePrice: 0
 --- !u!114 &359967777320930534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  description: Actuator Machine that is able to push and retract
   instructionPrompt: 
   script: 
   machine: {fileID: 14231735996583829}

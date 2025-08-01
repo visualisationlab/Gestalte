@@ -12,6 +12,12 @@ public class SimpleActuator : Machine, IBuyable
     {
         return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
     public override string GetStatus()
     {
         return "Get Actuator Status";

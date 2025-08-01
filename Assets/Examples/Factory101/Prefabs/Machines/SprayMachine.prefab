@@ -561,7 +561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Furnace
-  description: This is spray machine and can apply color to an object
   instructionPrompt: 
   script: 
   machine: {fileID: 0}
@@ -582,6 +581,7 @@ MonoBehaviour:
   baseUpgradePrice: 1
   upgradedAmount: 0
   maxUpgradeLevel: 6
+  description: This machine adds a funky color to an item.
   sensor: {fileID: 5296358771637699344}
   outputPoint: {fileID: 2089226903804872852}
   sprayColor: {r: 1, g: 0, b: 1, a: 1}

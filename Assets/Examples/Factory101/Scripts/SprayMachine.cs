@@ -147,4 +147,9 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
     {
         return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
 }

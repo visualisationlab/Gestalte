@@ -18,6 +18,12 @@ public class ItemSpawnerMachine : Machine, IBuyable
     {
         return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
     public void Start()
     {
         StartCoroutine(ExecuteEverySecond());

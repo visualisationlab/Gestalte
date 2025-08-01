@@ -19,7 +19,7 @@ public class UIProgramMachineInfoPanel : MonoBehaviour
     {
         currentMachine = machine;
         machineName.text = machine.name;
-        machineDescription.text = machine.description;
+        machineDescription.text = machine.GetDescription();
         machineStatus.text = machine.GetStatus();
         
         

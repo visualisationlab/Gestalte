@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePrice: 30
+  description: It's a wall. It does what walls do best.
 --- !u!1 &4616045982318347323
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ public class ConveyorBelt : MonoBehaviour, IBuyable
 {
     public float pushStrength = 5f;
     public int basePrice;
-    
+    [TextArea (3,12)] public string description;
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -18,5 +18,10 @@ public class ConveyorBelt : MonoBehaviour, IBuyable
     public int GetPrice()
     {
         return basePrice;
+    }
+
+    public string GetDescription()
+    {
+        return description;
     }
 }

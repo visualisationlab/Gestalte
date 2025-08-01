@@ -52,10 +52,9 @@ public class SimpleSensorMachine : Machine, IBuyable
         return sensor.onDetect;
     }
     
-    [ExposeMethod("Returns the detected game objects description")]
-    public McGibbleDescription GetDescription()
+    public string GetDescription()
     {
-        return sensor.detectedGameObject.GetComponent<McGibble>().description;
+        return description;
     }
 
     [ExposeMethod("Emits a boolean signal out of the outport")]

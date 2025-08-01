@@ -89,4 +89,9 @@ public class MixerMachine : Machine, IBuyable
     {
         return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
 }

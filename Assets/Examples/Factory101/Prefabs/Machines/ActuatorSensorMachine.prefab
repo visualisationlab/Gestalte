@@ -252,6 +252,7 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
+  description: This machine pushes items and has a handy sensor attached.
   sensor: {fileID: 131742207332137634}
   piston: {fileID: 7322740973928160109}
 --- !u!114 &2813801648915722084
@@ -267,7 +268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  description: Actuator Machine with build in Sensor.
   instructionPrompt: 
   script: 
   machine: {fileID: 6294157194642579927}

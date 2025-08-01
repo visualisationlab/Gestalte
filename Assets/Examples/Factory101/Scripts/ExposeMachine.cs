@@ -8,7 +8,6 @@ using UnityEngine;
 public class ExposeMachine : MonoBehaviour
 {
     public string name;
-    [TextArea] public string description;
     [TextArea] public string instructionPrompt;
     [TextArea (3,12)] public string script;
     [SerializeField] private Machine machine;
@@ -34,10 +33,12 @@ public class ExposeMachine : MonoBehaviour
                     }
 
                     string methodFormat = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
+                    string methodFormatClean = $"{method.Name}()";
 
                     var interpretation = new ExposedMethodInterpretation
                     {
                         methodName = methodFormat,
+                        methodNameClean = methodFormatClean,
                         description = attr.DisplayName ?? "No description provided"
                     };
                     resultExposedMethods.Add(interpretation);
@@ -55,7 +56,6 @@ public class ExposeMachine : MonoBehaviour
         {
             result += $"{m.methodName} \n";
         }
-
         return result;
     }
 
@@ -63,12 +63,6 @@ public class ExposeMachine : MonoBehaviour
     {
         script = code;
         machine.SetScript(script);
-    }
-
-    public string GetFullDescription()
-    {
-        var methods = GetExposedMethodsNames();
-        return description + "\nFunctions: \n" + methods;
     }
 
     public string GetStatus()
@@ -99,6 +93,11 @@ public class ExposeMachine : MonoBehaviour
     public void Upgrade()
     {
         machine.UpgradeMachine();
+    }
+
+    public string GetDescription()
+    {
+        return machine.description;
     }
     
 }

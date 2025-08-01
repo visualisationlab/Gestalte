@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agent;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +13,7 @@ public class MachineSelectionManager : MonoBehaviour
     public UnityEvent OnMachineHoverOut;
     [Header("Instructions")]
     public UnityEvent<string> OnMachineSelectedInstruction;
+    public UnityEvent<List<ExposedMethodInterpretation>> OnMachineSelectedMethodInstructions;
     public UnityEvent<string> OnMachineHoverInstruction;
 
     public ExposeMachine selectedMachine;
@@ -20,7 +23,7 @@ public class MachineSelectionManager : MonoBehaviour
     {
         var machine = go.GetComponent<ExposeMachine>();
         if (machine == null) return;
-        OnMachineHoverDescription.Invoke(machine.description);
+        OnMachineHoverDescription.Invoke(machine.GetDescription());
         OnMachineHoverInstruction.Invoke(machine.instructionPrompt);
     }
     
@@ -36,6 +39,7 @@ public class MachineSelectionManager : MonoBehaviour
         selectedMachine = machine;
         OnMachineSelectedDescription.Invoke(machine);
         OnMachineSelectedInstruction.Invoke(machine.instructionPrompt);
+        OnMachineSelectedMethodInstructions.Invoke(machine.GetExposedMethods());
     }
 
     public void DeselectGameObject()

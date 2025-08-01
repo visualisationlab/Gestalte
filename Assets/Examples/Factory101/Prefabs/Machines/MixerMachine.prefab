@@ -192,8 +192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Mixer
-  description: Mixes two McGibbles together. It has a <u>speed</u> dial that seems
-    programmable.
   instructionPrompt: 
   script: 
   machine: {fileID: 3907878998441751284}
@@ -214,6 +212,7 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
+  description: This machine combines two items into a single new one.
   sensorOne: {fileID: 3380404477885127963}
   sensorTwo: {fileID: 1095308098921582633}
   mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}

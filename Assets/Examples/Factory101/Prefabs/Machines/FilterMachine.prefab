@@ -623,7 +623,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  description: This is a filter machine that can whitelist items
   instructionPrompt: 
   script: 
   machine: {fileID: 8992514812971157721}
@@ -644,6 +643,8 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
+  description: This machine filters items, directing them to different ends based
+    on their properties.
   sensor: {fileID: 6133105396267097805}
   whitelistOutputPoint: {fileID: 3034349286868390582}
   blacklistOutputPoint: {fileID: 8313301816263041386}

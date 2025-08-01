@@ -27,6 +27,11 @@ public class DroneMachine : Machine, IBuyable
         return basePrice;
     }
 
+    public string GetDescription()
+    {
+        return description;
+    }
+
     private void Start()
     {
         StartCoroutine(ExecuteEverySecond());

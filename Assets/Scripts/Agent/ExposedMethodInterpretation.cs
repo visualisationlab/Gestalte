@@ -6,6 +6,7 @@ namespace Agent
     public struct ExposedMethodInterpretation
     {
         public string methodName;
+        public string methodNameClean;
         public string description;
     }
 }
