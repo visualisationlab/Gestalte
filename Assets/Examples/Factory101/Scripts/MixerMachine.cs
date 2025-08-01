@@ -5,6 +5,7 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.Events;
 
 public class MixerMachine : Machine
 {
@@ -15,7 +16,8 @@ public class MixerMachine : Machine
     public bool mixing;
     [SerializeField] private int tickRate;
     private Vector3 tinyRandom;
-
+    public UnityEvent onStartMixing;
+    public UnityEvent onStopMixing;
     protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
@@ -43,6 +45,8 @@ public class MixerMachine : Machine
         if (sensorOne.onDetect && sensorTwo.onDetect && !mixing)
         {
             mixing = true;
+            onStartMixing?.Invoke();
+
             var mcGibbleOne = sensorOne.detectedGameObject.GetComponent<McGibble>();
             var mcGibbleTwo = sensorTwo.detectedGameObject.GetComponent<McGibble>();
             RecipeTracker.Instance.GetRecipe(mcGibbleOne.description, mcGibbleTwo.description, Eject);
@@ -55,6 +59,8 @@ public class MixerMachine : Machine
     private void Eject(Recipe recipe)
     {
         mixing = false;
+        onStopMixing?.Invoke();
+
         tinyRandom = new Vector3(Random.value-0.5f, 0f, 0f);
         var mcGibble = Instantiate(mcGibbleTemplate, outputPort.transform.position + tinyRandom, Quaternion.identity).GetComponent<McGibble>();
         McGibbleTracker.Instance.Add(mcGibble);
