@@ -475,6 +475,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
+  basePrice: 100
+  baseUpgradePrice: 0
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   sensor: {fileID: 6258973142971579596}
   outputPoint: {fileID: 3034349286868390582}
   heat: 100
