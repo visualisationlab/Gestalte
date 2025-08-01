@@ -66,6 +66,17 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
         return 0.0f;
     }
 
+    [ExposeMethod("Get the normalized heat resistance of last notified McGibbleDescription")]
+    public float McGibbleHeatResistance()
+    {
+        if (lastNotifiedMcGibble != null)
+        {
+            return lastNotifiedMcGibble.normalizedHeatResistance;
+        }
+
+        return 0.0f;
+    }
+
     [ExposeMethod("Processes the item in the furnace")]
     public void Blast()
     {
