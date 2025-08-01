@@ -4236,16 +4236,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2103436544586261649, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6167565506133170372, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1623510491}
     - target: {fileID: 6391551619600008990, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: machineSelectionManager
       value: 
       objectReference: {fileID: 341204287}
-    - target: {fileID: 6975714702984332019, guid: c42019c8fdbe97b47878296501091c30, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7735914966742593902, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -10,6 +10,12 @@ namespace Examples.Factory101.Scripts
         public int basePrice;
         public int baseUpgradePrice;
         public int upgradedAmount;
+        public int maxUpgradeLevel;
+
+        public bool MaxUpgradeLevelReached()
+        {
+            return upgradedAmount >= maxUpgradeLevel;
+        }
         
         protected virtual void Awake()
         {
