@@ -55,7 +55,7 @@ public class FilterMachine : Machine
         var gibble = obj.GetComponent<McGibble>();
         if (gibble == null) return false;
 
-        if (priceFilterSet && gibble.description.salePrice < minSalePrice)
+        if (priceFilterSet && gibble.description.raritySalePrice < minSalePrice)
             return false;
 
         if (whitelistSet)

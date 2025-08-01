@@ -121,7 +121,7 @@ public class RecipeTracker : MonoBehaviour
                 normalizedRarity = resp.normalizedRarity,
                 normalizedHeatResistance = resp.normalizedHeatResistance,
                 uniqueCreated = uniqueCounter,
-                salePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1,
+                raritySalePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1,
                 shortDescription = finalShortDesc
             };
         }

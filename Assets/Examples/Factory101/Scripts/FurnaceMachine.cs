@@ -73,6 +73,18 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>
         }
     }
 
+
+    [ContextMenu("Test Blast")]
+    public void testBlast()
+    {
+        Blast();
+    }
+
+    [ContextMenu("Test Set Heat")]
+    public void testSetHeat()
+    {
+        SetHeat(100);
+    }
     public void OnPulse(McGibbleDescription mcGibble)
     {
         lastNotifiedMcGibble = mcGibble;

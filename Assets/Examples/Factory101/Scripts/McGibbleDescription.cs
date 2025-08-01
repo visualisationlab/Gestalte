@@ -11,7 +11,7 @@ namespace Examples.Factory101.Scripts
         public float normalizedHeatResistance;
         public int uniqueCreated; //Where in the order was this description generated newly
         //not communicated:
-        public int salePrice;
+        public int raritySalePrice;
         public string shortDescription;
 
         public static string Format()
