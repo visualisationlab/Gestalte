@@ -1,62 +1,117 @@
 using System;
 using System.Collections;
+using Examples.Factory101.Scripts;
+using Mediator;
+using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class MagnetMachine : MonoBehaviour, IPulseReceiver<bool>
+public class MagnetMachine : Machine, IPulseReceiver<bool>
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private float maxRange = 10f;
-    [SerializeField] private float pullSpeed = 5f;
-    public bool alwaysPull = false;
-    public float pullDuration = 1f; // Duration for which the magnet pulls objects
-    // internal timer
-    private float pullTimer = 0f;
+    private float upgradePullMultiplier = 1.3f;
+    public CircleCollider2D attractionArea;
+    [Range(0f, 1f)][SerializeField] private float pullFraction = 0.1f; // how much closer per pull
+
     private void Start()
     {
-        Physics2D.velocityIterations = 2; //TODO Replace to somewhere else
-        Physics2D.positionIterations = 1;
+        maxUpgradeLevel = 3;
     }
 
-    private void FixedUpdate()
+    protected override void RegisterLua()
     {
-        // if “alwaysPull” OR we have remaining pull time, do one tick of attract
-        if (alwaysPull || pullTimer > 0f)
-        {
-            Attract();
+        UserData.RegisterType<MagnetMachine>();
+        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+    }
 
-            // count down the timer if it’s active
-            if (!alwaysPull)
-            {
-                pullTimer -= Time.fixedDeltaTime;
-                if (pullTimer < 0f) pullTimer = 0f;
-            }
+    public override string GetStatus()
+    {
+        return "Magnet Status";
+    }
+
+    public override string UpgradeMachine()
+    {
+        pullFraction = Mathf.Clamp01(pullFraction * upgradePullMultiplier);
+        return $"Magnet upgraded! New pull fraction: {pullFraction}";
+    }
+    // private void FixedUpdate()
+    // {
+    //     // if “alwaysPull” OR we have remaining pull time, do one tick of attract
+    //     if (alwaysPull || pullTimer > 0f)
+    //     {
+    //         Attract();
+
+    //         // count down the timer if it’s active
+    //         if (!alwaysPull)
+    //         {
+    //             pullTimer -= Time.fixedDeltaTime;
+    //             if (pullTimer < 0f) pullTimer = 0f;
+    //         }
+    //     }
+    // }
+
+    [ExposeMethod("Pull objects towards the magnet")]
+    public void Attract()
+    {
+        if (attractionArea == null)
+        {
+            Debug.LogWarning("[MagnetMachine] attractionArea is not assigned.");
+            return;
+        }
+
+        Vector2 magnetPos = transform.position;
+
+        // Convert local radius to world radius accounting for scaling
+        float scale = Mathf.Max(attractionArea.transform.lossyScale.x, attractionArea.transform.lossyScale.y);
+        float worldRadius = attractionArea.radius * scale;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(magnetPos, worldRadius);
+        Debug.Log($"[MagnetMachine] OverlapCircleAll found {hits.Length} colliders (worldRadius={worldRadius:F2})");
+
+        foreach (var col in hits)
+        {
+            // Prefer component-based check rather than tag, safer and less error-prone
+            McGibble target = col.GetComponent<McGibble>();
+            if (target == null)
+                continue;
+
+            Rigidbody2D rb = col.attachedRigidbody;
+            if (rb == null)
+                continue;
+
+            Vector2 toMagnet = magnetPos - rb.position;
+            float distance = toMagnet.magnitude;
+            if (distance <= Mathf.Epsilon)
+                continue;
+
+            float moveDistance = distance * pullFraction;
+            Vector2 newPos = rb.position + toMagnet.normalized * moveDistance;
+
+            // MovePosition should be used during physics steps; if this is called from outside FixedUpdate, it still queues it safely
+            rb.MovePosition(newPos);
+            Debug.Log($"[MagnetMachine] Pulled '{col.name}' closer by {moveDistance:F2} to {newPos}");
         }
     }
 
-    private void Attract()
+    [ContextMenu("Test Pull")]
+    public void TestPull()
     {
-        Vector3 magnetPosition = transform.position;
-        foreach (McGibble target in McGibbleTracker.Instance.GetAll())
-        {
-            if (target == null) continue; // Skip destroyed objects
-
-            Vector3 direction = magnetPosition - target.transform.position;
-            float distance = direction.magnitude;
-
-            if (distance > maxRange) continue; // Skip far ones if desired
-            direction.Normalize();
-
-            Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.AddForce(direction * pullSpeed, ForceMode2D.Force);
-            }
-        }
+        Attract();
     }
 
     public void OnPulse(bool message)
     {
-        if (!message) return;
-        pullTimer = pullDuration;
+        ExecuteScript();
+    }
+    
+    private void OnDrawGizmosSelected()
+    {
+        if (attractionArea == null) return;
+        Vector3 worldPos = transform.position;
+        float scale = Mathf.Max(attractionArea.transform.lossyScale.x, attractionArea.transform.lossyScale.y);
+        float worldRadius = attractionArea.radius * scale;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(worldPos, worldRadius);
     }
 }
