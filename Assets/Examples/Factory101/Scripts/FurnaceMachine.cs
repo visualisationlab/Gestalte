@@ -6,7 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>
+public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
@@ -117,5 +117,10 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
         {
             Blast();
         }
+    }
+
+    public int GetPrice()
+    {
+        return basePrice;
     }
 }

@@ -210,6 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
+  basePrice: 1
+  baseUpgradePrice: 0
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   sensorOne: {fileID: 3380404477885127963}
   sensorTwo: {fileID: 1095308098921582633}
   mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}

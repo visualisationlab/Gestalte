@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushStrength: 500
+  basePrice: 1
 --- !u!61 &3203197090140856251
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,7 +12,22 @@ public class CursorController : MonoBehaviour
     [Header("Mouse Info")] 
     public GameObject infoObject;
     public TextMeshPro infoText;
+    
+    public static CursorController Instance { get; private set; }
+    
+    
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject); // or Destroy(this);
+            return;
+        }
 
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject); // optional
+    }
+    
     private void Start()
     {
         Cursor.visible = realCursorVisible;
@@ -39,5 +54,19 @@ public class CursorController : MonoBehaviour
         Vector2 screenPos = Mouse.current.position.ReadValue();
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
+    }
+
+    public void ShowMouseInfo(string message, Color textColor)
+    {
+        infoObject.SetActive(true);
+        infoText.color = textColor;
+        infoText.text = message;
+    }
+    
+    public void HideMouseInfo()
+    {
+        infoText.text = "";
+        infoText.color = Color.white;
+        infoObject.SetActive(false);
     }
 }

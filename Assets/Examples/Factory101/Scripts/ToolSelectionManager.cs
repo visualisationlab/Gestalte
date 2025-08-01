@@ -1,6 +1,9 @@
 using System;
-using Unity.VisualScripting;
+using System.Collections.Generic;
+using Examples.Factory101.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ToolSelectionManager : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class ToolSelectionManager : MonoBehaviour
         BuildWall,
         BuildMixer,
         BuildFurnace,
+        BuildSprayPaint
     }
 
     public Tool currentTool;
@@ -25,19 +29,22 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject mixerPrefab;
     public GameObject furnacePrefab;
+    public GameObject sprayPaintPrefab;
 
+    [SerializeField] private List<BuyableMachineButton> toolButtons;
     public void Start()
     {
         ResetTool();
+        SetBuyableButtonStates();
     }
-
+    
     public void SetToolConveyor(bool state)
     {
         SetTool(Tool.BuildConveyor, state);
         currentPlaceable = conveyorBelt;
         InstantiatePlaceable(conveyorBelt);
     }
-
+    
     public void SetToolWall(bool state)
     {
         SetTool(Tool.BuildWall, state);
@@ -57,6 +64,13 @@ public class ToolSelectionManager : MonoBehaviour
         SetTool(Tool.BuildFurnace, state);
         currentPlaceable = furnacePrefab;
         InstantiatePlaceable(furnacePrefab);
+    }
+    
+    public void SetToolSprayPaint(bool state)
+    {
+        SetTool(Tool.BuildSprayPaint, state);
+        currentPlaceable = sprayPaintPrefab;
+        InstantiatePlaceable(sprayPaintPrefab);
     }
 
     private void SetTool(Tool tool, bool state)
@@ -84,10 +98,24 @@ public class ToolSelectionManager : MonoBehaviour
 
     private void InstantiatePlaceable(GameObject placeablePrefab)
     {
-        var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
-        toolInputController.ForceDraggable(ghostDraggable);
-        var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
-        ghost.SetPlaceablePrefab(placeablePrefab);
-        toolInputController.OnClickedOutside.AddListener(ghost.PlaceCurrent);
+        
+            var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
+            toolInputController.ForceDraggable(ghostDraggable);
+            var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
+            ghost.SetPlaceablePrefab(placeablePrefab);
+            toolInputController.OnClickedOutside.AddListener(ghost.PlaceCurrent);
+    }
+    
+    public void SetBuyableButtonStates()
+    {
+        foreach (var tool in toolButtons)
+        {
+            var toggle = tool.GetComponent<Toggle>();
+            toggle.interactable = false;
+            if (tool.BuyableReference.GetPrice() <= GameInfoManager.Instance.GetMoney())
+            {//can buy
+                toggle.interactable = true;
+            }
+        }
     }
 }

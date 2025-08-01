@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4063591639180773944}
   m_Layer: 0
-  m_Name: MixerGhost
+  m_Name: SprayGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7690522920442478834}
   - component: {fileID: 5079174609024022193}
   m_Layer: 0
-  m_Name: Mixer
+  m_Name: Spray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2012036736, guid: fac5e4c2d828ba947850b2a464bc91f4, type: 3}
+  m_Sprite: {fileID: 1459692986, guid: 9e9157fd944c4a944bcdf66854625e34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.07058824}
   m_FlipX: 0
   m_FlipY: 0
