@@ -460,7 +460,11 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 3
-  description: "This machine attracts items\u2014how it works is still unclear."
+  description: 'Magnet
+
+
+    This machine attracts items - how it works is still
+    unclear.'
   attractionArea: {fileID: 3406788919332087113}
   pullFraction: 0.1
   velocityAccel: 10
@@ -522,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Magnet
   instructionPrompt: 
   script: 
   machine: {fileID: 7724321469618014510}

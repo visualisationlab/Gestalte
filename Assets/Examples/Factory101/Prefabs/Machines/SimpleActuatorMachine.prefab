@@ -54,7 +54,10 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
-  description: This machine pushes items.
+  description: 'Simple Pusher
+
+
+    This machine pushes items.'
   piston: {fileID: 1423649234723977930}
 --- !u!114 &359967777320930534
 MonoBehaviour:
@@ -68,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Simple Pusher
   instructionPrompt: 
   script: 
   machine: {fileID: 14231735996583829}

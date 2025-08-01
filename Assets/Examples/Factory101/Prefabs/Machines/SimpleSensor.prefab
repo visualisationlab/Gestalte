@@ -782,7 +782,10 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
-  description: This machine detects items in front of it.
+  description: 'Sensor
+
+
+    This machine detects items in front of it.'
   sensor: {fileID: 6732603270680970889}
   cableEnd: {fileID: 4893170322171532647}
 --- !u!114 &6194043042087535073
@@ -797,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Sensor
   instructionPrompt: 
   script: 
   machine: {fileID: 8258735711495923055}

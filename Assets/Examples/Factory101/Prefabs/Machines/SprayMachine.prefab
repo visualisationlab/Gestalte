@@ -560,10 +560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Furnace
+  name: Spray Painter
   instructionPrompt: 
   script: 
-  machine: {fileID: 0}
+  machine: {fileID: 1975599757221880882}
 --- !u!114 &1975599757221880882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +581,10 @@ MonoBehaviour:
   baseUpgradePrice: 1
   upgradedAmount: 0
   maxUpgradeLevel: 6
-  description: This machine adds a funky color to an item.
+  description: 'Spray Painter
+
+
+    This machine adds a funky color to an item.'
   sensor: {fileID: 5296358771637699344}
   outputPoint: {fileID: 2089226903804872852}
   sprayColor: {r: 1, g: 0, b: 1, a: 1}

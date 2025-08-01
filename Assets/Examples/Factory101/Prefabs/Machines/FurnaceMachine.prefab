@@ -479,7 +479,11 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradedAmount: 0
   maxUpgradeLevel: 0
-  description: This machine cooks items, but setting it too high may burn them.
+  description: 'Furnace
+
+
+    This machine cooks items, but setting it too high may
+    burn them.'
   sensor: {fileID: 6258973142971579596}
   outputPoint: {fileID: 3034349286868390582}
   heat: 100

@@ -53,7 +53,10 @@ MonoBehaviour:
   baseUpgradePrice: 2000
   upgradedAmount: 0
   maxUpgradeLevel: 0
-  description: Use this machine to dig up hidden items.
+  description: 'Excavator
+
+
+    Use this machine to dig up hidden items.'
   spawnPoint: {fileID: 1674136184767867728}
   mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}
   startRecipe: {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
@@ -116,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d73bdd04fb0044c821562a99cbf5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: 'Excavator '
   instructionPrompt: 
   script: 
   machine: {fileID: 3121121956691962434}
