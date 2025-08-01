@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class ConveyorBelt : MonoBehaviour, IBuyable
+public class SplitterBeltMvoer : MonoBehaviour
 {
     public float pushStrength = 5f;
-    public int basePrice;
     public Vector2 pushDirection = Vector2.right; // Editable in Inspector
 
     private void OnTriggerStay2D(Collider2D other)
@@ -13,10 +12,5 @@ public class ConveyorBelt : MonoBehaviour, IBuyable
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             rb.AddForce(pushDirection.normalized * pushStrength);
         }
-    }
-
-    public int GetPrice()
-    {
-        return basePrice;
     }
 }

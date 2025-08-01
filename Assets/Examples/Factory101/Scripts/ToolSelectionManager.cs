@@ -15,7 +15,8 @@ public class ToolSelectionManager : MonoBehaviour
         BuildWall,
         BuildMixer,
         BuildFurnace,
-        BuildSprayPaint
+        BuildSprayPaint,
+        BuildSplitterConveyor
     }
 
     public Tool currentTool;
@@ -30,6 +31,7 @@ public class ToolSelectionManager : MonoBehaviour
     public GameObject mixerPrefab;
     public GameObject furnacePrefab;
     public GameObject sprayPaintPrefab;
+    public GameObject splitterConveyorPrefab;
 
     [SerializeField] private List<BuyableMachineButton> toolButtons;
     public void Start()
@@ -45,6 +47,13 @@ public class ToolSelectionManager : MonoBehaviour
         InstantiatePlaceable(conveyorBelt);
     }
     
+    public void SetToolSplitterConveyor(bool state)
+    {
+        SetTool(Tool.BuildSplitterConveyor, state);
+        currentPlaceable = splitterConveyorPrefab; // Assuming splitter conveyor uses the same prefab
+        InstantiatePlaceable(splitterConveyorPrefab);
+    }
+
     public void SetToolWall(bool state)
     {
         SetTool(Tool.BuildWall, state);
