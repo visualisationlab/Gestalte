@@ -130,10 +130,10 @@ public class RecipeTracker : MonoBehaviour
             RegexOptions.Multiline
         ).Trim();
 
-        McGibbleDescription resp = null;
+        McGibbleDescription newMcGibbleDescription = null;
         try
         {
-            resp = JsonConvert.DeserializeObject<McGibbleDescription>(cleaned);
+            newMcGibbleDescription = JsonConvert.DeserializeObject<McGibbleDescription>(cleaned);
         }
         catch (Exception ex)
         {
@@ -141,19 +141,13 @@ public class RecipeTracker : MonoBehaviour
             return partialRecipe;
         }
 
-        if (resp == null)
-        {
-            Debug.LogError("[RecipeTracker] Deserialized McGibbleDescription was null.");
-            return partialRecipe;
-        }
-
-        Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.singleEmoji == resp.singleEmoji);
-        if (hasMatch != null)
+        Recipe hasMatch = recipeList.FirstOrDefault(r => r.result.singleEmoji == newMcGibbleDescription.singleEmoji);
+        if (hasMatch != null) // a match in recipelist has been found
         {
             // backfill shortDescription if missing
-            if (string.IsNullOrWhiteSpace(hasMatch.result.shortDescription) && !string.IsNullOrWhiteSpace(resp.shortDescription))
+            if (string.IsNullOrWhiteSpace(hasMatch.result.shortDescription) && !string.IsNullOrWhiteSpace(newMcGibbleDescription.shortDescription))
             {
-                hasMatch.result.shortDescription = resp.shortDescription;
+                hasMatch.result.shortDescription = newMcGibbleDescription.shortDescription;
             }
 
             partialRecipe.result = hasMatch.result;
@@ -161,18 +155,18 @@ public class RecipeTracker : MonoBehaviour
         else
         {
             uniqueCounter++;
-            var finalShortDesc = !string.IsNullOrWhiteSpace(resp.shortDescription)
-                ? resp.shortDescription
-                : $"A {resp.name} with rarity {resp.normalizedRarity:F2}.";
+            var finalShortDesc = !string.IsNullOrWhiteSpace(newMcGibbleDescription.shortDescription)
+                ? newMcGibbleDescription.shortDescription
+                : $"A {newMcGibbleDescription.name} with rarity {newMcGibbleDescription.normalizedRarity:F2}.";
 
             partialRecipe.result = new McGibbleDescription
             {
-                name = resp.name,
-                singleEmoji = resp.singleEmoji,
-                normalizedRarity = resp.normalizedRarity,
-                normalizedHeatResistance = resp.normalizedHeatResistance,
+                name = newMcGibbleDescription.name,
+                singleEmoji = newMcGibbleDescription.singleEmoji,
+                normalizedRarity = newMcGibbleDescription.normalizedRarity,
+                normalizedHeatResistance = newMcGibbleDescription.normalizedHeatResistance,
                 uniqueCreated = uniqueCounter,
-                raritySalePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1,
+                raritySalePrice = Mathf.FloorToInt(uniqueCounter * newMcGibbleDescription.normalizedRarity) + 1,
                 shortDescription = finalShortDesc
             };
         }
