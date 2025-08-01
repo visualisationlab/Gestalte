@@ -2509,7 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9daed91d4e07c4ea9ec924ccaeac6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: {x: 0, y: 0, z: 10}
+  angularVelocity: {x: 0, y: 0, z: -120}
 --- !u!1 &8000801497086423270
 GameObject:
   m_ObjectHideFlags: 0

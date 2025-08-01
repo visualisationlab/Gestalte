@@ -4429,6 +4429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgrammingScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6378967370909849074, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: angularVelocity.z
+      value: -120
+      objectReference: {fileID: 0}
     - target: {fileID: 6391551619600008990, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: machineSelectionManager
       value: 
