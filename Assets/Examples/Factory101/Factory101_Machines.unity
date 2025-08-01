@@ -1903,7 +1903,7 @@ MonoBehaviour:
   edgeThickness: 10
   minBounds: {x: -20, y: -20}
   maxBounds: {x: 20, y: 20}
-  freezeCamera: 0
+  freezeCamera: 1
 --- !u!1 &1684240686
 GameObject:
   m_ObjectHideFlags: 0
@@ -7318,7 +7318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0.91849303, b: 1, a: 1}
   m_FlipX: 0
@@ -8025,7 +8025,7 @@ Transform:
   m_GameObject: {fileID: 2379618960815385713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.296, y: 0.838, z: 0}
+  m_LocalPosition: {x: -0.21, y: 0.872, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8634,10 +8634,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 0
-  baseUpgradePrice: 0
+  baseUpgradePrice: 1
+  upgradedAmount: 0
+  maxUpgradeLevel: 6
   sensor: {fileID: 373123280381281063}
   outputPoint: {fileID: 8785928954139241821}
   sprayColor: {r: 1, g: 0, b: 1, a: 1}
+  finishType: 0
   intensity: 1
   onStartSpray:
     m_PersistentCalls:
