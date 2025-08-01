@@ -49,8 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
-  basePrice: 1000
+  basePrice: 100000
   baseUpgradePrice: 2000
+  upgradedAmount: 0
+  maxUpgradeLevel: 0
   spawnPoint: {fileID: 1674136184767867728}
   mcGibbleTemplate: {fileID: 1859733459145252865, guid: 8396242a01c769743946341520583a86, type: 3}
   startRecipe: {fileID: 11400000, guid: 02a45bad01156734c8a6ec192c2b47ae, type: 2}
