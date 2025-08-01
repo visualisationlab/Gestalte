@@ -15,4 +15,10 @@ public class SimpleSensor : MonoBehaviour
         onDetect = false;
         detectedGameObject = null;
     }
+    
+    public virtual void OnTriggerStay2D(Collider2D col)
+    {
+        onDetect = true;
+        detectedGameObject = col.gameObject;
+    }
 }

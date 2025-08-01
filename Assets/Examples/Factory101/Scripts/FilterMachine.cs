@@ -98,11 +98,7 @@ public class FilterMachine : Machine
     {
         while (true)
         {
-            if (!string.IsNullOrWhiteSpace(script))
-            {
-                luaScript.DoString(script);
-            }
-
+            ExecuteScript();
             yield return new WaitForSeconds(1f);
         }
     }

@@ -34,10 +34,7 @@ public class ActuatorSensorMachine : Machine
     {
         while (true)
         {
-            if (!string.IsNullOrWhiteSpace(script))
-            {
-                luaScript.DoString(script);
-            }
+            ExecuteScript();
             yield return new WaitForSeconds(.5f);
         }
     }

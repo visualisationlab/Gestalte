@@ -9,7 +9,7 @@ namespace Examples.Factory101.Scripts
         public Script luaScript;
         public int basePrice;
         public int baseUpgradePrice;
-        public int upgradedAmount;
+        public int upgradedAmount;// The Upgraded Level
         public int maxUpgradeLevel;
 
         public bool MaxUpgradeLevelReached()
@@ -27,6 +27,14 @@ namespace Examples.Factory101.Scripts
         {
             script = code;
             AfterSetScript();
+        }
+
+        public void ExecuteScript()
+        {
+            if (!string.IsNullOrWhiteSpace(script))
+            {
+                luaScript.DoString(script);
+            }
         }
 
         protected abstract void RegisterLua();

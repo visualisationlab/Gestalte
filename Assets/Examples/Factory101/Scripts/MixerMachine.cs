@@ -36,6 +36,11 @@ public class MixerMachine : Machine
         throw new NotImplementedException();
     }
 
+    protected override void AfterSetScript()
+    {
+        ExecuteScript();
+    }
+
     IEnumerator ExecuteEverySecond()
     {
         while (true)

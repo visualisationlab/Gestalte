@@ -38,7 +38,7 @@ public class ItemSpawnerMachine : Machine
 
     protected override void AfterSetScript()
     {
-        luaScript.DoString(script);
+        ExecuteScript();
     }
 
     IEnumerator ExecuteEverySecond()
