@@ -109,15 +109,20 @@ public class RecipeTracker : MonoBehaviour
         else // a totally new one needs to be created
         {
             uniqueCounter++;
+            var finalShortDesc = !string.IsNullOrWhiteSpace(resp.shortDescription)
+                ? resp.shortDescription
+                : $"A {resp.name} with rarity {resp.normalizedRarity:F2}.";
+
             // int newSalePrice = Mathf.CeilToInt(uniqueCounter * resp.normalizedRarity); //Fine tune to get increasing price
             partialRecipe.result = new McGibbleDescription
             {
                 name = resp.name,
-                singleEmoji = resp.singleEmoji, 
+                singleEmoji = resp.singleEmoji,
                 normalizedRarity = resp.normalizedRarity,
                 normalizedHeatResistance = resp.normalizedHeatResistance,
                 uniqueCreated = uniqueCounter,
-                salePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1
+                salePrice = Mathf.FloorToInt(uniqueCounter * resp.normalizedRarity) + 1,
+                shortDescription = finalShortDesc
             };
         }
 

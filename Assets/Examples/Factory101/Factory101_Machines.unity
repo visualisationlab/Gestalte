@@ -711,8 +711,10 @@ MonoBehaviour:
     emojis. The result is another emoji. Make sure that it's a single emoji. The
     normalizedRarity you can come up with a normalized value of how rare the emoji
     is. Make the name a totally made\u2011up, not refering to anything, delightfully
-    oddball and short name. Make sure to only answer with a single new description.
-    It's important that you respond in JSON."
+    oddball and short name. Make sure the short description is one concise sentence
+    (10\u201320 words) that gives a flavorful, unique descriptor of the resulting
+    gibble. Make sure to only answer with a single new description. It's important
+    that you respond in JSON."
   componentsDescriptionPrompt: 'The ingredients that you have to come up with a recipe
     for are:'
   uniqueCounter: 0
