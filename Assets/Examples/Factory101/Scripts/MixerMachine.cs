@@ -25,8 +25,8 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
     private Coroutine loopRoutine;
 
-    private string extraComment = "";
-    private string overrideExtraComment = "";
+    [SerializeField] private string extraComment = "";
+    [SerializeField] private string incantation = "";
 
     protected override void RegisterLua()
     {
@@ -60,9 +60,10 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
             2 => "give a slightly higher chance to a medium normalizedRarity",
             3 => "give a medium chance to a high normalizedRarity",
             4 => "give a very high chance to a high normalizedRarity",
-            5 => extraComment = overrideExtraComment,
+            5 => "takes incantation instead",
             _ => ""
         };
+        Debug.Log(extraComment);
     }
 
     protected override void AfterSetScript()
@@ -89,7 +90,11 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
             var mcGibbleOne = sensorOne.detectedGameObject.GetComponent<McGibble>();
             var mcGibbleTwo = sensorTwo.detectedGameObject.GetComponent<McGibble>();
-            RecipeTracker.Instance.GetRecipe(mcGibbleOne.description, mcGibbleTwo.description, Eject, extraComment);
+
+            var extra = extraComment;
+            if (upgradeLevel == 5) extra = incantation;
+            
+            RecipeTracker.Instance.GetRecipe(mcGibbleOne.description, mcGibbleTwo.description, Eject, extra);
 
             McGibbleTracker.Instance.Remove(mcGibbleOne);
             McGibbleTracker.Instance.Remove(mcGibbleTwo);
@@ -114,9 +119,9 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
     }
     
     [ExposeMethod("Add an incantation while mixing")]
-    public void AddIncantation(string comment)
+    public void SetIncantation(string comment)
     {
-        overrideExtraComment = comment;
+        incantation = comment;
     }
 
     public int GetPrice()

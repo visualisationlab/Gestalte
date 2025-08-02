@@ -89,6 +89,8 @@ public class ToolManager : MonoBehaviour
 
     public void Rotate()
     {
+        if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
+            return;
         rotation += rotationAmount;
         CursorController.Instance.SetGhostRotation(rotation);
     }

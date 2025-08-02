@@ -70,11 +70,13 @@ public class RecipeTracker : MonoBehaviour
             return;
         }
 
-        var message = $"{componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}.";
+        var message = $"{componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}. {extra}";
         var systemMessage =
-            $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}. {extra}";
+            $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}.";
         
         Recipe recipe = null;
+        
+        Debug.Log($"New Recipe request: {systemMessage} and message: {message}");
         
         try
         {
