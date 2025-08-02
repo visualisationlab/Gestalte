@@ -6,7 +6,6 @@ public class GameInfoManager : MonoBehaviour
    [SerializeField] private int money;
 
    public UnityEvent<int> OnMoneyUpdate;
-   
    public static GameInfoManager Instance { get; private set; }
    
    void Awake()

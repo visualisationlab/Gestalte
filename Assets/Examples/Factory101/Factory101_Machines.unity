@@ -225,17 +225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &237479807 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3873202909777762686, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
-  m_PrefabInstance: {fileID: 6730687761131177730}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4bb965a585fcf4384cc1bc2f794bc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &273384808
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,8 +568,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3225c27c7348143966e8d31428a80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 237479807}
   pointerRaycaster: {fileID: 582396435}
+  OnRanOutOfFunds:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2952276245710370639}
+        m_TargetAssemblyTypeName: UnityEngine.UI.ToggleGroup, UnityEngine.UI
+        m_MethodName: SetAllTogglesOff
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &744470027
 GameObject:
   m_ObjectHideFlags: 0
@@ -64078,7 +64081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61fe4b18c0794e9555552f7144955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000000
+  money: 1
   OnMoneyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -64094,19 +64097,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
-        m_MethodName: KickMachineInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3986723057475729334}
         m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
         m_MethodName: SetBuyableButtonStates
         m_Mode: 1
@@ -66317,10 +66308,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 582396439}
     - target: {fileID: 3629698841074454290, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
-      propertyPath: canRotate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3629698841074454290, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
       propertyPath: toolManager
       value: 
       objectReference: {fileID: 582396440}
@@ -67483,6 +67470,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9215713775501068168, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
   m_PrefabInstance: {fileID: 1893625766581583705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3986723057475729334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8137006656949967411, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+  m_PrefabInstance: {fileID: 1893625766581583705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28236d4c0f2e1274f9d01dd46f41c9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &4294588762181490194
 CanvasRenderer:
   m_ObjectHideFlags: 0

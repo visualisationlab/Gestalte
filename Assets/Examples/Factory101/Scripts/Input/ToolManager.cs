@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ToolManager : MonoBehaviour
 {
@@ -9,13 +10,14 @@ public class ToolManager : MonoBehaviour
         None,
         Place
     }
-    [SerializeField] public CursorController cursor;
     [SerializeField] public PointerRaycaster pointerRaycaster;
     private Tool currentTool;
     private GameObject currentPlaceablePrefab;
     private float rotation;
     private float rotationAmount = 90f;
-    
+
+    public UnityEvent OnRanOutOfFunds;
+
     public void SelectPlaceableTool(GameObject ghost, GameObject placeablePrefab, bool canRotate)
     {
         rotation = 0;
@@ -43,19 +45,31 @@ public class ToolManager : MonoBehaviour
         if (currentTool == Tool.Place)
         {
             PlacePlaceable();
+            if (!HadEnoughFunds())
+            {
+                HidePlaceableTool();
+                InteractionModeController.Instance.SetModeDefault();
+                OnRanOutOfFunds.Invoke();
+            }
         }
     }
 
     public void PlacePlaceable()
     {
-        var buyable = currentPlaceablePrefab.GetComponent<IBuyable>();
-        if (buyable.GetPrice() <= GameInfoManager.Instance.GetMoney())
+        if (HadEnoughFunds())
         {
+            var buyable = currentPlaceablePrefab.GetComponent<IBuyable>();
             var realPlaceable = Instantiate(currentPlaceablePrefab, CursorController.Instance.GetPositionInGrid(), Quaternion.identity);
             realPlaceable.transform.Rotate(Vector3.forward, rotation);
             AudioManager.Instance.Pluck();
             GameInfoManager.Instance.AddMoney(-buyable.GetPrice());
         }
+    }
+
+    private bool HadEnoughFunds()
+    {
+        var buyable = currentPlaceablePrefab.GetComponent<IBuyable>();
+        return (buyable.GetPrice() <= GameInfoManager.Instance.GetMoney());
     }
 
     public void Rotate()

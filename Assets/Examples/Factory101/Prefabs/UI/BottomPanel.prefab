@@ -4326,7 +4326,7 @@ MonoBehaviour:
   toolManager: {fileID: 0}
   placeable: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
   ghost: {fileID: 5487005871635467567, guid: 007c4f7adc84cff48b8238b6c867f3a8, type: 3}
-  canRotate: 1
+  canRotate: 0
 --- !u!1 &6893409055777281131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,6 +4738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9215713775501068168}
+  - component: {fileID: 8137006656949967411}
   m_Layer: 5
   m_Name: BottomPanel
   m_TagString: Untagged
@@ -4765,6 +4766,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &8137006656949967411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207710979783508016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28236d4c0f2e1274f9d01dd46f41c9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8594638278423803688
 GameObject:
   m_ObjectHideFlags: 0
