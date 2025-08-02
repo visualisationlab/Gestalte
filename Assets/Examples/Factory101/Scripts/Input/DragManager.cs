@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [DisallowMultipleComponent]
 public class DragManager : MonoBehaviour
@@ -9,7 +10,6 @@ public class DragManager : MonoBehaviour
     private IDraggable _current;
     private Camera _camera;
     private bool _isDragging;
-
     private void Awake()
     {
         _camera = Camera.main;
@@ -53,6 +53,7 @@ public class DragManager : MonoBehaviour
             _isDragging = true;
             Vector3 worldPos = GetPointerWorldPosition();
              _current.StartDrag(worldPos);
+             GlobalMrMcGibbleTracker.Instance.ShowArrow();
         }
         else
         {
@@ -64,6 +65,7 @@ public class DragManager : MonoBehaviour
     private void OnPointerUp()
     {
         EndDrag();
+        
     }
 
     private void EndDrag()
@@ -71,6 +73,7 @@ public class DragManager : MonoBehaviour
         if (_isDragging && _current != null)
         {
             _current.StopDrag();
+            GlobalMrMcGibbleTracker.Instance.HideArrow();
             CursorController.Instance.SetToPoint();
         }
 

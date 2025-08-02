@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ConsumeMachine : MonoBehaviour, IBlockPlacement
 {
+    public SpriteRenderer arrow;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("McGibble"))
@@ -15,5 +16,15 @@ public class ConsumeMachine : MonoBehaviour, IBlockPlacement
             McGibbleTracker.Instance.Remove(mcGibble);
             GameInfoManager.Instance.AddMoney(price);
         }
+    }
+
+    public void ShowArrow()
+    {
+        arrow.gameObject.SetActive(true);
+    }
+
+    public void HideArrow()
+    {
+        arrow.gameObject.SetActive(false);
     }
 }
