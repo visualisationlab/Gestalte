@@ -53,6 +53,7 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
         string result = "";
         result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
         result += $"Rate: {GetSprayRate()} item(s)/s (max {GetMaxSprayRate()})\n";
+        result += $"Finish Type: {finishType.ToString()}\n";
         return result;
     }
 
