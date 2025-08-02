@@ -14,6 +14,7 @@ public class RobotAgent : MonoBehaviour
     {
         var systemMessage = preprompt + RobotAgentResponse.Format();
         var message = BuildInstructions(machine);
+        Debug.Log($"Sending {message}");
         string response = await directAPI.SendMessageAsync(systemMessage, message); // may throw
 
         string json = ExtractJson(response);

@@ -17,9 +17,24 @@ public class UIProgramInstructionScreen : MonoBehaviour
     [SerializeField] UIMethodInstructionItem methodInstructionTemplate;
     [SerializeField] Transform methodInstructionView;
     [SerializeField] UIOnClick freezeClick;
-    [SerializeField] UnityEvent OnProgrammingDone;
 
+    [Header("Info Panel")]
+    [SerializeField] private TextMeshProUGUI machineName;
+
+    [SerializeField] private TextMeshProUGUI machineDescription;
+    [SerializeField] private TextMeshProUGUI machineStatus;
+    [SerializeField] private Button upgradeButton;
+    [SerializeField] private TextMeshProUGUI upgradePrice;
+    [SerializeField] private TextMeshProUGUI sellPrice;
+    // [SerializeField] private GameObject programmingPanel;
+
+    [Header("Programming")]
+    [SerializeField] private RobotAgent agent;
+    
+    [Header("Events")]
     private List<UIMethodInstructionItem> placedMethodInstructions = new();
+
+    private ExposeMachine selectedMachine;
     
     public async void ProcessInput()
     {
@@ -28,7 +43,10 @@ public class UIProgramInstructionScreen : MonoBehaviour
             processingScreen.SetActive(true);
             processingErrorMessage.text = "";
             freezeClick.enabled = false;
-            await machineSelectionManager.SendInstructions(inputConsole.text);
+            selectedMachine.instructionPrompt = inputConsole.text;
+            var response = await agent.SendMessageDirectMachine(selectedMachine); // exceptions bubble
+            selectedMachine.SetScript(response.Lua);
+
         }
         catch (Exception e)
         {
@@ -40,17 +58,36 @@ public class UIProgramInstructionScreen : MonoBehaviour
         {
             processingScreen.SetActive(false);
             freezeClick.enabled = true;
-            OnProgrammingDone.Invoke();
+            SetMachine(selectedMachine);
         }
     }
-    
-    public void SetInstructions(string instructions)
-    {
-        inputConsole.text = instructions;
-    }
 
+    public void SetMachine(ExposeMachine machine)
+    {
+        selectedMachine = machine;
+        inputConsole.text = machine.instructionPrompt;
+        machineName.text = machine.name;
+        machineDescription.text = machine.GetDescription();
+        machineStatus.text = machine.GetStatus();
+        
+        if(!selectedMachine.MaxUpgradeLevelReached()){
+            upgradePrice.text = $"-{machine.GetUpgradePrice().ToString()}";
+            upgradePrice.color = machine.CanAffordUpgrade() ? Color.yellow : Color.red;
+            upgradeButton.interactable = machine.CanAffordUpgrade();
+        }
+        else
+        {
+            upgradePrice.color = Color.grey;
+            upgradePrice.text = "Max Upgraded";
+            upgradeButton.interactable = false;
+        }
+        
+        sellPrice.text = $"+{machine.GetSellPrice().ToString()}";
+        SetMethodInstructions(machine.GetExposedMethods());
+    }
     public void SetMethodInstructions(List<ExposedMethodInterpretation> methodInterpretations)
     {
+        ClearMethodInstructions();
         placedMethodInstructions.Clear();
         foreach (var item in methodInterpretations)
         {

@@ -130,4 +130,5 @@ public class ItemSpawnerMachine : Machine, IBuyable
 
         loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
+
 }
