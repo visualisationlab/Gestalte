@@ -1,3 +1,4 @@
+using Examples.Factory101.Scripts.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,11 +12,13 @@ public class BuyableMachineButton : MonoBehaviour, IPointerEnterHandler, IPointe
     public void ShowHoverInfo()
     {
         CursorController.Instance.ShowMouseInfo(BuyableReference.GetPrice().ToString(), Color.yellow);
+        GlobalMenuManager.Instance.sideInfoText.text = BuyableReference.GetDescription();
     }
     
     public void HoverHide()
     {
         CursorController.Instance.HideMouseInfo();
+        GlobalMenuManager.Instance.sideInfoText.text = "";
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -7,6 +7,7 @@ public class ToolInfo : MonoBehaviour
     [Header("Only On Placeable")]
     public GameObject placeable;
     public GameObject ghost;
+    public bool canRotate;
 
     public void SelectTool(bool activate)
     {
@@ -16,7 +17,7 @@ public class ToolInfo : MonoBehaviour
             return;
         }
         if(tool == ToolManager.Tool.Place){
-            toolManager.SelectPlaceableTool(ghost, placeable);
+            toolManager.SelectPlaceableTool(ghost, placeable, canRotate);
         }
     }
     

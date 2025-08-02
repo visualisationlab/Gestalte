@@ -72,10 +72,10 @@ public class CursorController : MonoBehaviour
         infoObject.SetActive(false);
     }
 
-    public void ShowBuildGhost(GameObject ghost)
+    public void ShowBuildGhost(GameObject ghost, bool canRotate)
     {
         placeableGhost.gameObject.SetActive(true);
-        placeableGhost.SetGhost(ghost);
+        placeableGhost.SetGhost(ghost, canRotate);
     }
     
     public void HideBuildGhost()
@@ -84,6 +84,11 @@ public class CursorController : MonoBehaviour
         placeableGhost.gameObject.SetActive(false);
     }
 
+    public void SetGhostRotation(float rotation)
+    {
+        placeableGhost.RotateGhost(rotation);
+    }
+    
     public Vector3 GetPosition()
     {
         return transform.position;

@@ -14,12 +14,14 @@ public class ToolManager : MonoBehaviour
     private Tool currentTool;
     private GameObject currentPlaceablePrefab;
     private float rotation;
+    private float rotationAmount = 90f;
     
-    public void SelectPlaceableTool(GameObject ghost, GameObject placeablePrefab)
+    public void SelectPlaceableTool(GameObject ghost, GameObject placeablePrefab, bool canRotate)
     {
+        rotation = 0;
         currentTool = Tool.Place;
         currentPlaceablePrefab = placeablePrefab;
-        CursorController.Instance.ShowBuildGhost(ghost);
+        CursorController.Instance.ShowBuildGhost(ghost, canRotate);
     }
 
     public void HidePlaceableTool()
@@ -58,7 +60,11 @@ public class ToolManager : MonoBehaviour
             //TODO Cant place
         }
     }
-    
-    
+
+    public void Rotate()
+    {
+        rotation += rotationAmount;
+        CursorController.Instance.SetGhostRotation(rotation);
+    }
     
 }
