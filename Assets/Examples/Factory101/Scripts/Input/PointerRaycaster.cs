@@ -1,3 +1,4 @@
+using Examples.Factory101.Scripts.Input;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -149,4 +150,10 @@ public class PointerRaycaster : MonoBehaviour
         return null;
     }
     public GameObject CurrentHover => _currentHover;
+
+    public bool HoverOverBlockingMachine()
+    {
+        if (CurrentHover == null) return false;
+        return CurrentHover.TryGetComponent<IBlockPlacement>(out _);
+    }
 }

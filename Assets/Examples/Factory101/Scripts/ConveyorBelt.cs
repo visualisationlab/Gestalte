@@ -1,6 +1,7 @@
+using Examples.Factory101.Scripts.Input;
 using UnityEngine;
 
-public class ConveyorBelt : MonoBehaviour, IBuyable
+public class ConveyorBelt : MonoBehaviour, IBuyable, IBlockPlacement
 {
     public float pushStrength = 5f;
     public int basePrice;

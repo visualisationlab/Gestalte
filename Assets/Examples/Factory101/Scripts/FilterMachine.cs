@@ -5,8 +5,9 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
+using Examples.Factory101.Scripts.Input;
 
-public class FilterMachine : Machine, IBuyable
+public class FilterMachine : Machine, IBuyable, IBlockPlacement
 {
     public MultiSimpleSensor sensor;
     public Transform whitelistOutputPoint;

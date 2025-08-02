@@ -10,7 +10,7 @@ public class ToolManager : MonoBehaviour
         Place
     }
     [SerializeField] public CursorController cursor;
-
+    [SerializeField] public PointerRaycaster pointerRaycaster;
     private Tool currentTool;
     private GameObject currentPlaceablePrefab;
     private float rotation;
@@ -33,16 +33,17 @@ public class ToolManager : MonoBehaviour
     
     public void OnClick()
     {
-        if (UIUtils.IsPointerOverUI()) return;
+        if (UIUtils.IsPointerOverUI()) 
+            return;
         if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
+            return;
+        if (pointerRaycaster.HoverOverBlockingMachine()) 
             return;
         
         if (currentTool == Tool.Place)
         {
             PlacePlaceable();
         }
-
-        //TODO DO other Tools
     }
 
     public void PlacePlaceable()
@@ -54,10 +55,6 @@ public class ToolManager : MonoBehaviour
             realPlaceable.transform.Rotate(Vector3.forward, rotation);
             AudioManager.Instance.Pluck();
             GameInfoManager.Instance.AddMoney(-buyable.GetPrice());
-        }
-        else
-        {
-            //TODO Cant place
         }
     }
 

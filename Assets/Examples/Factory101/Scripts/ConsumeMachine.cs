@@ -1,6 +1,7 @@
+using Examples.Factory101.Scripts.Input;
 using UnityEngine;
 
-public class ConsumeMachine : MonoBehaviour
+public class ConsumeMachine : MonoBehaviour, IBlockPlacement
 {
     private void OnTriggerEnter2D(Collider2D col)
     {

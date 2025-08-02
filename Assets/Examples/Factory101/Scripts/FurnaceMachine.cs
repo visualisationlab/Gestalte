@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable
+public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable, IBlockPlacement
 {
     public SimpleSensor sensor;
     public Transform outputPoint;

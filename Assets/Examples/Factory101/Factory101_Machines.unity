@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 237479807}
+  pointerRaycaster: {fileID: 582396435}
 --- !u!1 &744470027
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,9 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
+using Examples.Factory101.Scripts.Input;
 
-public class DroneMachine : Machine, IBuyable
+public class DroneMachine : Machine, IBuyable, IBlockPlacement
 {
     public MultiSimpleSensor grabArea;
     public Transform dropAreaCenter;

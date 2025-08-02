@@ -1,5 +1,6 @@
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
@@ -7,7 +8,7 @@ using Random = UnityEngine.Random;
 using UnityEngine.Events;
 using Coroutine = UnityEngine.Coroutine;
 
-public class MixerMachine : Machine, IBuyable
+public class MixerMachine : Machine, IBuyable, IBlockPlacement
 {
     public SimpleSensor sensorOne;
     public SimpleSensor sensorTwo;

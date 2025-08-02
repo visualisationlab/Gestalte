@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Random = UnityEngine.Random;
 using TMPro;
 using UnityEngine.Events;
 
-public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable
+public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable, IBlockPlacement
 {
     [Header("Detection & Output")]
     public SimpleSensor sensor;

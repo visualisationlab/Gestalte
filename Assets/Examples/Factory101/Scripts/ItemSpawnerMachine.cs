@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 using Coroutine = UnityEngine.Coroutine;
 using Random = UnityEngine.Random;
 
-public class ItemSpawnerMachine : Machine, IBuyable
+public class ItemSpawnerMachine : Machine, IBuyable, IBlockPlacement
 {
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject mcGibbleTemplate;

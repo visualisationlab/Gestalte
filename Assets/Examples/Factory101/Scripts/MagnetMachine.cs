@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable
+public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable, IBlockPlacement
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float upgradePullMultiplier = 1.3f;

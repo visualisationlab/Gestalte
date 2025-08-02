@@ -1,10 +1,11 @@
 using System.Collections;
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class SimpleActuator : Machine, IBuyable
+public class SimpleActuator : Machine, IBuyable, IBlockPlacement
 {
     public ActuatorPiston piston;
 
