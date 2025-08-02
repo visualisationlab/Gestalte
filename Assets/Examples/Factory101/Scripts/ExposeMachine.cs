@@ -87,7 +87,7 @@ public class ExposeMachine : MonoBehaviour
     
     public int GetSellPrice()
     {
-        return Mathf.RoundToInt(machine.basePrice * 0.4f);
+        return Mathf.RoundToInt(machine.basePrice * 0.8f);
     }
 
     public void Upgrade()

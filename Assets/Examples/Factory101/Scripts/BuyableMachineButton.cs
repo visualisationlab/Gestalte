@@ -9,14 +9,18 @@ public class BuyableMachineButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public IBuyable BuyableReference => buyableBehaviour.GetComponent<IBuyable>();
 
+    public bool isFree;
+
     public void ShowHoverInfo()
     {
+        if (isFree) return;
         CursorController.Instance.ShowMouseInfo(BuyableReference.GetPrice().ToString(), Color.yellow);
         GlobalMenuManager.Instance.sideInfoText.text = BuyableReference.GetDescription();
     }
     
     public void HoverHide()
     {
+        if (isFree) return;
         CursorController.Instance.HideMouseInfo();
         GlobalMenuManager.Instance.sideInfoText.text = "";
     }

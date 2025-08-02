@@ -19,6 +19,11 @@ public class ToolInfo : MonoBehaviour
         if(tool == ToolManager.Tool.Place){
             toolManager.SelectPlaceableTool(ghost, placeable, canRotate);
         }
+        
+        if(tool == ToolManager.Tool.Sell)
+        {
+            toolManager.SelectSellTool();
+        }
     }
     
 }

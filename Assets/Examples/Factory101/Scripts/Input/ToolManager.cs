@@ -8,7 +8,8 @@ public class ToolManager : MonoBehaviour
     public enum Tool
     {
         None,
-        Place
+        Place,
+        Sell
     }
     [SerializeField] public PointerRaycaster pointerRaycaster;
     private Tool currentTool;
@@ -26,6 +27,11 @@ public class ToolManager : MonoBehaviour
         CursorController.Instance.ShowBuildGhost(ghost, canRotate);
     }
 
+    public void SelectSellTool()
+    {
+        currentTool = Tool.Sell;
+    }
+    
     public void HidePlaceableTool()
     {
         currentTool = Tool.None;
@@ -39,11 +45,12 @@ public class ToolManager : MonoBehaviour
             return;
         if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
             return;
-        if (pointerRaycaster.HoverOverBlockingMachine()) 
-            return;
         
         if (currentTool == Tool.Place)
         {
+            if (pointerRaycaster.HoverOverBlockingMachine()) 
+                return;
+            
             PlacePlaceable();
             if (!HadEnoughFunds())
             {
@@ -51,6 +58,11 @@ public class ToolManager : MonoBehaviour
                 InteractionModeController.Instance.SetModeDefault();
                 OnRanOutOfFunds.Invoke();
             }
+        }else if (currentTool == Tool.Sell)
+        {
+            var currentMachine = pointerRaycaster.CurrentHover.GetComponent<IBuyable>();
+            GameInfoManager.Instance.AddMoney( Mathf.RoundToInt(currentMachine.GetPrice() * 0.8f));
+            Destroy(pointerRaycaster.CurrentHover.gameObject);
         }
     }
 
