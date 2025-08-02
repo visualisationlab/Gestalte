@@ -29,7 +29,9 @@ public class ToolSelectionManager : MonoBehaviour
     public InputStateMachine inputStateMachine;
     public GameObject currentPlaceable;
     public InputController toolInputController;
-    
+    // Listener so we don't have to add and remove listeners every time we change the tool
+    private UnityEngine.Events.UnityAction placeListener;
+
     [Header("Placeable Prefabs")]
     public GameObject buildToolGhost;
     public GameObject conveyorBelt;
@@ -155,6 +157,14 @@ public class ToolSelectionManager : MonoBehaviour
         inputStateMachine.SetInteractState();
         currentTool = Tool.None;
         currentPlaceable = null;
+
+        // Reset the placelistener so we don't get double placements
+        if (placeListener != null)
+        {
+            toolInputController.OnClickedOutside.RemoveListener(placeListener);
+            placeListener = null;
+        }
+
         var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
         ghostDraggable.StopDragging();
         buildToolGhost.transform.position = Vector3.one * 99999f;
@@ -162,12 +172,16 @@ public class ToolSelectionManager : MonoBehaviour
 
     private void InstantiatePlaceable(GameObject placeablePrefab)
     {
-        
-            var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
-            toolInputController.ForceDraggable(ghostDraggable);
-            var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
-            ghost.SetPlaceablePrefab(placeablePrefab);
-            toolInputController.OnClickedOutside.AddListener(ghost.PlaceCurrent);
+        var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
+        toolInputController.ForceDraggable(ghostDraggable);
+        var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
+        ghost.SetPlaceablePrefab(placeablePrefab);
+
+        if (placeListener != null)
+            toolInputController.OnClickedOutside.RemoveListener(placeListener);
+
+        placeListener = ghost.PlaceCurrent;
+        toolInputController.OnClickedOutside.AddListener(placeListener);
     }
     
     public void SetBuyableButtonStates()
