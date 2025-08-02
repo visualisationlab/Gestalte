@@ -4,7 +4,7 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class ActuatorSensorMachine : Machine
+public class ActuatorSensorMachine : Machine, IBuyable
 {
     public SimpleSensor sensor;
     public ActuatorPiston piston;
@@ -55,5 +55,15 @@ public class ActuatorSensorMachine : Machine
     public void Retract()
     {
         piston.Retract();
+    }
+
+    public int GetPrice()
+    {
+        return basePrice;
+    }
+
+    public string GetDescription()
+    {
+        return description;
     }
 }

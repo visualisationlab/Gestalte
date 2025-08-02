@@ -6,6 +6,7 @@ public class BuildToolGhost : MonoBehaviour
    [SerializeField] private Transform ghostHolder;
    public void SetGhost(GameObject ghost)
    {
+      RemoveGhost();
       currentGhost = Instantiate(ghost, ghostHolder);
    }
 

@@ -8,8 +8,13 @@ public class ToolInfo : MonoBehaviour
     public GameObject placeable;
     public GameObject ghost;
 
-    public void SelectTool()
+    public void SelectTool(bool activate)
     {
+        if (!activate)
+        {
+            toolManager.HidePlaceableTool();
+            return;
+        }
         if(tool == ToolManager.Tool.Place){
             toolManager.SelectPlaceableTool(ghost, placeable);
         }

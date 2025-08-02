@@ -31,6 +31,7 @@ public class ToolManager : MonoBehaviour
     
     public void OnClick()
     {
+        if (UIUtils.IsPointerOverUI()) return;
         if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
             return;
         

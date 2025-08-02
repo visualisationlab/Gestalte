@@ -14,8 +14,13 @@ public class InteractionModeController : MonoBehaviour
         else Instance = this;
     }
 
-    public void SetModePlacement()
+    public void SetModePlacement(bool activate)
     {
+        if (!activate)
+        {
+            SetMode(InteractionMode.Default);
+            return;
+        }
         SetMode(InteractionMode.Placement);
     }
 
