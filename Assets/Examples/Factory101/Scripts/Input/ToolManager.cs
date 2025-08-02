@@ -21,26 +21,33 @@ public class ToolManager : MonoBehaviour
         currentPlaceablePrefab = placeablePrefab;
         CursorController.Instance.ShowBuildGhost(ghost);
     }
+
+    public void HidePlaceableTool()
+    {
+        currentTool = Tool.None;
+        currentPlaceablePrefab = null;
+        CursorController.Instance.HideBuildGhost();
+    }
     
     public void OnClick()
     {
         if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
             return;
+        
         if (currentTool == Tool.Place)
         {
             PlacePlaceable();
         }
+
         //TODO DO other Tools
     }
 
     public void PlacePlaceable()
     {
         var buyable = currentPlaceablePrefab.GetComponent<IBuyable>();
-        Debug.Log($"BUYABLE: {buyable}");
-        
         if (buyable.GetPrice() <= GameInfoManager.Instance.GetMoney())
         {
-            var realPlaceable = Instantiate(currentPlaceablePrefab, transform.position, Quaternion.identity);
+            var realPlaceable = Instantiate(currentPlaceablePrefab, CursorController.Instance.GetPositionInGrid(), Quaternion.identity);
             realPlaceable.transform.Rotate(Vector3.forward, rotation);
             AudioManager.Instance.Pluck();
             GameInfoManager.Instance.AddMoney(-buyable.GetPrice());

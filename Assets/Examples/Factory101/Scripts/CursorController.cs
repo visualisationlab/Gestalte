@@ -84,4 +84,14 @@ public class CursorController : MonoBehaviour
         placeableGhost.gameObject.SetActive(false);
     }
 
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+    
+    public Vector3 GetPositionInGrid()
+    {
+        return new Vector3(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), 0f);
+    }
+
 }

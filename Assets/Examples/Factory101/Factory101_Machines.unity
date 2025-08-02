@@ -925,6 +925,18 @@ MonoBehaviour:
   OnClickCanceled:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 582396440}
+        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
+        m_MethodName: HidePlaceableTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 582396439}
         m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
         m_MethodName: SetModeDefault
@@ -942,7 +954,19 @@ MonoBehaviour:
       m_Calls: []
   OnCancel:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 582396439}
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModeDefault
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _use: {fileID: 1120369429361536294, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   _cancel: {fileID: 162912951397845624, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   _rotate: {fileID: 8023760315979591213, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
@@ -64182,7 +64206,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1504355017}
   - {fileID: 636932820}
   m_Father: {fileID: 2952276245710370640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64309,7 +64332,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 792727045}
   toggleTransition: 1
-  graphic: {fileID: 1504355018}
+  graphic: {fileID: 0}
   m_Group: {fileID: 2952276245710370639}
   onValueChanged:
     m_PersistentCalls:
@@ -65198,7 +65221,7 @@ MonoBehaviour:
   pearlFinishMultiplier: 4
   galacticFinishMultiplier: 10
   unknownFinishMultiplier: 1
-  txt: {fileID: 1769902614}
+  txt: {fileID: 0}
   frozenMultiplier: 1
   normalMultiplier: 1
   warmMultiplier: 1.2
@@ -65299,9 +65322,7 @@ Transform:
   m_LocalPosition: {x: -0.4085964, y: -1.2, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1769902616}
-  - {fileID: 103923594}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519631117
@@ -67726,10 +67747,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8110705039423889770, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
-      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7683861618136751766, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
       propertyPath: toolManager
       value: 
@@ -67750,6 +67767,10 @@ PrefabInstance:
       propertyPath: toolManager
       value: 
       objectReference: {fileID: 582396440}
+    - target: {fileID: 8110705039423889770, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+      propertyPath: onHoverExit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8115703418466756293, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -70081,14 +70102,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7038080469151874529, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7038080469151874529, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -71377,3 +71390,5 @@ SceneRoots:
   - {fileID: 1745330458}
   - {fileID: 5784446763938241935}
   - {fileID: 797981814735095883}
+  - {fileID: 6874643816355461623}
+  - {fileID: 1499193260}

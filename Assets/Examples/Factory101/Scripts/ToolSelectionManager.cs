@@ -173,7 +173,7 @@ public class ToolSelectionManager : MonoBehaviour
         var ghostDraggable = buildToolGhost.GetComponent<Draggable>();
         toolInputController.ForceDraggable(ghostDraggable);
         var ghost = ghostDraggable.GetComponent<BuildToolGhost>();
-        ghost.SetPlaceablePrefab(placeablePrefab);
+        // ghost.SetPlaceablePrefab(placeablePrefab);
 
         if (placeListener != null)
             toolInputController.OnClickedOutside.RemoveListener(placeListener);
