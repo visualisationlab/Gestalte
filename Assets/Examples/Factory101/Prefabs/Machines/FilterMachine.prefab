@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 3360438301241330682}
   - component: {fileID: 2380497394364133896}
   - component: {fileID: 8992514812971157721}
+  - component: {fileID: -2370310124572375874}
   m_Layer: 5
   m_Name: FilterMachine
   m_TagString: Untagged
@@ -371,7 +372,7 @@ MonoBehaviour:
   script: 
   basePrice: 200
   baseUpgradePrice: 0
-  upgradedAmount: 0
+  upgradeLevel: 1
   maxUpgradeLevel: 0
   description: 'Filter
 
@@ -381,3 +382,15 @@ MonoBehaviour:
   sensor: {fileID: 6133105396267097805}
   whitelistOutputPoint: {fileID: 3034349286868390582}
   blacklistOutputPoint: {fileID: 8313301816263041386}
+--- !u!114 &-2370310124572375874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374596759931955718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59352ac7053c4f21910b86895d62c991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

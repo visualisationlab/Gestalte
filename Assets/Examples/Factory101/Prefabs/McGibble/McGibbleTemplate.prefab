@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 6905023778030106352}
   - component: {fileID: 558675386316841227}
   - component: {fileID: 3801338706816645543}
+  - component: {fileID: -8701235357627404756}
   - component: {fileID: 7305387786256197498}
   - component: {fileID: 1037202791371449985}
   m_Layer: 0
@@ -187,7 +188,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7305387786256197498
+--- !u!114 &-8701235357627404756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,6 +196,48 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859733459145252865}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafc21a6144128d41a4bec3b3f16e426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDraggingStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 558675386316841227}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDraggingStopped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 558675386316841227}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &7305387786256197498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859733459145252865}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
   m_Name: 

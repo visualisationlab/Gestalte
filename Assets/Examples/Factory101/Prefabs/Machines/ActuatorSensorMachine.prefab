@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 6294157194642579927}
   - component: {fileID: 2813801648915722084}
   - component: {fileID: 8684761616708068716}
+  - component: {fileID: 7795677650882056588}
   m_Layer: 5
   m_Name: ActuatorSensorMachine
   m_TagString: Untagged
@@ -250,7 +251,7 @@ MonoBehaviour:
   script: 
   basePrice: 0
   baseUpgradePrice: 0
-  upgradedAmount: 0
+  upgradeLevel: 1
   maxUpgradeLevel: 0
   description: 'Pusher
 
@@ -320,6 +321,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1485239, y: 0.91770923}
   m_EdgeRadius: 0
+--- !u!114 &7795677650882056588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270644861067562815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59352ac7053c4f21910b86895d62c991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8005358438837583942
 GameObject:
   m_ObjectHideFlags: 0

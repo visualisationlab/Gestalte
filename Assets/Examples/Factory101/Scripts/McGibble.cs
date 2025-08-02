@@ -30,6 +30,7 @@ public class McGibble : MonoBehaviour
     [SerializeField] private float burntMultiplier = 0.5f;
     [SerializeField] private float unknownMultiplier = 1f;
 
+    
     private void Start()
     {
         txt.text = description.singleEmoji;

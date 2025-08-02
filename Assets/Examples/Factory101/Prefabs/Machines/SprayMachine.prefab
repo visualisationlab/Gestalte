@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 7152410345172891386}
   - component: {fileID: 7485368111640788808}
   - component: {fileID: 1975599757221880882}
+  - component: {fileID: 9216968471328797511}
   m_Layer: 5
   m_Name: SprayMachine
   m_TagString: Untagged
@@ -579,7 +580,7 @@ MonoBehaviour:
   script: 
   basePrice: 2500
   baseUpgradePrice: 1
-  upgradedAmount: 0
+  upgradeLevel: 1
   maxUpgradeLevel: 6
   description: 'Spray Painter
 
@@ -596,6 +597,18 @@ MonoBehaviour:
   onStopSpray:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9216968471328797511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092464942995873906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59352ac7053c4f21910b86895d62c991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8225832431709129566
 GameObject:
   m_ObjectHideFlags: 0

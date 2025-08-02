@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3105105486135741744}
   - component: {fileID: 3661933166511220}
   - component: {fileID: 6265581125279924853}
+  - component: {fileID: -5175532086271917441}
   m_Layer: 5
   m_Name: DroneMachine
   m_TagString: Untagged
@@ -114,7 +115,7 @@ MonoBehaviour:
   script: 
   basePrice: 1000
   baseUpgradePrice: 0
-  upgradedAmount: 0
+  upgradeLevel: 1
   maxUpgradeLevel: 0
   description: 'Drone Station
 
@@ -126,6 +127,18 @@ MonoBehaviour:
   dropRadius: 2
   dronePrefab: {fileID: 7864006489217498798, guid: 86c18afadad12d54c95d02cee2442734, type: 3}
   poolSize: 10
+--- !u!114 &-5175532086271917441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411668718053369241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59352ac7053c4f21910b86895d62c991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2935962326771027310
 GameObject:
   m_ObjectHideFlags: 0
