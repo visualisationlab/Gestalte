@@ -20,8 +20,8 @@ public class InputStateMachine : MonoBehaviour
     {
         StartCoroutine(DelayedEnable());
     }
-    
-    
+
+
     //UGLY Fix For Input Interact not always working from the very beginning
     public IEnumerator DelayedEnable()
     {
@@ -34,18 +34,23 @@ public class InputStateMachine : MonoBehaviour
     {
         SetState(InputState.Interact);
     }
-    
+
     public void SetBuildState()
     {
         SetState(InputState.Build);
         cursor.SetToBuild();
     }
-    
+
     private void SetState(InputState newState)
     {
         toolInput.enabled = newState == InputState.Build;
         interactInput.enabled = newState == InputState.Interact;
         state = newState;
         Debug.Log($"Set Input State: {state}");
+    }
+    
+    public bool isBuilding()
+    {
+        return state == InputState.Build;
     }
 }

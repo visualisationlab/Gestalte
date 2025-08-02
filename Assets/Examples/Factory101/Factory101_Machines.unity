@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59fc2be1d719b042bbd7c6a3c6a33a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statemachineReference: {fileID: 0}
   useActionReference: {fileID: 1120369429361536294, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   cancelActionReference: {fileID: 162912951397845624, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   rotateActionReference: {fileID: 8023760315979591213, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
@@ -64291,6 +64292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59fc2be1d719b042bbd7c6a3c6a33a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statemachineReference: {fileID: 1979704672}
   useActionReference: {fileID: 1120369429361536294, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   cancelActionReference: {fileID: 162912951397845624, guid: a2352b1e9823bee428e79ff8764cbc46, type: 3}
   rotateActionReference: {fileID: 0}

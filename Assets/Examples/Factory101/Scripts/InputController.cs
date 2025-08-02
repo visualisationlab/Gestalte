@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
+    public InputStateMachine statemachineReference;
+
     [Header("Mouse Interactions")]
     public InputActionReference useActionReference;
     public InputActionReference cancelActionReference;
@@ -150,6 +152,9 @@ public class InputController : MonoBehaviour
             }
             else
             {
+                if (statemachineReference.isBuilding())
+                    return;
+
                 Draggable draggable = hit.collider.gameObject.GetComponent<Draggable>();
                 if (draggable != null)
                 {
