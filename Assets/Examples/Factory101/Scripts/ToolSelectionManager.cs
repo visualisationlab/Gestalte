@@ -19,10 +19,11 @@ public class ToolSelectionManager : MonoBehaviour
         {
             var toggle = tool.GetComponent<Toggle>();
             toggle.interactable = false;
+            
             if (tool.isFree)
             {
                 toggle.interactable = true;
-                return;
+                continue;
             }
             
             if (tool.BuyableReference.GetPrice() <= GameInfoManager.Instance.GetMoney())

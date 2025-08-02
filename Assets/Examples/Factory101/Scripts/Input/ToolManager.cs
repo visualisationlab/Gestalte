@@ -30,6 +30,7 @@ public class ToolManager : MonoBehaviour
     public void SelectSellTool()
     {
         currentTool = Tool.Sell;
+        CursorController.Instance.SetToThrashCan();
     }
     
     public void HidePlaceableTool()

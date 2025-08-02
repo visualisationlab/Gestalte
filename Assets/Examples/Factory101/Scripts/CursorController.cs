@@ -8,6 +8,7 @@ public class CursorController : MonoBehaviour
     public Sprite pointCursor;
     public Sprite dragCursor;
     public Sprite buildCursor;
+    public Sprite thrashcanCursor;
     public bool realCursorVisible;
     [Header("Mouse Info")] 
     public GameObject infoObject;
@@ -48,6 +49,11 @@ public class CursorController : MonoBehaviour
     public void SetToBuild()
     {
         image.sprite = buildCursor;
+    }
+
+    public void SetToThrashCan()
+    {
+        image.sprite = thrashcanCursor;
     }
 
     // Update is called once per frame
