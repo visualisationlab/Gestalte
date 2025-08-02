@@ -8,8 +8,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
 using UnityEngine.Events;
+using Coroutine = UnityEngine.Coroutine;
 
-public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulseReceiver<bool>, IBuyable, IBlockPlacement
+public class SprayMachine : Machine, IBuyable, IBlockPlacement
 {
     [Header("Detection & Output")]
     public SimpleSensor sensor;
@@ -19,128 +20,94 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
     public Color sprayColor = Color.magenta;
     public FinishType finishType = FinishType.Mat;
     [Range(0f, 1f)] public float intensity = 1f; // 0 = no change, 1 = full spray
-
-    [Header("Runtime")]
-    public UnityEvent onStartSpray;
-    public UnityEvent onStopSpray;
-    private McGibbleDescription lastNotifiedMcGibble;
-
-    private void Start()
-    {
-        maxUpgradeLevel = Enum.GetValues(typeof(FinishType)).Length - 2;
-        StartCoroutine(ExecuteEverySecond());
-    }
+    
+    [SerializeField] private float sprayRate;
+    private float maxSprayRate = 1f;
+    private Coroutine loopRoutine;
 
     protected override void RegisterLua()
     {
         UserData.RegisterType<SprayMachine>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
+    
+    protected override void AfterSetScript()
+    {
+        ExecuteScript();
+        RestartCoroutine();
+    }
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
 
-    public override string GetStatus() => "Spray Machine Status";
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
+    }    
+
+    public override string GetStatus()
+    {
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetSprayRate()} item(s)/s (max {GetMaxSprayRate()})\n";
+        return result;
+    }
 
     IEnumerator ExecuteEverySecond()
     {
         while (true)
         {
-            ExecuteScript();
-            yield return new WaitForSeconds(1f);
+            Spray();
+            yield return new WaitForSeconds(1f / sprayRate);
         }
     }
+    
+    public override void UpgradeMachine()
+    {
+        upgradeLevel++;
+        
+        maxSprayRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            4 => 6f,
+            _ => 1f // default case
+        };
+        
+        finishType = upgradeLevel switch
+        {
+            2 => FinishType.Glossy,
+            3 => FinishType.Shiny,
+            4 => FinishType.Metallic,
+            5 => FinishType.Pearlescent,
+            6 => FinishType.Galactic,
+            _ => FinishType.Mat // default case
+        };
+    }
 
-    [ExposeMethod("Set the spray color (r,g,b) in 0.0 - 1.0 range")]
+    [ExposeMethod("Sets the spray color (r,g,b) in 0.0 - 1.0 range")]
     public void SetSprayColor(float r, float g, float b)
     {
         sprayColor = new Color(r, g, b);
-        Debug.Log($"[SprayMachine] SetSprayColor called. New sprayColor = {sprayColor} (r={r}, g={g}, b={b})");
-    }
-
-    [ExposeMethod("Set spray intensity (0 = no effect, 1 = full color)")]
-    public void SetIntensity(float val)
-    {
-        intensity = Mathf.Clamp01(val);
-    }
-
-    [ExposeMethod("Trigger a spray on the currently detected item")]
-    public void Spray()
-    {
-        if (!sensor.onDetect || sensor.detectedGameObject == null)
-        {
-            Debug.LogWarning("[SprayMachine] No object detected to spray.");
-            return;
-        }
-
-        onStartSpray?.Invoke();
-
-        var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
-        if (outputPoint != null)
-        {
-            mcGibble.transform.position = outputPoint.position + new Vector3(Random.value - 0.5f, Random.value - 0.5f, 0f);
-        }
-
-        // assign finish before applying spray
-        if (mcGibble != null)
-            mcGibble.SetFinishType(finishType);
-
-        ApplySpray(mcGibble);
-
-        onStopSpray?.Invoke();
-    }
-
-    private void ApplySpray(McGibble mcGibble)
-    {
-        var obj = mcGibble.gameObject;
-        var textMesh = obj.GetComponentInChildren<TextMeshPro>();
-        if (textMesh != null)
-        {
-            textMesh.color = Color.Lerp(textMesh.color, sprayColor, intensity);
-        }
-    }
-
-    // Pulse receiver: trigger spray on true pulse
-    public void OnPulse(bool pulse)
-    {
-        if (pulse)
-        {
-            Spray();
-        }
-    }
-
-    [ContextMenu("Test spray manually")]
-    public void TestSpray()
-    {
-        Spray();
-    }
-
-    public void OnPulse(McGibbleDescription mcGibble)
-    {
-        lastNotifiedMcGibble = mcGibble;
-    }
-
-    public override void UpgradeMachine()
-    {
-
-        // Based on the current upgrade level we can change the spray finish type
-        if (MaxUpgradeLevelReached())
-        {
-            finishType = FinishType.Galactic;
-        }
-        else
-        {
-            finishType = GetNextFinishType(finishType);
-            this.upgradeLevel++;
-        }
-
-        Debug.Log($"SprayMachine upgraded to {finishType}");
     }
     
-    private FinishType GetNextFinishType(FinishType current)
+    [ExposeMethod("Sets how many items this machine sprays every second")]
+    public void SetSprayRate(float rate)
     {
-        var values = (FinishType[])Enum.GetValues(typeof(FinishType));
-        int idx = Array.IndexOf(values, current);
-        idx = (idx + 1) % values.Length; // wraps around
-        return values[idx];
+        sprayRate = Mathf.Min(rate, maxSprayRate);
+    }
+
+    public void Spray()
+    {
+        if (!sensor.detectedGameObject) return;
+        var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
+        if (mcGibble == null) return;
+        
+        mcGibble.transform.position = outputPoint.position + new Vector3(Random.value - 0.5f, Random.value - 0.5f, 0f);
+        mcGibble.SetSprayPaint(finishType, sprayColor);
     }
 
     public int GetPrice()
@@ -151,5 +118,15 @@ public class SprayMachine : Machine, IPulseReceiver<McGibbleDescription>, IPulse
     public string GetDescription()
     {
         return description;
+    }
+    
+    private string GetSprayRate()
+    {
+        return sprayRate.ToString("0.0");
+    }
+
+    private string GetMaxSprayRate()
+    {
+        return maxSprayRate.ToString("0.0");
     }
 }

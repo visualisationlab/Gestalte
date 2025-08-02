@@ -7,8 +7,10 @@ public class McGibble : MonoBehaviour, IHoverable
 {
     public McGibbleDescription description;
     public int heat;
-    public Color sprayColor = Color.white;
     public FinishType finishType = FinishType.Mat;
+    [SerializeField] private TextMeshPro txt;
+    [SerializeField] private SpriteRenderer background;
+    [SerializeField] private ParticleSystem particles;
     
     [Header("Finish multipliers")]
     [SerializeField] private float matFinishMultiplier = 1f;
@@ -18,7 +20,6 @@ public class McGibble : MonoBehaviour, IHoverable
     [SerializeField] private float pearlFinishMultiplier = 4f;
     [SerializeField] private float galacticFinishMultiplier = 10f;
     [SerializeField] private float unknownFinishMultiplier = 1f;
-    [SerializeField] private TextMeshPro txt;
 
     // Multipliers per category; tweakable in inspector
     [Header("Heat Multipliers")]
@@ -31,7 +32,10 @@ public class McGibble : MonoBehaviour, IHoverable
     [SerializeField] private float burntMultiplier = 0.5f;
     [SerializeField] private float unknownMultiplier = 1f;
 
-    
+    [Header("Particle Materials")] 
+    [SerializeField] private Material matOne;
+    [SerializeField] private Material matTwo;
+    [SerializeField] private Material matThree;
     private void Start()
     {
         txt.text = description.singleEmoji;
@@ -110,7 +114,7 @@ public class McGibble : MonoBehaviour, IHoverable
             FinishType.Shiny => shinyFinishMultiplier,
             FinishType.Metallic => metallicFinishMultiplier,
             FinishType.Glossy => glossyFinishMultiplier,
-            FinishType.Pearl => pearlFinishMultiplier,
+            FinishType.Pearlescent => pearlFinishMultiplier,
             FinishType.Galactic => galacticFinishMultiplier,
             _ => unknownFinishMultiplier
         };
@@ -118,20 +122,50 @@ public class McGibble : MonoBehaviour, IHoverable
 
     private string getFinishDescription()
     {
-        return finishType switch
-        {
-            FinishType.Mat => "Matte",
-            FinishType.Shiny => "Shiny",
-            FinishType.Metallic => "Metallic",
-            FinishType.Glossy => "Glossy",
-            FinishType.Pearl => "Pearlescent",
-            FinishType.Galactic => "Galactic",
-            _ => "Unknown"
-        };
+        return finishType.ToString();
     }
-    public void SetFinishType(FinishType newFinish)
+    
+    public void SetSprayPaint(FinishType newFinish, Color color)
     {
         finishType = newFinish;
+        background.color = color;
+        
+        switch (finishType)
+        {
+            case FinishType.Mat:
+                break;
+            case FinishType.Glossy:
+                SetParticles(10, new Color(1f, 1f, 1f), matOne);
+                particles.Play();
+                break;
+            case FinishType.Shiny:
+                SetParticles(20, new Color(0f, 1f, 1f), matOne);
+                break;
+            case FinishType.Metallic:
+                SetParticles(30, new Color(1f, .5f, 1f), matTwo);
+                particles.Play();
+                break;
+            case FinishType.Pearlescent:
+                SetParticles(40, new Color(1f, 1f, 0f), matTwo);
+                particles.Play();
+                break;
+            case FinishType.Galactic:
+                SetParticles(50, new Color(.2f, .6f, 0.9f), matThree);
+                particles.Play();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetParticles(int maxParticles, Color color, Material material)
+    {
+        var main = particles.main;
+        main.maxParticles = maxParticles;
+        main.startColor = color;
+        var renderer = particles.GetComponent<ParticleSystemRenderer>();
+        renderer.material = material;
+        particles.Play();
     }
 
     public float GetTotalMultiplier()

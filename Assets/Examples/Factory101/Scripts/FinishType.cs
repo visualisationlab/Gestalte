@@ -6,7 +6,7 @@ namespace Examples.Factory101.Scripts
         Shiny,
         Metallic,
         Glossy,
-        Pearl,
+        Pearlescent,
         Galactic,
         Unknown
     }

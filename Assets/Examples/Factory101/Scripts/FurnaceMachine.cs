@@ -53,7 +53,15 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
         result += $"Stability: {stability})\n";
         return result;
     }
-
+    IEnumerator ExecuteEverySecond()
+    {
+        while (true)
+        {
+            Blast();
+            yield return new WaitForSeconds(1f / blastRate);
+        }
+    }
+    
     public override void UpgradeMachine()
     {
         upgradeLevel++;
@@ -75,15 +83,6 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
         };
     }
 
-    IEnumerator ExecuteEverySecond()
-    {
-        while (true)
-        {
-            Blast();
-            yield return new WaitForSeconds(1f / blastRate);
-        }
-    }
-
     [ExposeMethod("Sets the temperature of the furnace")]
     public void SetTemperature(int heat)
     {
@@ -99,7 +98,6 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     public void Blast()
     {
         if (!sensor.detectedGameObject) return;
-
         var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
         if (mcGibble == null) return;
 

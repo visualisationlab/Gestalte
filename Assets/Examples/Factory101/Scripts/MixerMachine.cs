@@ -89,6 +89,8 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
             var mcGibbleOne = sensorOne.detectedGameObject.GetComponent<McGibble>();
             var mcGibbleTwo = sensorTwo.detectedGameObject.GetComponent<McGibble>();
+            
+            if (mcGibbleOne == null || mcGibbleTwo == null) return;
 
             var extra = extraComment;
             if (upgradeLevel == 5) extra = incantation;
