@@ -34,7 +34,7 @@ public class ExposeMachine : MonoBehaviour
                     }
 
                     string methodFormat = $"{method.Name}({string.Join(", ", parameterDescriptions)})";
-                    string methodFormatClean = $"{method.Name}()";
+                    string methodFormatClean = $"{method.Name}";
 
                     var interpretation = new ExposedMethodInterpretation
                     {
