@@ -12,6 +12,8 @@ public class CursorController : MonoBehaviour
     [Header("Mouse Info")] 
     public GameObject infoObject;
     public TextMeshPro infoText;
+
+    public BuildToolGhost placeableGhost;
     
     public static CursorController Instance { get; private set; }
     
@@ -69,4 +71,17 @@ public class CursorController : MonoBehaviour
         infoText.color = Color.white;
         infoObject.SetActive(false);
     }
+
+    public void ShowBuildGhost(GameObject ghost)
+    {
+        placeableGhost.gameObject.SetActive(true);
+        placeableGhost.SetGhost(ghost);
+    }
+    
+    public void HideBuildGhost()
+    {
+        placeableGhost.RemoveGhost();
+        placeableGhost.gameObject.SetActive(false);
+    }
+
 }

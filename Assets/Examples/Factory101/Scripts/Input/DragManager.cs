@@ -44,10 +44,12 @@ public class DragManager : MonoBehaviour
 
     private void OnPointerDown(GameObject clicked)
     {
-        // Block if over UI
+        // Block if over UI or not Default Mode
         if (UIUtils.IsPointerOverUI())
             return;
-
+        if (InteractionModeController.Instance.CurrentMode != InteractionMode.Default) 
+            return;
+        
         if (clicked.TryGetComponent<IDraggable>(out var draggable))
         {
             _current = draggable;

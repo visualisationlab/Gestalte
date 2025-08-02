@@ -1,9 +1,10 @@
 using Examples.Factory101.Scripts;
+using Examples.Factory101.Scripts.Input;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class McGibble : MonoBehaviour
+public class McGibble : MonoBehaviour, IHoverable
 {
     public McGibbleDescription description;
     public int heat;
@@ -53,9 +54,13 @@ public class McGibble : MonoBehaviour
 
     public string GetFullDescription()
     {
-        return $"The temperature is {GetHeatDescription()} and the finish is {getFinishDescription()}";
+        string result = "";
+        result += $"<b>{description.name}</b>\n";
+        result += $"The temperature is {GetHeatDescription()}\n";
+        result += $"The finish is {getFinishDescription()}\n";
+        result += $"The Sale price is {GetCurrentSalePrice()}\n";
+        return result;
     }
-
 
     private HeatCategory GetHeatCategory()
     {
@@ -134,5 +139,24 @@ public class McGibble : MonoBehaviour
         float basePrice = description.raritySalePrice; // keep existing field name
         float multiplier = GetTotalMultiplier();
         return Mathf.RoundToInt(basePrice * multiplier);
+    }
+    public void OnHoverEnter()
+    {
+        GlobalMenuManager.Instance.sideInfoText.text = GetFullDescription();
+    }
+
+    public void OnHoverExit()
+    {
+        GlobalMenuManager.Instance.sideInfoText.text = "";
+    }
+
+    public void OnStartDrag()
+    {
+        //TODO: Show arrow on mans mouth
+    }
+
+    public void OnStopDrag()
+    {
+        //TODO: Hide arrow on mans mouth
     }
 }

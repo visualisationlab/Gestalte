@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8681749163387348580}
   - component: {fileID: 7225668132119176413}
-  - component: {fileID: 4696489171552787351}
   - component: {fileID: 8487146741723089241}
   m_Layer: 0
   m_Name: BuildToolGhost
@@ -18,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681749163387348580
 Transform:
   m_ObjectHideFlags: 0
@@ -89,24 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4696489171552787351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762754342882063634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54358fcc9b7df846bff223e49457fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inGrid: 1
-  keepsOffset: 0
-  noRotation: 1
-  rotationSpeed: 720
-  rotationOffset: 0
-  lengthFromTo: 0
 --- !u!114 &8487146741723089241
 MonoBehaviour:
   m_ObjectHideFlags: 0

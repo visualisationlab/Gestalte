@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Examples.Factory101.Scripts;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ToolSelectionManager : MonoBehaviour
@@ -180,7 +178,7 @@ public class ToolSelectionManager : MonoBehaviour
         if (placeListener != null)
             toolInputController.OnClickedOutside.RemoveListener(placeListener);
 
-        placeListener = ghost.PlaceCurrent;
+        // placeListener = ghost.PlaceCurrent;
         toolInputController.OnClickedOutside.AddListener(placeListener);
     }
     

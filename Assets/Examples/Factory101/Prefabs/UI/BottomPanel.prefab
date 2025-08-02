@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 3420264965020364888}
   - component: {fileID: 8854038310715522358}
   - component: {fileID: 5134813892047842503}
-  - component: {fileID: 287148929106995561}
+  - component: {fileID: 2522427484014524395}
   m_Layer: 5
   m_Name: Splitter
   m_TagString: Untagged
@@ -592,9 +592,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolSplitterConveyor
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -604,8 +604,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2522427484014524395}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -638,7 +650,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &287148929106995561
+--- !u!114 &2522427484014524395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -647,39 +659,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1616747474705080669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3420264965020364888}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3420264965020364888}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  tool: 6
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 2221254158187530958, guid: 2cadfb38d48ed32458064828934ba72f, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 71c7a5da04d9f5a4c8c7598f41f18a2a, type: 3}
 --- !u!1 &2290167750981214795
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,8 +755,8 @@ GameObject:
   - component: {fileID: 6788581724987026677}
   - component: {fileID: 4138461422348822318}
   - component: {fileID: 4764350226147015483}
-  - component: {fileID: 8110705039423889770}
   - component: {fileID: 6953566820548113830}
+  - component: {fileID: 7818273371800833632}
   m_Layer: 5
   m_Name: Filter
   m_TagString: Untagged
@@ -884,9 +871,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolFilter
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -896,8 +883,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7818273371800833632}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -930,48 +929,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8110705039423889770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2311979184616454692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6953566820548113830}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6953566820548113830}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6953566820548113830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,6 +942,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 2380497394364133896, guid: d8cbe32099121c04486f4ca66e55834a, type: 3}
+--- !u!114 &7818273371800833632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311979184616454692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 9
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 6374596759931955718, guid: d8cbe32099121c04486f4ca66e55834a, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 050d0487ddd8156439a32cc173e0da8c, type: 3}
 --- !u!1 &2456702899893000023
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,8 +972,8 @@ GameObject:
   - component: {fileID: 5948259060579440360}
   - component: {fileID: 920883355253361250}
   - component: {fileID: 7241720492348930394}
-  - component: {fileID: 6088238407242982692}
   - component: {fileID: 679288892530277624}
+  - component: {fileID: 5908645410663975779}
   m_Layer: 5
   m_Name: Drone
   m_TagString: Untagged
@@ -1114,9 +1088,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolDrone
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1126,8 +1100,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5908645410663975779}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1160,48 +1146,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6088238407242982692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2456702899893000023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 679288892530277624}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 679288892530277624}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &679288892530277624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,6 +1159,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 3661933166511220, guid: 47fe404f25580524794569f563435f7e, type: 3}
+--- !u!114 &5908645410663975779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456702899893000023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 10
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 5487005871635467567, guid: 5af51ec25d8e2a846b7f97bc6d1e80d8, type: 3}
+  ghost: {fileID: 411668718053369241, guid: 47fe404f25580524794569f563435f7e, type: 3}
 --- !u!1 &2972863198077487578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,8 +1564,8 @@ GameObject:
   - component: {fileID: 2139439018261580110}
   - component: {fileID: 2835843226195023599}
   - component: {fileID: 3721443155139795478}
-  - component: {fileID: 5855717044711534921}
   - component: {fileID: 667324857013096831}
+  - component: {fileID: 1603538781967912842}
   m_Layer: 5
   m_Name: SprayPaint
   m_TagString: Untagged
@@ -1719,9 +1680,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolSprayPaint
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1731,8 +1692,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1603538781967912842}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1765,48 +1738,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5855717044711534921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4593903882460239135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 667324857013096831}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 667324857013096831}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &667324857013096831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +1751,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 7485368111640788808, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
+--- !u!114 &1603538781967912842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593903882460239135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 5
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 7092464942995873906, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 5e2b19bf58d2c2e4d96af7e59e845e48, type: 3}
 --- !u!1 &4753984394468074906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,8 +1781,8 @@ GameObject:
   - component: {fileID: 5312141063669423255}
   - component: {fileID: 200740418001570754}
   - component: {fileID: 3933957191467050968}
-  - component: {fileID: 3827214929477607625}
   - component: {fileID: 1851830305680958291}
+  - component: {fileID: 3945951277546473298}
   m_Layer: 5
   m_Name: Magnet
   m_TagString: Untagged
@@ -1949,9 +1897,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolMagnet
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1961,8 +1909,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3945951277546473298}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1995,48 +1955,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3827214929477607625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4753984394468074906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1851830305680958291}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1851830305680958291}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1851830305680958291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,6 +1968,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 7724321469618014510, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+--- !u!114 &3945951277546473298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4753984394468074906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 11
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 8068125074464541939, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: eea704825bddd0340ab10672df55c50e, type: 3}
 --- !u!1 &4938994553415971211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,8 +2073,8 @@ GameObject:
   - component: {fileID: 3159668215087263925}
   - component: {fileID: 4957780351869991077}
   - component: {fileID: 831658720619575087}
-  - component: {fileID: 1157645998744965200}
   - component: {fileID: 6675757441341423985}
+  - component: {fileID: 1647335915183261602}
   m_Layer: 5
   m_Name: Excavator
   m_TagString: Untagged
@@ -2254,9 +2189,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolExcavator
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2266,8 +2201,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1647335915183261602}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2300,48 +2247,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1157645998744965200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5045729704989098326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6675757441341423985}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6675757441341423985}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6675757441341423985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2355,6 +2260,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 3121121956691962434, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
+--- !u!114 &1647335915183261602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5045729704989098326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 8
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 3789654927096468268, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 24e5482e6c19c954c8b0e646a0b6c820, type: 3}
 --- !u!1 &5054678976736986364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,8 +2290,8 @@ GameObject:
   - component: {fileID: 4549329292481361523}
   - component: {fileID: 6026424519471881307}
   - component: {fileID: 6983603406752403148}
-  - component: {fileID: 8432658675535014172}
   - component: {fileID: 4752663522047019926}
+  - component: {fileID: 1563494072455410077}
   m_Layer: 5
   m_Name: Mixer
   m_TagString: Untagged
@@ -2484,9 +2406,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolMixer
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2496,8 +2418,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1563494072455410077}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2530,48 +2464,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8432658675535014172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5054678976736986364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4752663522047019926}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4752663522047019926}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4752663522047019926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2585,6 +2477,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 1662113586017308616, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
+--- !u!114 &1563494072455410077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5054678976736986364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 3
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 1012756902188761674, guid: e949453a28966fa45bb838403a5e41f5, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: a9fb7d357fada664d9ba0139d93648c0, type: 3}
 --- !u!1 &5196632849408667657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,8 +2582,8 @@ GameObject:
   - component: {fileID: 1852193917024788653}
   - component: {fileID: 2233278853848810596}
   - component: {fileID: 4289622365212258437}
-  - component: {fileID: 4361496368855841222}
   - component: {fileID: 1944543445080374780}
+  - component: {fileID: 7683861618136751766}
   m_Layer: 5
   m_Name: Furnace
   m_TagString: Untagged
@@ -2789,9 +2698,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolFurnace
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2801,8 +2710,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7683861618136751766}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2835,48 +2756,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4361496368855841222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288826554648456460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1944543445080374780}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1944543445080374780}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1944543445080374780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2890,6 +2769,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 5504677416023601025, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+--- !u!114 &7683861618136751766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288826554648456460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 4
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 8176c3bcb6830d64a85ba3fc3e623dbd, type: 3}
 --- !u!1 &5510084321304977924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3100,7 @@ GameObject:
   - component: {fileID: 1460563077839023415}
   - component: {fileID: 3530726299622032579}
   - component: {fileID: 112476003749650598}
-  - component: {fileID: 1491846076388211603}
+  - component: {fileID: 8207275978009721038}
   m_Layer: 5
   m_Name: Conveyor
   m_TagString: Untagged
@@ -3332,9 +3228,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolConveyor
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3344,8 +3240,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8207275978009721038}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3378,7 +3286,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1491846076388211603
+--- !u!114 &8207275978009721038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3387,39 +3295,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6194913504844389894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1460563077839023415}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1460563077839023415}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  tool: 1
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 5487005871635467567, guid: fbe196d680f5806468dfe138629e1da7, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 25aba91282857754f99c1465bdb08a49, type: 3}
 --- !u!1 &6311641357319620324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3543,8 +3426,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 75.32}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 12}
+  m_SizeDelta: {x: 1221.37, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2942458796399762423
 CanvasRenderer:
@@ -3711,8 +3594,8 @@ GameObject:
   - component: {fileID: 8185261023189680821}
   - component: {fileID: 6736660716449210407}
   - component: {fileID: 9083089769618570395}
-  - component: {fileID: 6610115193718903415}
   - component: {fileID: 4388859011717595814}
+  - component: {fileID: 7901898002909229293}
   m_Layer: 5
   m_Name: Actuator
   m_TagString: Untagged
@@ -3827,9 +3710,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolActuator
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3839,8 +3722,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7901898002909229293}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3873,48 +3768,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6610115193718903415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6800349339427367453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4388859011717595814}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4388859011717595814}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4388859011717595814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3928,6 +3781,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 14231735996583829, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
+--- !u!114 &7901898002909229293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800349339427367453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 7
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 5359fb006351add47a9c3f552f8c59a8, type: 3}
 --- !u!1 &6867634998195414871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,7 +3863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 321255641, guid: 9e9157fd944c4a944bcdf66854625e34, type: 3}
+  m_Sprite: {fileID: 2131494931, guid: 0c7f9c8a94152a3419ee2b7fb93d977b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4016,8 +3886,8 @@ GameObject:
   - component: {fileID: 6661436905816087247}
   - component: {fileID: 6168828089525745088}
   - component: {fileID: 7057566656768095144}
-  - component: {fileID: 7369896783905167150}
   - component: {fileID: 3923125041442556133}
+  - component: {fileID: 3629698841074454290}
   m_Layer: 5
   m_Name: Sensor
   m_TagString: Untagged
@@ -4132,9 +4002,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolSensor
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4144,8 +4014,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3629698841074454290}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4178,48 +4060,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7369896783905167150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886230768716208406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3923125041442556133}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3923125041442556133}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3923125041442556133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4233,6 +4073,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: 8258735711495923055, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+--- !u!114 &3629698841074454290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886230768716208406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 12
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: 007c4f7adc84cff48b8238b6c867f3a8, type: 3}
 --- !u!1 &6893409055777281131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,8 +4178,8 @@ GameObject:
   - component: {fileID: 3097685455583776418}
   - component: {fileID: 5282962040635647532}
   - component: {fileID: 1355501784130399061}
-  - component: {fileID: 1175604843657217728}
   - component: {fileID: 429817011568995148}
+  - component: {fileID: 5412420129573770360}
   m_Layer: 5
   m_Name: Wall
   m_TagString: Untagged
@@ -4437,9 +4294,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToolSelectionManager, Assembly-CSharp
-        m_MethodName: SetToolWall
-        m_Mode: 0
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Tok
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4449,8 +4306,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Tok
+        m_TargetAssemblyTypeName: InteractionModeController, Assembly-CSharp
+        m_MethodName: SetModePlacement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5412420129573770360}
+        m_TargetAssemblyTypeName: ToolInfo, Assembly-CSharp
+        m_MethodName: SelectTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4483,48 +4352,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1175604843657217728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7326212280091850244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2b19fcf5e2ce04c8ec7eb38d496eba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 429817011568995148}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: ShowHoverInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 429817011568995148}
-        m_TargetAssemblyTypeName: BuyableMachineButton, Assembly-CSharp
-        m_MethodName: HoverHide
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &429817011568995148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4538,6 +4365,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyableBehaviour: {fileID: -1361248728227492250, guid: caace5c0ca27d1f4b8ed3a67d7e02107, type: 3}
+--- !u!114 &5412420129573770360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7326212280091850244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45128ea2584a164ca71b614a83ba18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool: 2
+  toolManager: {fileID: 0}
+  isPlaceable: 1
+  placeable: {fileID: 3706914393261246451, guid: caace5c0ca27d1f4b8ed3a67d7e02107, type: 3}
+  ghost: {fileID: 5487005871635467567, guid: d5db5b03f3df5ae4a873b9ac90c59fea, type: 3}
 --- !u!1 &7463089500849073902
 GameObject:
   m_ObjectHideFlags: 0
