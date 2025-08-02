@@ -31,14 +31,10 @@ public class DragManager : MonoBehaviour
     {
         if (_isDragging && _current != null)
         {
-            if (UIUtils.IsPointerOverUI())
-            {
-                // Optionally suspend dragging if you want UI to interrupt
-                return;
-            }
-
+            if (UIUtils.IsPointerOverUI())return;
             Vector3 worldPos = GetPointerWorldPosition();
             _current.UpdateDrag(worldPos);
+            
         }
     }
 
@@ -52,6 +48,7 @@ public class DragManager : MonoBehaviour
         
         if (clicked.TryGetComponent<IDraggable>(out var draggable))
         {
+            CursorController.Instance.SetToDrag();
             _current = draggable;
             _isDragging = true;
             Vector3 worldPos = GetPointerWorldPosition();
@@ -74,6 +71,7 @@ public class DragManager : MonoBehaviour
         if (_isDragging && _current != null)
         {
             _current.StopDrag();
+            CursorController.Instance.SetToPoint();
         }
 
         _current = null;

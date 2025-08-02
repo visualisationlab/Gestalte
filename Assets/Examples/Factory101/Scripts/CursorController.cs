@@ -76,12 +76,14 @@ public class CursorController : MonoBehaviour
     {
         placeableGhost.gameObject.SetActive(true);
         placeableGhost.SetGhost(ghost, canRotate);
+        SetToBuild();
     }
     
     public void HideBuildGhost()
     {
         placeableGhost.RemoveGhost();
         placeableGhost.gameObject.SetActive(false);
+        SetToPoint();
     }
 
     public void SetGhostRotation(float rotation)
