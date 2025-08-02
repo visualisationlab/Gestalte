@@ -10,8 +10,7 @@ using UnityEngine.UI;
 public class UIProgramInstructionScreen : MonoBehaviour
 {
     [SerializeField] TMP_InputField inputConsole;
-    [SerializeField] Button submitButton;
-    [SerializeField] MachineSelectionManager machineSelectionManager;
+    [SerializeField] private GameObject rootPanel;
     [SerializeField] GameObject processingScreen;
     [SerializeField] TextMeshProUGUI processingErrorMessage;
     [SerializeField] UIMethodInstructionItem methodInstructionTemplate;
@@ -104,5 +103,21 @@ public class UIProgramInstructionScreen : MonoBehaviour
             Destroy(instruction.gameObject);
         }
         placedMethodInstructions.Clear();
+    }
+    
+    public void CallUpgrade()
+    {
+        if (selectedMachine.CanAffordUpgrade() && !selectedMachine.MaxUpgradeLevelReached())
+        {
+            selectedMachine.Upgrade();
+            SetMachine(selectedMachine);
+        }
+    }
+    
+    public void CallSale()
+    {
+        GameInfoManager.Instance.AddMoney(selectedMachine.GetSellPrice());
+        Destroy(selectedMachine.gameObject);
+        rootPanel.SetActive(false);
     }
 }

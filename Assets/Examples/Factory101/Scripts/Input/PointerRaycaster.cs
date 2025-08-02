@@ -52,6 +52,11 @@ public class PointerRaycaster : MonoBehaviour
 
     private void UpdateHover()
     {
+        if (UIUtils.IsPointerOverUI())
+        {
+            return;
+        }
+        
         GameObject newHover = RaycastUnderPointer();
 
         if (newHover != _currentHover)
@@ -81,6 +86,11 @@ public class PointerRaycaster : MonoBehaviour
     /// </summary>
     public void ProcessClick()
     {
+        if (UIUtils.IsPointerOverUI())
+        {
+            return;
+        }
+        
         GameObject hit = RaycastUnderPointer();
         if (hit != null)
         {

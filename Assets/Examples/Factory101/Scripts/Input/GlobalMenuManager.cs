@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +9,8 @@ namespace Examples.Factory101.Scripts.Input
         public static GlobalMenuManager Instance { get; private set; }
 
         public UnityEvent<ExposeMachine> OnOpenMachineInfoScreen;
+        public TextMeshProUGUI sideInfoText;
+        
         
         void Awake()
         {
@@ -24,6 +27,11 @@ namespace Examples.Factory101.Scripts.Input
         public void OpenMachineInfoScreen(ExposeMachine exposedMachine)
         {
             OnOpenMachineInfoScreen.Invoke(exposedMachine);
+        }
+
+        public void SetSideInfoPanelText(string text)
+        {
+            sideInfoText.text = text;
         }
         
     }

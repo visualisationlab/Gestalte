@@ -12,11 +12,13 @@ public class MachineInfoMenuOpener : MonoBehaviour, IClickable, IHoverable
 
     public void OnHoverEnter()
     {
-        
+        var exposed = gameObject.GetComponent<ExposeMachine>();
+        if (exposed == null) return;
+        GlobalMenuManager.Instance.SetSideInfoPanelText(exposed.GetDescription());
     }
 
     public void OnHoverExit()
     {
-        
+        GlobalMenuManager.Instance.SetSideInfoPanelText("");
     }
 }

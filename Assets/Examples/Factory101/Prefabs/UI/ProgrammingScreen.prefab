@@ -2014,8 +2014,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
+      - m_Target: {fileID: 7233419018331831519}
+        m_TargetAssemblyTypeName: UIProgramInstructionScreen, Assembly-CSharp
         m_MethodName: CallSale
         m_Mode: 1
         m_Arguments:
@@ -2361,8 +2361,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
+      - m_Target: {fileID: 7233419018331831519}
+        m_TargetAssemblyTypeName: UIProgramInstructionScreen, Assembly-CSharp
         m_MethodName: CallUpgrade
         m_Mode: 1
         m_Arguments:
@@ -3099,8 +3099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputConsole: {fileID: 1671068492489440277}
-  submitButton: {fileID: 625215371366945125}
-  machineSelectionManager: {fileID: 0}
+  rootPanel: {fileID: 2103436544586261649}
   processingScreen: {fileID: 8000801497086423270}
   processingErrorMessage: {fileID: 5514823418859185682}
   methodInstructionTemplate: {fileID: 8426089685490981907, guid: 36900375534204b40af046966307841e, type: 3}
@@ -3113,21 +3112,6 @@ MonoBehaviour:
   upgradePrice: {fileID: 6975714702984332019}
   sellPrice: {fileID: 3206474020350724597}
   agent: {fileID: 0}
-  OnProgrammingDone:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIProgramMachineInfoPanel, Assembly-CSharp
-        m_MethodName: KickMachineInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7132061301373296363
 GameObject:
   m_ObjectHideFlags: 0
