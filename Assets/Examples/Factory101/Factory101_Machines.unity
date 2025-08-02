@@ -67238,13 +67238,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProgrammingScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 5308232356259766951, guid: c42019c8fdbe97b47878296501091c30, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 2103436544586261649, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5308232356259766951, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308232356259766951, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6167565506133170372, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -67333,6 +67337,18 @@ PrefabInstance:
     - target: {fileID: 7735914966742593902, guid: c42019c8fdbe97b47878296501091c30, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020837321605667537, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020837321605667537, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020837321605667537, guid: c42019c8fdbe97b47878296501091c30, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
