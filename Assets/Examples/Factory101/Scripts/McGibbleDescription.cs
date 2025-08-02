@@ -8,7 +8,7 @@ namespace Examples.Factory101.Scripts
         public string name;
         public float normalizedRarity;
         public string singleEmoji;
-        public float normalizedHeatResistance;
+        public float normalizedHeatAffinity;
         public int uniqueCreated; //Where in the order was this description generated newly
         //not communicated:
         public int raritySalePrice;
@@ -21,7 +21,7 @@ namespace Examples.Factory101.Scripts
 ""name"": ""gibble"",
 ""singleEmoji"": ""🤷‍"",
 ""normalizedRarity"": 0.2,
-""normalizedHeatResistance"": 0.3,
+""normalizedHeatAffinity"": 0.3,
 ""shortDescription"": ""A curious blend with a faint citrus aftertaste.""
 }
 ";

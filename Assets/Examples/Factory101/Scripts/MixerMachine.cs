@@ -40,7 +40,7 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
     {
         string result = "";
         result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
-        result += $"Rate: {GetDigRate()} item(s)/s (max {GetMaxDigRate()})\n";
+        result += $"Rate: {GetMixRate()} item(s)/s (max {GetMaxMixRate()})\n";
         return result;
     }
 
@@ -63,7 +63,6 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
             5 => "takes incantation instead",
             _ => ""
         };
-        Debug.Log(extraComment);
     }
 
     protected override void AfterSetScript()
@@ -98,7 +97,6 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
             McGibbleTracker.Instance.Remove(mcGibbleOne);
             McGibbleTracker.Instance.Remove(mcGibbleTwo);
-            Debug.Log("Mixing");
         }
     }
 
@@ -134,12 +132,12 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
         return description;
     }
     
-    private string GetDigRate()
+    private string GetMixRate()
     {
         return mixRate.ToString("0.0");
     }
 
-    private string GetMaxDigRate()
+    private string GetMaxMixRate()
     {
         return maxMixRate.ToString("0.0");
     }

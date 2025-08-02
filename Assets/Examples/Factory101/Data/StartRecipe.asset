@@ -17,7 +17,7 @@ MonoBehaviour:
       name: Ugo
       normalizedRarity: 0.1
       singleEmoji: "\U0001F40D"
-      normalizedHeatResistance: 0
+      normalizedHeatAffinity: 0
       uniqueCreated: 0
       raritySalePrice: 0
       shortDescription: 
@@ -25,7 +25,7 @@ MonoBehaviour:
       name: Ugo
       normalizedRarity: 0.1
       singleEmoji: "\U0001F40D"
-      normalizedHeatResistance: 0
+      normalizedHeatAffinity: 0
       uniqueCreated: 0
       raritySalePrice: 0
       shortDescription: 
@@ -33,7 +33,7 @@ MonoBehaviour:
       name: Yki
       normalizedRarity: 0.2
       singleEmoji: "\U0001F99C"
-      normalizedHeatResistance: 0.5
+      normalizedHeatAffinity: 0.3
       uniqueCreated: 0
       raritySalePrice: 1
       shortDescription: Yki talks too much. Shaddapa You Face Yki!

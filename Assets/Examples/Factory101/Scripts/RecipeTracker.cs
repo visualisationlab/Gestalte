@@ -166,7 +166,7 @@ public class RecipeTracker : MonoBehaviour
                 name = newMcGibbleDescription.name,
                 singleEmoji = newMcGibbleDescription.singleEmoji,
                 normalizedRarity = newMcGibbleDescription.normalizedRarity,
-                normalizedHeatResistance = newMcGibbleDescription.normalizedHeatResistance,
+                normalizedHeatAffinity = newMcGibbleDescription.normalizedHeatAffinity,
                 uniqueCreated = uniqueCounter,
                 raritySalePrice = Mathf.FloorToInt(uniqueCounter * newMcGibbleDescription.normalizedRarity) + 1,
                 shortDescription = finalShortDesc
@@ -219,7 +219,7 @@ public class RecipeTracker : MonoBehaviour
                 name = "Fallback",
                 singleEmoji = "❔",
                 normalizedRarity = 0.1f,
-                normalizedHeatResistance = 0.1f,
+                normalizedHeatAffinity = 0.1f,
                 shortDescription = "A default fallback gibble."
             };
         }
@@ -231,7 +231,7 @@ public class RecipeTracker : MonoBehaviour
             name = template.name,
             singleEmoji = template.singleEmoji,
             normalizedRarity = template.normalizedRarity,
-            normalizedHeatResistance = template.normalizedHeatResistance,
+            normalizedHeatAffinity = template.normalizedHeatAffinity,
             shortDescription = template.shortDescription
             // uniqueCreated and raritySalePrice will be set later
         };

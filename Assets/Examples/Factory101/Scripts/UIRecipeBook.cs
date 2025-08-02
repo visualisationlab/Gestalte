@@ -68,7 +68,7 @@ public class UIRecipeBook : MonoBehaviour
             : recipe.result.shortDescription;
 
         // Optionally append some extra info (remove if you only want the flavor text)
-        resultInfo.text = $"{shortDesc}\nRarity: {recipe.result.normalizedRarity:P0}\nHeat Resistance: {recipe.result.normalizedHeatResistance:P0}";
+        resultInfo.text = $"{shortDesc}\nRarity: {recipe.result.normalizedRarity:P0}\nHeat Resistance: {recipe.result.normalizedHeatAffinity:P0}";
 
         oneIcon.text = recipe.inputOne.singleEmoji;
         oneInfo.text = recipe.inputOne.name;

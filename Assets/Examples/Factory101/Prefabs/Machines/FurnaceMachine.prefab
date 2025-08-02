@@ -479,7 +479,8 @@ MonoBehaviour:
   basePrice: 60
   baseUpgradePrice: 400
   upgradeLevel: 1
-  maxUpgradeLevel: 0
+  maxUpgradeLevel: 4
+  upgradeGrowthFactor: 1.15
   description: 'Furnace
 
 
@@ -488,6 +489,7 @@ MonoBehaviour:
   sensor: {fileID: 6258973142971579596}
   outputPoint: {fileID: 3034349286868390582}
   heat: 100
+  stability: 0.2
 --- !u!114 &2380497394364133896
 MonoBehaviour:
   m_ObjectHideFlags: 0
