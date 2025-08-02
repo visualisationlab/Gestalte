@@ -27,7 +27,8 @@ public class McGibble : MonoBehaviour, IHoverable
     [SerializeField] private float normalMultiplier = 1f;
     [SerializeField] private float warmMultiplier = 1.2f;
     [SerializeField] private float hotMultiplier = 2.5f;
-    [SerializeField] private float crispyMultiplier = 10f;
+    [SerializeField] private float wellDoneMultiplier = 10f;
+    [SerializeField] private float crispyMultiplier = 5f;
     [SerializeField] private float burntMultiplier = 0.5f;
     [SerializeField] private float unknownMultiplier = 1f;
 
@@ -47,6 +48,7 @@ public class McGibble : MonoBehaviour, IHoverable
             HeatCategory.Warm => "Warm",
             HeatCategory.Hot => "Hot",
             HeatCategory.Crispy => "Crispy",
+            HeatCategory.WellDone => "Well Done",
             HeatCategory.Burnt => "Burnt",
             _ => "Unknown"
         };
@@ -66,11 +68,12 @@ public class McGibble : MonoBehaviour, IHoverable
     {
         if (heat < 0) return HeatCategory.Frozen;
         if (heat <= 30) return HeatCategory.Normal;
-        if (heat <= 60) return HeatCategory.Warm;
-        if (heat <= 110) return HeatCategory.Hot;
-        if (heat <= 160) return HeatCategory.Crispy;
-        if (heat > 200) return HeatCategory.Burnt;
-        return HeatCategory.Unknown; // covers 161..200
+        if (heat <= 70) return HeatCategory.Warm;
+        if (heat <= 130) return HeatCategory.Hot;
+        if (heat <= 160) return HeatCategory.WellDone;
+        if (heat <= 220) return HeatCategory.Crispy;
+        if (heat > 220) return HeatCategory.Burnt;
+        return HeatCategory.Unknown;
     }
 
     private float GetHeatMultiplier()
@@ -82,6 +85,7 @@ public class McGibble : MonoBehaviour, IHoverable
             HeatCategory.Warm => warmMultiplier,
             HeatCategory.Hot => hotMultiplier,
             HeatCategory.Crispy => crispyMultiplier,
+            HeatCategory.WellDone => wellDoneMultiplier,
             HeatCategory.Burnt => burntMultiplier,
             _ => unknownMultiplier
         };
@@ -94,6 +98,7 @@ public class McGibble : MonoBehaviour, IHoverable
         Warm,
         Hot,
         Crispy,
+        WellDone,
         Burnt,
         Unknown
     }

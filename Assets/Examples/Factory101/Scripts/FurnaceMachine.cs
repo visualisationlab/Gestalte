@@ -103,24 +103,19 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
         var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
         if (mcGibble == null) return;
 
-        // Stability in [0,1], where 1 = perfectly steady (no random wobble)
         float stabilityClamped = Mathf.Clamp01(stability);
+        float affinity = Mathf.Clamp01(mcGibble.description.normalizedHeatAffinity); // 0..1
 
-        // Affinity is normalized [0,1]: 1 means exact furnace heat, lower values undershoot
-        float affinity = Mathf.Clamp01(mcGibble.description.normalizedHeatAffinity);
+        // Make affinity have a big effect: centered at 0.5 => 1, extremes go ±60%
+        const float impact = 0.6f; // max deviation from 1 is ±impact
+        float baseResistance = 1f + (affinity - 0.5f) * 2f * impact; // range [1 - impact, 1 + impact] => [0.4, 1.6]
 
-        // Base resistance: affinity=1 => multiplier 1; affinity=0 => undershoot by up to maxUndershoot
-        const float maxUndershoot = 0.3f; // how far below 1 it can go
-        float baseResistance = 1f - (1f - affinity) * maxUndershoot; // in [1 - maxUndershoot, 1]
-
-        // Add jitter scaled down by stability (no overshoot from noise, just wiggle)
-        const float maxVariation = 0.15f; // maximum noise when stability is zero
+        // Jitter damped by stability
+        const float maxVariation = 0.15f;
         float noise = Random.Range(-1f, 1f) * maxVariation * (1f - stabilityClamped);
 
         float randomizedHeatResistance = Mathf.Max(0f, baseResistance + noise);
         float adjustedHeat = heat * randomizedHeatResistance;
-
-        // Clamp to sane bounds if needed
         adjustedHeat = Mathf.Clamp(adjustedHeat, -100f, 500f);
         mcGibble.heat = Mathf.RoundToInt(adjustedHeat);
 

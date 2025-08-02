@@ -245,7 +245,7 @@ MonoBehaviour:
     name: 
     normalizedRarity: 0
     singleEmoji: 
-    normalizedHeatResistance: 0
+    normalizedHeatAffinity: 0
     uniqueCreated: 0
     raritySalePrice: 0
     shortDescription: 
@@ -264,7 +264,8 @@ MonoBehaviour:
   normalMultiplier: 1
   warmMultiplier: 1.2
   hotMultiplier: 2.5
-  crispyMultiplier: 10
+  wellDoneMultiplier: 10
+  crispyMultiplier: 5
   burntMultiplier: 0.5
   unknownMultiplier: 1
 --- !u!1 &4716656318425115736
