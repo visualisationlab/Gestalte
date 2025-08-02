@@ -117,7 +117,7 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
         float randomizedHeatResistance = Mathf.Max(0f, baseResistance + noise);
         float adjustedHeat = heat * randomizedHeatResistance;
         adjustedHeat = Mathf.Clamp(adjustedHeat, -100f, 500f);
-        mcGibble.heat = Mathf.RoundToInt(adjustedHeat);
+        mcGibble.SetTemperature(Mathf.RoundToInt(adjustedHeat));
 
         tinyRandom = new Vector3(Random.value, Random.value - 0.5f, 0f);
         mcGibble.transform.position = outputPoint.transform.position + tinyRandom;

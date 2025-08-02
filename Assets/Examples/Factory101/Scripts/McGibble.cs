@@ -1,7 +1,6 @@
 using Examples.Factory101.Scripts;
 using Examples.Factory101.Scripts.Input;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class McGibble : MonoBehaviour, IHoverable
@@ -153,6 +152,11 @@ public class McGibble : MonoBehaviour, IHoverable
     public void OnHoverExit()
     {
         GlobalMenuManager.Instance.sideInfoText.text = "";
+    }
+
+    public void SetTemperature(int temperature)
+    {
+        heat = temperature;
     }
 
     public void OnStartDrag()
