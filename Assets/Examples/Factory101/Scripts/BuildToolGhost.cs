@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BuildToolGhost : MonoBehaviour
 {
+   public GameObject rotationIndicator;
+   private GameObject rotationIndicatorInstance;
    [SerializeField] private GameObject currentPlaceablePrefab;
 
    [SerializeField] private GhostMachineReference referenceList;
@@ -9,7 +11,7 @@ public class BuildToolGhost : MonoBehaviour
 
    private int rotation;
    private int rotateAmount = 90;
-   
+
    public void SetPlaceablePrefab(GameObject prefab)
    {
       // Avoid double ghost
@@ -23,6 +25,7 @@ public class BuildToolGhost : MonoBehaviour
       var ghostVersion = referenceList.GetTarget(currentPlaceablePrefab);
       placeableGhost = Instantiate(ghostVersion, transform);
       placeableGhost.transform.localPosition = Vector3.zero;
+      instantiateRotationIndicator();
    }
 
    public void PlaceCurrent()
@@ -44,7 +47,8 @@ public class BuildToolGhost : MonoBehaviour
 
    public void RemovePlaceablePrefab()
    {
-      if(placeableGhost != null){
+      if (placeableGhost != null)
+      {
          Destroy(placeableGhost);
       }
    }
@@ -58,4 +62,12 @@ public class BuildToolGhost : MonoBehaviour
       }
    }
    
+   private void instantiateRotationIndicator()
+   {
+      if (rotationIndicatorInstance == null && placeableGhost != null && placeableGhost.GetComponent<GhostAllowRotation>())
+      {
+         rotationIndicatorInstance = Instantiate(rotationIndicator);
+         rotationIndicatorInstance.GetComponent<FollowTargetOrDestroy>().followTarget = placeableGhost.transform;
+      }
+   }
 }
