@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1582369147427533965}
   - component: {fileID: 4375607875739921309}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 3801338706816645543}
   - component: {fileID: -8701235357627404756}
   - component: {fileID: 1037202791371449985}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: McGibbleTemplate
   m_TagString: McGibble
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 18108321182016559}
   - component: {fileID: 8463917562137519287}
   - component: {fileID: 5876177727445651328}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

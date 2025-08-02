@@ -398,7 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3575
   use3D: 0
   maxDistance: 100
   HoverEnter:

@@ -61,7 +61,9 @@ public class ToolManager : MonoBehaviour
             }
         }else if (currentTool == Tool.Sell)
         {
+            if (pointerRaycaster.CurrentHover == null) return;
             var currentMachine = pointerRaycaster.CurrentHover.GetComponent<IBuyable>();
+            if (currentMachine == null) return;
             GameInfoManager.Instance.AddMoney( Mathf.RoundToInt(currentMachine.GetPrice() * 0.8f));
             Destroy(pointerRaycaster.CurrentHover.gameObject);
         }
