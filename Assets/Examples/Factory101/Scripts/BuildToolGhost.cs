@@ -12,8 +12,14 @@ public class BuildToolGhost : MonoBehaviour
    
    public void SetPlaceablePrefab(GameObject prefab)
    {
+      // Avoid double ghost
+      if (currentPlaceablePrefab == prefab)
+         return;
+
       rotation = 0;
       currentPlaceablePrefab = prefab;
+      RemovePlaceablePrefab();
+
       var ghostVersion = referenceList.GetTarget(currentPlaceablePrefab);
       placeableGhost = Instantiate(ghostVersion, transform);
       placeableGhost.transform.localPosition = Vector3.zero;
