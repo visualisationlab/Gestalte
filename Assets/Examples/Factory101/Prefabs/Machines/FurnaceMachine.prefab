@@ -477,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 60
-  baseUpgradePrice: 0
+  baseUpgradePrice: 400
   upgradeLevel: 1
   maxUpgradeLevel: 0
   description: 'Furnace

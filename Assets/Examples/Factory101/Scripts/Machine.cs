@@ -11,6 +11,7 @@ namespace Examples.Factory101.Scripts
         public int baseUpgradePrice;
         public int upgradeLevel = 1;// The Upgraded Level
         public int maxUpgradeLevel;
+        public float upgradeGrowthFactor = 1.15f;
         [TextArea(3,12)] public string description;
 
         public bool MaxUpgradeLevelReached()

@@ -25,6 +25,9 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
     private Coroutine loopRoutine;
 
+    private string extraComment = "";
+    private string overrideExtraComment = "";
+
     protected override void RegisterLua()
     {
         UserData.RegisterType<MixerMachine>();
@@ -48,7 +51,17 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
         {
             2 => 3f,
             3 => 5f,
+            4 => 6f,
             _ => 1f // default case
+        };
+        
+        extraComment = upgradeLevel switch
+        {
+            2 => "give a slightly higher chance to a medium normalizedRarity",
+            3 => "give a medium chance to a high normalizedRarity",
+            4 => "give a very high chance to a high normalizedRarity",
+            5 => extraComment = overrideExtraComment,
+            _ => ""
         };
     }
 
@@ -76,7 +89,7 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
 
             var mcGibbleOne = sensorOne.detectedGameObject.GetComponent<McGibble>();
             var mcGibbleTwo = sensorTwo.detectedGameObject.GetComponent<McGibble>();
-            RecipeTracker.Instance.GetRecipe(mcGibbleOne.description, mcGibbleTwo.description, Eject);
+            RecipeTracker.Instance.GetRecipe(mcGibbleOne.description, mcGibbleTwo.description, Eject, extraComment);
 
             McGibbleTracker.Instance.Remove(mcGibbleOne);
             McGibbleTracker.Instance.Remove(mcGibbleTwo);
@@ -98,6 +111,12 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
     public void SetMixRate(float rate)
     {
         mixRate = Mathf.Min(rate, maxMixRate);
+    }
+    
+    [ExposeMethod("Add an incantation while mixing")]
+    public void AddIncantation(string comment)
+    {
+        overrideExtraComment = comment;
     }
 
     public int GetPrice()

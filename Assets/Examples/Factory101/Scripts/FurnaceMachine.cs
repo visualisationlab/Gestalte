@@ -23,7 +23,7 @@ public class FurnaceMachine : Machine, IPulseReceiver<McGibbleDescription>, IPul
     protected override void RegisterLua()
     {
         UserData.RegisterType<FurnaceMachine>();
-        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        UserData.RegisterType<McGibbleDescription>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
         luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();

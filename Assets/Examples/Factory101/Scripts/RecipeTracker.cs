@@ -58,7 +58,7 @@ public class RecipeTracker : MonoBehaviour
         );
     }
 
-    public async void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback)
+    public async void GetRecipe(McGibbleDescription one, McGibbleDescription two, Action<Recipe> callback, string extra)
     {
         var existing = recipeList.FirstOrDefault(to =>
             (to.inputOne.singleEmoji == one.singleEmoji && to.inputTwo.singleEmoji == two.singleEmoji) ||
@@ -72,7 +72,7 @@ public class RecipeTracker : MonoBehaviour
 
         var message = $"{componentsDescriptionPrompt} {one.singleEmoji} and {two.singleEmoji}.";
         var systemMessage =
-            $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}";
+            $"{recipeRequestPrompt}. Follow this formatting in your response: {McGibbleDescription.Format()}. Absolutely Avoid using the following already existing emojis: {GetAllExistingResultEmojis()}. {extra}";
         
         Recipe recipe = null;
         

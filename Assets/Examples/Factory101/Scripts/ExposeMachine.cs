@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Agent;
@@ -82,7 +83,8 @@ public class ExposeMachine : MonoBehaviour
     
     public int GetUpgradePrice()
     {
-        return machine.baseUpgradePrice;
+        float upgradeMult = Mathf.Pow(machine.upgradeGrowthFactor, machine.upgradeLevel - 1);
+        return Mathf.RoundToInt(machine.baseUpgradePrice * upgradeMult);
     }
     
     public int GetSellPrice()
@@ -92,6 +94,7 @@ public class ExposeMachine : MonoBehaviour
 
     public void Upgrade()
     {
+        GameInfoManager.Instance.AddMoney(-GetUpgradePrice());
         machine.UpgradeMachine();
     }
 

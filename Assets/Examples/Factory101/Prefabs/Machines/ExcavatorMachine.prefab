@@ -51,9 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 100000
-  baseUpgradePrice: 1000
+  baseUpgradePrice: 3000
   upgradeLevel: 1
   maxUpgradeLevel: 3
+  upgradeGrowthFactor: 3
   description: 'Excavator
 
 
@@ -212,7 +213,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -59045777, guid: 2f017eb60766fc04f9703e6473b84186, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
