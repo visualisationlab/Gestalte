@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ToolSelectionManager : MonoBehaviour
 {
-    private List<BuyableMachineButton> toolButtons;
+    private List<BuyableMachineButton> toolButtons = new();
 
     private void Start()
     {
