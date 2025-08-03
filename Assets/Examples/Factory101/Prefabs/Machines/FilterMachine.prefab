@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 16
   m_Sprite: {fileID: 2131494931, guid: 0c7f9c8a94152a3419ee2b7fb93d977b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034349286868390582}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WhitelistExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313301816263041386}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BlacklistExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 6406366006772850845}
   - component: {fileID: 4874323643289800105}
   - component: {fileID: 6133105396267097805}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.29}
+  m_Offset: {x: 0, y: 0.13}
   m_Radius: 0.53
 --- !u!114 &6133105396267097805
 MonoBehaviour:
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 2380497394364133896}
   - component: {fileID: 8992514812971157721}
   - component: {fileID: -2370310124572375874}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FilterMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.017811298, y: 0}
+  m_Offset: {x: 0.3145243, y: 0.25043678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -339,7 +339,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0356226, y: 1}
+  m_Size: {x: 0.7579644, y: 1.5008736}
   m_EdgeRadius: 0
 --- !u!114 &2380497394364133896
 MonoBehaviour:
@@ -371,9 +371,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 200
-  baseUpgradePrice: 0
+  baseUpgradePrice: 100
   upgradeLevel: 1
-  maxUpgradeLevel: 0
+  maxUpgradeLevel: 4
+  upgradeGrowthFactor: 1.15
   description: 'Filter
 
 
@@ -382,6 +383,8 @@ MonoBehaviour:
   sensor: {fileID: 6133105396267097805}
   whitelistOutputPoint: {fileID: 3034349286868390582}
   blacklistOutputPoint: {fileID: 8313301816263041386}
+  filterRate: 1
+  maxFilterRate: 2
 --- !u!114 &-2370310124572375874
 MonoBehaviour:
   m_ObjectHideFlags: 0

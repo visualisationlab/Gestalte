@@ -44,7 +44,7 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
     {
         string result = "";
         result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
-        result += $"Magnet Strength: {pullStrength}/{maxPullStrength} \n";
+        result += $"Magnet Strength: {GetPullStrength()}/{GetMaxPullStrength()} \n";
         return result;
     }
 
@@ -127,5 +127,16 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
     public void OnHoverExit()
     {
         effectCircle.enabled = false;
+    }
+    
+    
+    private string GetPullStrength()
+    {
+        return pullStrength.ToString("0.0");
+    }
+
+    private string GetMaxPullStrength()
+    {
+        return maxPullStrength.ToString("0.0");
     }
 }

@@ -6,6 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
 using Examples.Factory101.Scripts.Input;
+using Coroutine = UnityEngine.Coroutine;
 
 public class FilterMachine : Machine, IBuyable, IBlockPlacement
 {
@@ -20,47 +21,82 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
     protected int minSalePrice = -1;
     protected bool priceFilterSet = false;
 
-    public int GetPrice()
-    {
-        return basePrice;
-    }
+    [SerializeField] private float filterRate;
+    [SerializeField] private float maxFilterRate;
 
-    public string GetDescription()
-    {
-        return description;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ExecuteEverySecond());
-    }
-
+    private Coroutine loopRoutine;
+    
     protected override void RegisterLua()
     {
         UserData.RegisterType<FilterMachine>();
+        UserData.RegisterType<McGibbleDescription>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
+    
+    protected override void AfterSetScript()
+    {
+        ExecuteScript();
+        RestartCoroutine();
+    }
+    
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
 
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
+    }    
+    
     public override string GetStatus()
     {
-        return "Filter Status";
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetFilterRate()} item(s)/s (max {GetMaxFilterRate()})\n";
+        return result;
     }
-
+    
+    IEnumerator ExecuteEverySecond()
+    {
+        while (true)
+        {
+            Filter();
+            yield return new WaitForSeconds(1f / filterRate);
+        }
+    }
+    
     public override void UpgradeMachine()
     {
-        throw new System.NotImplementedException();
+        upgradeLevel++;
+        
+        maxFilterRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            4 => 6f,
+            _ => 1f // default case
+        };
+    }
+    
+    [ExposeMethod("Sets the rate this machine filters items with every second")]
+    public void SetFilterRate(float rate)
+    {
+        filterRate = Mathf.Clamp(rate, 0.00001f, maxFilterRate);
     }
 
-    [ExposeMethod("setMinSalePrice")]
+    [ExposeMethod("Filter on minimal Sale Price")]
     public void SetMinSalePrice(int value)
     {
         priceFilterSet = true;
         minSalePrice = value;
     }
 
-    [ExposeMethod("setWhitelistGibbles")]
-    public void SetWhitelistGibbles(Table luaTable)
+    [ExposeMethod("Filter on name")]
+    public void SetFilterOnName(Table luaTable)
     {
         whitelistSet = true;
         whitelist.Clear();
@@ -79,7 +115,7 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
             return false;
 
         if (whitelistSet)
-            return whitelist.Contains(gibble.description.singleEmoji.ToLower());
+            return whitelist.Contains(gibble.description.name.ToLower());
 
         // If at least one filter is active and passed, allow
         if (priceFilterSet || whitelistSet)
@@ -88,7 +124,6 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
         return false; // deny all if nothing defined
     }
 
-    [ExposeMethod("Filter the item in the filter machine")]
     public void Filter()
     {
         foreach (var obj in sensor.detectedGameObjects.ToList())
@@ -103,13 +138,25 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
             obj.transform.position = basePos + tinyRandom;
         }
     }
-
-    IEnumerator ExecuteEverySecond()
+        
+    public int GetPrice()
     {
-        while (true)
-        {
-            ExecuteScript();
-            yield return new WaitForSeconds(1f);
-        }
+        return basePrice;
     }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+    
+    private string GetFilterRate()
+    {
+        return filterRate.ToString("0.0");
+    }
+
+    private string GetMaxFilterRate()
+    {
+        return maxFilterRate.ToString("0.0");
+    }
+
 }
