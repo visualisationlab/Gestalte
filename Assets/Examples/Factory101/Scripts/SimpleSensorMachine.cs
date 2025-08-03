@@ -1,72 +1,105 @@
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Examples.Factory101.Scripts.Input;
-using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
+using Coroutine = UnityEngine.Coroutine;
 
 public class SimpleSensorMachine : Machine, IBuyable, IBlockPlacement
 {
     public SimpleSensor sensor;
     [SerializeField] private DraggableCableEnd cableEnd;
-
-    public int GetPrice()
-    {
-        return basePrice;
-    }
-    IEnumerator ExecuteEverySecond()
-    {
-        while (true)
-        {
-            luaScript.DoString(script);
-            yield return new WaitForSeconds(.5f);
-        }
-    }
+    [SerializeField] private float senseRate;
+    [SerializeField] private float maxSenseRate = 1f;
+    
+    private Coroutine loopRoutine;
 
     protected override void RegisterLua()
     {
         UserData.RegisterType<SimpleSensorMachine>();
-        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        UserData.RegisterType<McGibbleDescription>();
         luaScript = new Script();
-        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
         luaScript.Globals["this"] = this;
-    }
-
-    public override string GetStatus()
-    {
-        return "Get Simple sensor Status";
-    }
-
-    public override void UpgradeMachine()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override void AfterSetScript()
-    {
-        StartCoroutine(ExecuteEverySecond());
-    }
-
-    [ExposeMethod("Detects objects in front of the machine")]
-    public bool ReadSensor()
-    {
-        return sensor.onDetect;
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
     
+    protected override void AfterSetScript()
+    {
+        ExecuteScript();
+        RestartCoroutine();
+    }
+    
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
+
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
+    }
+    public override string GetStatus()
+    {
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetSenseRate()} item(s)/s (max {GetMaxSenseRate()})\n";
+        return result;
+    }
+    
+    IEnumerator ExecuteEverySecond()
+    {
+        while (true)
+        {
+            Sense();
+            yield return new WaitForSeconds(1f / senseRate);
+        }
+    }
+    
+    public override void UpgradeMachine()
+    {
+        upgradeLevel++;
+        
+        maxSenseRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            4 => 6f,
+            _ => 1f // default case
+        };
+        
+    }
+
+    public void Sense()
+    {
+        if (sensor.onDetect)
+        {
+            var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
+            if (mcGibble)
+            {
+                cableEnd.SendPulse(mcGibble.description);
+                Debug.Log($"SENSOR DETECTED: {mcGibble.description.name}");
+            }
+        }
+    }
+    
+    public int GetPrice()
+    {
+        return basePrice;
+    }
+
     public string GetDescription()
     {
         return description;
     }
-
-    [ExposeMethod("Emits a boolean signal out of the outport")]
-    public void EmitOutPortSignal(bool signal)
+    
+    private string GetSenseRate()
     {
-        cableEnd.SendPulse();
+        return senseRate.ToString("0.0");
     }
 
-    [ExposeMethod("Emits the description over the output port")]
-    public void EmitDescription(McGibbleDescription signal)
+    private string GetMaxSenseRate()
     {
-        cableEnd.SendPulse(signal);
+        return maxSenseRate.ToString("0.0");
     }
 }

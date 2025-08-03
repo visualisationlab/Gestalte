@@ -17,7 +17,7 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     public float stability = 0.5f;
     
     [SerializeField] private float blastRate;
-    private float maxBlastRate = 1f;
+    [SerializeField] private float maxBlastRate = 1f;
     
     private Coroutine loopRoutine;
 
