@@ -93,7 +93,7 @@ public class ExcavatorMachine : Machine, IBuyable, IBlockPlacement
     [ExposeMethod("Sets how many items this machine digs up per second.")]
     public void SetDigRate(float rate)
     {
-        digRate = Mathf.Min(rate, maxDigRate);
+        digRate = Mathf.Clamp(rate, 00000.1f, maxDigRate);
     }
     
     [ExposeMethod("Sets the size of the placement area.")]

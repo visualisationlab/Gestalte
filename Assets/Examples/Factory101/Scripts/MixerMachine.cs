@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Examples.Factory101.Scripts;
 using Examples.Factory101.Scripts.Input;
@@ -116,7 +117,7 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
     [ExposeMethod("Sets how many items this machine mixes up per second.")]
     public void SetMixRate(float rate)
     {
-        mixRate = Mathf.Min(rate, maxMixRate);
+        mixRate = Math.Clamp(rate, 0.000001f, maxMixRate);
     }
     
     [ExposeMethod("Add an incantation while mixing")]

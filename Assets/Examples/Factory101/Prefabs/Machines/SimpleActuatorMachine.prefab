@@ -52,14 +52,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 40
-  baseUpgradePrice: 0
+  baseUpgradePrice: 40
   upgradeLevel: 1
-  maxUpgradeLevel: 0
+  maxUpgradeLevel: 3
+  upgradeGrowthFactor: 1.15
   description: 'Simple Pusher
 
 
     This machine pushes items.'
   piston: {fileID: 1423649234723977930}
+  pushRate: 0.5
+  maxPushRate: 1
 --- !u!114 &359967777320930534
 MonoBehaviour:
   m_ObjectHideFlags: 0
