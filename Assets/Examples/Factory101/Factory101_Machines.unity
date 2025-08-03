@@ -225,17 +225,63 @@ MonoBehaviour:
   recipeList: []
   recipeMessage: {fileID: 3350733236888070936}
   fallbackDescriptions: {fileID: 11400000, guid: 596522edb3155d74dbcdf2f41af8503a, type: 2}
---- !u!114 &305041868 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9003735446864312987, guid: 24bf3dc3c53d0e14fab830c7c7412633, type: 3}
-  m_PrefabInstance: {fileID: 8080897725335471016}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f0f08af6a9fe7948ba9eae975e6f3fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+--- !u!1001 &573531229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09599572
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068125074464541939, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
+      propertyPath: m_Name
+      value: MagneticMachine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
 --- !u!1 &582396434
 GameObject:
   m_ObjectHideFlags: 0
@@ -63871,6 +63917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SprayMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 7092464942995873906, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7479062856975829621, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -63946,7 +63996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61fe4b18c0794e9555552f7144955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000000
+  money: 50
   OnMoneyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -64382,6 +64432,10 @@ PrefabInstance:
     - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_Name
       value: FurnaceMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68534,14 +68588,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6005972594326706851, guid: aa2e7024eb3e8464191a66a62bd2ffdf, type: 3}
-      propertyPath: maxFoliageOnlyDuration
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005972594326706851, guid: aa2e7024eb3e8464191a66a62bd2ffdf, type: 3}
-      propertyPath: minFoliageOnlyDuration
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 7918862335061118710, guid: aa2e7024eb3e8464191a66a62bd2ffdf, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -69481,4 +69527,4 @@ SceneRoots:
   - {fileID: 5483605919407447096}
   - {fileID: 1762009567}
   - {fileID: 1319502189}
-  - {fileID: 8080897725335471016}
+  - {fileID: 573531229}

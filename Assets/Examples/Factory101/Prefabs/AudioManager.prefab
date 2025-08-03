@@ -316,8 +316,10 @@ MonoBehaviour:
   tok: {fileID: 8300000, guid: ed10ea6c30d235c42aa3bcb8591115a7, type: 3}
   foliage: {fileID: 8300000, guid: a63e5bd3e9db54b42959bc3e5c70d2fb, type: 3}
   music: {fileID: 8300000, guid: 895633313ac679c4ca0d9aa109927982, type: 3}
-  minFoliageOnlyDuration: 300
-  maxFoliageOnlyDuration: 600
+  initialMusicDelay: 0
+  minFoliageOnlyDuration: 220
+  maxFoliageOnlyDuration: 420
+  minRepeatInterval: 0.1
 --- !u!1 &8756637349930252649
 GameObject:
   m_ObjectHideFlags: 0
