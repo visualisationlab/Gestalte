@@ -12,6 +12,8 @@ public class McGibbleTracker : MonoBehaviour
     [SerializeField]
     private float expireTime = 10f;
 
+    public GameObject gibbleDissolvePrefab;
+
     private class TrackedMcGibble
     {
         public McGibble McGibble;
@@ -59,6 +61,12 @@ public class McGibbleTracker : MonoBehaviour
     public void Remove(McGibble obj)
     {
         trackedObjects.RemoveAll(to => to.McGibble == obj);
+        if (gibbleDissolvePrefab != null)
+        {
+            // Offset a little on the -z axis to avoid z-fighting with the ground
+            Vector3 offsetPosition = obj.transform.position + new Vector3(0, 0, -1f);
+            var dissolveEffect = Instantiate(gibbleDissolvePrefab, offsetPosition, Quaternion.identity);
+        }
         Destroy(obj.gameObject);
     }
 
