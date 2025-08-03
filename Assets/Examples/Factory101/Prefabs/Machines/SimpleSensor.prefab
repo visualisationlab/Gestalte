@@ -194,7 +194,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -297427995, guid: f5d171e79ec78484c8d2954924124044, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -604,7 +604,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Positions:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
@@ -714,17 +714,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2f8985b7d1eee4eb5ddc57e9fa927b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGrid: 0
-  keepsOffset: 0
-  noRotation: 0
+  OnDraggingStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDraggingStopped:
+    m_PersistentCalls:
+      m_Calls: []
+  connectorLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  snapCheckRadius: 0.43
+  maxCableLength: 5
   rotationSpeed: 720
   rotationOffset: -90
   lengthFromTo: 0
-  connectorLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  snapCheckRadius: 0.43
-  maxCableLength: 5
 --- !u!1 &9154291371340185324
 GameObject:
   m_ObjectHideFlags: 0

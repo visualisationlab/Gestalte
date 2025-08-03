@@ -4,7 +4,7 @@ using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
+public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPulseReceiver<McGibbleDescription>
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float upgradePullMultiplier = 1.3f;
@@ -18,15 +18,6 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
         effectCircle.enabled = false;
     }
     
-    public int GetPrice()
-    {
-        return basePrice;
-    }
-
-    public string GetDescription()
-    {
-        return description;
-    }
     protected override void RegisterLua()
     {
         UserData.RegisterType<MagnetMachine>();
@@ -34,7 +25,7 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
         luaScript = new Script();
         luaScript.Globals["this"] = this;
     }
-    
+
     protected override void AfterSetScript()
     {
         ExecuteScript();
@@ -129,7 +120,6 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
         effectCircle.enabled = false;
     }
     
-    
     private string GetPullStrength()
     {
         return pullStrength.ToString("0.0");
@@ -138,5 +128,20 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
     private string GetMaxPullStrength()
     {
         return maxPullStrength.ToString("0.0");
+    }
+    
+    public int GetPrice()
+    {
+        return basePrice;
+    }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+
+    public void OnPulse(McGibbleDescription message)
+    {
+        Debug.Log($"Received description: {message.name}");
     }
 }

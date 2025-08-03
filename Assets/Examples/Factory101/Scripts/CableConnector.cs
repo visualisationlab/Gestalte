@@ -27,7 +27,7 @@ public class CableConnector : MonoBehaviour
         if (currentCable == cable)
         {
             currentCable = null;
-            cable.ReleaseFromSnap();
+            // cable.ReleaseFromSnap();
             Debug.Log("Cable detached from " + name);
         }
     }

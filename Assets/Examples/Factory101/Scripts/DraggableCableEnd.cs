@@ -1,20 +1,39 @@
 using UnityEngine;
 using System.Collections;
 using Examples.Factory101.Scripts;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
-public class DraggableCableEnd : Draggable
+public class DraggableCableEnd : DraggableBase2D
 {
     [SerializeField] private LayerMask connectorLayer;
     [SerializeField] private float snapCheckRadius = 1f;
+    [SerializeField] private SpriteRenderer plug;
     private CableConnector connectedTo;
     public float maxCableLength = 5f;
     private Coroutine bounceCoroutine;
     private bool bouncingBack = false;
+    
+    [SerializeField] private float rotationSpeed = 720f; // degrees per second
+    [SerializeField] protected float rotationOffset = 0f;  // degrees, applied to rotation
+    [SerializeField] protected float lengthFromTo = 0f; // Enable to see debug logs
+    protected Vector3 startPosition;
+    
+    private Vector3 previousWorldPos;
 
-    public override void StartDragging(Vector3 hitPoint)
+    public int plugDragSortingOrder = 700;
+    public int plugStandardSortingOrder = 3;
+
+    private void Start()
     {
-        base.StartDragging(hitPoint);
+        startPosition = transform.position;
+    }
 
+    public override void StartDrag(Vector3 worldPointerPosition)
+    {
+        base.StartDrag(worldPointerPosition);
+        isDragging = true;
+        plug.sortingOrder = plugDragSortingOrder;
         // Detach if currently snapped
         if (connectedTo != null)
         {
@@ -22,11 +41,11 @@ public class DraggableCableEnd : Draggable
             connectedTo = null;
         }
     }
-
-    public override void StopDragging()
+    
+    public override void StopDrag()
     {
-        base.StopDragging();
-
+        base.StopDrag();
+        isDragging = false;
         // Try to snap to nearby connector
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, snapCheckRadius, connectorLayer);
         if (nearby.Length != 0)
@@ -39,32 +58,24 @@ public class DraggableCableEnd : Draggable
                     Debug.Log($"Attempting to snap to connector: {connector.name}");
                     connector.AttachCable(this);
                     connectedTo = connector;
-                    break;
+                    plug.sortingOrder = plugStandardSortingOrder;
+                    return;
                 }
             }
         }
-
-        // // If nothing found return to startposition
-        // if (connectedTo == null)
-        // {
-        //     Debug.Log("No suitable connector found, returning to start position.");
-        //     transform.position = startPosition; // Reset to start position
-        // }
+        //nothing found, snap back
+        transform.position = startPosition;
+        plug.sortingOrder = plugStandardSortingOrder;
     }
-
+    
     public void SnapTo(Transform target, Quaternion snapRotation)
     {
-        transform.position = target.position;
-
+        transform.position = new Vector3(target.position.x, target.position.y, 0f);
+    
         // Apply rotation offset around Z axis
         Quaternion offsetRotation = Quaternion.Euler(0, 0, rotationOffset);
         transform.rotation = snapRotation * offsetRotation;
         StartCoroutine(FlashCable());
-    }
-
-    public void ReleaseFromSnap()
-    {
-        // Optional visual logic here
     }
 
     // Optional: draw snap radius in editor
@@ -72,46 +83,6 @@ public class DraggableCableEnd : Draggable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, snapCheckRadius);
-    }
-
-    public void SendPulseFrom(CableConnector source)
-    {
-        if (connectedTo == null || connectedTo == source)
-            return;
-
-        GameObject targetMachine = connectedTo.gameObject;
-
-        if (targetMachine.TryGetComponent<IPulseReceiver<bool>>(out var receiver))
-        {
-            receiver.OnPulse(true);
-            Debug.Log($"Pulse sent from {source.name} to {targetMachine.name}");
-        }
-        else
-        {
-            Debug.LogWarning($"{targetMachine.name} does not implement IPulseReceiver");
-        }
-    }
-
-    public void SendPulse()
-    {
-        if (connectedTo == null)
-        {
-            Debug.LogWarning("Cable is not connected to any receiver.");
-            return;
-        }
-
-        GameObject target = connectedTo.parentMachine;
-
-        if (target.TryGetComponent<IPulseReceiver<bool>>(out var receiver))
-        {
-            PlayPulseEffect();
-            receiver.OnPulse(true);
-            Debug.Log($"Pulse sent from {name} to {target.name}");
-        }
-        else
-        {
-            Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
-        }
     }
 
     public void SendPulse(McGibbleDescription message)
@@ -135,63 +106,47 @@ public class DraggableCableEnd : Draggable
             Debug.LogWarning($"{target.name} does not implement IPulseReceiver.");
         }
     }
-
-
-    public override void UpdateDragging()
+    
+    public void UpdateDragging()
     {
-        base.UpdateDragging(); // Keep base drag behavior
+        if (!isDragging) return;
+        Vector3 currentWorldPos = GetWorldPointer();
+        Vector3 delta = currentWorldPos - previousWorldPos;
 
-        if (lengthFromTo > maxCableLength && !bouncingBack)
+        // avoid zero-length
+        if (delta.sqrMagnitude > 0.0001f)
         {
-            Debug.LogWarning($"Cable end {name} dragged too far: {lengthFromTo} > {maxCableLength}");
-            NoFurtherDragging();
-            return;
+            Vector3 rotatedDelta = new Vector3(delta.y, -delta.x, 0f); // 90° rotate
+            float targetAngle = Mathf.Atan2(rotatedDelta.y, rotatedDelta.x) * Mathf.Rad2Deg;
+            Quaternion targetRot = Quaternion.Euler(0f, 0f, targetAngle);
+
+            if (float.IsInfinity(rotationSpeed))
+            {
+                transform.rotation = targetRot; // instant
+            }
+            else
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, 
+                    Mathf.Clamp01(Time.deltaTime * rotationSpeed));
+            }
+
+            previousWorldPos = currentWorldPos;
         }
     }
-
-    private void ResetDragging()
+    
+    private Vector3 GetWorldPointer()
     {
-        StopDragging();
-        startPosition = transform.position; // Reset start position
-        lengthFromTo = 0f;
-        transform.rotation = Quaternion.identity; // Reset rotation
+        Vector3 screenPos = Mouse.current.position.ReadValue();
+        screenPos.z = Mathf.Abs(Camera.main.transform.position.z); // for typical orthographic or z-offset
+        Vector3 world = Camera.main.ScreenToWorldPoint(screenPos);
+        world.z = 0f; // keep on 2D plane
+        return world;
     }
 
-    private void NoFurtherDragging()
+    void Update()
     {
-        base.StopDragging();
-
-        Vector3 origin = connectedTo != null ? connectedTo.transform.position : startPosition;
-        Vector3 directionBack = (origin - transform.position).normalized;
-
-        // Stop previous bounce if it's running
-        if (bounceCoroutine != null)
-            StopCoroutine(bounceCoroutine);
-
-        bouncingBack = true;
-        bounceCoroutine = StartCoroutine(BounceBack(startPosition));
+        UpdateDragging();
     }
-
-    private IEnumerator BounceBack(Vector3 targetPos)
-    {
-        float duration = 0.2f; // Duration of bounce
-        float elapsed = 0f;
-
-        Vector3 start = transform.position;
-
-        while (elapsed < duration)
-        {
-            transform.position = Vector3.Lerp(start, targetPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPos; // Ensure it ends exactly
-        lengthFromTo = Vector3.Distance(startPosition, transform.position);
-        bouncingBack = false;
-        transform.rotation = Quaternion.identity; // Reset rotation
-    }
-
 
     [ContextMenu("Play Pulse Effect")]
     public void PlayPulseEffect()

@@ -629,6 +629,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!212 &633575582 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5996342376015710614, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+  m_PrefabInstance: {fileID: 1528697991}
 --- !u!1 &598767268
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,64 +751,6 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598767268}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 4379661230960559022, guid: 765a5b9482b4c5f46aef66d8c2bcc4de, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 100
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!224 &598767271
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598767268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.004, y: 0.0029}
-  m_SizeDelta: {x: 6.6256, y: 7.20732}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &684969648 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4133539693667519691, guid: d8a4b72b95c6ab544a0feeecf783e67d, type: 3}
@@ -69374,6 +69320,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3601436980238613192, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893170322171532647, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: plug
+      value: 
+      objectReference: {fileID: 633575582}
+    - target: {fileID: 5996342376015710614, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257999283720034745, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: m_Name
       value: SimpleSensor
@@ -69613,7 +69575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3753237756479125036, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3753237756479125036, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -74902,15 +74864,12 @@ SceneRoots:
   - {fileID: 1684240689}
   - {fileID: 1834421981}
   - {fileID: 5440294480330279720}
+  - {fileID: 1528697991}
   - {fileID: 573531229}
   - {fileID: 1563348473861415128}
   - {fileID: 5483605919407447096}
   - {fileID: 1762009567}
   - {fileID: 1319502189}
   - {fileID: 8080897725335471016}
-  - {fileID: 1528697991}
   - {fileID: 364524427}
-  - {fileID: 598767271}
-  - {fileID: 736671757}
-  - {fileID: 2093363240}
   - {fileID: 228382775}

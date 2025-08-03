@@ -18,7 +18,7 @@ public class BezierConnectorCable : MonoBehaviour
         Vector3 end = to.position;
 
         // Midpoint aligned on X
-        Vector3 mid1 = new Vector3(end.x, start.y, start.z);
+        Vector3 mid1 = new Vector3(end.x, start.y, start.z - 0.001f);
         // You could also do mid1 on Y, or customize depending on layout
 
         Vector3[] points = new[] { start, mid1, end };
