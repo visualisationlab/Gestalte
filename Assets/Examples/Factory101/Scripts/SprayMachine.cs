@@ -25,6 +25,9 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
     private float maxSprayRate = 1f;
     private Coroutine loopRoutine;
 
+    [Header("Poof effect prefab")]
+    public GameObject poofEffectPrefab;
+
     protected override void RegisterLua()
     {
         UserData.RegisterType<SprayMachine>();
@@ -106,9 +109,20 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
         if (!sensor.detectedGameObject) return;
         var mcGibble = sensor.detectedGameObject.GetComponent<McGibble>();
         if (mcGibble == null) return;
-        
+
+        if (poofEffectPrefab != null)
+        {
+            Vector3 offsetPosition = mcGibble.transform.position + new Vector3(0, 0, -1f);
+            var poof = Instantiate(poofEffectPrefab, offsetPosition, Quaternion.identity);
+        }
         mcGibble.transform.position = outputPoint.position + new Vector3(Random.value - 0.5f, Random.value - 0.5f, 0f);
         mcGibble.SetSprayPaint(finishType, sprayColor);
+        if (poofEffectPrefab != null)
+        {
+            Vector3 offsetPosition = mcGibble.transform.position + new Vector3(0, 0, -1f);
+            var bigPoof = Instantiate(poofEffectPrefab, offsetPosition, Quaternion.identity);
+            bigPoof.transform.localScale *= 2f;
+        }
     }
 
     public int GetPrice()

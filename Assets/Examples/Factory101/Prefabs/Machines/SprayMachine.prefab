@@ -593,6 +593,7 @@ MonoBehaviour:
   finishType: 0
   intensity: 1
   sprayRate: 1
+  poofEffectPrefab: {fileID: 2018827244383498181, guid: 45ba537c6847bc14f8eed533832f6267, type: 3}
 --- !u!114 &9216968471328797511
 MonoBehaviour:
   m_ObjectHideFlags: 0

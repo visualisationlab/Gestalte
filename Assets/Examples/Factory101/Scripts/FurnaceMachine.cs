@@ -21,6 +21,9 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     
     private Coroutine loopRoutine;
 
+    [Header("Poof effect prefab")]
+    public GameObject poofEffectPrefab;
+
     protected override void RegisterLua()
     {
         UserData.RegisterType<FurnaceMachine>();
@@ -117,8 +120,20 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
         adjustedHeat = Mathf.Clamp(adjustedHeat, -100f, 500f);
         mcGibble.SetTemperature(Mathf.RoundToInt(adjustedHeat));
 
+        if (poofEffectPrefab != null)
+        {
+            Vector3 offsetPosition = mcGibble.transform.position + new Vector3(0, 0, -1f);
+            var poof = Instantiate(poofEffectPrefab, offsetPosition, Quaternion.identity);
+        }
+
         tinyRandom = new Vector3(Random.value, Random.value - 0.5f, 0f);
         mcGibble.transform.position = outputPoint.transform.position + tinyRandom;
+        if (poofEffectPrefab != null)
+        {
+            Vector3 offsetPosition = mcGibble.transform.position + new Vector3(0, 0, -1f);
+            var bigPoof = Instantiate(poofEffectPrefab, offsetPosition, Quaternion.identity);
+            bigPoof.transform.localScale *= 2f;
+        }
     }
 
     public int GetPrice()
