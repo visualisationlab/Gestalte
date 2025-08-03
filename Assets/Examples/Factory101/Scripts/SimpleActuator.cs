@@ -16,7 +16,6 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement
     
     private Coroutine loopRoutine;
     
-    
     protected override void RegisterLua()
     {
         UserData.RegisterType<SimpleActuator>();
