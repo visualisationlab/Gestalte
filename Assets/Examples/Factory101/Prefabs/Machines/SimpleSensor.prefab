@@ -57,8 +57,8 @@ Transform:
   m_GameObject: {fileID: 2196539159986044478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.363, z: 0}
-  m_LocalScale: {x: 1, y: 2.1913, z: 1}
+  m_LocalPosition: {x: 0, y: -1.1291, z: 0}
+  m_LocalScale: {x: 1, y: 1.862605, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2529864952977910194}
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.11372549}
   m_FlipX: 0
@@ -493,7 +493,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.71
+  m_Radius: 0.56
 --- !u!114 &6732603270680970889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +508,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDetect: 0
   detectedGameObject: {fileID: 0}
+  ignoreTriggerStay: 0
+  OnTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8258735711495923055}
+        m_TargetAssemblyTypeName: SimpleSensorMachine, Assembly-CSharp
+        m_MethodName: Sense
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9050938352854418065
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,8 +812,6 @@ MonoBehaviour:
     the output to connected machines.'
   sensor: {fileID: 6732603270680970889}
   cableEnd: {fileID: 4893170322171532647}
-  senseRate: 1
-  maxSenseRate: 2
 --- !u!114 &6194043042087535073
 MonoBehaviour:
   m_ObjectHideFlags: 0

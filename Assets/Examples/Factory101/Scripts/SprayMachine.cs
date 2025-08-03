@@ -168,5 +168,6 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver<M
     public void OnPulse(McGibbleDescription message)
     {
         lastMcGibbleDetected = message;
+        ExecuteScript();
     }
 }

@@ -15,25 +15,7 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement, IPulseReceiver
     [SerializeField] public float maxPushRate = 1;//once every second
     
     public McGibbleDescription lastMcGibbleDetected;
-    
-    [ExposeMethod("Get the name of the item the connected sensor detected")]
-    public string GetNameOfDetectedItem()
-    {
-        return lastMcGibbleDetected.name;
-    }
-    
-    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
-    public int GetBasePriceOfDetectedItem()
-    {
-        return lastMcGibbleDetected.raritySalePrice;
-    }
-    
-    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
-    public float GetRarityOfDetectedItem()
-    {
-        return lastMcGibbleDetected.normalizedRarity;
-    }
-    
+
     private Coroutine loopRoutine;
     
     protected override void RegisterLua()
@@ -105,6 +87,37 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement, IPulseReceiver
     public void SetPushRate(int rate)
     {
         pushRate = Math.Clamp(rate, 0.000001f, maxPushRate);
+        RestartCoroutine();
+    }
+    
+    [ExposeMethod("Forces the machine to push")]
+    public void ForcePush()
+    {
+        Push();
+    }
+    
+    [ExposeMethod("Forces the machine to retract")]
+    public void ForceRetract()
+    {
+        Retract();
+    }
+    
+    [ExposeMethod("Get the name of the item the connected sensor detected")]
+    public string GetNameOfDetectedItem()
+    {
+        return lastMcGibbleDetected.name;
+    }
+    
+    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
+    public int GetBasePriceOfDetectedItem()
+    {
+        return lastMcGibbleDetected.raritySalePrice;
+    }
+    
+    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
+    public float GetRarityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedRarity;
     }
 
     public void Push()
@@ -130,5 +143,6 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement, IPulseReceiver
     public void OnPulse(McGibbleDescription message)
     {
         lastMcGibbleDetected = message;
+        ExecuteScript();
     }
 }

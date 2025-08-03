@@ -164,5 +164,6 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPu
     public void OnPulse(McGibbleDescription message)
     {
         lastMcGibbleDetected = message;
+        ExecuteScript();
     }
 }

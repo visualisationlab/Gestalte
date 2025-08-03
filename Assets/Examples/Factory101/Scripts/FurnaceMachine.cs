@@ -185,5 +185,6 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver
     public void OnPulse(McGibbleDescription message)
     {
         lastMcGibbleDetected = message;
+        ExecuteScript();
     }
 }
