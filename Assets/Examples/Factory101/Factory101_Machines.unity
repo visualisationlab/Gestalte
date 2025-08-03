@@ -233,14 +233,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 14231735996583829, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
-      propertyPath: maxUpgradeLevel
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 14231735996583829, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
-      propertyPath: baseUpgradePrice
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_Name
       value: SimpleActuatorMachine

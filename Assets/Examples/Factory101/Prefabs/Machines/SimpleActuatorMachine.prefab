@@ -371,7 +371,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3.5
+  m_Radius: 0.98
 --- !u!114 &8464451206275046664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 457219298059475236}
   - component: {fileID: 9201999291062223211}
   - component: {fileID: 1423649234723977930}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pistonPush_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,6 +586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 457219298059475236}
-  direction: {x: 0, y: -1}
-  distance: 1
-  speed: 3
+  localDirection: {x: 0, y: 1}
+  distance: 0.8
+  speed: 2

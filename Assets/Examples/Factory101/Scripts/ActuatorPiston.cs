@@ -1,44 +1,41 @@
 using UnityEngine;
 
-public class ActuatorPiston: MonoBehaviour
+public class ActuatorPiston : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public Vector2 direction = Vector2.right; // Direction to extend
-    public float distance = 1f; // How far to move
-    public float speed = 1f; // Units per second
+    [Tooltip("Local-space direction the piston pushes (e.g., right is forward).")]
+    public Vector2 localDirection = Vector2.right;
+    public float distance = .1f; // extension distance
+    public float speed = 1f; // units per second
 
-    private Vector2 startPosition;
-    private Vector2 targetPosition;
-    private Vector2 newPos;
     private bool extending = false;
 
-    public void Extend()
-    {
-        extending = true;
-    }
-    
-    public void Retract()
-    {
-        extending = false;
-    }
+    public void Extend()   => extending = true;
+    public void Retract()  => extending = false;
+
+    private Vector2 staticBasePos;
     
     void Start()
     {
-        startPosition = rb.position;
-        targetPosition = startPosition + direction.normalized * distance;
+        Vector2 initialBase = rb.position;
+        staticBasePos = initialBase;
     }
-
+    
+    
     void FixedUpdate()
     {
-        if (extending)
-        {
-            newPos = Vector2.MoveTowards(rb.position, targetPosition, speed * Time.fixedDeltaTime);
-        }
-        else
-        {
-            newPos = Vector2.MoveTowards(rb.position, startPosition, speed * Time.fixedDeltaTime);
-        }
-        rb.MovePosition(newPos);
+        if (rb == null) return;
 
+        // Compute the world-space base point (anchor) and direction
+        Vector2 worldDir = ((Vector2)transform.TransformDirection(localDirection)).normalized;
+
+        // Determine desired target (extended or retracted)
+        Vector2 targetPos = extending 
+            ? staticBasePos + worldDir * distance 
+            : staticBasePos;
+
+        // Move toward it smoothly
+        Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, speed * Time.fixedDeltaTime);
+        rb.MovePosition(newPos);
     }
 }
