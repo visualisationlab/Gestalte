@@ -8,7 +8,7 @@ using UnityEngine;
 using Coroutine = UnityEngine.Coroutine;
 using Random = UnityEngine.Random;
 
-public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
+public class FurnaceMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver<McGibbleDescription>
 {
     public SimpleSensor sensor;
     public Transform outputPoint;
@@ -24,6 +24,8 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     [Header("Poof effect prefab")]
     public GameObject poofEffectPrefab;
 
+    public McGibbleDescription lastMcGibbleDetected;
+    
     protected override void RegisterLua()
     {
         UserData.RegisterType<FurnaceMachine>();
@@ -97,7 +99,31 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     {
         blastRate = Mathf.Clamp(rate, 0.00001f, maxBlastRate);
     }
-
+    
+    [ExposeMethod("Get the name of the item the connected sensor detected")]
+    public string GetNameOfDetectedItem()
+    {
+        return lastMcGibbleDetected.name;
+    }
+    
+    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
+    public int GetBasePriceOfDetectedItem()
+    {
+        return lastMcGibbleDetected.raritySalePrice;
+    }
+    
+    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
+    public float GetRarityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedRarity;
+    }
+    
+    [ExposeMethod("Get the heat affinity of the item the connected sensor detected")]
+    public float GetHeatAffinityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedHeatAffinity;
+    }
+    
     public void Blast()
     {
         if (!sensor.detectedGameObject) return;
@@ -154,5 +180,10 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     private string GetMaxBlastRate()
     {
         return maxBlastRate.ToString("0.0");
+    }
+    
+    public void OnPulse(McGibbleDescription message)
+    {
+        lastMcGibbleDetected = message;
     }
 }

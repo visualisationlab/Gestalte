@@ -183,8 +183,8 @@ Transform:
   m_GameObject: {fileID: 1416110120200838364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.362, y: -0.226, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: -0.54, y: -0.226, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5649436026819602165}
@@ -234,7 +234,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.91849303, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.06844188, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -472,6 +472,14 @@ MonoBehaviour:
   pullStrength: 2
   maxPullStrength: 2
   effectCircle: {fileID: 6901346240625564894}
+  lastMcGibbleDetected:
+    name: 
+    normalizedRarity: 0
+    singleEmoji: 
+    normalizedHeatAffinity: 0
+    uniqueCreated: 0
+    raritySalePrice: 0
+    shortDescription: 
 --- !u!61 &7636809624075154325
 BoxCollider2D:
   m_ObjectHideFlags: 0

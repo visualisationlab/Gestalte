@@ -10,7 +10,7 @@ using TMPro;
 using UnityEngine.Events;
 using Coroutine = UnityEngine.Coroutine;
 
-public class SprayMachine : Machine, IBuyable, IBlockPlacement
+public class SprayMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver<McGibbleDescription>
 {
     [Header("Detection & Output")]
     public SimpleSensor sensor;
@@ -28,6 +28,8 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
     [Header("Poof effect prefab")]
     public GameObject poofEffectPrefab;
 
+    public McGibbleDescription lastMcGibbleDetected;
+    
     protected override void RegisterLua()
     {
         UserData.RegisterType<SprayMachine>();
@@ -103,6 +105,24 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
     {
         sprayRate = Mathf.Clamp(rate, 0.000001f, maxSprayRate);
     }
+    
+    [ExposeMethod("Get the name of the item the connected sensor detected")]
+    public string GetNameOfDetectedItem()
+    {
+        return lastMcGibbleDetected.name;
+    }
+    
+    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
+    public int GetBasePriceOfDetectedItem()
+    {
+        return lastMcGibbleDetected.raritySalePrice;
+    }
+    
+    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
+    public float GetRarityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedRarity;
+    }
 
     public void Spray()
     {
@@ -143,5 +163,10 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
     private string GetMaxSprayRate()
     {
         return maxSprayRate.ToString("0.0");
+    }
+
+    public void OnPulse(McGibbleDescription message)
+    {
+        lastMcGibbleDetected = message;
     }
 }

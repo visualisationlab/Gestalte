@@ -7,12 +7,32 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using Coroutine = UnityEngine.Coroutine;
 
-public class SimpleActuator : Machine, IBuyable, IBlockPlacement
+public class SimpleActuator : Machine, IBuyable, IBlockPlacement, IPulseReceiver<McGibbleDescription>
 {
     public ActuatorPiston piston;
 
     [SerializeField] public float pushRate = .5f;
     [SerializeField] public float maxPushRate = 1;//once every second
+    
+    public McGibbleDescription lastMcGibbleDetected;
+    
+    [ExposeMethod("Get the name of the item the connected sensor detected")]
+    public string GetNameOfDetectedItem()
+    {
+        return lastMcGibbleDetected.name;
+    }
+    
+    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
+    public int GetBasePriceOfDetectedItem()
+    {
+        return lastMcGibbleDetected.raritySalePrice;
+    }
+    
+    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
+    public float GetRarityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedRarity;
+    }
     
     private Coroutine loopRoutine;
     
@@ -106,5 +126,9 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement
     {
         return maxPushRate.ToString("0.0");
     }
-    
+
+    public void OnPulse(McGibbleDescription message)
+    {
+        lastMcGibbleDetected = message;
+    }
 }
