@@ -90,9 +90,9 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement
     }
     
     [ExposeMethod("Sets how many items this machine heats every second")]
-    public void SetMixRate(float rate)
+    public void SetBlastRate(float rate)
     {
-        blastRate = Mathf.Min(rate, maxBlastRate);
+        blastRate = Mathf.Clamp(rate, 0.00001f, maxBlastRate);
     }
 
     public void Blast()

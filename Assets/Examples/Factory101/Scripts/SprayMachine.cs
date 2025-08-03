@@ -98,7 +98,7 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement
     [ExposeMethod("Sets how many items this machine sprays every second")]
     public void SetSprayRate(float rate)
     {
-        sprayRate = Mathf.Min(rate, maxSprayRate);
+        sprayRate = Mathf.Clamp(rate, 0.000001f, maxSprayRate);
     }
 
     public void Spray()
