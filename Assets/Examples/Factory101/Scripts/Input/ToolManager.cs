@@ -18,12 +18,14 @@ public class ToolManager : MonoBehaviour
     private float rotationAmount = 90f;
 
     public UnityEvent OnRanOutOfFunds;
+    private bool rotationOn;
 
     public void SelectPlaceableTool(GameObject ghost, GameObject placeablePrefab, bool canRotate)
     {
         rotation = 0;
         currentTool = Tool.Place;
         currentPlaceablePrefab = placeablePrefab;
+        rotationOn = canRotate;
         CursorController.Instance.ShowBuildGhost(ghost, canRotate);
     }
 
@@ -89,6 +91,7 @@ public class ToolManager : MonoBehaviour
 
     public void Rotate()
     {
+        if(!rotationOn) return;
         if (InteractionModeController.Instance.CurrentMode != InteractionMode.Placement)
             return;
         rotation += rotationAmount;
