@@ -67,6 +67,10 @@ public class DirectAPI : MonoBehaviour
 
             if (request.result != UnityWebRequest.Result.Success)
             {
+                if (request.responseCode == 429)
+                {
+                    throw new Exception($"Oops. Too many requests. Try again later.");
+                }
                 throw new Exception($"Network error: {request.error} (Code: {request.responseCode})");
             }
 
