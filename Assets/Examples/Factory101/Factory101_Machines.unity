@@ -729,7 +729,7 @@ RectTransform:
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 484225218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5578,7 +5578,7 @@ Transform:
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 484225218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744470027
 GameObject:
@@ -69103,6 +69103,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5501121011746392096}
+        m_TargetAssemblyTypeName: ShakeElement, Assembly-CSharp
+        m_MethodName: Shake
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1404626226
 Transform:
   m_ObjectHideFlags: 0
@@ -69804,7 +69816,7 @@ Transform:
   m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 484225218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119382594
 GameObject:
@@ -72645,6 +72657,7 @@ GameObject:
   - component: {fileID: 4762111482207622861}
   - component: {fileID: 2455669363680380249}
   - component: {fileID: 5501121011746392095}
+  - component: {fileID: 5501121011746392096}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -73272,6 +73285,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5501121011746392096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4383322123334256573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d222280a301f7664c97e017ac41c711f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAmplitude: 10
+  frequency: 25
+  baseDuration: 0.3
+  maxDuration: 1
+  shakeRotation: 1
+  maxRotationAngle: 5
 --- !u!1 &5551078119387505820
 GameObject:
   m_ObjectHideFlags: 0
@@ -74770,3 +74801,6 @@ SceneRoots:
   - {fileID: 8080897725335471016}
   - {fileID: 1528697991}
   - {fileID: 364524427}
+  - {fileID: 598767271}
+  - {fileID: 736671757}
+  - {fileID: 2093363240}
