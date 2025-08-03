@@ -64353,10 +64353,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5504677416023601025, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
-      propertyPath: blastRate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_Name
       value: FurnaceMachine
@@ -68335,14 +68331,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
-    - target: {fileID: 1387765303630966423, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3873202909777762686, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
-      propertyPath: thrashcanCursor
-      value: 
-      objectReference: {fileID: 136063205, guid: fb83d4d018e698b449a25e7acd3966ed, type: 3}
     - target: {fileID: 4751498698074344143, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.228

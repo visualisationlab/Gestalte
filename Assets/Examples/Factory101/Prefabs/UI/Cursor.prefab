@@ -51,6 +51,7 @@ MonoBehaviour:
   pointCursor: {fileID: 21300000, guid: 4068bfed7e904184c923a729bc56d4b9, type: 3}
   dragCursor: {fileID: 21300000, guid: 91e9cb039463b1341bd49216db388cdf, type: 3}
   buildCursor: {fileID: 21300000, guid: ffc5d303eafcdc44a9d042524d29f784, type: 3}
+  thrashcanCursor: {fileID: 136063205, guid: fb83d4d018e698b449a25e7acd3966ed, type: 3}
   realCursorVisible: 0
   infoObject: {fileID: 3791969242978160315}
   infoText: {fileID: 4203831411566833881}
@@ -835,7 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 762754342882063634, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225668132119176413, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1002
       objectReference: {fileID: 0}
     - target: {fileID: 8487146741723089241, guid: 59af83cda41d3514e9ca24a54b7b0564, type: 3}
       propertyPath: ghostHolder

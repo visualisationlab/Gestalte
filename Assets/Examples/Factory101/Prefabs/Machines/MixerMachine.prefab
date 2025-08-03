@@ -254,6 +254,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   mixRate: 1
+  extraComment: 
+  incantation: 
 --- !u!114 &-1407637050035188650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,7 +438,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 90
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -744,7 +746,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 91
   m_Sprite: {fileID: 21300000, guid: f3d716a22a6c3364a938e00b475452c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

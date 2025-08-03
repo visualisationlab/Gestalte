@@ -52,6 +52,7 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
             2 => 3f,
             3 => 5f,
             4 => 6f,
+            5 => 7f,
             _ => 1f // default case
         };
         
