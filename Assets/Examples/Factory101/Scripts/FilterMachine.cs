@@ -115,7 +115,7 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
             return false;
 
         if (whitelistSet)
-            return whitelist.Contains(gibble.description.singleEmoji.ToLower());
+            return whitelist.Contains(gibble.description.name.ToLower());
 
         // If at least one filter is active and passed, allow
         if (priceFilterSet || whitelistSet)
