@@ -6,6 +6,7 @@ public class GameInfoManager : MonoBehaviour
    [SerializeField] private int money;
 
    public UnityEvent<int> OnMoneyUpdate;
+   public UnityEvent<int> OnMoneyUpdateDelta;
    public static GameInfoManager Instance { get; private set; }
    
    void Awake()
@@ -29,6 +30,7 @@ public class GameInfoManager : MonoBehaviour
    {
       money += amount;
       OnMoneyUpdate.Invoke(money);
+      OnMoneyUpdateDelta.Invoke(amount);
    }
 
    public int GetMoney()
