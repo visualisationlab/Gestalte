@@ -71158,6 +71158,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2456702899893000023, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2522427484014524395, guid: 15270256dc01ac541adaa51fece5366b, type: 3}
       propertyPath: toolManager
       value: 

@@ -4211,7 +4211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tool: 1
   toolManager: {fileID: 0}
-  placeable: {fileID: 1270644861067562815, guid: f80709d2357bac840812071ca7001186, type: 3}
+  placeable: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
   ghost: {fileID: 5487005871635467567, guid: 5359fb006351add47a9c3f552f8c59a8, type: 3}
   canRotate: 1
 --- !u!1 &6867634998195414871
