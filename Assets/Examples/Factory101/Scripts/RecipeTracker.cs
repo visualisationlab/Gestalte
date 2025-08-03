@@ -94,13 +94,6 @@ public class RecipeTracker : MonoBehaviour
         }
     }
 
-    public void OracleAgentReply(string message)
-    {
-        var response = responseQueue.Dequeue();
-        OnResponseAddRecipe(response.recipe, message);
-        response.callback(response.recipe);
-    }
-
     public Recipe OnResponseAddRecipe(Recipe partialRecipe, string message)
     {
         if (string.IsNullOrWhiteSpace(message))
@@ -161,6 +154,8 @@ public class RecipeTracker : MonoBehaviour
                 ? newMcGibbleDescription.shortDescription
                 : $"A {newMcGibbleDescription.name} with rarity {newMcGibbleDescription.normalizedRarity:F2}.";
 
+            var newPrice = (uniqueCounter * newMcGibbleDescription.normalizedRarity) + uniqueCounter;
+            
             partialRecipe.result = new McGibbleDescription
             {
                 name = newMcGibbleDescription.name,
@@ -168,7 +163,7 @@ public class RecipeTracker : MonoBehaviour
                 normalizedRarity = newMcGibbleDescription.normalizedRarity,
                 normalizedHeatAffinity = newMcGibbleDescription.normalizedHeatAffinity,
                 uniqueCreated = uniqueCounter,
-                raritySalePrice = Mathf.FloorToInt(uniqueCounter * newMcGibbleDescription.normalizedRarity) + 1,
+                raritySalePrice = Mathf.FloorToInt(newPrice) + 1,
                 shortDescription = finalShortDesc
             };
         }
