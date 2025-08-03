@@ -56,6 +56,12 @@ public class McGibbleTracker : MonoBehaviour
             McGibble = obj,
             ExpiryTime = Time.time + expireTime
         });
+        if (gibbleDissolvePrefab != null)
+        {
+            Vector3 offsetPosition = obj.transform.position + new Vector3(0, 0, -1f);
+            var dissolveEffect = Instantiate(gibbleDissolvePrefab, offsetPosition, Quaternion.identity);
+            dissolveEffect.transform.localScale *= 2f;
+        }
     }
 
     public void Remove(McGibble obj)
