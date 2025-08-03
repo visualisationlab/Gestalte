@@ -21,7 +21,7 @@ public class UINewRecipeMessage : MonoBehaviour
 
     IEnumerator PlayChimeDelayed()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         AudioManager.Instance.Chime();
     } 
 }
