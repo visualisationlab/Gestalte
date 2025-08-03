@@ -69017,7 +69017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 120
-  gibbleDissolvePrefab: {fileID: 0}
+  gibbleDissolvePrefab: {fileID: 2018827244383498181, guid: 45ba537c6847bc14f8eed533832f6267, type: 3}
 --- !u!4 &1222621014
 Transform:
   m_ObjectHideFlags: 0
@@ -74897,3 +74897,4 @@ SceneRoots:
   - {fileID: 598767271}
   - {fileID: 736671757}
   - {fileID: 2093363240}
+  - {fileID: 228382775}
