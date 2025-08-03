@@ -13,6 +13,9 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPu
     [SerializeField] private float pullStrength = 2;
     [SerializeField] private float maxPullStrength = 2;
     [SerializeField] private SpriteRenderer effectCircle;
+
+    public McGibbleDescription lastMcGibbleDetected;
+    
     private void Start()
     {
         effectCircle.enabled = false;
@@ -67,6 +70,24 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPu
     public void SetMagneticStrength(int strength)
     {
         pullStrength = Mathf.Clamp(strength, -1, maxPullStrength);
+    }
+    
+    [ExposeMethod("Get the name of the item the connected sensor detected")]
+    public string GetNameOfDetectedItem()
+    {
+        return lastMcGibbleDetected.name;
+    }
+    
+    [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
+    public int GetBasePriceOfDetectedItem()
+    {
+        return lastMcGibbleDetected.raritySalePrice;
+    }
+    
+    [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
+    public float GetRarityOfDetectedItem()
+    {
+        return lastMcGibbleDetected.normalizedRarity;
     }
     
     public void Attract()
@@ -142,6 +163,7 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPu
 
     public void OnPulse(McGibbleDescription message)
     {
+        lastMcGibbleDetected = message;
         Debug.Log($"Received description: {message.name}");
     }
 }

@@ -69329,6 +69329,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 633575582}
     - target: {fileID: 5996342376015710614, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.95720696
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996342376015710614, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5996342376015710614, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: m_SortingOrder
       value: 7
       objectReference: {fileID: 0}
@@ -73752,6 +73760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
+    - target: {fileID: 3873202909777762686, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
+      propertyPath: thrashcanCursor
+      value: 
+      objectReference: {fileID: 21300000, guid: ffd36d69ab0b2ba47964f5760c527072, type: 3}
     - target: {fileID: 4751498698074344143, guid: 16a3e7b8270684147abd5dcf787002b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.228
