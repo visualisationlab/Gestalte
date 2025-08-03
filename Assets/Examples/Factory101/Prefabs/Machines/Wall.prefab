@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8476444134652988378}
   - component: {fileID: 8897250070476050511}
   - component: {fileID: -1361248728227492250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00000011920929, y: -0.034207612}
+  m_Offset: {x: 0.008346289, y: -0.038380563}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -78,7 +78,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1335378, y: 1.0500767}
   m_EdgeRadius: 0
 --- !u!114 &-1361248728227492250
 MonoBehaviour:
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4751301815694570025}
   - component: {fileID: 5366844648293637165}
   - component: {fileID: 1986353664854437507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 6
   m_Sprite: {fileID: -1377939608, guid: fd72be93a7d2277419837850a2380cf6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
