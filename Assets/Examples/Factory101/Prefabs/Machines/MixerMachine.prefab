@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   script: 
   basePrice: 100
-  baseUpgradePrice: 1000
+  baseUpgradePrice: 200
   upgradeLevel: 1
   maxUpgradeLevel: 5
   upgradeGrowthFactor: 2

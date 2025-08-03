@@ -476,8 +476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   script: 
-  basePrice: 200
-  baseUpgradePrice: 400
+  basePrice: 150
+  baseUpgradePrice: 100
   upgradeLevel: 1
   maxUpgradeLevel: 4
   upgradeGrowthFactor: 1.15
