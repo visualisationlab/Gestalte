@@ -64027,7 +64027,7 @@ MonoBehaviour:
   OnMoneyUpdateDelta:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 305041868}
+      - m_Target: {fileID: 1858968998}
         m_TargetAssemblyTypeName: EmitOnIncrease, Assembly-CSharp
         m_MethodName: EmitParticles
         m_Mode: 0
@@ -64473,6 +64473,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858968998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9003735446864312987, guid: 24bf3dc3c53d0e14fab830c7c7412633, type: 3}
+  m_PrefabInstance: {fileID: 8080897725335471016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0f08af6a9fe7948ba9eae975e6f3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1919235186
 GameObject:
   m_ObjectHideFlags: 0
@@ -69528,3 +69539,4 @@ SceneRoots:
   - {fileID: 1762009567}
   - {fileID: 1319502189}
   - {fileID: 573531229}
+  - {fileID: 8080897725335471016}
