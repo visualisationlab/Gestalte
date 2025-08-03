@@ -235,11 +235,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35
+      value: -2.48
       objectReference: {fileID: 0}
     - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.65
+      value: 1.83
       objectReference: {fileID: 0}
     - target: {fileID: 5649436026819602165, guid: d78e534861cfccd4ea29bfa52855d109, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63917,10 +63917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SprayMachine
       objectReference: {fileID: 0}
-    - target: {fileID: 7092464942995873906, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7479062856975829621, guid: cd5c8deda8dbb6d40a020a6984e6539d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -63996,7 +63992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d61fe4b18c0794e9555552f7144955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 50
+  money: 500000
   OnMoneyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -64420,10 +64416,6 @@ PrefabInstance:
     - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
       propertyPath: m_Name
       value: FurnaceMachine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6374596759931955718, guid: a9081ead6ff783a42968038a3ea8519d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67889,6 +67881,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExcavatorMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 3789654927096468268, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6041032676918844911, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -67927,6 +67923,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6041032676918844911, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212357262013544505, guid: 54f1dab21f0f11249b39b4b15390d6bc, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -69414,8 +69414,8 @@ SceneRoots:
   - {fileID: 1684240689}
   - {fileID: 1834421981}
   - {fileID: 5440294480330279720}
+  - {fileID: 573531229}
   - {fileID: 1563348473861415128}
   - {fileID: 5483605919407447096}
   - {fileID: 1762009567}
   - {fileID: 1319502189}
-  - {fileID: 573531229}

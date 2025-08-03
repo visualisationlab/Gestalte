@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2587054128782800231}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MiddlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034349286868390582}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 973538258277464148}
   - component: {fileID: 3715148739001339215}
   - component: {fileID: 3742489617246192523}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxGate_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 6406366006772850845}
   - component: {fileID: 6258973142971579596}
   - component: {fileID: 1893588007388884968}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.04088399}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -374,7 +374,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.918232}
   m_EdgeRadius: 0
 --- !u!1 &6374596759931955718
 GameObject:
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 5504677416023601025}
   - component: {fileID: 2380497394364133896}
   - component: {fileID: -389094008041105002}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FurnaceMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0930351, y: 0}
+  m_Offset: {x: 0.174803, y: 0.16937649}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -461,7 +461,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1860702, y: 1}
+  m_Size: {x: 1.0225344, y: 1.338753}
   m_EdgeRadius: 0
 --- !u!114 &5504677416023601025
 MonoBehaviour:
@@ -529,7 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8563906413953327112}
   - component: {fileID: 7063027090291967065}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 3696274801883357673}
   - component: {fileID: 1315466227857991954}
   - component: {fileID: 2778366692272460908}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: InputPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}

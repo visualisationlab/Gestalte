@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089226903804872852}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2211509637351013632}
   - component: {fileID: 5581259187592763392}
   - component: {fileID: 1409898860206639108}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: InputPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 5968647904489694270}
   - component: {fileID: 4900326209844223131}
   - component: {fileID: 8665270220096765816}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxGate_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 1326655657717250284}
   - component: {fileID: 5296358771637699344}
   - component: {fileID: 656831200881142120}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462238480257844572}
   - component: {fileID: 2663424993559021250}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 7485368111640788808}
   - component: {fileID: 1975599757221880882}
   - component: {fileID: 9216968471328797511}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: SprayMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4418485641521687169}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MiddlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

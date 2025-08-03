@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677600682973678171}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CenterPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5294938897968147401}
   - component: {fileID: 6901346240625564894}
   - component: {fileID: 3406788919332087113}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: MagneticField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 0.86, y: 0.86, z: 0.86}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5649436026819602165}
@@ -107,9 +107,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.9167206, a: 0.019607844}
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 21300000, guid: 574615f24906bfe4cb773bafa2a514a6, type: 3}
+  m_Color: {r: 0.8537736, g: 1, b: 0.98795784, a: 0.019607844}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 2.31
 --- !u!1 &1416110120200838364
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 442903480805290170}
   - component: {fileID: 9035323935101069891}
   - component: {fileID: 4827542661591502733}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: InputPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 5
+  m_Radius: 1
 --- !u!1 &2050973200502687686
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 7636809624075154325}
   - component: {fileID: 5788464255592659374}
   - component: {fileID: -1739333928270968300}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MagneticMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,6 +461,7 @@ MonoBehaviour:
   baseUpgradePrice: 0
   upgradeLevel: 1
   maxUpgradeLevel: 3
+  upgradeGrowthFactor: 1.15
   description: 'Magnet
 
 
@@ -468,7 +469,9 @@ MonoBehaviour:
     unclear.'
   attractionArea: {fileID: 3406788919332087113}
   pullFraction: 0.1
-  velocityAccel: 10
+  pullStrength: 2
+  maxPullStrength: 2
+  effectCircle: {fileID: 6901346240625564894}
 --- !u!61 &7636809624075154325
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,19 +1,23 @@
-using System;
-using System.Collections;
 using Examples.Factory101.Scripts;
 using Examples.Factory101.Scripts.Input;
 using Mediator;
 using MoonSharp.Interpreter;
 using UnityEngine;
 
-public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable, IBlockPlacement
+public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float upgradePullMultiplier = 1.3f;
     public CircleCollider2D attractionArea;
     [SerializeField, Range(0f, 1f)] float pullFraction = 0.1f;
-    [SerializeField] float velocityAccel = 10f; // how quickly the object chases the target velocity
-
+    [SerializeField] private float pullStrength = 2;
+    [SerializeField] private float maxPullStrength = 2;
+    [SerializeField] private SpriteRenderer effectCircle;
+    private void Start()
+    {
+        effectCircle.enabled = false;
+    }
+    
     public int GetPrice()
     {
         return basePrice;
@@ -23,47 +27,57 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable, IBlockPlac
     {
         return description;
     }
-
-    private void Start()
-    {
-        maxUpgradeLevel = 3;
-    }
-
     protected override void RegisterLua()
     {
         UserData.RegisterType<MagnetMachine>();
-        UserData.RegisterType<McGibbleDescription>(InteropAccessMode.Default);
+        UserData.RegisterType<McGibbleDescription>();
         luaScript = new Script();
         luaScript.Globals["this"] = this;
+    }
+    
+    protected override void AfterSetScript()
+    {
+        ExecuteScript();
     }
 
     public override string GetStatus()
     {
-        return "Magnet Status";
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Magnet Strength: {pullStrength}/{maxPullStrength} \n";
+        return result;
     }
 
     public override void UpgradeMachine()
     {
-        pullFraction = Mathf.Clamp01(pullFraction * upgradePullMultiplier);
+        upgradeLevel++;
+        
+        pullFraction = upgradeLevel switch
+        {
+            2 => .3f,
+            3 => .5f,
+            _ => 1f // default case
+        };
+        
+        maxPullStrength = upgradeLevel switch
+        {
+            2 => 5f,
+            3 => 10f,
+            _ => 1f // default case
+        };
+ 
     }
     private void FixedUpdate()
     {
         Attract();
-        // // if “alwaysPull” OR we have remaining pull time, do one tick of attract
-        // if (alwaysPull || pullTimer > 0f)
-        // {
-        //     Attract();
-
-        //     // count down the timer if it’s active
-        //     if (!alwaysPull)
-        //     {
-        //         pullTimer -= Time.fixedDeltaTime;
-        //         if (pullTimer < 0f) pullTimer = 0f;
-        //     }
-        // }
     }
-
-    [ExposeMethod("Pull objects towards the magnet")]
+    
+    [ExposeMethod("Sets the strength of the magnet")]
+    public void SetMagneticStrength(int strength)
+    {
+        pullStrength = Mathf.Clamp(strength, -1, maxPullStrength);
+    }
+    
     public void Attract()
     {
         if (attractionArea == null)
@@ -100,30 +114,18 @@ public class MagnetMachine : Machine, IPulseReceiver<bool>, IBuyable, IBlockPlac
             // Target velocity to achieve that displacement in one FixedUpdate
             float fixedDt = Time.fixedDeltaTime;
             Vector2 desiredVelocity = toMagnet.normalized * (moveDistance / fixedDt);
-
+    
             // Smoothly approach desired velocity
-            rb.linearVelocity = desiredVelocity * 0.1f * (upgradeLevel + 1);
+            rb.linearVelocity = desiredVelocity * (pullStrength * 0.25f);
         }
     }
-
-    [ContextMenu("Test Pull")]
-    public void TestPull()
+    public void OnHoverEnter()
     {
-        Attract();
+        effectCircle.enabled = true;
     }
 
-    public void OnPulse(bool message)
+    public void OnHoverExit()
     {
-        ExecuteScript();
-    }
-    
-    private void OnDrawGizmosSelected()
-    {
-        if (attractionArea == null) return;
-        Vector3 worldPos = transform.position;
-        float scale = Mathf.Max(attractionArea.transform.lossyScale.x, attractionArea.transform.lossyScale.y);
-        float worldRadius = attractionArea.radius * scale;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(worldPos, worldRadius);
+        effectCircle.enabled = false;
     }
 }
