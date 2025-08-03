@@ -44,7 +44,7 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement
     {
         string result = "";
         result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
-        result += $"Push rate: {pushRate}/{maxPushRate} \n";
+        result += $"Push rate: {GetPushRate()}/{GetMaxPushRate()} \n";
         return result;
     }
     
@@ -95,6 +95,16 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement
     public void Retract()
     {
         piston.Retract();
+    }
+    
+    private string GetPushRate()
+    {
+        return pushRate.ToString("0.0");
+    }
+
+    private string GetMaxPushRate()
+    {
+        return maxPushRate.ToString("0.0");
     }
     
 }
