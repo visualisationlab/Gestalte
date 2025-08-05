@@ -6,6 +6,7 @@ using MoonSharp.Interpreter;
 using UnityEngine;
 using System.Linq;
 using Examples.Factory101.Scripts.Input;
+using Coroutine = UnityEngine.Coroutine;
 
 public class DroneMachine : Machine, IBuyable, IBlockPlacement
 {
@@ -17,26 +18,33 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
 
     protected int minSalePrice = -1;
     protected bool priceFilterSet = false;
+    protected float minHeatResistance = -1;
+    protected bool heatResistanceFilterSet = false;
     public GameObject dronePrefab;
     public int poolSize = 10;
     private List<DroneWorker> dronePool = new();
     private Queue<DroneWorker> availableDrones = new();
     private HashSet<GameObject> claimedGibbles = new();
 
-    public int GetPrice()
+    private Coroutine loopRoutine;
+
+    [SerializeField] private float droneRate;
+    [SerializeField] private float maxDroneRate;
+
+
+    protected override void RegisterLua()
     {
-        return basePrice;
+        UserData.RegisterType<DroneMachine>();
+        UserData.RegisterType<McGibbleDescription>();
+        luaScript = new Script();
+        luaScript.Globals["this"] = this;
+        luaScript.Globals["McGibbleDescription"] = UserData.CreateStatic<McGibbleDescription>();
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
+        InstantiateDrones();
     }
 
-    public string GetDescription()
+    private void InstantiateDrones()
     {
-        return description;
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ExecuteEverySecond());
-
         for (int i = 0; i < poolSize; i++)
         {
             var drone = Instantiate(dronePrefab, transform.position, Quaternion.identity);
@@ -46,33 +54,69 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
             availableDrones.Enqueue(worker);
         }
     }
-    
-    protected override void RegisterLua()
+
+    protected override void AfterSetScript()
     {
-        UserData.RegisterType<DroneMachine>();
-        luaScript = new Script();
-        luaScript.Globals["this"] = this;
+        ExecuteScript();
+        RestartCoroutine();
+    }
+
+    private void RestartCoroutine()
+    {
+        if (loopRoutine != null)
+        {
+            StopCoroutine(loopRoutine);
+        }
+
+        loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 
     public override string GetStatus()
     {
-        return "Get Drone Status";
+        string result = "";
+        result += $"Level: {upgradeLevel}/{maxUpgradeLevel} \n";
+        result += $"Rate: {GetDroneRate()} item(s)/s (max {GetMaxDroneRate()})\n";
+        return result;
+    }
+
+
+    IEnumerator ExecuteEverySecond()
+    {
+        while (true)
+        {
+            MoveGibbles();
+            yield return new WaitForSeconds(1f / droneRate);
+        }
     }
 
     public override void UpgradeMachine()
     {
-        throw new System.NotImplementedException();
+        upgradeLevel++;
+        
+        maxDroneRate = upgradeLevel switch
+        {
+            2 => 3f,
+            3 => 5f,
+            4 => 6f,
+            _ => 1f // default case
+        };
     }
 
-    [ExposeMethod("setMinSalePrice")]
+    [ExposeMethod("Sets the rate this machine sends out drones")]
+    public void SetDroneRate(float rate)
+    {
+        droneRate = Mathf.Clamp(rate, 0.00001f, maxDroneRate);
+    }
+
+    [ExposeMethod("Filter on minimal Sale Price")]
     public void SetMinSalePrice(int value)
     {
         priceFilterSet = true;
         minSalePrice = value;
     }
 
-    [ExposeMethod("setWhitelistGibbles")]
-    public void SetWhitelistGibbles(Table luaTable)
+    [ExposeMethod("Filter on name")]
+    public void SetFilterOnName(Table luaTable)
     {
         whitelistSet = true;
         whitelist.Clear();
@@ -80,6 +124,13 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
         {
             whitelist.Add(kv.String.ToLower());
         }
+    }
+
+    [ExposeMethod("Set filter on heatresistance")]
+    public void SetFilterOnHeatResistanceNormalized(float normalizedValue)
+    {
+        heatResistanceFilterSet = true;
+        minHeatResistance = normalizedValue;
     }
 
     public virtual bool IsAllowed(GameObject obj)
@@ -90,37 +141,31 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
         if (priceFilterSet && gibble.description.raritySalePrice < minSalePrice)
             return false;
 
+        if (heatResistanceFilterSet && gibble.description.normalizedHeatAffinity < minHeatResistance)
+            return false;
+
         if (whitelistSet)
-            return whitelist.Contains(gibble.description.singleEmoji.ToLower());
+            return whitelist.Contains(gibble.description.name.ToLower());
 
         // If at least one filter is active and passed, allow
-        if (priceFilterSet || whitelistSet)
+        if (priceFilterSet || whitelistSet || heatResistanceFilterSet)
             return true;
 
         return false; // deny all if nothing defined
     }
 
-
-
-
-    IEnumerator ExecuteEverySecond()
-    {
-        while (true)
-        {
-            ExecuteScript();
-            yield return new WaitForSeconds(1f);
-        }
-    }
-
-    [ExposeMethod("Move Gibbles using drones")]
     public void MoveGibbles()
     {
         foreach (var obj in grabArea.detectedGameObjects.ToList())
         {
+
+            Debug.Log($"DroneMachine: Moving {obj.name}");
             if (obj == null || !IsAllowed(obj)) continue;
             if (claimedGibbles.Contains(obj)) continue;
             if (availableDrones.Count == 0) break;
 
+            Debug.Log($"DroneMachine: Claiming {obj.name}");
+            
             claimedGibbles.Add(obj); // ✅ Mark as in use
 
             var drone = availableDrones.Dequeue();
@@ -136,5 +181,24 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
         }
     }
 
+    public int GetPrice()
+    {
+        return basePrice;
+    }
+
+    public string GetDescription()
+    {
+        return description;
+    }
+    
+    private string GetDroneRate()
+    {
+        return droneRate.ToString("0.0");
+    }
+
+    private string GetMaxDroneRate()
+    {
+        return maxDroneRate.ToString("0.0");
+    }
 
 }

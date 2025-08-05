@@ -60,17 +60,19 @@ public class SimpleActuator : Machine, IBuyable, IBlockPlacement, IPulseReceiver
             yield return new WaitForSeconds(1f / pushRate);
         }
     }
-    
+
     public override void UpgradeMachine()
     {
         upgradeLevel++;
-        
+
         maxPushRate = upgradeLevel switch
         {
             2 => 2f,
             3 => 3f,
             _ => 1f // default case
         };
+        
+        pushRate = maxPushRate;
     }
     
     public int GetPrice()

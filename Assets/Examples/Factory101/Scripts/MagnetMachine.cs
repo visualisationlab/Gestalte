@@ -48,9 +48,9 @@ public class MagnetMachine : Machine, IBuyable, IBlockPlacement, IHoverable, IPu
         
         pullFraction = upgradeLevel switch
         {
-            2 => .3f,
-            3 => .5f,
-            _ => 1f // default case
+            2 => .15f,
+            3 => .25f,
+            _ => .1f // default case
         };
         
         maxPullStrength = upgradeLevel switch

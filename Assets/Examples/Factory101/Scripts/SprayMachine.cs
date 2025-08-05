@@ -77,12 +77,16 @@ public class SprayMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver<M
         
         maxSprayRate = upgradeLevel switch
         {
-            2 => 3f,
-            3 => 5f,
-            4 => 6f,
+            2 => 2f,
+            3 => 3f,
+            4 => 4f,
+            5 => 5f,
+            6 => 6f,
             _ => 1f // default case
         };
-        
+
+        sprayRate = maxSprayRate;
+
         finishType = upgradeLevel switch
         {
             2 => FinishType.Glossy,

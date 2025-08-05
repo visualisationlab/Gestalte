@@ -20,6 +20,8 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
 
     protected int minSalePrice = -1;
     protected bool priceFilterSet = false;
+    protected float minHeatResistance = -1;
+    protected bool heatResistanceFilterSet = false;
 
     [SerializeField] private float filterRate;
     [SerializeField] private float maxFilterRate;
@@ -106,6 +108,13 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
         }
     }
 
+    [ExposeMethod("Set filter on heatresistance")]
+    public void SetFilterOnHeatResistanceNormalized(float normalizedValue)
+    {
+        heatResistanceFilterSet = true;
+        minHeatResistance = normalizedValue;
+    }
+
     public virtual bool IsAllowed(GameObject obj)
     {
         var gibble = obj.GetComponent<McGibble>();
@@ -114,11 +123,14 @@ public class FilterMachine : Machine, IBuyable, IBlockPlacement
         if (priceFilterSet && gibble.description.raritySalePrice < minSalePrice)
             return false;
 
+        if (heatResistanceFilterSet && gibble.description.normalizedHeatAffinity < minHeatResistance)
+            return false;
+
         if (whitelistSet)
             return whitelist.Contains(gibble.description.name.ToLower());
 
         // If at least one filter is active and passed, allow
-        if (priceFilterSet || whitelistSet)
+        if (priceFilterSet || whitelistSet || heatResistanceFilterSet)
             return true;
 
         return false; // deny all if nothing defined

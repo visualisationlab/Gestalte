@@ -67,6 +67,8 @@ public class ExcavatorMachine : Machine, IBuyable, IBlockPlacement
             _ => 1f // default case
         };
         
+        digRate = maxDigRate;
+
         maxPlacementSpread = upgradeLevel switch
         {
             2 => 0.75f,

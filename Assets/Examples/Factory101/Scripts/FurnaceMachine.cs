@@ -79,6 +79,8 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver
             _ => 1f // default case
         };
         
+        blastRate = maxBlastRate;
+
         stability = upgradeLevel switch
         {
             2 => .5f,

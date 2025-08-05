@@ -57,6 +57,8 @@ public class MixerMachine : Machine, IBuyable, IBlockPlacement
             _ => 1f // default case
         };
         
+        mixRate = maxMixRate;
+
         extraComment = upgradeLevel switch
         {
             2 => "give a slightly higher chance to a medium normalizedRarity",
