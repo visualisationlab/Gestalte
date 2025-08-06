@@ -102,28 +102,34 @@ public class FurnaceMachine : Machine, IBuyable, IBlockPlacement, IPulseReceiver
         blastRate = Mathf.Clamp(rate, 0.00001f, maxBlastRate);
     }
     
+    [ExposeMethod("See if there is an item detected")]
+    public bool IsItemDetected()
+    {
+        return lastMcGibbleDetected != null;
+    }
+    
     [ExposeMethod("Get the name of the item the connected sensor detected")]
     public string GetNameOfDetectedItem()
     {
-        return lastMcGibbleDetected.name;
+        return lastMcGibbleDetected == null ? "" : lastMcGibbleDetected.name;
     }
     
     [ExposeMethod("Get the base sale price of the item the connected sensor detected")]
     public int GetBasePriceOfDetectedItem()
     {
-        return lastMcGibbleDetected.raritySalePrice;
+        return lastMcGibbleDetected == null ? 0 : lastMcGibbleDetected.raritySalePrice;
     }
     
     [ExposeMethod("Get the normalized rarity of the item the connected sensor detected")]
     public float GetRarityOfDetectedItem()
     {
-        return lastMcGibbleDetected.normalizedRarity;
+        return lastMcGibbleDetected == null ? 0.0f : lastMcGibbleDetected.normalizedRarity;
     }
     
     [ExposeMethod("Get the heat affinity of the item the connected sensor detected")]
     public float GetHeatAffinityOfDetectedItem()
     {
-        return lastMcGibbleDetected.normalizedHeatAffinity;
+        return lastMcGibbleDetected == null ? 0.0f : lastMcGibbleDetected.normalizedHeatAffinity;
     }
     
     public void Blast()

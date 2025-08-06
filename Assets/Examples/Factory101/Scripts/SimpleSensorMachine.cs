@@ -47,6 +47,11 @@ public class SimpleSensorMachine : Machine, IBuyable, IBlockPlacement
         }
     }
     
+    public void UnSense()
+    {
+        cableEnd.SendPulse(null);
+    }
+    
     public int GetPrice()
     {
         return basePrice;

@@ -8,6 +8,7 @@ public class SimpleSensor : MonoBehaviour
     public bool ignoreTriggerStay;
 
     public UnityEvent<GameObject> OnTriggerEnter;
+    public UnityEvent OnTriggerExit;
     
     public virtual void OnTriggerEnter2D(Collider2D col)
     {
@@ -19,6 +20,7 @@ public class SimpleSensor : MonoBehaviour
     public virtual void OnTriggerExit2D(Collider2D col)
     {
         onDetect = false;
+        OnTriggerExit.Invoke();
         detectedGameObject = null;
     }
     

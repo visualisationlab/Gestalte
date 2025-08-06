@@ -859,8 +859,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 359967777320930534, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
+      propertyPath: script
+      value: "this:SetPushRate(0)\nif this:IsItemDetected() then\n    this:ForcePush()\nelse\n   
+        this:ForceRetract()\nend"
+      objectReference: {fileID: 0}
+    - target: {fileID: 359967777320930534, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: instructionPrompt
-      value: 
+      value: Set push rate to 0. If there is an item detected push, if not force
+        retract
       objectReference: {fileID: 0}
     - target: {fileID: 847811442178103172, guid: 27dff413000b5724fb772fc608a4f3d4, type: 3}
       propertyPath: m_Name
@@ -64905,14 +64911,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3436119993976898856, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
-      propertyPath: m_SortingOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4893170322171532647, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
-      propertyPath: forceConnection
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9154291371340185324, guid: 181f9dc7329dc7040ae756388399a6a7, type: 3}
       propertyPath: m_Name
       value: SimpleSensor
@@ -65672,8 +65670,9 @@ MonoBehaviour:
   preprompt: 'You are a Robot that only reponds in Lua code. The Lua code will be
     executed in Unity environment through MoonSharp. You do not need to write a while
     loop in Lua, the code is executed every tick by Unity itself. Do not write comments.
-    The object itself is referenced by this:MethodName(). When dealing with time
-    in Lua, use os.time(). Your response is formatted as JSON as follows:'
+    The object itself is referenced by this:MethodName(). Notice the this: before
+    each method call! When dealing with time in Lua, use os.time(). Your response
+    is formatted as JSON as follows:'
   gameObjectInstructions: 'note that the methods are the only methods available for
     this object, do not come up with methods that dont exist. The Game Object you
     are writing code for is:'

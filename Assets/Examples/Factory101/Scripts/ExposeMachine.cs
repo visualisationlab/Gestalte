@@ -12,6 +12,15 @@ public class ExposeMachine : MonoBehaviour
     [TextArea] public string instructionPrompt;
     [TextArea (3,12)] public string script;
     [SerializeField] private Machine machine;
+
+    private void Start()
+    {
+        if (!string.IsNullOrEmpty(script))
+        {
+            SetScript(script);
+        }
+    }
+
     public List<ExposedMethodInterpretation> GetExposedMethods()
     {
         var allObjects = gameObject.GetComponents<MonoBehaviour>();
