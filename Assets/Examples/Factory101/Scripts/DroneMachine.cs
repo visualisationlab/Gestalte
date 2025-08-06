@@ -158,13 +158,9 @@ public class DroneMachine : Machine, IBuyable, IBlockPlacement
     {
         foreach (var obj in grabArea.detectedGameObjects.ToList())
         {
-
-            Debug.Log($"DroneMachine: Moving {obj.name}");
             if (obj == null || !IsAllowed(obj)) continue;
             if (claimedGibbles.Contains(obj)) continue;
             if (availableDrones.Count == 0) break;
-
-            Debug.Log($"DroneMachine: Claiming {obj.name}");
             
             claimedGibbles.Add(obj); // ✅ Mark as in use
 
