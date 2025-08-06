@@ -18,7 +18,7 @@ public class ExcavatorMachine : Machine, IBuyable, IBlockPlacement
     
     //Dig rate
     [SerializeField] private float digRate;
-    private float maxDigRate = 1.0f;
+    private float maxDigRate = 0.5f;
 
     //Placement Spread
     private Vector3 spread;
@@ -62,8 +62,8 @@ public class ExcavatorMachine : Machine, IBuyable, IBlockPlacement
         upgradeLevel++;
         maxDigRate = upgradeLevel switch
         {
-            2 => 3f,
-            3 => 5f,
+            2 => 2f,
+            3 => 3f,
             _ => 1f // default case
         };
         

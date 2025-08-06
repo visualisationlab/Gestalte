@@ -41,7 +41,18 @@ public class RobotAgent : MonoBehaviour
 
     private string ExtractJson(string input)
     {
+        var match = Regex.Match(
+            input,
+            @"(?:```json\s*|json)?(\{[\s\S]*?\})(?=\s*```|$)",
+            RegexOptions.Multiline
+        );
+        return match.Success ? match.Groups[1].Value : null;
+    }
+    
+    private string ExtractJsonBrackets(string input)
+    {
         var match = Regex.Match(input, @"```json\s*(\{[\s\S]*?\})\s*```");
         return match.Success ? match.Groups[1].Value : null;
     }
+    
 }

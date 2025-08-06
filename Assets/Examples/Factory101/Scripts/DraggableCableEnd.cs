@@ -24,9 +24,17 @@ public class DraggableCableEnd : DraggableBase2D
     public int plugDragSortingOrder = 700;
     public int plugStandardSortingOrder = 3;
 
+    public CableConnector forceConnection;
+    
     private void Start()
     {
         startPosition = transform.position;
+        if(forceConnection != null)
+        {
+            connectedTo = forceConnection;
+            connectedTo.AttachCable(this);
+            plug.sortingOrder = plugStandardSortingOrder;
+        }
     }
 
     public override void StartDrag(Vector3 worldPointerPosition)
