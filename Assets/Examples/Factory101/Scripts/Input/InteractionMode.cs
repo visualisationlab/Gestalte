@@ -26,10 +26,12 @@ public class InteractionModeController : MonoBehaviour
 
     public void SetModeDefault()
     {
-        if (CurrentMode == InteractionMode.Placement)
-        {
-            SetMode(InteractionMode.Default);
-        }
+        SetMode(InteractionMode.Default);
+    }
+    
+    public void SetModeBlocked()
+    {
+        SetMode(InteractionMode.Blocked);
     }
 
     public void SetMode(InteractionMode mode)
@@ -43,6 +45,7 @@ public class InteractionModeController : MonoBehaviour
 
 public enum InteractionMode
 {
+    Blocked,
     Default,
     Placement
 }

@@ -7,6 +7,8 @@ public class GameInfoManager : MonoBehaviour
 
    public UnityEvent<int> OnMoneyUpdate;
    public UnityEvent<int> OnMoneyUpdateDelta;
+
+   public bool hadMoneyBefore;
    public static GameInfoManager Instance { get; private set; }
    
    void Awake()
@@ -31,6 +33,11 @@ public class GameInfoManager : MonoBehaviour
       money += amount;
       OnMoneyUpdate.Invoke(money);
       OnMoneyUpdateDelta.Invoke(amount);
+      if (!hadMoneyBefore)
+      {
+         hadMoneyBefore = true;
+         UITutorialScreenController.Instance.ShowScreenTwo();
+      }
    }
 
    public int GetMoney()
