@@ -134,4 +134,9 @@ public class ExcavatorMachine : Machine, IBuyable, IBlockPlacement
         loopRoutine = StartCoroutine(ExecuteEverySecond());
     }
 
+    public void KickCoroutine()
+    {
+        RestartCoroutine();
+    }
+
 }

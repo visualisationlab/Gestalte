@@ -38,17 +38,29 @@ public class UITutorialScreenController : MonoBehaviour
 
       Instance = this;
    }
+
+   [ContextMenu("Clear Tutorial")]
+   public void ClearTutorial()
+   {
+      PlayerPrefs.SetInt("FinishedTutorial", 0);
+   }
    
    public IEnumerator Start()
    {
-      ScreenZero.SetActive(true);
-      doingTutorial = true;
-      InteractionModeController.Instance.SetModeBlocked();
-      yield return new WaitForSeconds(3f);
-      ScreenZero.SetActive(false);
-      cameraController.SetFreezeCamera(true);
-      ScreenOne.SetActive(true);
-      InteractionModeController.Instance.SetModeDefault();
+      Debug.Log($"Doing Tutorial: {PlayerPrefs.GetInt("FinishedTutorial")}");
+      if (PlayerPrefs.GetInt("FinishedTutorial") == 1)
+      {
+         ForceStartGame();
+      }else{
+         ScreenZero.SetActive(true);
+         doingTutorial = true;
+         InteractionModeController.Instance.SetModeBlocked();
+         yield return new WaitForSeconds(3f);
+         ScreenZero.SetActive(false);
+         cameraController.SetFreezeCamera(true);
+         ScreenOne.SetActive(true);
+         InteractionModeController.Instance.SetModeDefault();
+      }
    }
    
 
@@ -88,11 +100,26 @@ public class UITutorialScreenController : MonoBehaviour
       GameInfoManager.Instance.AddMoney(moneyStart);
       doingTutorial = false;
       toolbarBlocker.SetActive(false);
+      ScreenZero.SetActive(false);
+      cameraController.SetFreezeCamera(false);
+
+      PlayerPrefs.SetInt("FinishedTutorial", 1);
+      PlayerPrefs.Save();
+   }
+
+   public void ForceStartGame()
+   {
+      doingTutorial = false;
+      toolbarBlocker.SetActive(false);
+      ScreenZero.SetActive(false);
+      cameraController.SetFreezeCamera(false);
+      startExcavator.SetDigRate(0.3f);
+      startExcavator.KickCoroutine();
    }
    
    public void ProgramButtonPressed()
    {
-      if (!hasProgrammed)
+      if (!hasProgrammed && DoingTutorial())
       {
          hasProgrammed = true;
          OnProgrammedButtonPressed.Invoke();

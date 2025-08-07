@@ -13,7 +13,7 @@ public class ConsumeMachine : MonoBehaviour, IBlockPlacement
         if (col.gameObject.CompareTag("McGibble"))
         {
             var mcGibble = col.gameObject.GetComponent<McGibble>();
-            if (!nonStartMcGibbleMade && mcGibble.description.name != "Yki")
+            if (!nonStartMcGibbleMade && mcGibble.description.name != "Yki" && UITutorialScreenController.Instance.DoingTutorial())
             {
                 nonStartMcGibbleMade = true;
                 onFirstNotStartMcGibble.Invoke();

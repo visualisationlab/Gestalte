@@ -33,7 +33,7 @@ public class GameInfoManager : MonoBehaviour
       money += amount;
       OnMoneyUpdate.Invoke(money);
       OnMoneyUpdateDelta.Invoke(amount);
-      if (!hadMoneyBefore)
+      if (!hadMoneyBefore && UITutorialScreenController.Instance.DoingTutorial())
       {
          hadMoneyBefore = true;
          UITutorialScreenController.Instance.ShowScreenTwo();
